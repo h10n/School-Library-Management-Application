@@ -1,0 +1,402 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Book;
+use App\Author;
+use Yajra\Datatables\Html\Builder;
+use Yajra\Datatables\Datatables;
+use Session;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
+use App\Exceptions\BookException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\BorrowLog;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Validator;
+
+class BooksController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request, Builder $htmlBuilder)
+    {
+        //
+
+        if ($request->ajax()) {
+          $books = Book::with(['author','publisher','category']);
+          return Datatables::of($books)
+          ->addColumn('action',function($book){
+            return view('datatable._book-action',[
+              'model' => $book,
+              'form_url' => route('books.destroy',$book->id),
+              'edit_url' => route('books.edit',$book->id),
+              'detail_url' => route('books.show',$book->id),
+              'title' => 'Buku',
+              'confirm_message' => 'Yakin ingin menghapus '.$book->title.' ?'
+            ]);
+          })->make(true);
+        }
+
+        $html = $htmlBuilder
+        ->addColumn([
+          'data' => 'no_induk',
+          'name' => 'no_induk',
+          'title' => 'No Induk'
+        ])
+        ->addColumn([
+          'data' => 'title',
+          'name' => 'title',
+          'title' => 'Judul'
+        ])
+        ->addColumn([
+          'data' => 'author.name',
+          'name' => 'author.name',
+          'title' => 'Penulis'
+        ])
+        ->addColumn([
+          'data' => 'publisher.name',
+          'name' => 'publisher.name',
+          'title' => 'Penerbit'
+        ])
+        ->addColumn([
+          'data' => 'published_year',
+          'name' => 'published_year',
+          'title' => 'Tahun Terbit'
+        ])
+        ->addColumn([
+          'data' => 'book_year',
+          'name' => 'book_year',
+          'title' => 'Tahun Buku'
+        ])
+        ->addColumn([
+          'data' => 'amount',
+          'name' => 'amount',
+          'title' => 'Jumlah'
+        ])
+        ->addColumn([
+          'data' => 'action',
+          'name' => 'action',
+          'title' => '',
+          'orderable' => false,
+          'searchable' => false
+        ]);
+        return view('books.index')->with(compact('html'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        return view('books.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreBookRequest $request)
+    {
+        $book = Book::create($request->except('cover'));
+        if ($request->hasFile('cover')) {
+          //ngambil filenya
+          $uploaded_cover = $request->file('cover');
+          //ngambil extensinya
+          $extension = $uploaded_cover->getClientOriginalExtension();
+          //buat nama random+extensi filenya
+          $filename = md5(time()).'.'.$extension;
+          //simpan ke public/image
+          $destinatonPath = public_path('img');
+
+          $uploaded_cover->move($destinatonPath, $filename);
+          //isi filed cover dengan filename yang baru dibuat
+          $book->cover = $filename;
+          $book->save();
+        }
+        Session::flash("flash_notification",[
+          "level" => "success",
+          "message" => "Berhasil menyimpan $book->title"
+        ]);
+        return redirect()->route('books.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+      $book = Book::with(['Author','Publisher','Category'])->find($id);
+    return view('books.show', compact('book'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+        $book = Book::find($id);
+        return view('books.edit')->with(compact('book'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateBookRequest $request, $id)
+    {
+      /* validation has done in UpdateBookRequest, this is just another option
+      $this->validate($request,[
+        'title' => 'required|unique:books,title,'.$id,
+        'author_id' => 'required|exists:authors,id',
+        'amount' => 'required|numeric',
+        'cover' => 'image|max:2048'
+      ]);
+      */
+
+      $book = Book::find($id);
+      $cover = $book->cover;
+if(!$book->update($request->all())) return redirect()->back();
+
+if ($request->hasFile('cover')) {
+    $filename = null;
+    $uploaded_cover = $request->file('cover');
+    $extension = $uploaded_cover->getClientOriginalExtension();
+
+    // membuat nama file random dengan extension
+    $filename = md5(time()) . '.' . $extension;
+    $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
+
+    // memindahkan file ke folder public/img
+    $uploaded_cover->move($destinationPath, $filename);
+
+    // hapus cover lama, jika ada
+    $this->deleteCover($cover);
+
+    // ganti field cover dengan cover yang baru
+    $book->cover = $filename;
+    $book->save();
+}
+
+Session::flash("flash_notification", [
+    "level"=>"success",
+    "message"=>"Berhasil menyimpan $book->title"
+]);
+
+return redirect()->route('books.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        //
+        $book = Book::find($id);
+        $cover = $book->cover;
+        if (!$book->delete()) return redirect()->back();
+        //handle deleting books via ajax
+        if ($request->ajax()) return response()->json(['id' => $id]);
+        //hapus cover jika ada
+        $this->deleteCover($cover);
+        Session::flash("flash_notification",[
+          "level" => "success",
+          "message" => "Buku berhasil dihapus"
+        ]);
+        return redirect()->route('books.index');
+    }
+
+private function deleteCover($cover)
+{
+  if ($cover) {
+  $old_cover = $cover;
+  $filepath = public_path().DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$cover;
+
+  try {
+    File::delete($filepath);
+  } catch (FileNotFoundException $e) {
+    //file sudah dihapus/tidak ada
+  }
+}
+}
+
+    public function borrow($id)
+    {
+      try {
+        $book = Book::FindOrFail($id);
+        Auth::user()->borrow($book);
+        Session::flash("flash_notification",[
+          "level" => "success",
+          "message" => "berhasil meminjam buku $book->title"
+        ]);
+      } catch (BookException $e) {
+
+        Session::flash("flash_notification",[
+          "level" => "danger",
+          "message" => $e->getMessage()
+        ]);
+      } catch (ModelNotFoundException $e) {
+
+        Session::flash("flash_notification",[
+          "level" => "danger",
+          "message" => "Buku tidak Ditemukan"
+        ]);
+      }
+      return redirect('/');
+    }
+
+    public function returnBack($book_id)
+    {
+      $borrowLog  = BorrowLog::where('user_id', Auth::user()->id)
+      ->where('book_id', $book_id)
+      ->where('is_returned', 0)
+      ->first();
+
+      if ($borrowLog) {
+        $borrowLog->is_returned = true;
+        $borrowLog->save();
+
+        Session::flash("flash_notification",[
+          "level" => "success",
+          "message" => "Berhasil Mengembalikan ".$borrowLog->book->title
+        ]);
+      }
+    return redirect('/home');
+    }
+
+public function export()
+{
+  return view('books.export');
+}
+public function exportPost(Request $request)
+{
+  $this->validate($request, [
+    'author_id' => 'required',
+    'type' => 'required|in:pdf,xls'
+  ], [
+    'author_id.required' => 'Anda belum memilih penulis. Pilih minimal 1 penulis.'
+  ]);
+
+$books = Book::whereIn('author_id', $request->get('author_id'))->get();
+$handler = 'export'.ucfirst($request->get('type')); //ucfirst to capitallize first letter
+return $this->$handler($books);
+}
+private function exportXls($books)
+{
+    Excel::create('Data Buku', function($excel) use ($books){
+      //set property
+      $excel->setTitle('Data Buku')->setCreator(Auth::user()->name);
+
+      $excel->sheet('Data Buku', function($sheet) use ($books){
+      $row = 1;
+      $sheet->row($row,[
+        'Judul',
+        'Jumlah',
+        'Stok',
+        'Penulis'
+      ]);
+      foreach ($books as $book) {
+        $sheet->row(++$row, [
+          $book->title,
+          $book->amount,
+          $book->stock,
+          $book->author->name
+        ]);
+      }
+    });
+  })->export('xls');
+}
+private function exportPdf($books)
+{
+  $pdf = PDF::loadview('pdf.books', compact('books'));
+  return $pdf->download('books.pdf');
+}
+public function generateExcelTemplate()
+{
+  Excel::create('Template Import Buku', function($excel){
+    $excel->setTitle('Template Import Buku')
+    ->setCreator('Admin')
+    ->setCompany('Perpustakaan')
+    ->setDescription('Template Import Buku untuk Aplikasi Perpustakan');
+
+    $excel->sheet('Data Buku', function($sheet){
+    $row = 1;
+    $sheet->row($row, [
+      'judul',
+      'penulis',
+      'jumlah'
+    ]);
+  });
+  })->export('xls');
+}
+public function importExcel(Request $request)
+{
+  $this->validate($request, [ 'excel' => 'required' ]); //|mimes:xlsx something's wrong even has uploaded xlsx or xls extension its still  failed
+  $excel = $request->file('excel');
+  $excels = Excel::selectSheetsByIndex(0)->load($excel, function($reader){
+    //option jika ada
+  })->get();
+
+  $rowRules = [
+    'judul' => 'required',
+    'penulis' => 'required',
+    'jumlah' => 'required'
+  ];
+
+  $books_id = [];
+
+  foreach ($excels as $row) {
+    $validator = Validator::make($row->toArray(), $rowRules);
+    if($validator->fails()) continue;
+    $author = Author::where('name', $row['penulis'])->first();
+    if (!$author) {
+      $author = Author::create(['name' => $row['penulis']]);
+    }
+    $book = Book::create([
+      'title' => $row['judul'],
+      'author_id' => $author->id,
+      'amount' => $row['jumlah']
+    ]);
+    array_push($books_id, $book->id);
+  }
+
+  $books = Book::whereIn('id', $books_id)->get();
+  if ($books->count() == 0) {
+    Session::flash("flash_notification",[
+      "level" => "danger",
+      "message" => "Tidak ada Buku yang berhasil di import."
+    ]);
+    return redirect()->back();
+  }
+  Session::flash("flash_notification",[
+    "level" => "success",
+    "message" => "Berhasil mengimport ".$books->count()." Buku."
+  ]);
+  return view('books.import-review')->with(compact('books'));
+}
+}

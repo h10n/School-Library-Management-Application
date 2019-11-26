@@ -1,0 +1,15 @@
+<!--a href="{{route('carousels.create')}}">Add New Slide</a>
+
+<div style="margin-top:30px;">
+
+@foreach($carousels as $carousel)
+<img src="{{url('img/slider')}}/{{$carousel->img}}" alt="{{$carousel->title}}" width="250" height="150"> <br />
+<a href="{{ route('carousels.edit', $carousel->id) }}" class="btn btn-block btn-info">Edit</a>
+
+
+{!! Form::open(['method' => 'DELETE', 'route' => ['carousels.destroy', $carousel->id] ]) !!}
+  <button class="btn btn-block btn-danger" type="submit">Delete</button>
+{!! Form::close() !!}
+<br>
+@endforeach
+</div -->
