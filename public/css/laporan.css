@@ -1,0 +1,50 @@
+body {
+    /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+    font-size: 10pt;
+}
+.laporanTable,
+.laporanTable td,
+.laporanTable th {
+    border: 1px solid black;
+    text-align: left;
+}
+
+.laporanTable {    
+    border-collapse: collapse;
+    width: 100%;
+}
+
+h3 {
+    text-align: center;
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+.ttdTable {
+    text-align: center;
+    width: 100%;
+    margin-top:25px;
+    border-collapse: collapse;
+}
+
+.ttdTable td {
+    vertical-align: bottom;
+}
+
+.ttdTable .tengah {
+    width: 35%;
+}
+
+.ttdTable .ttd {
+    height: 30%;
+}
+
+.ttdTable span{
+    display: block;
+}
+
+.lb1 {
+    font-size: 11px;
+}
