@@ -485,6 +485,60 @@ function resetTransaksi(){
                 }
            });
 
+           $('#filter-transaksi-tahun').click(function(){
+            //    console.log("tes");
+                var what_year = $('#report_year').val();
+                if(what_year != '')
+                {
+                             $.ajaxSetup({
+                headers: {
+                    'X-XSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+        type: "POST",
+                url   : '{{ route('admin.reports.transactions.lihat.tahun') }}',
+                method: "POST",
+                dataType: "json",
+                data: {what_year: what_year},
+                cache : false,
+
+                beforeSend : function() {
+                    console.log('krece');
+                },
+
+                success : function(data) {
+                   // console.log(data);
+                    var output = '';
+                     $('#total_records-years').text(data.length);
+                    for(var count = 0; count < data.length; count++)
+                        {
+                            output += '<tr>';
+                            output += '<td>' + data[count].no_induk + '</td>';
+                            output += '<td>' + data[count].name + '</td>';
+                            output += '<td>' + data[count].jenis_anggota + '</td>';
+                            output += '<td>' + data[count].kelas + '</td>';
+                            output += '<td>' + data[count].keperluan + '</td>';
+                            output += '<td>' + data[count].created_at + '</td></tr>';
+                        }
+                            $('tbody').html(output);
+
+
+
+                },
+
+                error : function() {
+
+                }
+            })
+                }
+                else
+                {
+
+                }
+           });
+
 
     });
 

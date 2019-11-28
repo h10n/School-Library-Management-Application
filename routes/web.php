@@ -73,6 +73,10 @@ Route::group(['middleware' => 'web'], function()
         'as' => 'admin.export.visitors',
         'uses' => 'ReportsController@visitorReport' //< gk kedetek metod nya
       ]);
+      Route::get('export/transactions',[
+        'as' => 'admin.export.transactions',
+        'uses' => 'ReportsController@transactionReport' //< gk kedetek metod nya
+      ]);
 
       Route::post('reports/visitors/lihat',[
         'as' => 'admin.reports.visitors.lihat',
@@ -83,6 +87,12 @@ Route::group(['middleware' => 'web'], function()
         'as' => 'admin.reports.visitors.lihat.tahun',
         'uses' => 'ReportsController@lihatTahunVisitorReport' //< gk kedetek metod nya
       ]);
+
+      Route::post('reports/transactions/lihat/tahun',[
+        'as' => 'admin.reports.transactions.lihat.tahun',
+        'uses' => 'ReportsController@lihatTahunTransactionReport' //< gk kedetek metod nya
+      ]);
+
 
       Route::get('export/books',[
   'as' => 'admin.export.books',

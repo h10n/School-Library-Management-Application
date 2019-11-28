@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 //use DB;  //uncomment this if u want to use dif method
 use App\Visitor;
 use App\Book;
+use App\BorrowLog;
 //use Response;
 use Carbon\Carbon;
 
@@ -16,6 +17,10 @@ class ReportsController extends Controller
     public function visitorReport()
     {
       return view('reports.visitor');
+    }
+    public function transactionReport()
+    {
+      return view('reports.transaction');
     }
 
     public function lihatVisitorReport(Request $request)
@@ -33,9 +38,9 @@ class ReportsController extends Controller
       if($request->from_date != '' && $request->to_date != '')
       {
         $date_from = Carbon::parse($request->from_date)->startOfDay();
-$date_to = Carbon::parse($request->to_date)->endOfDay();
+        $date_to = Carbon::parse($request->to_date)->endOfDay();
 
-$data = Visitor::whereDate('created_at', '>=', $date_from)
+      $data = Visitor::whereDate('created_at', '>=', $date_from)
     ->whereDate('created_at', '<=', $date_to)
     ->get()
     ->toArray();
@@ -69,6 +74,52 @@ $data = Visitor::whereDate('created_at', '>=', $date_from)
         $what_year = $request->what_year;
 
 $data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
+      }
+      else
+      {
+
+        $data =  Visitor::orderBy('created_at', 'desc')->get();
+      }
+      echo json_encode($data);
+     }
+    }
+
+    public function lihatTahunTransactionReport(Request $request)
+    {      
+    //   $peminjaman = BorrowLog::select('id', 'created_at')->where('is_returned', '1')->whereRaw('year(`created_at`) = ?', "2019")->get()->groupBy(function($date) {          
+    //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
+    // });
+
+    // $jumlah = [];
+    // $bulan = [];
+    
+    // foreach ($peminjaman as $key => $value) {
+    //     $jumlah[(int)$key] = count($value);
+    // }
+    
+    // for($i = 1; $i <= 12; $i++){
+    //     if(!empty($jumlah[$i])){
+    //         $bulan[$i] = $jumlah[$i];    
+    //     }else{
+    //         $bulan[$i] = 0;    
+    //     }
+    // } 
+    //         return $bulan;
+
+    // dd($peminjaman);
+
+      if($request->ajax())
+     {
+      if($request->what_year != '')
+      {
+      $what_year = $request->what_year;
+      $data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
+
+      $peminjaman = BorrowLog::select('id', 'created_at')->whereRaw('year(`created_at`) = ?', "2019")->get()->groupBy(function($date) {          
+          return Carbon::parse($date->created_at)->format('m'); // grouping by months
+      });
+
+      dd($peminjaman);
       }
       else
       {

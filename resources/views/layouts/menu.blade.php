@@ -74,7 +74,7 @@
     </a>
           <ul class="treeview-menu">
             <li><a href="{{route('admin.export.visitors')}}"><i class="fa fa-circle-o"></i> Laporan Pengunjung</a></li>
-            <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+            <li><a href="{{route('admin.export.transactions')}}"><i class="fa fa-circle-o"></i> Laporan Peminjaman Buku</a></li>
           </ul>
   </li>
   <li class="">
