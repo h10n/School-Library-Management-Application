@@ -16,7 +16,7 @@
                 <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a>
             </div>
         </div>
-        <!-- /.box-header -->
+
         <div class="box-body">
             <table class="table">
                 <caption><span class="ion-ios-gear"> Umum</caption>
@@ -34,19 +34,19 @@
                         <td>{{ $tentang }}</td>
                     </tr>
                     <tr>
-                      <td class="text-muted">Logo Perpustakan</td>
-                      <td>
-                          @if ($logo)
-                            <p>{!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-rounded cover-buku']) !!}</p>
-                          @endif
-                        </div>
-                      </div></td>
+                        <td class="text-muted">Logo Perpustakan</td>
+                        <td>
+                            @if ($logo)
+                            <p>{!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-rounded cover-buku']) !!}
+                            </p>
+                            @endif
+                        </td>
                     </tr>
-                  </tbody>
-              </table>
-              <table class="table">
-                  <caption><span class="ion-arrow-swap"> Peminjaman</caption>
-                  <tbody>
+                </tbody>
+            </table>
+            <table class="table">
+                <caption><span class="ion-arrow-swap"> Peminjaman</caption>
+                <tbody>
                     <tr>
                         <td class="text-muted">Nominal Denda</td>
                         <td>Rp.{{ $denda }}/Hari</td>
@@ -55,16 +55,15 @@
                         <td class="text-muted">Max Durasi Peminjaman</td>
                         <td>{{ $durasi }} Hari</td>
                     </tr>
-                      <tr>
+                    <tr>
                         <td class="text-muted">Max Jumlah Peminjaman</td>
                         <td>{{ $jumlah }} Buku</td>
                     </tr>
-                  </tbody>
-              </table>
+                </tbody>
+            </table>
             <a class="btn btn-primary" href="{{ url('admin/settings/general/edit') }}">Ubah</a>
         </div>
-        <!-- /.box-body -->
+
     </div>
-    <!-- /.box -->
 </section>
 @endsection

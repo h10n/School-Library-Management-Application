@@ -1,4 +1,3 @@
-
 <div class="form-group{{$errors->has('nis') ? ' has-error' : ''}}">
   {!! Form::label('nis','NIS',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
@@ -18,7 +17,8 @@
 <div class="form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
   {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Pilih Kelas','class' => 'form-control']) !!}
+    {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Pilih Kelas','class' =>
+    'form-control']) !!}
     {!! $errors->first('kelas','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 
@@ -48,14 +48,14 @@
     {!! Form::email('email',null,['class' => 'form-control','maxlength' => '70']); !!}
     {!! $errors->first('email','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
-  </div>
+</div>
 
 <div class="form-group{{$errors->has('phone') ? ' has-error' : ''}}">
-{!! Form::label('phone','No Telepon',['class' => 'col-md-2 control-label']) !!}
-<div class="col-md-4">
+  {!! Form::label('phone','No Telepon',['class' => 'col-md-2 control-label']) !!}
+  <div class="col-md-4">
     {!! Form::text('phone',null,['class' => 'form-control','maxlength' => '15']) !!}
     {!! $errors->first('phone','<p class="help-block"><strong>:message</strong></p>') !!}
-                </div>
+  </div>
 </div>
 
 <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">
@@ -63,7 +63,7 @@
   <div class="col-md-4">
     {!! Form::file('photo') !!}
     @if (isset($member) && $member->photo)
-      <p>{!! Html::image(asset('img/members_photo/'.$member->photo),null,['class' => 'img-rounded cover-buku']) !!}</p>
+    <p>{!! Html::image(asset('img/members_photo/'.$member->photo),null,['class' => 'img-rounded cover-buku']) !!}</p>
     @endif
     {!! $errors->first('photo','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
@@ -71,7 +71,8 @@
 
 <div class="form-group">
   <div class="col-md-6 col-md-offset-2">
-    <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar Anggota</span></a>
+    <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
+        Anggota</span></a>
     {{ Form::reset('Reset',['class' => 'btn bg-yellow']) }}
     {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
 

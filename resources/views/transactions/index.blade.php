@@ -17,13 +17,13 @@
       <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a -->
       </div>
     </div>
-    <!-- /.box-header -->
+    
     <div class="box-body">
       {!! $html->table(['class' => 'table table-striped table-hover']) !!}
     </div>
-    <!-- /.box-body -->
+    
   </div>
-  <!-- /.box -->
+  
       </section>
 @endsection
 @section('scripts')

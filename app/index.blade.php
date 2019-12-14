@@ -17,12 +17,12 @@
       <a class="btn bg-purple"><span class="ion-ios-paper"> Export</span></a>
       </div>
     </div>
-    <!-- /.box-header -->
+    
     <div class="box-body">
 
     </div>
-    <!-- /.box-body -->
+    
   </div>
-  <!-- /.box -->
+  
       </section>
 @endsection

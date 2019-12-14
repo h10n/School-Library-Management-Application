@@ -11,11 +11,9 @@
         <div class="box-header-dashboard">
             <h3 class="box-title">Dashboard</h3>
         </div>
-        <!-- /.box-header -->
         <div class="box-body">
             <div class="callout callout-info">
-Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}
-
+                Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="dashboard-div-wrapper bg-olive">
@@ -49,7 +47,7 @@ Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}
                     <h4>{{$anggota->count()}} Anggota</h4>
                 </div>
             </div>
-                       <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="dashboard-div-wrapper bg-yellow">
                     <div class="divider">
                         <i class="fa fa-clock-o dashboard-div-icon"></i>
@@ -82,40 +80,36 @@ Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}
                     <h4>{{$petugas->count()}} Petugas</h4>
                 </div>
             </div>
-<!--
-           <div class="col-md-6 col-sm-1 col-xs-6">
-          <h4>Statistik Penulis</h4>
-<canvas id="chartPenulis" width="400" height="400"></canvas>
-            </div>
-          -->
         </div>
-        <!-- /.box-body -->
+
     </div>
-    <!-- /.box -->
+
 </section>
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('js/Chart.min.js') }}"></script>
-  <script type="text/javascript">
-  var data = {
-      labels: {!! json_encode($authors) !!},
-      datasets: [
-          {
-              fillColor: "rgba(151,187,205,0.5)",
-              strokeColor: "rgba(151,187,205,0.8)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(220,220,220,1)",
-              highlightFill: "rgba(151,187,205,0.75)",
-              highlightStroke: "rgba(151,187,205,1)",
-              data: {!! json_encode($books) !!}
-          }
-      ]
-  };
+<script src="{{ asset('js/Chart.min.js') }}"></script>
+<script type="text/javascript">
+    var data = {
+        labels: {
+            !!json_encode($authors) !!
+        },
+        datasets: [{
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: {
+                !!json_encode($books) !!
+            }
+        }]
+    };
 
-  var ctx = document.getElementById("chartPenulis").getContext("2d");
-  var myLineChart = new Chart(ctx).Bar(data);
-  </script>
+    var ctx = document.getElementById("chartPenulis").getContext("2d");
+    var myLineChart = new Chart(ctx).Bar(data);
+</script>
 @endsection

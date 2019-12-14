@@ -18,7 +18,7 @@
       <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a>
       </div>
     </div>
-    <!-- /.box-header -->
+    
     <div class="box-body">
 
       {!! Form::open([
@@ -33,8 +33,8 @@
 
 
     </div>
-    <!-- /.box-body -->
+    
   </div>
-  <!-- /.box -->
+  
       </section>
 @endsection
