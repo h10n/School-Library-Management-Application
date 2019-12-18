@@ -333,30 +333,9 @@
             createMarquee({
                 duration: 200000
             });
-
-            //example of overwriting defaults:
-
-            // createMarquee({
-            // 		duration:30000,
-            // 		padding:20,
-            // 		marquee_class:'.example-marquee',
-            // 		container_class: '.example-container',
-            // 		sibling_class: '.example-sibling',
-            // 		hover: false});
-            // });
-        });
-
-    </script>
-    <script>
-        //script form visitor
-        $('#jenis_anggota').change(function () {
-            if ($(this).val() === 'siswa/i') {
-                $('.kelas').show();
-            } else {
-                $('.kelas').hide();
-            }
         });
     </script>
+
 
 @stack('req-scripts')
 

@@ -56,3 +56,15 @@
 @section('scripts')
 {!! $html->scripts() !!}
 @endsection
+@push('req-scripts')
+<script>
+  //script form visitor
+  $('#jenis_anggota').change(function () {
+      if ($(this).val() === 'siswa/i') {
+          $('.kelas').show();
+      } else {
+          $('.kelas').hide();
+      }
+  });
+</script>
+@endpush
