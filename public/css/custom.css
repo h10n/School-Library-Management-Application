@@ -3,7 +3,7 @@
     width: 100%;
     background: transparent;
     float: left;
-    display: inline-block;
+    display: block;
     overflow: hidden;
     box-sizing: border-box;
     height: 48px;
@@ -271,7 +271,7 @@ float :right;
 .member-photo {
 	max-width: 100%;
 	height: auto;
-max-height: 200px; */
+max-height: 200px;
 }
 .dropdown-menu .user-header .user-photo{
 	height: 160px;
