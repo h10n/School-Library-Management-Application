@@ -163,6 +163,6 @@ desired effect
             </div>
         </div>
     </div>
-    @include('layouts.partials._scripts')
+    @include('layouts._scripts')
 </body>
 </html>

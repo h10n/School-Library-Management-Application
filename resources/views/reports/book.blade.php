@@ -96,3 +96,13 @@
   </div>
 </section>
 @endsection
+
+@push('req-scripts')
+<script>
+            $('#report_year').datepicker({
+                minViewMode: 2,
+                format: 'yyyy',
+                autoclose: true
+            });
+</script>
+@endpush

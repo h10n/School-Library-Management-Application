@@ -37,3 +37,33 @@
   </div>
 </section>
 @endsection
+
+@push('req-scripts')
+<script>
+            $('#published-year').datepicker({
+              minViewMode: 2,
+              format: 'yyyy',
+              autoclose: true
+            });
+            $('#book-year').datepicker({
+              minViewMode: 2,
+              format: 'yyyy',
+              autoclose: true
+            });
+
+            function resetBuku() {
+              //very awful code, fix it in future
+              var $select = $('#author_id');
+              var control = $select[0].selectize;
+              control.clear();
+
+              var $select = $('#publisher_id');
+              var control = $select[0].selectize;
+              control.clear();
+
+              var $select = $('#category_id');
+              var control = $select[0].selectize;
+              control.clear();
+            }
+</script>
+@endpush

@@ -119,7 +119,7 @@ $data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
           return Carbon::parse($date->created_at)->format('m'); // grouping by months
       });
 
-      dd($peminjaman);
+      // dd($peminjaman);
       }
       else
       {

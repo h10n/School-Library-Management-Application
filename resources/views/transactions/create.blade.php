@@ -33,3 +33,18 @@
   </div>
 </section>
 @endsection
+
+@push('req-scripts')
+<script>
+        function resetTransaksi() {
+            //very awful code, fix it in future
+            var $select = $('#member_id');
+            var control = $select[0].selectize;
+            control.clear();
+
+            var $select = $('#book_id');
+            var control = $select[0].selectize;
+            control.clear();
+        }
+</script>
+@endpush

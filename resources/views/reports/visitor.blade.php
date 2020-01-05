@@ -96,3 +96,137 @@
   </div>
 </section>
 @endsection
+
+@push('req-scripts')
+<script>
+        // ajax laporan tahunan
+        $('#filter').click(function () {
+                var what_year = $('#report_year').val();
+                if (what_year != '') {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-XSRF-Token': $('meta[name="_token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: '{{ route('admin.reports.visitors.lihat.tahun') }}',
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            what_year: what_year
+                        },
+                        cache: false,
+
+                        beforeSend: function () {
+                            console.log('krece');
+                        },
+
+                        success: function (data) {
+                            // console.log(data);
+                            var output = '';
+                            $('#total_records-years').text(data.length);
+                            for (var count = 0; count < data.length; count++) {
+                                output += '<tr>';
+                                output += '<td>' + data[count].no_induk + '</td>';
+                                output += '<td>' + data[count].name + '</td>';
+                                output += '<td>' + data[count].jenis_anggota + '</td>';
+                                output += '<td>' + data[count].kelas + '</td>';
+                                output += '<td>' + data[count].keperluan + '</td>';
+                                output += '<td>' + data[count].created_at + '</td></tr>';
+                            }
+                            $('tbody').html(output);
+
+
+
+                        },
+
+                        error: function () {
+
+                        }
+                    })
+                } else {
+
+                }
+            });
+
+            $('#daterange-btn').daterangepicker({
+                ranges: {
+                    'Hari Ini': [moment(), moment()],
+                    'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    '7 Hari Terakhir': [moment().subtract(6, 'days'), moment()],
+                    '30 Hari Terakhir': [moment().subtract(29, 'days'), moment()],
+                    'Bulan Ini': [moment().startOf('month'), moment().endOf('month')],
+                    'Bulan Kemarin': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function (start, end) {
+                $('#daterange-btn span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
+
+                var from_date = start.format('YYYY-MM-DD'); //baca sesuai format default laravel
+                var to_date = end.format('YYYY-MM-DD');
+
+                ajaxLaporanBulan(from_date, to_date);                
+
+            }
+        );
+
+        function ajaxLaporanBulan(from_date, to_date) {
+            // console.log("aman")
+            $.ajaxSetup({
+                headers: {
+                    'X-XSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '{{ route('admin.reports.visitors.lihat') }}',
+                method: "POST",
+                dataType: "json",
+                data: {
+                    from_date: from_date,
+                    to_date: to_date
+                },
+                cache: false,
+
+                beforeSend: function () {
+                    console.log('krece');
+                },
+
+                success: function (data) {
+                    // console.log(data);
+                    var output = '';
+                    $('#total_records').text(data.length);
+                    for (var count = 0; count < data.length; count++) {
+                        output += '<tr>';
+                        output += '<td>' + data[count].no_induk + '</td>';
+                        output += '<td>' + data[count].name + '</td>';
+                        output += '<td>' + data[count].jenis_anggota + '</td>';
+                        output += '<td>' + data[count].kelas + '</td>';
+                        output += '<td>' + data[count].keperluan + '</td>';
+                        output += '<td>' + data[count].created_at + '</td></tr>';
+                    }
+                    $('tbody').html(output);
+
+
+
+                },
+
+                error: function () {
+
+                }
+            });
+
+        }
+
+        $('#report_year').datepicker({
+                minViewMode: 2,
+                format: 'yyyy',
+                autoclose: true
+            });
+</script>
+@endpush
