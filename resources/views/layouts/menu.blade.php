@@ -16,88 +16,67 @@
   </div>
   @endif
   @role('admin')
-  <li class="">
+  <li class="{{ (request()->is('home')) ? 'active' : '' }}">
     <a href="{{ url('/home') }}"><i class="ion-android-home"></i> <span>Dashboard</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
     </a>
   </li>
-  <li class="">
-    <a href="{{ url('/admin/authors') }}"><i class="ion-compose"></i> <span>Penulis</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
-  <li class="">
-    <a href="{{ url('/admin/publishers') }}"><i class="ion-star"></i> <span>Penerbit</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
-  <li class="">
-    <a href="{{url('/admin/members')}}"><i class="ion-trophy"></i> <span>Anggota</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
-  <li class="">
-    <a href="{{url('/admin/books')}}"><i class="ion-stats-bars"></i> <span>Buku</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
-  <li class="">
-    <a href="{{url('/admin/categories')}}"><i class="ion-pricetags"></i> <span>Kategori</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
-  <li class="">
+  <li class="{{ (request()->is('admin/transactions')) ? 'active' : '' }}">
     <a href="{{url('/admin/transactions')}}"><i class="ion-ios-list"></i> <span>Peminjaman</span>
+    </a>
+  </li>
+  <li class="treeview {{ (request()->is('admin/authors', 'admin/publishers','admin/members','admin/books','admin/categories','admin/announcements','admin/carousels')) ? 'active' : '' }}">
+    <a href="#"><i class="ion-filing"></i> <span>Master Data</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
+    <ul class="treeview-menu">
+      <li class="{{ (request()->is('admin/authors')) ? 'active' : '' }}">
+        <a href="{{ url('/admin/authors') }}"><i class="fa {{ (request()->is('admin/authors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Penulis</span>
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/publishers')) ? 'active' : '' }}">
+        <a href="{{ url('/admin/publishers') }}"><i class="fa {{ (request()->is('admin/publishers')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Penerbit</span>          
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/members')) ? 'active' : '' }}">
+        <a href="{{url('/admin/members')}}"><i class="fa {{ (request()->is('admin/members')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Anggota</span>          
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/books')) ? 'active' : '' }}">
+        <a href="{{url('/admin/books')}}"><i class="fa {{ (request()->is('admin/books')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Buku</span>    
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/categories')) ? 'active' : '' }}">
+        <a href="{{url('/admin/categories')}}"><i class="fa {{ (request()->is('admin/categories')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Kategori</span>
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/carousels')) ? 'active' : '' }}">
+        <a href="{{url('/admin/carousels')}}"><i class="fa {{ (request()->is('admin/carousels')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Slider</span>
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/announcements')) ? 'active' : '' }}">
+        <a href="{{url('/admin/announcements')}}"><i class="fa {{ (request()->is('admin/announcements')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengumuman</span>
+        </a>
+      </li>
+    </ul>
   </li>
-  <li class="treeview">
+  <li class="treeview {{ (request()->is('admin/export/visitors','admin/export/transactions')) ? 'active' : '' }}">
     <a href="#"><i class="ion-ios-printer"></i> <span>Laporan</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
     <ul class="treeview-menu">
-      <li><a href="{{route('admin.export.visitors')}}"><i class="fa fa-circle-o"></i> Laporan Pengunjung</a></li>
-      <li><a href="{{route('admin.export.transactions')}}"><i class="fa fa-circle-o"></i> Laporan Peminjaman Buku</a>
+      <li class="{{ (request()->is('admin/export/visitors')) ? 'active' : '' }}"><a href="{{route('admin.export.visitors')}}"><i class="fa {{ (request()->is('admin/export/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Laporan Pengunjung</a></li>
+      <li class="{{ (request()->is('admin/export/transactions')) ? 'active' : '' }}"><a href="{{route('admin.export.transactions')}}"><i class="fa {{ (request()->is('admin/export/transactions')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Laporan Peminjaman Buku</a>
       </li>
     </ul>
   </li>
-  <li class="">
-    <a href="{{url('/admin/carousels')}}"><i class="ion-images"></i> <span>Slider</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
-  <li class="">
-    <a href="{{url('/admin/announcements')}}"><i class="ion-speakerphone"></i> <span>Pengumuman</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-  </li>
   @endrole
   @role('member')
-  <li class="">
+  <li class="{{ (request()->is('home')) ? 'active' : '' }}">
     <a href="{{ url('/home') }}"><i class="ion-android-home"></i> <span>Dashboard</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
     </a>
   </li>
   @endrole

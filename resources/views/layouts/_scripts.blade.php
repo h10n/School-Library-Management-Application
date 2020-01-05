@@ -22,10 +22,7 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-    })
-    </script>
-    <script>
-
+    });
         function add(link, title) {
             $(".modal-title").html('<span class="glyphicon glyphicon-plus"></span> Tambah Data ' + title);
             save_method = 'add';
