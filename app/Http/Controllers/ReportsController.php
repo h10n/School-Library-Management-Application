@@ -62,6 +62,53 @@ class ReportsController extends Controller
 
     }
 
+    public function lihatTransactionReport(Request $request)
+    {
+      if($request->ajax())
+     {
+      if($request->from_date != '' && $request->to_date != '')
+      {
+        $date_from = Carbon::parse($request->from_date)->startOfDay();
+        $date_to = Carbon::parse($request->to_date)->endOfDay();
+
+      do {
+        $days[$date_from->formatLocalized('%A, %d-%m-%Y')] = $date_from->format('Y-m-d');
+      } while ($date_from->addDay()->format('Y-m-d') <= $date_to->format('Y-m-d'));
+      
+      foreach ($days as $key => $hari) {
+        $peminjaman = BorrowLog::whereDate('created_at', '=', $hari)->where('is_returned', '0')->get()->count();  
+        $pengembalian = BorrowLog::whereDate('created_at', '=', $hari)->where('is_returned', '1')->get()->count();  
+        $data[$key] = ['peminjaman' => $peminjaman, 'pengembalian' => $pengembalian];
+      }
+      }
+      else
+      {
+        $data =  [];
+      }
+      echo json_encode($data);      
+     }
+    }
+
+    public function lihatTahunTransactionReport(Request $request)
+    {
+
+
+      if($request->ajax())
+     {
+      if($request->what_year != '')
+      {
+        $what_year = $request->what_year;
+
+$data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
+      }
+      else
+      {
+
+        $data =  Visitor::orderBy('created_at', 'desc')->get();
+      }
+      echo json_encode($data);
+     }
+    }
 
     public function lihatTahunVisitorReport(Request $request)
     {
@@ -84,51 +131,51 @@ $data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
      }
     }
 
-    public function lihatTahunTransactionReport(Request $request)
-    {      
-    //   $peminjaman = BorrowLog::select('id', 'created_at')->where('is_returned', '1')->whereRaw('year(`created_at`) = ?', "2019")->get()->groupBy(function($date) {          
-    //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
-    // });
+    // public function lihatTahunTransactionReport(Request $request)
+    // {      
+    // //   $peminjaman = BorrowLog::select('id', 'created_at')->where('is_returned', '1')->whereRaw('year(`created_at`) = ?', "2019")->get()->groupBy(function($date) {          
+    // //     return Carbon::parse($date->created_at)->format('m'); // grouping by months
+    // // });
 
-    // $jumlah = [];
-    // $bulan = [];
+    // // $jumlah = [];
+    // // $bulan = [];
     
-    // foreach ($peminjaman as $key => $value) {
-    //     $jumlah[(int)$key] = count($value);
+    // // foreach ($peminjaman as $key => $value) {
+    // //     $jumlah[(int)$key] = count($value);
+    // // }
+    
+    // // for($i = 1; $i <= 12; $i++){
+    // //     if(!empty($jumlah[$i])){
+    // //         $bulan[$i] = $jumlah[$i];    
+    // //     }else{
+    // //         $bulan[$i] = 0;    
+    // //     }
+    // // } 
+    // //         return $bulan;
+
+    // // dd($peminjaman);
+
+    //   if($request->ajax())
+    //  {
+    //   if($request->what_year != '')
+    //   {
+    //   $what_year = $request->what_year;
+    //   $data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
+
+    //   $peminjaman = BorrowLog::select('id', 'created_at')->whereRaw('year(`created_at`) = ?', "2019")->get()->groupBy(function($date) {          
+    //       return Carbon::parse($date->created_at)->format('m'); // grouping by months
+    //   });
+
+    //   // dd($peminjaman);
+    //   }
+    //   else
+    //   {
+
+    //     $data =  Visitor::orderBy('created_at', 'desc')->get();
+    //   }
+    //   echo json_encode($data);
+    //  }
     // }
-    
-    // for($i = 1; $i <= 12; $i++){
-    //     if(!empty($jumlah[$i])){
-    //         $bulan[$i] = $jumlah[$i];    
-    //     }else{
-    //         $bulan[$i] = 0;    
-    //     }
-    // } 
-    //         return $bulan;
-
-    // dd($peminjaman);
-
-      if($request->ajax())
-     {
-      if($request->what_year != '')
-      {
-      $what_year = $request->what_year;
-      $data = Visitor::whereYear('created_at', '=', $what_year)->get()->toArray();
-
-      $peminjaman = BorrowLog::select('id', 'created_at')->whereRaw('year(`created_at`) = ?', "2019")->get()->groupBy(function($date) {          
-          return Carbon::parse($date->created_at)->format('m'); // grouping by months
-      });
-
-      // dd($peminjaman);
-      }
-      else
-      {
-
-        $data =  Visitor::orderBy('created_at', 'desc')->get();
-      }
-      echo json_encode($data);
-     }
-    }
 
 //laporan Buku
 public function bookReport()

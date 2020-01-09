@@ -44,7 +44,7 @@
           <div class="box-body">
 
             <label> Jumlah Data : </label> <b><span id="total_records">0</span></b>
-            <table class="table table-striped table-hover" id="">
+            <table class="table table-striped table-hover" id="laporanBulanan">
               <thead>
                 <tr>
                   <th>Hari / Tanggal</th>
@@ -183,6 +183,74 @@
 
                 }
             });
+
+            $('#daterange-btn').daterangepicker({
+                ranges: {
+                    'Hari Ini': [moment(), moment()],
+                    'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    '7 Hari Terakhir': [moment().subtract(6, 'days'), moment()],
+                    '30 Hari Terakhir': [moment().subtract(29, 'days'), moment()],
+                    'Bulan Ini': [moment().startOf('month'), moment().endOf('month')],
+                    'Bulan Kemarin': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function (start, end) {
+                $('#daterange-btn span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
+
+                var from_date = start.format('YYYY-MM-DD'); //baca sesuai format default laravel
+                var to_date = end.format('YYYY-MM-DD');
+
+                ajaxLaporanBulan(from_date, to_date);                
+
+            }
+        );
+
+        function ajaxLaporanBulan(from_date, to_date) {
+            // console.log("aman")
+            $.ajaxSetup({
+                headers: {
+                    'X-XSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: '{{ route('admin.reports.transaction.lihat') }}',
+                method: "POST",
+                dataType: "json",
+                data: {
+                    from_date: from_date,
+                    to_date: to_date
+                },
+                cache: false,
+
+                beforeSend: function () {
+                    console.log('krece');
+                },
+
+                success: function (data) {
+                    var output = '';
+                    $('#total_records').text(data.length);                    
+                      $.each(data, function (key, val) {
+                    console.log(key);
+                        output += '<tr>';
+                        output += '<td>' + key + '</td>';
+                        output += '<td>' + val.peminjaman + '</td>';
+                        output += '<td>' + val.pengembalian + '</td>';                                             
+                        output += '<td>' + '' + '</td></tr>';
+                      });                    
+                    $('#laporanBulanan tbody').html(output);
+
+                },
+
+                error: function () {
+
+                }
+            });
+
+        }
 
             $('#report_year').datepicker({
                 minViewMode: 2,
