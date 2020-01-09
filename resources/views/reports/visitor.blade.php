@@ -39,15 +39,18 @@
           <div class="box-body">
 
             <label> Jumlah Data : </label> <b><span id="total_records">0</span></b>
-            <table class="table table-striped table-hover" id="">
+            <table class="table table-striped table-hover" id="laporanBulanan">
               <thead>
                 <tr>
-                  <th>No Induk</th>
-                  <th>Nama</th>
-                  <th>Jenis Anggota</th>
-                  <th>Kelas</th>
-                  <th>Keperluan</th>
-                  <th>Tanggal</th>
+                  <th rowspan="2">Hari/Tanggal</th>
+                  <th colspan="3">Kelas</th>
+                  <th rowspan="2">Guru/Karyawan Sekolah</th>
+                  <th rowspan="2">Jumlah</th>
+                </tr>
+                <tr>
+                  <th>X</th>  
+                  <th>XI</th>  
+                  <th>XII</th>  
                 </tr>
               </thead>
               <tbody>
@@ -72,15 +75,12 @@
           <div class="box-body">
 
             <label> Jumlah Data : </label> <b><span id="total_records-years">0</span></b>
-            <table class="table table-striped table-hover" id="">
+            <table class="table table-striped table-hover" id="laporanTahunan">
               <thead>
                 <tr>
-                  <th>No Induk</th>
-                  <th>Nama</th>
-                  <th>Jenis Anggota</th>
-                  <th>Kelas</th>
-                  <th>Keperluan</th>
-                  <th>Tanggal</th>
+                  <th>Bulan</th>
+                  <th>Jumlah Pengunjung</th>
+                  <th>Ket</th>
                 </tr>
               </thead>
               <tbody>
@@ -116,37 +116,33 @@
                         dataType: "json",
                         data: {
                             what_year: what_year
-                        },
-                        cache: false,
+                          },
+                          cache: false,
 
-                        beforeSend: function () {
+                          beforeSend: function () {
                             console.log('krece');
-                        },
+                          },
 
-                        success: function (data) {
+                          success: function (data) {
                             // console.log(data);
                             var output = '';
                             $('#total_records-years').text(data.length);
-                            for (var count = 0; count < data.length; count++) {
-                                output += '<tr>';
-                                output += '<td>' + data[count].no_induk + '</td>';
-                                output += '<td>' + data[count].name + '</td>';
-                                output += '<td>' + data[count].jenis_anggota + '</td>';
-                                output += '<td>' + data[count].kelas + '</td>';
-                                output += '<td>' + data[count].keperluan + '</td>';
-                                output += '<td>' + data[count].created_at + '</td></tr>';
-                            }
-                            $('tbody').html(output);
+                            $.each(data, function (key, val) {
+                              output += '<tr>';
+                              output += '<td>' + key + '</td>';
+                              output += '<td>' + val.jumlah + '</td>';
+                              output += '<td>' + '' + '</td></tr>';
+                            });
+                            $('#laporanTahunan tbody').html(output);
 
+                          },
 
+                          error: function () {
 
-                        },
-
-                        error: function () {
-
+                          }
+                        })
                         }
-                    })
-                } else {
+                        else {
 
                 }
             });
@@ -201,16 +197,16 @@
                     // console.log(data);
                     var output = '';
                     $('#total_records').text(data.length);
-                    for (var count = 0; count < data.length; count++) {
+                    $.each(data, function (key, val) {
                         output += '<tr>';
-                        output += '<td>' + data[count].no_induk + '</td>';
-                        output += '<td>' + data[count].name + '</td>';
-                        output += '<td>' + data[count].jenis_anggota + '</td>';
-                        output += '<td>' + data[count].kelas + '</td>';
-                        output += '<td>' + data[count].keperluan + '</td>';
-                        output += '<td>' + data[count].created_at + '</td></tr>';
-                    }
-                    $('tbody').html(output);
+                        output += '<td>' + key + '</td>';
+                        output += '<td>' + val.kelas_x + '</td>';
+                        output += '<td>' + val.kelas_xi + '</td>';
+                        output += '<td>' + val.kelas_xii + '</td>';
+                        output += '<td>' + val.guru_staff + '</td>';                        
+                        output += '<td>' + val.jumlah+ '</td></tr>';
+                    });
+                    $('#laporanBulanan tbody').html(output);
 
 
 
