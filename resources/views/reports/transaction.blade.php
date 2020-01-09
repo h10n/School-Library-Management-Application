@@ -76,7 +76,7 @@
           <div class="box-body">
 
             <label> Jumlah Data : </label> <b><span id="total_records-years">0</span></b>
-            <table class="table table-striped table-hover" id="">
+            <table class="table table-striped table-hover" id="laporanTahunan">
               <thead>
                 <tr>
                   <th>Bulan</th>
@@ -134,7 +134,7 @@
 <script>
  $('#filter-transaksi-tahun').click(function () {
                 var what_year = $('#report_year').val();
-                   console.log(what_year);
+                  //  console.log(what_year);
                 if (what_year != '') {
                     $.ajaxSetup({
                         headers: {
@@ -157,19 +157,19 @@
                         },
 
                         success: function (data) {
-                            console.log(data);
                             var output = '';
                             $('#total_records-years').text(data.length);
-                            for (var count = 0; count < data.length; count++) {
+                            
+                            $.each(data, function (key, val) {
+                            console.log(key);
                                 output += '<tr>';
-                                output += '<td>' + data[count].no_induk + '</td>';
-                                output += '<td>' + data[count].name + '</td>';
-                                output += '<td>' + data[count].jenis_anggota + '</td>';
-                                output += '<td>' + data[count].kelas + '</td>';
-                                output += '<td>' + data[count].keperluan + '</td>';
-                                output += '<td>' + data[count].created_at + '</td></tr>';
-                            }
-                            $('tbody').html(output);
+                                output += '<td>' + key + '</td>';
+                                output += '<td>' + val.peminjaman + '</td>';
+                                output += '<td>' + val.pengembalian + '</td>';
+                                output += '<td>' + '' + '</td></tr>';
+                            });
+
+                            $('#laporanTahunan tbody').html(output);
 
 
 
