@@ -98,6 +98,10 @@ margin-top:5px;
 	background-color: #dd4b39;
 	color: #fff;
 }
+.box .box-body table tfoot{
+	background-color: #dd4b39;
+	color: #fff;
+}
 
 .treeview-menu{
 	padding:0;

@@ -37,11 +37,10 @@
             <i class="fa fa-caret-down"></i>
           </a>
           <div class="box-body">
-
-            <label> Jumlah Data : </label> <b><span id="total_records">0</span></b>
             <table class="table table-striped table-hover" id="laporanBulanan">
               <thead>
                 <tr>
+                  <th rowspan="2">No</th>
                   <th rowspan="2">Hari/Tanggal</th>
                   <th colspan="3">Kelas</th>
                   <th rowspan="2">Guru/Karyawan Sekolah</th>
@@ -56,6 +55,9 @@
               <tbody>
 
               </tbody>
+              <tfoot>
+
+              </tfoot>
             </table>
             {{ csrf_field() }}
           </div>
@@ -72,12 +74,11 @@
             </div>
           </div>
           <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />
-          <div class="box-body">
-
-            <label> Jumlah Data : </label> <b><span id="total_records-years">0</span></b>
+          <div class="box-body">            
             <table class="table table-striped table-hover" id="laporanTahunan">
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Bulan</th>
                   <th>Jumlah Pengunjung</th>
                   <th>Ket</th>
@@ -86,6 +87,9 @@
               <tbody>
 
               </tbody>
+              <tfoot>
+
+              </tfoot>
             </table>
             {{ csrf_field() }}
           </div>
@@ -126,14 +130,28 @@
                           success: function (data) {
                             // console.log(data);
                             var output = '';
-                            $('#total_records-years').text(data.length);
+                            var total = '';                            
+                            var total_jumlah = 0;                            
+                            var no = 0;                            
                             $.each(data, function (key, val) {
+                              no++;
                               output += '<tr>';
+                              output += '<td>' + no + '</td>';  
                               output += '<td>' + key + '</td>';
                               output += '<td>' + val.jumlah + '</td>';
                               output += '<td>' + '' + '</td></tr>';
+
+                              total_jumlah += val.jumlah;
                             });
+                             //baris total
+                            total += '<tr>';
+                            total += '<td></<td>';
+                            total += '<td>' + 'Total' + '</<td>';
+                            total += '<td>' + total_jumlah + '</<td>';                            
+                            total += '<td></<td>';
+                            total += '</tr>';
                             $('#laporanTahunan tbody').html(output);
+                            $('#laporanTahunan tfoot').html(total);
 
                           },
 
@@ -194,21 +212,44 @@
                 },
 
                 success: function (data) {
-                    // console.log(data);
-                    var output = '';
-                    $('#total_records').text(data.length);
-                    $.each(data, function (key, val) {
-                        output += '<tr>';
-                        output += '<td>' + key + '</td>';
-                        output += '<td>' + val.kelas_x + '</td>';
-                        output += '<td>' + val.kelas_xi + '</td>';
-                        output += '<td>' + val.kelas_xii + '</td>';
-                        output += '<td>' + val.guru_staff + '</td>';                        
-                        output += '<td>' + val.jumlah+ '</td></tr>';
-                    });
-                    $('#laporanBulanan tbody').html(output);
+                  // console.log(data);
+                  var output = '';
+                  var total = '';
+                  var total_kelas_x = 0;
+                  var total_kelas_xi = 0;
+                  var total_kelas_xii = 0;
+                  var total_guru_staff = 0;
+                  var total_jumlah = 0;
+                  var no = 0;
+                  $.each(data, function (key, val) {
+                    no++;
+                    output += '<tr>';
+                    output += '<td>' + no + '</td>';
+                    output += '<td>' + key + '</td>';
+                    output += '<td>' + val.kelas_x + '</td>';
+                    output += '<td>' + val.kelas_xi + '</td>';
+                    output += '<td>' + val.kelas_xii + '</td>';
+                    output += '<td>' + val.guru_staff + '</td>';
+                    output += '<td>' + val.jumlah + '</td></tr>';
 
-
+                    total_kelas_x += val.kelas_x;
+                    total_kelas_xi += val.kelas_xi;
+                    total_kelas_xii += val.kelas_xii;
+                    total_guru_staff += val.guru_staff;
+                    total_jumlah += val.jumlah;
+                  });
+                  //baris total
+                  total += '<tr>';
+                  total += '<td></<td>';
+                  total += '<td>' + 'Total' + '</<td>';
+                  total += '<td>' + total_kelas_x + '</<td>';
+                  total += '<td>' + total_kelas_xi + '</<td>';
+                  total += '<td>' + total_kelas_xii + '</<td>';
+                  total += '<td>' + total_guru_staff + '</<td>';
+                  total += '<td>' + total_jumlah + '</<td>';                  
+                  total += '</tr>';
+                  $('#laporanBulanan tbody').html(output);
+                  $('#laporanBulanan tfoot').html(total);
 
                 },
 

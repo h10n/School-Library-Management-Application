@@ -29,24 +29,23 @@
             <i class="ion-calendar"></i> Tahunan
           </a>
         </li>
-        <li role="presentation">
+        {{-- <li role="presentation">
           <a href="#report-per-class" aria-controls="upload" role="tab" data-toggle="tab">
             <i class="ion-android-contacts"></i> Per Kelas
           </a>
-        </li>
+        </li> --}}
       </ul>
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active add-little-padding-panel" id="report-month-panel">
-          <a class="btn bg-blue" id="daterange-btn">
+          <a class="btn bg-blue" id="daterange-btn" style="margin-left:15px;">
             <span><i class="fa fa-calendar"></i> Pilih Periode Laporan Bulanan</span>
             <i class="fa fa-caret-down"></i>
           </a>
-          <div class="box-body">
-
-            <label> Jumlah Data : </label> <b><span id="total_records">0</span></b>
+          <div class="box-body">            
             <table class="table table-striped table-hover" id="laporanBulanan">
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Hari / Tanggal</th>
                   <th>Jumlah Buku Dipinjam</th>
                   <th>Jumlah Buku Kembali</th>
@@ -56,6 +55,9 @@
               <tbody>
 
               </tbody>
+              <tfoot>
+
+              </tfoot>
             </table>
             {{ csrf_field() }}
           </div>
@@ -71,14 +73,12 @@
 
             </div>
           </div>
-          <input type="button" name="filter-transaksi-tahun" id="filter-transaksi-tahun" value="Filter"
-            class="btn btn-info" />
-          <div class="box-body">
-
-            <label> Jumlah Data : </label> <b><span id="total_records-years">0</span></b>
+          <input type="button" name="filter-transaksi-tahun" id="filter-transaksi-tahun" value="Filter" class="btn btn-info"/>
+          <div class="box-body">            
             <table class="table table-striped table-hover" id="laporanTahunan">
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Bulan</th>
                   <th>Jumlah Buku Di Pinjam </th>
                   <th>Jumlah Buku Kembali</th>
@@ -88,12 +88,15 @@
               <tbody>
 
               </tbody>
+              <tfoot>
+
+              </tfoot>
             </table>
             {{ csrf_field() }}
           </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane add-little-padding-panel" id="report-per-class">
+        {{-- <div role="tabpanel" class="tab-pane add-little-padding-panel" id="report-per-class">
           <div class="col-md-2">
             <div class="input-group date">
               <div class="input-group-addon">
@@ -105,11 +108,10 @@
           </div>
           <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />
           <div class="box-body">
-
-            <label> Jumlah Data : </label> <b><span id="total_records-years">0</span></b>
             <table class="table table-striped table-hover" id="">
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Kelas </th>
                   <th>Pinjam</th>
                   <th>Tidak Pinjam </th>
@@ -119,10 +121,13 @@
               <tbody>
 
               </tbody>
+              <tfoot>
+
+              </tfoot>
             </table>
             {{ csrf_field() }}
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
     <!-- batas -->
@@ -158,18 +163,33 @@
 
                         success: function (data) {
                             var output = '';
-                            $('#total_records-years').text(data.length);
-                            
+                            var total = '';                            
+                            var total_peminjaman = 0;
+                            var total_pengembalian = 0;
+                            var no = 0;
                             $.each(data, function (key, val) {
-                            console.log(key);
+                            // console.log(key);
+                                no++;
                                 output += '<tr>';
+                                output += '<td>' + no + '</td>';                                
                                 output += '<td>' + key + '</td>';
                                 output += '<td>' + val.peminjaman + '</td>';
                                 output += '<td>' + val.pengembalian + '</td>';
                                 output += '<td>' + '' + '</td></tr>';
-                            });
 
+                                total_peminjaman += val.peminjaman;
+                                total_pengembalian += val.pengembalian;
+                            });
+                            //baris total
+                            total += '<tr>';
+                            total += '<td></<td>';
+                            total += '<td>' + 'Total' + '</<td>';
+                            total += '<td>' + total_peminjaman + '</<td>';
+                            total += '<td>' + total_pengembalian + '</<td>';
+                            total += '<td></<td>';
+                            total += '</tr>';
                             $('#laporanTahunan tbody').html(output);
+                            $('#laporanTahunan tfoot').html(total);
 
 
 
@@ -232,18 +252,36 @@
 
                 success: function (data) {
                     var output = '';
-                    $('#total_records').text(data.length);                    
-                      $.each(data, function (key, val) {
-                    console.log(key);
-                        output += '<tr>';
-                        output += '<td>' + key + '</td>';
-                        output += '<td>' + val.peminjaman + '</td>';
-                        output += '<td>' + val.pengembalian + '</td>';                                             
-                        output += '<td>' + '' + '</td></tr>';
-                      });                    
-                    $('#laporanBulanan tbody').html(output);
+                    var total = '';
+                    var total_peminjaman = 0;
+                    var total_pengembalian = 0;
+                    var no = 0;                    
+                    $.each(data, function (key, val) {
+                      // console.log(key);
+                      no++;
+                      output += '<tr>';
+                      output += '<td>' + no + '</td>';
+                      output += '<td>' + key + '</td>';
+                      output += '<td>' + val.peminjaman + '</td>';
+                      output += '<td>' + val.pengembalian + '</td>';
+                      output += '<td>' + '' + '</td></tr>';
 
-                },
+                      total_peminjaman += val.peminjaman;
+                      total_pengembalian += val.pengembalian;
+                      console.log(total_peminjaman);
+                    });
+                    //baris total
+                    total += '<tr>';
+                    total += '<td></<td>';
+                    total += '<td>' + 'Total' + '</<td>';
+                    total += '<td>' + total_peminjaman + '</<td>';
+                    total += '<td>' + total_pengembalian + '</<td>';
+                    total += '<td></<td>';
+                    total += '</tr>';
+                    $('#laporanBulanan tbody').html(output);
+                    $('#laporanBulanan tfoot').html(total);
+
+                    },
 
                 error: function () {
 
