@@ -21,7 +21,7 @@ class AnnouncementsController extends Controller
          $announcements = Announcement::select(['id','text']);
          return Datatables::of($announcements)
          ->addColumn('action',function($announcement){
-           return view('datatable._announcement-action',[
+           return view('datatable._action',[
              'model' => $announcement,
              'form_url' => route('announcements.destroy', $announcement->id),
              'edit_url' => route('announcements.edit', $announcement->id),

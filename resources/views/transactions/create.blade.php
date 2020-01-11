@@ -46,5 +46,21 @@
             var control = $select[0].selectize;
             control.clear();
         }
+        // function printErrorMsg (key, value) {        
+        // // Swal.fire('Oops...','Data Gagal Tersimpan!','error');
+        //     // $(".print-error-msg").find("ul").html('');
+        //     $(".print-error-msg").css('display','block');
+        //     // $.each( msg, function( key, value ) {
+        //         $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+        //     // });
+        //     console.log(value);
+        // }
+        // $(".tambah-buku").click(function (e) {
+        //   console.log("working");
+        //   var id_buku = $("select[name=book_id]").val();
+        //   var nama_buku = $("select[name=book_id] option:selected").text();
+        //   // console.log(nama);
+        //   printErrorMsg(id_buku,nama_buku);
+        // })
 </script>
 @endpush

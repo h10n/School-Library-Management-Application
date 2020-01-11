@@ -12,7 +12,7 @@
     <div class="box-header">
       <h3 class="box-title">Pengumuman</h3>
       <div class="table-button-custom">
-        <a class="btn bg-orange" href="{{ route('announcements.create') }}"><span class="ion-android-add"> Tambah
+        <a class="btn bg-orange" onclick="add('{{ route('announcements.create')}}','Pengumuman')"><span class="ion-android-add"> Tambah
             Data</span></a>      
       </div>
     </div>    

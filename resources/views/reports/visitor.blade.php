@@ -32,7 +32,7 @@
       </ul>
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active add-little-padding-panel" id="report-month-panel">
-          <a class="btn bg-blue" id="daterange-btn">
+          <a class="btn bg-blue" id="daterange-btn"  style="margin-left:15px;">
             <span><i class="fa fa-calendar"></i> Pilih Periode Laporan Bulanan</span>
             <i class="fa fa-caret-down"></i>
           </a>
