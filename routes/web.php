@@ -102,6 +102,11 @@ Route::group(['middleware' => 'web'], function()
         'uses' => 'ReportsController@lihatTahunTransactionReport' 
       ]);
 
+      Route::post('reports/visitors/cetak',[
+        'as' => 'admin.reports.visitors.cetak',
+        'uses' => 'ReportsController@cetakVisitors' 
+      ]);
+
 
       Route::get('export/books',[
   'as' => 'admin.export.books',
