@@ -68,7 +68,7 @@
             $no = 0;   
         @endphp
         @foreach ($transaction_bulanan as $key => $transaction)
-        {{-- @if ($transaction['jumlah'] != 0) --}}
+        @if ($transaction['peminjaman']+$transaction['pengembalian'] != 0)
         <tr>
           <td>{{ ++$no }}</td>
           <td>{{ $key }}</td>
@@ -80,7 +80,7 @@
           $total_peminjaman += $transaction['peminjaman'];
           $total_pengembalian += $transaction['pengembalian'];
         @endphp     
-        {{-- @endif         --}}
+        @endif        
         @endforeach
 
         <tr>

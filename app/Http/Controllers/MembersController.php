@@ -193,10 +193,12 @@ return redirect()->route('members.index');
     }
     }
 
-    public function exportCard($id)
+    public function printCard($id)
     {
 
+      
       $members = Member::find($id);
+      // dd($members);
       if (!$members) {
         Session::flash("flash_notification",[
           "level" => "danger",
@@ -205,7 +207,7 @@ return redirect()->route('members.index');
         return redirect()->back();
       }else {
         $pdf = PDF::loadview('pdf.members-card', compact('members'));
-        return $pdf->download('members-card.pdf');
+        return $pdf->stream("members-card.pdf", array("Attachment" => false));
       }
 
     }

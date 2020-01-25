@@ -48,7 +48,7 @@ Route::group(['middleware' => 'web'], function()
         'as' => 'admin.export.books.post',
         'uses' => 'BooksController@exportPost'
       ]);
-
+//useless
       Route::get('export/members/card/{card}',[
         'as' => 'admin.export.members.card',
         'uses' => 'MembersController@exportCard'
@@ -58,6 +58,13 @@ Route::group(['middleware' => 'web'], function()
       Route::resource('categories','CategoriesController');
       Route::resource('books', 'BooksController');
       Route::resource('transactions', 'TransactionsController');
+
+
+      Route::get('members/card/{id}',[
+        'as' => 'members.card',
+        'uses' => 'MembersController@printCard'
+      ]);
+      
       Route::resource('members', 'MembersController');
 
       Route::get('/settings/profile','SettingsController@profile');

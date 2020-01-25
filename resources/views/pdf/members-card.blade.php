@@ -1,244 +1,158 @@
-
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>portrait</title>
 <style media="screen">
-#card{
-	   float:left;
-	   width:360px;
-	   height:230px;
-	   margin:5px;
-	   border:1px solid black;
-	   background-image: url("img/members_photo/{{$members->photo}}");
-	   background-repeat: no-repeat;
-	   background-size: 360px 230px;
-	   -webkit-print-color-adjust: exact;
-   }
-@font-face {
-font-family: "metawebprobold";
-src: url("../../fonts/MetaWebPro-Bold.ttf");
-}
-
-@font-face {
-font-family: "metawebpromedium";
-src: url("../../fonts/MetaWebPro-Medium.ttf");
-}
-
-@font-face {
-font-family: "opensans";
-src: url("../../fonts/OpenSans_Regular.ttf");
-}
-
-@font-face {
-font-family: "opensanslight";
-src: url("../../fonts/OpenSans_Light.ttf");
-}
-
-@font-face {
-font-family: "Font Awesome";
-src: url("../../fonts/fontawesome.ttf");
-}
-
-body {
-margin: 0px;
-padding: 0px;
-background: #ffffff;
-}
-
-.fontawesome {
-font-family: "Font Awesome";
-font-size: 24px;
-color: #404747;
-}
-
-.txt {
-color: #9CA8A5;
-font-size: 11.6px;
-font-family: "opensans";
-}
-
-.highlight {
-color: #A92D27;
-}
-
-.volunteer {
-color: #fff;
-position: absolute;
-left: 21.9832px;
-top: 222.716px;
-font-size: 16.0843px;
-font-family: "opensanslight";
-}
-
-.footer {
-background-color: #A92D27;
-}
-
-.twitter {
-position: absolute;
-left: 21.9837px;
-top: 155.203px;
-line-height: 1;
-font-family: "opensans";
-}
-
-.irc {
-position: absolute;
-left: 21.9837px;
-top: 171.24px;
-line-height: 1;
-font-family: "opensans";
-}
-
-.logo {
-width: 128px;
-height: 128px;
-position: absolute;
-left: 20px;
-top: 20px;
-display: block;
+#card {
+	float: left;
+	width: 283px;
+	height: 196px;	
+	border: 1px solid black;
+	background-image: url({{ asset('img/card-bg.jpg') }});
+    background-size:     contain;                
+    background-repeat:   no-repeat;
+    background-position: center center; 
 }
 
 .avatar {
-width: 128px;
-height: 128px;
-position: absolute;
-left: 20px;
-top: 20px;
-display: block;
+	position: absolute;
+	top: 81px;
+	margin-left: 10px;
 }
 
-.footer-logo {
-width: 128px;
-position: absolute;
-left: 293px;
-top: 222px;
-display: block;
+#kop {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
 }
 
-
-.twitter,
-.irc {
-font-size: 11.6px;
+#kop p {
+	padding: 0;
+	margin: 0;
 }
 
-.name {
-position: absolute;
-font-size: 17.5px;
-left: 165px;
-top: 22px;
-width: 265px;
-font-family: "opensanslight";
-line-height: 1;
+#kop1 {
+	font-size: 8pt;
+	text-align: center;
 }
 
-.position {
-font-size: 14.6px;
-position: absolute;
-left: 165px;
-top: 39.2898px;
-width: 265px;
-color: #9CA8A5;
-font-family: "opensans";
+#kop2 {
+
+	font-size: 8pt;
+	text-align: center;
 }
 
-.contact-ico,
-.skill-ico,
-.lang-ico {
-position: absolute;
-left: 165px;
-}
+.kop3 {
 
-.contact,
-.skill,
-.lang {
-position: absolute;
-left: 165px;
-width: 230px;
-}
-
-.skill {
-top: 99.9221px;
-}
-
-.skill-ico {
-top: 101px;
-}
-
-.contact-ico {
-top: 142.867px;
-}
-
-.contact {
-top: 140.867px;
-}
-
-.lang-ico {
-top: 65px;
-}
-
-.lang {
-top: 70.4591px;
-}
-
-.footer {
-position: absolute;
-top: 210px;
-width: 100%;
-left: 0;
-height: 49px;
+	font-size: 7pt;
+	text-align: center;
 }
 
 
-.mozilla {
-font-family: "metawebprobold";
-color: #fff;
-position: absolute;
-left: 281px;
-top: 216px;
-font-size: 28px;
-letter-spacing: -0.5px;
+#identitasPerpus {
+	padding: 0;
+	margin: 0;
+	width: 100%;
 }
 
-.reps {
-font-family: "metawebpromedium";
-color: #fff;
-position: absolute;
-left: 368px;
-top: 216px;
-font-size: 28px;
-letter-spacing: -0.5px;
+#identitas {
+	font-size: 8pt;
+	text-align: left;
+	margin-left: 70px;
+}
+
+#ttdTable {
+	position: absolute;
+	top: 136px;
+	padding-right: 5px;
+	margin: 0;
+	font-size: 6pt;
+	width: 100%;
+	text-align: right;
+}
+
+#ttdTable td {
+	vertical-align: bottom;
+}
+
+#ttdTable .tengah {
+	width: 35%;
+}
+
+#ttdTable .ttd {
+	height: 12px;
+}
+
+#berlaku {
+	padding-left: 5px;
+	position: absolute;
+	top: 182px;
+	font-size: 6pt;
 }
 </style>
 </head>
+
 <body>
-  	 <div id="card">
-	<div class="logo"><img src="img/members_photo/{{$members->photo}}" width="128" height="128" /></div>
-	<div class="avatar"><img src="img/avatar.png" width="128" height="128" /></div>
 
+	<div id="card">
 
-	<div class="twitter"><span class="txt" contenteditable>twitter</span>&nbsp;<span class="highlight" contenteditable>@LindaECastaldo</span></div>
-	<div class="irc"><span class="txt" contenteditable>irc.mozilla.org</span>&nbsp;<span class="highlight" contenteditable>LindaECastaldo</span></div>
-
-	<div class="name highlight" contenteditable> {{ $members->name }}</div>
-	<div class="position" contenteditable>{{ $members->nis }}</div>
-
-
-
-
-	<div class="lang txt" contenteditable>{{ $members->kelas }}</div>
-	<div class="skill txt" contenteditable>community building, visual design, l10n, public relations, evangelism, firefoxos</div>
-	<div class="contact">
-
-		<div class="txt" contenteditable>601-945-6595</div>
-		<div class="txt" contenteditable>LindaECastaldo@inbound.plus</div>
-		<div class="txt" contenteditable>www.mozillians.org/u/LindaECastaldo</div>
-
+		<table id="kop" width="100%">
+			<tr>
+				<td><img src="{{ asset('img/logo/'.$img_name = !empty($logo) ? $logo : '')  }}" width="37px"></td>
+				<td id="identitasPerpus">
+					<p id='kop1'><b>KARTU ANGGOTA PERPUSTAKAAN</b></p>
+					<p id='kop2'><b>SMK NEGERI 7 SAMARINDA</b></p>
+					<p class='kop3'>Jl. Cumi-Cumi No.8, Tj. Laut Indah, Bontang Selatan</p>
+					<p class='kop3'>Telp : (0548) 21114</span></p>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<div class="avatar"><img
+				src="{{ asset('img/members_photo/'.$img_name = !empty($members->photo) ? $members->photo : '')  }}"
+				width="76" height="auto" /></div>
+		<table id="identitas">
+			<tr>
+				<td>NIK</td>
+				<td>:</td>
+				<td>1543054</td>
+			</tr>
+			<tr>
+				<td>Nama</td>
+				<td>:</td>
+				<td>Nur Hakim</td>
+			</tr>
+			<tr>
+				<td>Jenis</td>
+				<td>:</td>
+				<td>Siswa/i</td>
+			</tr>
+			<tr>
+				<td>Kelas</td>
+				<td>:</td>
+				<td>X TKJ</td>
+			</tr>
+		</table>
+		<p id="berlaku">Berlaku Hingga 03 November 2020</p>
+		<table id="ttdTable">
+			<tr>
+				<td>Samarinda, 25 Januari 2020</td>
+			</tr>
+			<tr>
+				<td>Pustakawan</td>
+			</tr>
+			<tr>
+				<td class="tengah ttd">
+				</td>
+			</tr>
+			<tr>
+				<td>Ferdiana Tri Ulandari, S.Kom</td>
+			</tr>
+		</table>
 	</div>
-	<div class="footer"></div>
-	<div class="volunteer">Volunteer</div>
-	<div class="mozilla">mozilla</div>
-	<div class="reps">reps</div>
-</div>
 </body>
+
 </html>

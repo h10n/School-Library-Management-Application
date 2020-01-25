@@ -17,7 +17,7 @@
             Data</span></a> --}}
         <a class="btn bg-olive" href="{{ route('members.edit',$member->id) }}"><span class="ion-edit"> Edit
             Data</span></a>
-        <a class="btn bg-purple" href="{{ route('admin.export.members.card',$member->id) }}"><span class="ion-printer">
+        <a class="btn bg-purple" href="{{ route('members.card',$member->id) }}"><span class="ion-printer">
             Cetak Kartu</span></a>
       </div>
     </div>
