@@ -15,7 +15,7 @@
         <a class="btn bg-orange" href="{{ route('books.create') }}"><span class="ion-android-add"> Tambah
             Data</span></a>
         <!-- a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a -->
-        <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a>
+        {{-- <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a> --}}
       </div>
     </div>
     

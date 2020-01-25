@@ -12,20 +12,26 @@
     <div class="box-header">
       <h3 class="box-title">Laporan Peminjaman Buku</h3>
       <div class="table-button-custom">
+        {{ Form::open(['route' => 'admin.reports.transactions.cetak', 'method' => 'POST', 'target' => '_blank']) }}
         <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh"> Reset</span></a>
-        <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a>
+        {{ Form::hidden('from_date') }}
+        {{ Form::hidden('to_date') }}
+        {{ Form::hidden('what_year') }}
+        {{ Form::hidden('jenis', 'bulanan') }}
+        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-ios-paper"> Cetak</span></button>
+        {{ Form::close() }}
       </div>
     </div>
     <!-- batas-->
     <div class="panel-body">
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-          <a href="#report-month-panel" aria-controls="form" role="tab" data-toggle="tab">
+          <a href="#report-month-panel" aria-controls="form" role="tab" data-toggle="tab" onClick="jenisLaporan('bulanan');">
             <i class="ion-android-calendar"></i> Bulanan
           </a>
         </li>
         <li role="presentation">
-          <a href="#report-year-panel" aria-controls="upload" role="tab" data-toggle="tab">
+          <a href="#report-year-panel" aria-controls="upload" role="tab" data-toggle="tab" onClick="jenisLaporan('tahunan');">
             <i class="ion-calendar"></i> Tahunan
           </a>
         </li>
@@ -190,7 +196,7 @@
                             total += '</tr>';
                             $('#laporanTahunan tbody').html(output);
                             $('#laporanTahunan tfoot').html(total);
-
+                            $("input[name=what_year]").val(what_year);
 
 
                         },
@@ -223,7 +229,8 @@
                 var to_date = end.format('YYYY-MM-DD');
 
                 ajaxLaporanBulan(from_date, to_date);                
-
+                $("input[name=from_date]").val(from_date);
+                $("input[name=to_date]").val(to_date);
             }
         );
 
@@ -289,7 +296,10 @@
             });
 
         }
-
+        
+        function jenisLaporan(jenis) {
+          $("input[name=jenis]").val(jenis);
+        }
             $('#report_year').datepicker({
                 minViewMode: 2,
                 format: 'yyyy',

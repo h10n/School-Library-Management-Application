@@ -94,25 +94,61 @@ class ReportsController extends Controller
         return $pdf->stream("laporan.pdf", array("Attachment" => false));
     } 
 
+    public function cetakTransactions(Request $request){            
+        if ($request->jenis == "bulanan") {
+            $transaction_bulanan = $this->transactionReportDataBulanan($request);        
+            $data = ['transaction_bulanan' => $transaction_bulanan];  
+        } elseif ($request->jenis == "tahunan") {
+            $transaction_tahunan = $this->transactionReportDataTahunan($request);        
+            $data = ['transaction_tahunan' => $transaction_tahunan]; 
+        }
+    
+        $pdf = PDF::loadView('pdf.laporan-transaction', $data);
+        return $pdf->stream("laporan.pdf", array("Attachment" => false));
+    } 
+
+    public function transactionReportDataBulanan($request){
+        if ($request->from_date != '' && $request->to_date != '') {
+            $date_from = Carbon::parse($request->from_date)->startOfDay();
+            $date_to = Carbon::parse($request->to_date)->endOfDay();
+
+            do {
+                $days[$date_from->formatLocalized('%A, %d-%m-%Y')] = $date_from->format('Y-m-d');
+            } while ($date_from->addDay()->format('Y-m-d') <= $date_to->format('Y-m-d'));
+  
+            foreach ($days as $key => $hari) {
+                $peminjaman = BorrowLog::whereDate('created_at', '=', $hari)->where('is_returned', '0')->get()->count();
+                $pengembalian = BorrowLog::whereDate('created_at', '=', $hari)->where('is_returned', '1')->get()->count();
+                $data[$key] = ['peminjaman' => $peminjaman, 'pengembalian' => $pengembalian];
+            }
+        } else {
+            $data =  [];
+        }
+        return $data;
+    }
+
+    public function transactionReportDataTahunan($request){
+        if ($request->what_year != '') {
+            $what_year = $request->what_year;
+
+            for ($i=1; $i <= 12; $i++) { 
+              $nama_bulan = Carbon::createFromFormat('m', $i);
+              
+              $peminjaman = BorrowLog::whereMonth('created_at', '=', $i)->whereYear('created_at', '=', $what_year)->where('is_returned', '0')->get()->count();
+              $pengembalian = BorrowLog::whereMonth('created_at', '=', $i)->whereYear('created_at', '=', $what_year)->where('is_returned', '1')->get()->count();
+              $data[$nama_bulan->formatLocalized('%B')] = ['peminjaman' => $peminjaman, 'pengembalian' => $pengembalian];
+            }                          
+        
+        } else {
+          $data =  [];
+        }
+        return $data;
+    }
+
     public function lihatTransactionReport(Request $request)
     {
         if ($request->ajax()) {
-            if ($request->from_date != '' && $request->to_date != '') {
-                $date_from = Carbon::parse($request->from_date)->startOfDay();
-                $date_to = Carbon::parse($request->to_date)->endOfDay();
-
-                do {
-                    $days[$date_from->formatLocalized('%A, %d-%m-%Y')] = $date_from->format('Y-m-d');
-                } while ($date_from->addDay()->format('Y-m-d') <= $date_to->format('Y-m-d'));
-      
-                foreach ($days as $key => $hari) {
-                    $peminjaman = BorrowLog::whereDate('created_at', '=', $hari)->where('is_returned', '0')->get()->count();
-                    $pengembalian = BorrowLog::whereDate('created_at', '=', $hari)->where('is_returned', '1')->get()->count();
-                    $data[$key] = ['peminjaman' => $peminjaman, 'pengembalian' => $pengembalian];
-                }
-            } else {
-                $data =  [];
-            }
+            $data = $this->transactionReportDataBulanan($request);
             echo json_encode($data);
         }
     }
@@ -121,20 +157,7 @@ class ReportsController extends Controller
     public function lihatTahunTransactionReport(Request $request)
     {
         if ($request->ajax()) {
-            if ($request->what_year != '') {
-                $what_year = $request->what_year;
-
-                for ($i=1; $i <= 12; $i++) { 
-                  $nama_bulan = Carbon::createFromFormat('m', $i);
-                  
-                  $peminjaman = BorrowLog::whereMonth('created_at', '=', $i)->whereYear('created_at', '=', $what_year)->where('is_returned', '0')->get()->count();
-                  $pengembalian = BorrowLog::whereMonth('created_at', '=', $i)->whereYear('created_at', '=', $what_year)->where('is_returned', '1')->get()->count();
-                  $data[$nama_bulan->formatLocalized('%B')] = ['peminjaman' => $peminjaman, 'pengembalian' => $pengembalian];
-                }                          
-            
-            } else {
-              $data =  [];
-            }
+            $data = $this->transactionReportDataTahunan($request);
             echo json_encode($data);            
         }
     }
