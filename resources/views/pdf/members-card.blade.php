@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>portrait</title>
 <style media="screen">
-#card {
+.card {
 	float: left;
 	width: 283px;
 	height: 196px;	
@@ -92,12 +92,16 @@
 	top: 182px;
 	font-size: 6pt;
 }
+.peraturan{
+	margin-top: 30px; 
+	font-size : 8pt;  
+}
 </style>
 </head>
 
 <body>
 
-	<div id="card">
+	<div class="card">
 
 		<table id="kop" width="100%">
 			<tr>
@@ -152,6 +156,15 @@
 				<td>Ferdiana Tri Ulandari, S.Kom</td>
 			</tr>
 		</table>
+	</div>
+	<div class="card">
+		<ol class="peraturan">
+			<li>Kartu Anggota ini harus dibawa setiap kunjungan, pinjaman, pengembalian keperpustakaan.</li>
+			<li>Tanpa kartu Aggota, kunjungan, pinjaman, pengembalian tidak dilayani.</li>
+			<li>Pengembalian lewat dari Batas waktunya akan dikenakan denda.</li>
+			<li>Kartu ini tidak dapat dipergunakan oleh orang lain.</li>
+			<li>Kartu Ini Berlaku hingga waktu yang ditentukan.</li>
+		  </ol> 
 	</div>
 </body>
 
