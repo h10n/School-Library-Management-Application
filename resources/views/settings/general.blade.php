@@ -34,6 +34,22 @@
                         <td>{{ $tentang }}</td>
                     </tr>
                     <tr>
+                        <td class="text-muted">Kepala Perpustakaan</td>
+                        <td>{{ $kepala_perpustakaan }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">NIP Kepala Perpustakaan</td>
+                        <td>{{ $nip_kepala_perpustakaan }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">Pustakawan</td>
+                        <td>{{ $pustakawan }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted">NIP Pustakawan</td>
+                        <td>{{ $nip_pustakawan }}</td>
+                    </tr>
+                    <tr>
                         <td class="text-muted">Logo Perpustakan</td>
                         <td>
                             @if ($logo)

@@ -12,6 +12,7 @@ class UpdateMemberRequest extends StoreMemberRequest
       $rules = parent::rules();
       $rules['nis'] = 'required|numeric|unique:members,nis,'.$this->route('member');
       $rules['email'] = 'required|email|unique:members,email,'.$this->route('member');
+      $rules['password'] = '';
       return $rules;
     }
 

@@ -46,7 +46,7 @@
         }
         $(function () {
             createMarquee({
-                duration: 50000
+                duration: 90000
             });
         });
     </script>

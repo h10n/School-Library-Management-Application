@@ -17,10 +17,14 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->string('kepala_perpustakaan')->nullable();
+            $table->string('nip_kepala_perpustakaan')->nullable();
+            $table->string('pustakawan')->nullable();
+            $table->string('nip_pustakawan')->nullable();
             $table->string('about');
             $table->integer('denda');
             $table->integer('durasi');
-			      $table->integer('max_peminjaman');
+		    $table->integer('max_peminjaman');
             $table->string('logo')->nullable();
             $table->timestamps();
         });

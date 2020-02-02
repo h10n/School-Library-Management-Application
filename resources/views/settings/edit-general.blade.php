@@ -53,6 +53,34 @@
           {!! $errors->first('about','<p class="help-block">:message</p>') !!}
         </div>
       </div>
+      <div class="form-group{{ $errors->has('kepala_perpustakaan') ? ' has-error' : '' }}">
+        {!! Form::label('kepala_perpustakaan', 'Kepala Perpustakaan', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::text('kepala_perpustakaan',null,['class' => 'form-control']) !!}
+          {!! $errors->first('kepala_perpustakaan','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
+      <div class="form-group{{ $errors->has('nip_kepala_perpustakaan') ? ' has-error' : '' }}">
+        {!! Form::label('nip_kepala_perpustakaan', 'NIP Kepala Perpustakaan', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::text('nip_kepala_perpustakaan',null,['class' => 'form-control']) !!}
+          {!! $errors->first('nip_kepala_perpustakaan','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
+      <div class="form-group{{ $errors->has('pustakawan') ? ' has-error' : '' }}">
+        {!! Form::label('pustakawan', 'Pustakawan', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::text('pustakawan',null,['class' => 'form-control']) !!}
+          {!! $errors->first('pustakawan','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
+      <div class="form-group{{ $errors->has('nip_pustakawan') ? ' has-error' : '' }}">
+        {!! Form::label('nip_pustakawan', 'NIP Pustakawan', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::text('nip_pustakawan',null,['class' => 'form-control']) !!}
+          {!! $errors->first('nip_pustakawan','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
       <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
         {!! Form::label('logo','Logo Perpustakaan',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">

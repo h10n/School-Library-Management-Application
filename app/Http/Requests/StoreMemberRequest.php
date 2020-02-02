@@ -30,7 +30,9 @@ class StoreMemberRequest extends FormRequest
                'address' => 'required',
                'email' => 'required|email|unique:members,email',
                'phone' => 'required|numeric',
-               'photo' => 'image|max:2048'
+               'photo' => 'image|max:2048',
+               'username' => 'required',
+               'password' => 'required'
          ];
      }
  }

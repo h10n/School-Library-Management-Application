@@ -101,12 +101,17 @@ class MembersController extends Controller
         $filename = md5(time()).'.'.$extension;
         //simpan ke public/image
         $destinatonPath = public_path('img/members_photo');
-
         $uploaded_cover->move($destinatonPath, $filename);
         //isi filed photo dengan filename yang baru dibuat
         $member->photo = $filename;
-        $member->save();
       }
+      $request['member_id'] = $member->id;
+      $request['password'] = bcrypt($request['password']);
+      $user = User::create($request->only(['name','username','email','password','member_id']));
+      $role = Role::where( 'name', '=', 'member' )->first();
+      $user->attachRole( $role );
+      
+      // dd($member->id);
       Session::flash("flash_notification",[
         "level" => "success",
         "message" => "Berhasil menyimpan $member->name"
@@ -122,7 +127,7 @@ class MembersController extends Controller
 
     public function edit($id)
     {
-      $member = Member::find($id);
+      $member = Member::find($id);      
       return view('members.edit')->with(compact('member'));
     }
 
@@ -152,7 +157,20 @@ if ($request->hasFile('photo')) {
     // ganti field photo dengan photo yang baru
     $member->photo = $filename;
     $member->save();
-}
+}      
+      if($user = $member->user){        
+        $request['member_id'] = $id;  
+        if($request->password){            
+            $request['password'] = bcrypt($request['password']);
+            if (!$user->update($request->only(['name','username','email','password','member_id']))) {
+              return redirect()->back();
+            }
+        }else{
+            if (!$user->update($request->only(['name','username','email','member_id']))) {
+            return redirect()->back();
+            }
+        }
+      }
 
 Session::flash("flash_notification", [
     "level"=>"success",
