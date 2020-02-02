@@ -17,7 +17,7 @@
   @endif
   @role('admin')
   <li class="{{ (request()->is('home')) ? 'active' : '' }}">
-    <a href="{{ url('/home') }}"><i class="ion-android-home"></i> <span>Dashboard</span>
+    <a href="{{ url('/home') }}"><i class="ion-speedometer"></i> <span>Dashboard</span>
     </a>
   </li>
   <li class="{{ (request()->is('admin/transactions')) ? 'active' : '' }}">

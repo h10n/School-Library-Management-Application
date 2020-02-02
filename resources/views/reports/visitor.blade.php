@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header">
   <ol class="breadcrumb">
-    <li><a href="{{ url('/home') }}"><i class="ion-ios-home"></i> Dashboard</a></li>
+    <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
     <li class="active">Laporan Pengunjung</li>
   </ol>
 </section>
