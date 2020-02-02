@@ -1,45 +1,97 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="panel-title">Dashboard</h2>
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="ion-ios-home"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+<section class="content container-fluid">
+    <div class="box">
+        <div class="box-header-dashboard">
+            <h3 class="box-title">Dashboard</h3>
         </div>
-        <div class="panel-body">
-          Selamat Datang di Larapus.
-          <table class="table">
-            <tbody>
-              <tr>
-                <td class="text-muted">Buku Dipinjam</td>
-                <td>
-                  @if ($borrowLogs->count() == 0)
-                  Tidak Ada Buku Dipinjam
-                  @endif
-                  <ul>
-                    @foreach ($borrowLogs as $borrowLog)
-                    <li>
-                      {!! Form::open([
-                      'url' => route('books.return',$borrowLog->book_id),
-                      'method' => 'put',
-                      'class' => 'form-inline js-confirm',
-                      'data-confirm' => "Anda yakin ingin Mengembalikan ".$borrowLog->book->title." ?"
-                      ]) !!}
-                      {!! $borrowLog->book->title !!}
-                      {!! Form::submit('Kembalikan',['class' => 'btn btn-xs btn-default']) !!}
-                      {!! Form::close() !!}
-                    </li>
-                    @endforeach
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="box-body">
+            <div class="callout callout-info">
+                Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}
+            </div>
+            
+
+            <div class="col-md-12">
+              <h5>Buku yang Sedang Dipinjam</h5>
+              <table class="table table-condensed table-striped">
+                <thead>
+                  <tr>
+                    <th>Judul</th>
+                    <th>Tanggal Peminjaman</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @forelse (auth()->user()->member->borrowLogs()->borrowed()->get() as $log)
+                  <tr>
+                    <td>{{ $log->book->title }}</td>
+                    <td>{{ $log->created_at }}</td>
+                  </tr>
+                  @empty
+                  <tr>
+                    <td colspan="2">Tidak Ada Data</td>
+                  </tr>
+                  @endforelse
+                </tbody>
+              </table>
+              <h5>Buku yang Telah Dikembalikan</h5>
+              <table class="table table-condensed table-striped">
+                <thead>
+                  <tr>
+                    <th>Judul</th>
+                    <th>Tanggal Kembali</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @forelse (auth()->user()->member->borrowLogs()->returned()->get() as $log)
+                  <tr>
+                    <td>{{ $log->book->title }}</td>
+                    <td>{{ $log->updated_at }}</td>
+                  </tr>
+                  @empty
+                  <tr>
+                    <td colspan="2">Tidak Ada Data</td>
+                  </tr>
+                  @endforelse
+                </tbody>
+              </table>
+            </div>
+            
         </div>
-      </div>
+
     </div>
-  </div>
-</div>
+
+</section>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/Chart.min.js') }}"></script>
+<script type="text/javascript">
+    var data = {
+        labels: {
+            !!json_encode($authors) !!
+        },
+        datasets: [{
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: {
+                !!json_encode($books) !!
+            }
+        }]
+    };
+
+    var ctx = document.getElementById("chartPenulis").getContext("2d");
+    var myLineChart = new Chart(ctx).Bar(data);
+</script>
 @endsection

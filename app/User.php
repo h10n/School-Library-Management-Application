@@ -19,7 +19,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name','username', 'email', 'password','telp','alamat'];
+    protected $fillable = ['name','username', 'email', 'password','telp','alamat', 'member_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -49,6 +49,10 @@ class User extends Authenticatable
         'book_id' => $book->id,
       ]);
       return $borrowLog;
+    }
+    public function member()
+    {
+      return $this->belongsTo('App\Member');
     }
     public static function boot()
     {

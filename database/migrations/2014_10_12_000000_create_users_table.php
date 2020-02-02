@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('alamat');
             $table->rememberToken();
             $table->string('photo')->nullable();
+            $table->integer('member_id')->unsigned()->nullable();
+            $table->foreign('member_id')->references('id')->on('members')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -52,12 +52,17 @@ class UsersSeeder extends Seeder
         $superadmin->attachRole($superadminRole);
 
         //buat sample member
-        /*$member = new User();
+        $member = new User();
         $member->name = "Sample Member";
+        $member->username = "member";
         $member->email = "member@member.com";
-        $member->password = bcrypt('654321');
+        $member->password = bcrypt('123456');
+        $member->telp = "08218830000";
+        $member->alamat = "Jl Rapak Tak Indah no 17";
+        $member->photo = "";
+        $member->member_id = "1";
         $member->save();
         $member->attachRole($memberRole);
-        */
+        
     }
 }

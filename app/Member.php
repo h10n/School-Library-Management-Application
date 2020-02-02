@@ -26,4 +26,9 @@ public function borrowLogs()
   return $this->hasMany('App\BorrowLog');
 }
 
+public function user()
+{
+  return $this->hasOne('App\User');
+}
+
 }
