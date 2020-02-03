@@ -12,9 +12,9 @@
     <div class="box-header">
       <h3 class="box-title">Ubah Pengaturan</h3>
       <div class="table-button-custom">
-        <a class="btn bg-orange" href="#"><span class="ion-edit"> Tambah Data</span></a>
+        {{-- <a class="btn bg-orange" href="#"><span class="ion-edit"> Tambah Data</span></a>
         <a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>
-        <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a>
+        <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a> --}}
       </div>
     </div>
 
@@ -120,8 +120,7 @@
         </div>
       </div>
 
-      <a class="btn bg-red" href="{{ url('settings/general') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
-          Buku</span></a>
+      <a class="btn bg-red" href="{{ url('admin/settings/general') }}"><span class="ion-android-arrow-back"> Kembali</span></a>
       {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
       {!! Form::close() !!}
     </div>

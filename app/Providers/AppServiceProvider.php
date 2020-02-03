@@ -45,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
           $announcements = Announcement::all();
           $view->with(compact('nama_perpus','alamat_perpus','tentang','denda','durasi','logo','waktu','jumlah', 'announcements', 'kepala_perpustakaan', 'nip_kepala_perpustakaan', 'pustakawan', 'nip_pustakawan'));
       });
+
+      // Carbon::setLocale('id');
+      // setlocale(LC_TIME,'id_ID');
+  
     }
 
     /**

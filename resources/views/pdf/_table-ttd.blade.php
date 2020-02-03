@@ -11,18 +11,16 @@
             <td class="tengah"></td>
             <td>Pustakawan</td>             
           </tr>
-          <tr>
-            {{-- <td>{!! $identitas->kepala_puskesmas !!}</td> --}}
-            <td>Khairul Anam, M.Pd</td>
-            <td class="tengah ttd"></td>
-            {{-- <td>{!! $identitas->pengelola_data !!}</td> --}}
-            <td>Ferdiana Tri Ulandari, S.Kom </td>
+          <tr>            
+            <td><u>{{ $kepala_perpustakaan }}</u></td>
+            <td class="tengah ttd"></td>            
+            <td><u>{{ $pustakawan }}</u></td>
           </tr>
           <tr>
             {{-- <td>NIP. {!! $identitas->nip_kepala_puskesmas !!} </td> --}}
-            <td>NIP. 19670512 200701 1 038 </td>
+            <td>NIP. {{ $nip_kepala_perpustakaan }} </td>
             <td class="tengah"></td>
-            {{-- <td>NIP.  {!! $identitas->nip_pengelola_data !!} </td>               --}}
+            <td>NIP.  {!! $nip_pustakawan !!} </td>              
           </tr>
         </table>
       </div>
