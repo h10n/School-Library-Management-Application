@@ -9,7 +9,7 @@
 
 <div class="form-group">
   <div class="col-md-4 col-md-offset-2">
-    {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
     <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+    {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
   </div>
 </div>
