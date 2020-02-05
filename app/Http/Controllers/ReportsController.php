@@ -86,8 +86,9 @@ class ReportsController extends Controller
             $visitor_bulanan = $this->visitorReportDataBulanan($request);        
             $data = ['visitor_bulanan' => $visitor_bulanan];  
         } elseif ($request->jenis == "tahunan") {
+            // dd($request->all());
             $visitor_tahunan = $this->visitorReportDataTahunan($request);        
-            $data = ['visitor_tahunan' => $visitor_tahunan]; 
+            $data = ['visitor_tahunan' => $visitor_tahunan,'tahun' => $request->what_year]; 
         }
     
         $pdf = PDF::loadView('pdf.laporan', $data);
@@ -99,8 +100,9 @@ class ReportsController extends Controller
             $transaction_bulanan = $this->transactionReportDataBulanan($request);        
             $data = ['transaction_bulanan' => $transaction_bulanan];  
         } elseif ($request->jenis == "tahunan") {
+            // dd($request->all());
             $transaction_tahunan = $this->transactionReportDataTahunan($request);        
-            $data = ['transaction_tahunan' => $transaction_tahunan]; 
+            $data = ['transaction_tahunan' => $transaction_tahunan,'tahun' => $request->what_year]; 
         }
     
         $pdf = PDF::loadView('pdf.laporan-transaction', $data);

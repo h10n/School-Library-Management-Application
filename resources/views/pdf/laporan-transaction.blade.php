@@ -158,9 +158,24 @@
     </div>
         @include('pdf._table-ttd')     
         @elseif (!empty($transaction_tahunan))
-        <h3>Rekapitulasi Peminjaman Buku </h3>
-        <h3>Perpustakaan SMK Negeri 7 Samarinda </h3>
-        {{-- @include('pdf._table-identitas') --}}
+        <img src="{{ asset('img/logo/Logo_Kota_Samarinda.png')  }}" >
+        <table id="kop" width="100%">
+          <tr>
+            <td id="identitasPerpus">
+              <p id='kop1'><b>PEMERINTAH KOTA SAMARINDA</b></p>
+              <p id='kop1'><b>DINAS PENDIDIKAN</b></p>
+              <p id='kop1'><b>UPTD SMK NEGERI 7 SAMARINDA</b></p>
+              <p class='kop2'>KOMPETENSI KEAHLIAN :</p>
+              <p class='kop2'>Rekayasa Perangkat Lunak - Teknik Komputer dan Jaringan - Multimedia</p>
+              <p class='kop3'>Jl. Aminah Syukur No. 82 Tel : (0541) 7777769, Fax : (0541) 731374 Samarinda</p>
+              <p class='kop3'>Email : smkn07samarinda@yahoo.com Website : www.smkn7smr.sch.id</span></p>
+            </td>
+          </tr>
+        </table>
+      
+          <h3>Rekapitulasi Peminjaman Buku </h3>
+          <h3>Perpustakaan SMK Negeri 7 Samarinda </h3>
+          <h5>Tahun : {{ $tahun }}</h5>
     <div>
         <table class="laporanTable">
             <tr>
