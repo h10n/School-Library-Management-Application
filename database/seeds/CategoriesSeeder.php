@@ -97,5 +97,13 @@ Category::create(['name' => 'Tidak ada klasifikasi (sebelumnya untuk Biografi)']
 Category::create(['name' => 'Umum']);
 Category::create(['name' => 'UNDANG-UNDANG']);
 Category::create(['name' => 'Zoologi']);
+Category::create(['name' => 'Geografi']);
+Category::create(['name' => 'Tokoh Ilmuan']);
+Category::create(['name' => 'Tokoh Pahlawan']);
+Category::create(['name' => 'Tokoh']);
+Category::create(['name' => 'Sejarah Tempat']);
+Category::create(['name' => 'IPS']);
+Category::create(['name' => 'Sejarah Pahlawan']);
+Category::create(['name' => 'Sejarah Pendidikan']);
     }
 }

@@ -13,6 +13,7 @@
 Route::group(['middleware' => 'web'], function()
 {
   Route::get('/','GuestController@index');
+  Route::get('/tes','AuthorsController@tes');
   Route::post('/visitors',[
     'as' => 'visitor.store',
     'uses' => 'VisitorsController@store'

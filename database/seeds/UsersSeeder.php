@@ -30,7 +30,7 @@ class UsersSeeder extends Seeder
         $superadminRole->save();
         //buat sample Admin
         $admin = new User();
-        $admin->name = "Admin Larapus";
+        $admin->name = "Admin";
         $admin->username = "admin";
         $admin->email = "admin@admin.com";
         $admin->password = bcrypt('123456');
@@ -41,7 +41,7 @@ class UsersSeeder extends Seeder
         $admin->attachRole($adminRole);
         //buat sample Super Admin
         $superadmin = new User();
-        $superadmin->name = "Kepala Larapus";
+        $superadmin->name = "Kepala";
         $superadmin->username = "superadmin";
         $superadmin->email = "superadmin@superadmin.com";
         $superadmin->password = bcrypt('123456');
