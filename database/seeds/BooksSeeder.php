@@ -18,10 +18,6 @@ class BooksSeeder extends Seeder
      */
     public function run()
     {        
-        //sample buku
-        // $book1 = Book::create(['no_induk' => '18220','title' => 'Atlas Indonesia dan Dunia Edisi 33 Provinsi di indonesia','author_id' => '179',  'publisher_id' => '47', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'A','amount' => 1,'category_id' => '72', 'cover' => '', 'source' => '']);
-        // $book2 = Book::create(['no_induk' => '18115','title' => 'Geografi untuk SMA/MA Kelas X ( K-13 )','author_id' => '620',  'publisher_id' => '284', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013', 'classification_code' => '960.007.001', 'initial' => 'A','amount' => 1,'category_id' => '72', 'cover' => '', 'source' => '']);
-        // $book3 = Book::create(['no_induk' => '4380','title' => 'Minyak bumi','author_id' => '620',  'publisher_id' => '284', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'A','amount' => 1,'category_id' => '72' , 'cover' => '', 'source' => '']);
 
 Book::create(['no_induk' => '4062','title' => 'kesadaran nasional dari kolonalisme sampai kemerdekaan jilid 1','author_id' => '881', 'publisher_id' => '226', 'published_location' => 'Yogyakarta', 'published_year' => '2008', 'book_year' => '2008','classification_code' => '910001', 'initial' => 'K','amount' => '1','category_id' => '93', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '4063','title' => 'kesadaran nasional dari kolonalisme sampai kemerdekaan jilid 2','author_id' => '881', 'publisher_id' => '226', 'published_location' => 'Yogyakarta', 'published_year' => '2008', 'book_year' => '2008','classification_code' => '910002', 'initial' => 'K','amount' => '1','category_id' => '93', 'cover' => '', 'source' => '']);
@@ -110,15 +106,5 @@ Book::create(['no_induk' => '4373','title' => 'Kurs Gua batugamping, sungai bawa
 Book::create(['no_induk' => '4379','title' => 'Minyak bumi','author_id' => '698', 'publisher_id' => '71', 'published_location' => 'Yogyakarta', 'published_year' => '2008', 'book_year' => '2008','classification_code' => '960006', 'initial' => 'M','amount' => '2','category_id' => '86', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '18115','title' => 'Geografi untuk SMA/MA Kelas X ( K-13 )','author_id' => '620', 'publisher_id' => '284', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'G','amount' => '1','category_id' => '86', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '18220','title' => 'Atlas Indonesia dan Dunia Edisi 33 Provinsi di indonesia','author_id' => '179', 'publisher_id' => '47', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'A','amount' => '1','category_id' => '86', 'cover' => '', 'source' => '']);
-
-        //sample pinjam Buku
-        // $member1 = Member::create(['nis' => '154305411','name' => 'Sasuke','kelas' => '10','jurusan' =>'RPL 2','address' => 'Jl Santai Rt 01 no 41','email' => 'imuchihalast@gmail.com', 'phone' => '08213777121', 'photo' => '']);
-        // $member2 = Member::create(['nis' => '154302211','name' => 'Gara','kelas' => '11','jurusan' =>'MM 1','address' => 'Jl Anggur no 39','email' => 'gaarathesand@gmail.com', 'phone' => '083661221', 'photo' => '']);
-        // $member3 = Member::create(['nis' => '154303511','name' => 'Naruto','kelas' => '12','jurusan' =>'TKJ 3','address' => 'Jl Pemuda 03 Blok B no 62','email' => 'little_naruto@gmail.com', 'phone' => '0915648853', 'photo' => '']);
-
-        // $member = User::where('email','admin@admin.com')->first();
-        // BorrowLog::create(['transaction_code' => 'TR0001','member_id' => $member1->id,'user_id' => $member->id, 'book_id' => $book1->id,'is_returned' => 0]);
-        // BorrowLog::create(['transaction_code' => 'TR0002','member_id' => $member2->id,'user_id' => $member->id, 'book_id' => $book2->id,'is_returned' => 0]);
-        // BorrowLog::create(['transaction_code' => 'TR0003','member_id' => $member3->id,'user_id' => $member->id, 'book_id' => $book3->id,'is_returned' => 1]);
     }
 }
