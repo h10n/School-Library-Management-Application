@@ -22,7 +22,7 @@ class CreateMembersTable extends Migration
             $table->string('address');
             $table->string('email',60)->unique();
             $table->string('phone');
-            $table->string('photo')->nullable();
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }

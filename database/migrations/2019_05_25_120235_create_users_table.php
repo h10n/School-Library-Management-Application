@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email',60)->unique();
             $table->string('password');
             $table->string('telp')->nullable();
-            $table->string('alamat')->nullable();
+            $table->text('alamat')->nullable();
             $table->rememberToken();
-            $table->string('photo')->nullable();
+            $table->text('photo')->nullable();
             $table->integer('member_id')->unsigned()->nullable();
             $table->foreign('member_id')->references('id')->on('members')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
