@@ -293,8 +293,16 @@ body .wrapper .main-header aside{
     overflow:hidden;    
 }
 
-@media (max-width: 992px) {
+@media (max-width: 767px) {
   .marquee-sibling {
      display: none;
   }        
+  .sidebar-toggle{
+    display: block;
+  }
+}
+@media (min-width: 767px) {
+  .sidebar-toggle{
+    display: none;
+  }
 }

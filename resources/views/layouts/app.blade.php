@@ -53,8 +53,20 @@ desired effect
 <body class="hold-transition skin-red-light sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
+               <!-- Logo -->
+    <a href="{{ url('/')}}" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>A</b>PS</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>APL</b>Perpustakaan</span>
+      </a>
             <nav class="navbar" role="navigation">
-                <div class="col-md-9">
+        <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+                {{-- <div class="col-md-9">
                     <div class="container-marquee">
                         <div class="marquee-sibling">
                             <i class="ion-speakerphone"></i> Pengumuman</div>
@@ -66,87 +78,88 @@ desired effect
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            @if (auth()->check())
-                            @if (auth()->user()->hasRole('member'))
-                            <li class="dropdown user user-menu">                                
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                    
+                </div> --}}
+                
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">                        
+                        @if (auth()->check())
+                        @if (auth()->user()->hasRole('member'))
+                        <li class="dropdown user user-menu">                                
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                    
+                                @if (auth()->user()->member->photo)
+                                <img src="{{asset('img/members_photo/'.auth()->user()->member->photo) }}" class="user-image" alt="User Image">
+                                @endif                                    
+                                <span class="hidden-xs">
+                                    @if (auth()->user()->member->name)
+                                    {{Auth::user()->member->name}}
+                                    @endif
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">                                         
+                                <li class="user-header">
                                     @if (auth()->user()->member->photo)
-                                    <img src="{{asset('img/members_photo/'.auth()->user()->member->photo) }}" class="user-image" alt="User Image">
-                                    @endif                                    
-                                    <span class="hidden-xs">
+                                    <img src="{{asset('img/members_photo/'.auth()->user()->member->photo) }}"
+                                        class="img-circle" alt="User Image">
+                                    @endif
+                                    <p>
                                         @if (auth()->user()->member->name)
                                         {{Auth::user()->member->name}}
                                         @endif
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">                                         
-                                    <li class="user-header">
-                                        @if (auth()->user()->member->photo)
-                                        <img src="{{asset('img/members_photo/'.auth()->user()->member->photo) }}"
-                                            class="img-circle" alt="User Image">
-                                        @endif
-                                        <p>
-                                            @if (auth()->user()->member->name)
-                                            {{Auth::user()->member->name}}
-                                            @endif
-                                            <small>Login Terakhir {{auth()->user()->last_login}}</small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Body -->
+                                        <small>Login Terakhir {{auth()->user()->last_login}}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
 
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-right">
-                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>                            
-                            @else
-                            <li class="dropdown user user-menu">                                
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                    
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>                            
+                        @else
+                        <li class="dropdown user user-menu">                                
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">                                    
+                                @if (auth()->user()->photo)
+                                <img src="{{asset('img/admins_photo/'.auth()->user()->photo) }}" class="user-image" alt="User Image">
+                                @endif                                    
+                                <span class="hidden-xs">{{Auth::user()->name}}</span>
+                            </a>
+                            <ul class="dropdown-menu">                                    
+                                <li class="user-header">
                                     @if (auth()->user()->photo)
-                                    <img src="{{asset('img/admins_photo/'.auth()->user()->photo) }}" class="user-image" alt="User Image">
-                                    @endif                                    
-                                    <span class="hidden-xs">{{Auth::user()->name}}</span>
-                                </a>
-                                <ul class="dropdown-menu">                                    
-                                    <li class="user-header">
-                                        @if (auth()->user()->photo)
-                                        <img src="{{asset('img/admins_photo/'.auth()->user()->photo) }}"
-                                            class="img-circle" alt="User Image">
-                                        @endif
-                                        <p>
-                                            {{Auth::user()->name}}
-                                            <small>Login Terakhir {{auth()->user()->last_login}}</small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Body -->
+                                    <img src="{{asset('img/admins_photo/'.auth()->user()->photo) }}"
+                                        class="img-circle" alt="User Image">
+                                    @endif
+                                    <p>
+                                        {{Auth::user()->name}}
+                                        <small>Login Terakhir {{auth()->user()->last_login}}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
 
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="{{url('admin/settings/profile')}}" class="btn btn-default btn-flat">Profile</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>                            
-                            <li>
-                                <a href="{{ url('admin/settings/general') }}"><i class="fa fa-gears"></i></a>
-                            </li>
-                            @endif
-                            @else                            
-                        <a href="{{ route('login') }}" class="btn btn-warning btn-block btn-flat">Login</a>
-                            @endif
-                        </ul>
-                    </div>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{url('admin/settings/profile')}}" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>                            
+                        <li>
+                            <a href="{{ url('admin/settings/general') }}"><i class="fa fa-gears"></i></a>
+                        </li>
+                        @endif
+                        @else                            
+                        <li>
+                            <a href="{{ route('login') }}"><i class="fa fa-unlock"></i> Login</a>
+                        </li>
+                        @endif
+                    </ul>
                 </div>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
@@ -154,14 +167,11 @@ desired effect
 
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar no-pad-top">        
+        <aside class="main-sidebar">        
             <section class="sidebar">
                 <div class="profil thumbnail">
                     <a href="{{ url('/')}}">
-                        {!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-responsive']) !!}
-                        <div class="caption">
-                            <h5>{{ $nama_perpus }}</h5>
-                        </div>
+                        {!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-responsive']) !!}                        
                     </a>
                 </div>            
                 <!-- Sidebar Menu -->
@@ -173,6 +183,19 @@ desired effect
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            @if (request()->is('/') || request()->is('home'))                        
+            <div class="content-header">
+                <div class="alert alert-warning">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon ion-speakerphone"></i> Pengumuman!</h4>
+                    <ul>
+                        @foreach($announcements as $announcement)
+                            <li>{{$announcement->text}}</li>
+                            @endforeach
+                    </ul>
+                </div>
+            </div>
+            @endif
             @include('layouts._flash')
             @include('errors.customerror')
             @yield('content')
