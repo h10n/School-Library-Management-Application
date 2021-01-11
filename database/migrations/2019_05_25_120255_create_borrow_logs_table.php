@@ -15,12 +15,12 @@ class CreateBorrowLogsTable extends Migration
     {
         Schema::create('borrow_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('transaction_code',60)->unique();
-            $table->integer('book_id')->unsigned()->index();
+            $table->string('transaction_code',60)->unique()->nullable();
+            $table->integer('book_id')->unsigned()->index()->nullable();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('member_id')->unsigned()->index();
+            $table->integer('member_id')->unsigned()->index()->nullable();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_returned')->default(false);
             $table->timestamps();

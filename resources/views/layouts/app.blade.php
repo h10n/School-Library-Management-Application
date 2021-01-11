@@ -160,7 +160,7 @@ desired effect
                     <a href="{{ url('/')}}">
                         {!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-responsive']) !!}
                         <div class="caption">
-                            <h5>Aplikasi Perpustakaan {{ $nama_perpus }}</h5>
+                            <h5>{{ $nama_perpus }}</h5>
                         </div>
                     </a>
                 </div>            

@@ -1,3 +1,4 @@
+<div class="user-panel ">
 <div class="visitor-form">
     <div class="wrapper">
         <div class="container">
@@ -46,4 +47,5 @@
             <li></li>
         </ul>
     </div>
+</div>
 </div>

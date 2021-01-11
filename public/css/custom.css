@@ -132,13 +132,13 @@ padding : 10px;
 width:auto;
 max-height:150px;
 }
-.sidebar .profil .caption {
+/* .sidebar .profil .caption {
 padding : 0!important;
 }
 
 .sidebar .profil .caption h5{
 text-align:center;
-}
+} */
 
 .main-sidebar .sidebar .thumbnail {
 	border:0 none!important;
@@ -291,4 +291,10 @@ body .wrapper .main-header aside{
     width:100%; 
     max-height:245px;
     overflow:hidden;    
+}
+
+@media (max-width: 992px) {
+  .marquee-sibling {
+     display: none;
+  }        
 }

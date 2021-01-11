@@ -4,6 +4,7 @@
   </li>
   @if (!auth()->check())
   @include('guest.visitor-form')
+  <div class="user-panel ">
   <div class="box-body">
     <div class="info-box">
       <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
@@ -13,6 +14,7 @@
         <span class="info-box-number">{{ $todaysvisit }}</span>
       </div>    
     </div>
+  </div>
   </div>
   @endif
   @role('admin')

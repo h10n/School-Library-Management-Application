@@ -15,11 +15,11 @@ class CreateVisitorsTable extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('no_induk');
-            $table->string('name');
-            $table->string('jenis_anggota');
+            $table->string('no_induk')->nullable();
+            $table->string('name')->nullable();
+            $table->string('jenis_anggota')->nullable();
             $table->string('kelas')->nullable();
-            $table->string('keperluan');
+            $table->string('keperluan')->nullable();
             $table->timestamps();
         });
     }
