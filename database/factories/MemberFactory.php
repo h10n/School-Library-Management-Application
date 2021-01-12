@@ -12,6 +12,6 @@ $factory->define(App\Member::class, function (Faker $faker) {
         'jurusan' => ['RPL','TKJ', 'Multimedia'][rand(0,2)],
         'address' => $faker->address,
         'email' => $nama_depan."_".$nama_belakang."@gmail.com",
-        'phone' => $faker->phoneNumber,
+        'phone' => '08'.strval($faker->randomNumber(9))
     ];
 });
