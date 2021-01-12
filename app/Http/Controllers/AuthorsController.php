@@ -24,7 +24,7 @@ class AuthorsController extends Controller
     {
         //
         if ($request->ajax()) {
-          $authors = Author::select(['id','name','singkatan']);
+          $authors = Author::select(['id','name','singkatan'])->latest('updated_at')->get();
           return Datatables::of($authors)
           ->addColumn('action',function($author){
             return view('datatable._action',[
@@ -34,9 +34,23 @@ class AuthorsController extends Controller
               'title' => 'Penulis',
               'confirm_message' => 'Yakin ingin menghapus '.$author->name.' ?'
             ]);
-          })->make(true);
+          })
+          ->addIndexColumn()
+          ->make(true);
         }
         $html = $htmlBuilder
+        ->addColumn([
+          'defaultContent' => '',
+          'data'           => 'DT_Row_Index',
+          'name'           => 'DT_Row_Index',
+          'title'          => '',
+          'render'         => null,
+          'orderable'      => false,
+          'searchable'     => false,
+          'exportable'     => false,
+          'printable'      => true,
+          'footer'         => '',
+      ])
         ->addColumn([
           'data' => 'name',
           'name' => 'name',

@@ -24,13 +24,14 @@ class StoreBookRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(request()->all());
         return [
               'title' => 'required|unique:books,title',
               'author_id' => 'required|exists:authors,id',
               'published_location' => 'required|string',
               'publisher_id' => 'required|exists:publishers,id',
-              'published_year' => 'required|date|date_format:Y',
-              'book_year' => 'required|date|date_format:Y',
+              'published_year' => 'required|date_format:Y',
+              'book_year' => 'required|date_format:Y',
               'category_id' => 'required|exists:categories,id',
               'initial' => 'required|string|min:1|max:1',
               'no_induk' => 'required|unique:books,no_induk',

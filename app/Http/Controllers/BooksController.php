@@ -31,7 +31,7 @@ class BooksController extends Controller
         //
 
         if ($request->ajax()) {
-          $books = Book::with(['author','publisher','category']);
+          $books = Book::with(['author','publisher','category'])->latest('updated_at')->get();
           return Datatables::of($books)
           ->addColumn('action',function($book){
             return view('datatable._book-action',[
@@ -42,10 +42,24 @@ class BooksController extends Controller
               'title' => 'Buku',
               'confirm_message' => 'Yakin ingin menghapus '.$book->title.' ?'
             ]);
-          })->make(true);
+          })
+          ->addIndexColumn()
+          ->make(true);
         }
 
         $html = $htmlBuilder
+        ->addColumn([
+          'defaultContent' => '',
+          'data'           => 'DT_Row_Index',
+          'name'           => 'DT_Row_Index',
+          'title'          => '',
+          'render'         => null,
+          'orderable'      => false,
+          'searchable'     => false,
+          'exportable'     => false,
+          'printable'      => true,
+          'footer'         => '',
+      ])
         ->addColumn([
           'data' => 'no_induk',
           'name' => 'no_induk',
@@ -59,12 +73,12 @@ class BooksController extends Controller
         ->addColumn([
           'data' => 'author.name',
           'name' => 'author.name',
-          'title' => 'Penulis'
+          'title' => 'Penulis'          
         ])
         ->addColumn([
           'data' => 'publisher.name',
           'name' => 'publisher.name',
-          'title' => 'Penerbit'
+          'title' => 'Penerbit'          
         ])
         ->addColumn([
           'data' => 'published_year',
@@ -79,7 +93,8 @@ class BooksController extends Controller
         ->addColumn([
           'data' => 'amount',
           'name' => 'amount',
-          'title' => 'Jumlah'
+          'title' => 'Jumlah',
+          'searchable' => false
         ])
         ->addColumn([
           'data' => 'action',

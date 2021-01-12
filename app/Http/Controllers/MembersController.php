@@ -19,7 +19,7 @@ class MembersController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
       if ($request->ajax()) {
-        $members = Member::select(['id','nis','name','kelas','jurusan','address','email','phone','photo']);
+        $members = Member::select(['id','nis','name','kelas','jurusan','address','email','phone','photo'])->latest('updated_at')->get();
         return Datatables::of($members)
         ->addColumn('action', function($member){
           return view('datatable._member-action', [
@@ -30,10 +30,24 @@ class MembersController extends Controller
             'title' => 'Member',
             'confirm_message' => 'Yakin ingin menghapus '.$member->title.' ?'
           ]);
-        })->make(true);
+        })
+        ->addIndexColumn()
+        ->make(true);
       }
 
       $html = $htmlBuilder
+      ->addColumn([
+        'defaultContent' => '',
+        'data'           => 'DT_Row_Index',
+        'name'           => 'DT_Row_Index',
+        'title'          => '',
+        'render'         => null,
+        'orderable'      => false,
+        'searchable'     => false,
+        'exportable'     => false,
+        'printable'      => true,
+        'footer'         => '',
+    ])
       ->addColumn([
         'data' => 'nis',
         'name' => 'nis',

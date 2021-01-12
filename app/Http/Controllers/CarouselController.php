@@ -25,7 +25,7 @@ class CarouselController extends Controller
 public function index(Request $request, Builder $htmlBuilder)
 {
   if ($request->ajax()) {
-    $carousels = Carousel::select(['id','title','text','img']);
+    $carousels = Carousel::select(['id','title','text','img'])->latest('updated_at')->get();
     return Datatables::of($carousels)
     ->addColumn('image',function($carousels){
       if (!$carousels->img) return '';
@@ -42,10 +42,23 @@ public function index(Request $request, Builder $htmlBuilder)
       ]);
     })
     ->rawColumns(['image','action'])
+    ->addIndexColumn()
     ->make(true);
   }
 
   $html = $htmlBuilder
+  ->addColumn([
+    'defaultContent' => '',
+    'data'           => 'DT_Row_Index',
+    'name'           => 'DT_Row_Index',
+    'title'          => '',
+    'render'         => null,
+    'orderable'      => false,
+    'searchable'     => false,
+    'exportable'     => false,
+    'printable'      => true,
+    'footer'         => '',
+])
   ->addColumn(['data' => 'title', 'name' => 'title', 'title' => 'Judul'])
   ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
   ->addColumn(['data' => 'image', 'name' => 'image', 'title' => 'Gambar','orderable' => false, 'searchable' => false])
@@ -127,7 +140,7 @@ public function index(Request $request, Builder $htmlBuilder)
       $carousel = Carousel::find($id);
      $this->validate($request, array(
        'title'=>'max:225',
-       'text' =>'max:255',
+       'text' =>'max:329',
        'img'=>'required|image'
     ));
 

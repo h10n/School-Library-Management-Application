@@ -22,7 +22,7 @@ class CategoriesController extends Controller
     {
         
         if ($request->ajax()) {
-          $categories = Category::select(['id','name']);
+          $categories = Category::select(['id','name'])->latest('updated_at')->get();
           return Datatables::of($categories)
           ->addColumn('action',function($category){
             return view('datatable._action',[
@@ -32,9 +32,23 @@ class CategoriesController extends Controller
               'title' => 'Kategori',
               'confirm_message' => 'Yakin ingin menghapus '.$category->name.' ?'
             ]);
-          })->make(true);
+          })
+          ->addIndexColumn()
+          ->make(true);
         }        		
         $html = $htmlBuilder
+        ->addColumn([
+          'defaultContent' => '',
+          'data'           => 'DT_Row_Index',
+          'name'           => 'DT_Row_Index',
+          'title'          => '',
+          'render'         => null,
+          'orderable'      => false,
+          'searchable'     => false,
+          'exportable'     => false,
+          'printable'      => true,
+          'footer'         => '',
+      ])
         ->addColumn([
           'data' => 'name',
           'name' => 'name',
@@ -111,9 +125,9 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, $id)
-    {
-      $category = Category::where('classification_code', $id)->first();
-        $category->update($request->only('classification_code','name'));
+    {      
+        $category = Category::findOrFail($id);
+        $category->update($request->only('name'));
 
         Session::flash("flash_notification", [
           "level" => "success",

@@ -23,7 +23,7 @@ class PublishersController extends Controller
     {
         //
         if ($request->ajax()) {
-          $publishers = Publisher::select(['id','name']);
+          $publishers = Publisher::select(['id','name'])->latest('updated_at')->get();
           return Datatables::of($publishers)
           ->addColumn('action',function($publisher){
             return view('datatable._action',[
@@ -33,9 +33,23 @@ class PublishersController extends Controller
               'title' => 'Penulis',
               'confirm_message' => 'Yakin ingin menghapus '.$publisher->name.' ?'
             ]);
-          })->make(true);
+          })
+          ->addIndexColumn()
+          ->make(true);
         }
         $html = $htmlBuilder
+        ->addColumn([
+          'defaultContent' => '',
+          'data'           => 'DT_Row_Index',
+          'name'           => 'DT_Row_Index',
+          'title'          => '',
+          'render'         => null,
+          'orderable'      => false,
+          'searchable'     => false,
+          'exportable'     => false,
+          'printable'      => true,
+          'footer'         => '',
+      ])
         ->addColumn([
           'data' => 'name',
           'name' => 'name',
