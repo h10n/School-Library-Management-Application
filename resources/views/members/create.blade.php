@@ -32,3 +32,12 @@
   </div>
 </section>
 @endsection
+@push('custom-scripts')
+<script>
+      $('#imageDelete').on('click', function () {
+        $('#imagePreview').css('background-image', 'url({!! asset('img/icons8-no-camera.svg') !!})');
+        $('#imagePreview').css('background-size', 'initial');
+        $('#foto').val('');
+    });
+</script>
+@endpush

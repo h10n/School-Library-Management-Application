@@ -33,3 +33,11 @@
   </div>
 </section>
 @endsection
+@push('custom-scripts')
+<script>
+    $('#imageDelete').on('click', function () {
+        $('#imagePreview').css('background-image', 'url({!! asset('img/members_photo/'.$member->photo) !!})');
+        $('#foto').val('');
+    });
+</script>
+@endpush

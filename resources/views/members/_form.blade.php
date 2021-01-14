@@ -1,15 +1,8 @@
-<div class="col-md-2">
-  @if (isset($member) && $member->photo)
-  <p>{!! Html::image(asset('img/members_photo/'.$member->photo),null,['class' => 'img-fluid member-photo']) !!}
-  </p>
-  @endif
-  <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">    
-    <div class="col-md-4">
-      {!! Form::file('photo') !!}
-      {!! $errors->first('photo','<p class="help-block"><strong>:message</strong></p>') !!}
-    </div>
-  </div>
-</div>
+
+@push('req-css')
+<link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
+@endpush
+
 <div class="col-md-10">
   <div class="form-group{{$errors->has('nis') ? ' has-error' : ''}}">
     {!! Form::label('nis','NIS',['class' => 'col-md-2 control-label']) !!}
@@ -84,14 +77,43 @@
       {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-
+  <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">
+    {!! Form::label('photo','Foto',['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-4">
+       <div class="avatar-upload">
+        <div class="avatar-edit">        
+            {!! Form::file('photo',['id' => 'photo', 'onchange' => 'changeAvatar(event, this)']) !!}
+            <label for="photo"></label>
+        </div>
+    
+        <div class="avatar-delete">        
+            <input id="imageDelete" type="button">
+            <label for="imageDelete"></label>
+        </div>
+        <div class="avatar-preview">            
+            @if(isset($item->photo))
+                <div id="imagePreview" style="background-image: url({!! asset('storage/uploads/pasien/photo/'.$item->photo) !!});">
+                </div>
+            @else
+                <div id="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
+                </div>
+            @endif                
+        </div>
+    </div>
+    {!! $errors->first('photo','<p class="help-block"><strong>:message</strong></p>') !!}    
+    </div>
+   
+  </div> 
   <div class="form-group">
     <div class="col-md-6 col-md-offset-2">
       <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
           Anggota</span></a>
       {{-- {{ Form::reset('Reset',['class' => 'btn bg-yellow']) }} --}}
       {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
-  
+
     </div>
   </div>
 </div>
+@push('req-scripts')
+<script src="{{ asset('js/avatar.js') }}"></script>
+@endpush

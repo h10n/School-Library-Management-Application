@@ -15,7 +15,7 @@
     <script src="{{asset('dist/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('js/marquee.js') }}"></script>
+    {{-- <script src="{{ asset('js/marquee.js') }}"></script> --}}    
     <!-- page script -->
     <script>
     $.ajaxSetup({
@@ -44,12 +44,11 @@
                 }
             );
         }
-        $(function () {
-            createMarquee({
-                duration: 90000
-            });
-        });
+        // $(function () {
+        //     createMarquee({
+        //         duration: 90000
+        //     });
+        // });
     </script>
 @stack('req-scripts')
-
 @stack('custom-scripts')

@@ -1,0 +1,76 @@
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 0 5px;
+}
+.avatar-upload .avatar-edit {
+    position: absolute;
+    right: 50px;
+    z-index: 1;
+    top: 10px;
+}
+.avatar-upload .avatar-edit input, .avatar-upload .avatar-delete input {
+    display: none;
+}
+.avatar-upload .avatar-edit input + label, .avatar-upload .avatar-delete input + label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+}
+.avatar-upload .avatar-edit input + label:hover, .avatar-upload .avatar-delete input + label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+    content: "\f040";
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    transform: translate(-50%, -50%);
+}
+
+.avatar-upload .avatar-delete {
+    position: absolute;
+    right: 50px;
+    z-index: 1;
+    top: 155px;
+}
+.avatar-upload .avatar-delete input + label:after {
+    content: "\f014";
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    margin: auto;
+    transform: translate(-50%, -50%);
+}
+.avatar-upload .avatar-preview {
+    width: 170px;
+    height: 200px;
+    position: relative;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
