@@ -105,6 +105,7 @@ class MembersController extends Controller
     }
     public function store(StoreMemberRequest $request)
     {
+      // dd($request->all());
       $member = Member::create($request->except('photo'));
       if ($request->hasFile('photo')) {
         //ngambil filenya
@@ -118,6 +119,7 @@ class MembersController extends Controller
         $uploaded_cover->move($destinatonPath, $filename);
         //isi filed photo dengan filename yang baru dibuat
         $member->photo = $filename;
+        $member->save();
       }
       $request['member_id'] = $member->id;
       $request['password'] = bcrypt($request['password']);
