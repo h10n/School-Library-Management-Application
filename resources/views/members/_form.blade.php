@@ -91,8 +91,8 @@
             <label for="imageDelete"></label>
         </div>
         <div class="avatar-preview">            
-            @if(isset($item->photo))
-                <div id="imagePreview" style="background-image: url({!! asset('storage/uploads/pasien/photo/'.$item->photo) !!});">
+            @if(isset($member->photo))
+                <div id="imagePreview" style="background-image: url({!! asset('img/members_photo/'.$member->photo) !!});">
                 </div>
             @else
                 <div id="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
@@ -115,5 +115,9 @@
   </div>
 </div>
 @push('req-scripts')
+<script>
+  const imgUrl = "{{ isset($member->photo) ? asset('img/members_photo/'.$member->photo) : '' }}", 
+        noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}"; 
+</script>
 <script src="{{ asset('js/avatar.js') }}"></script>
 @endpush

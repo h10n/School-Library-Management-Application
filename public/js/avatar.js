@@ -14,3 +14,14 @@ function changeAvatar(e, el) {
     readURL(el, '#imagePreview');
     $('#imagePreview').css('background-size', 'cover');
 }
+
+$('#imageDelete').on('click', function () {        
+    let uploadEl = $(this).parent().parent().find('input[type=file]');        
+    if(imgUrl){        
+      $('#imagePreview').css('background-image', 'url('+imgUrl+')');
+    }else{
+      $('#imagePreview').css('background-image', 'url('+noImgUrl+')');
+      $('#imagePreview').css('background-size', 'initial');
+    }        
+    uploadEl.val('');
+});

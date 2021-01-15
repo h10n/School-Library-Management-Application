@@ -1,3 +1,8 @@
+
+@push('req-css')
+<link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
+@endpush
+
 @extends('layouts.app')
 @section('content')
 <section class="content-header">
@@ -81,7 +86,7 @@
           {!! $errors->first('nip_pustakawan','<p class="help-block">:message</p>') !!}
         </div>
       </div>
-      <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
+      {{-- <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
         {!! Form::label('logo','Logo Perpustakaan',['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
           {!! Form::file('logo') !!}
@@ -90,8 +95,33 @@
           @endif
           {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}
         </div>
-      </div>
-
+      </div> --}}
+      <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
+        {!! Form::label('logo','Logo',['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+           <div class="avatar-upload">
+            <div class="avatar-edit">        
+                {!! Form::file('logo',['id' => 'logo', 'onchange' => 'changeAvatar(event, this)']) !!}
+                <label for="logo"></label>
+            </div>
+        
+            <div class="avatar-delete">        
+                <input id="imageDelete" type="button">
+                <label for="imageDelete"></label>
+            </div>
+            <div class="avatar-preview">            
+                @if(isset($setting->logo))
+                    <div id="imagePreview" style="background-image: url({!! asset('img/logo/'.$setting->logo) !!});">
+                    </div>
+                @else
+                    <div id="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
+                    </div>
+                @endif                
+            </div>
+        </div>
+        {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}    
+        </div>       
+      </div> 
       <div class="row">
         <div class="col-md-6 col-md-offset-2">
           <span class="text-muted"><i class="ion-arrow-swap"></i> Peminjaman</span>
@@ -127,3 +157,11 @@
   </div>
 </section>
 @endsection
+
+@push('req-scripts')
+<script>
+  const imgUrl = "{{ isset($setting->logo) ? asset('img/logo/'.$setting->logo) : '' }}", 
+        noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}"; 
+</script>
+<script src="{{ asset('js/avatar.js') }}"></script>
+@endpush
