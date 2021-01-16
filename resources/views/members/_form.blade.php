@@ -86,16 +86,15 @@
             <label for="photo"></label>
         </div>
     
-        <div class="avatar-delete">        
-            <input id="imageDelete" type="button">
-            <label for="imageDelete"></label>
+        <div class="avatar-delete">                    
+            <a href="javascript:void(0)" class="imageDelete"></a>            
         </div>
         <div class="avatar-preview">            
             @if(isset($member->photo))
-                <div id="imagePreview" style="background-image: url({!! asset('img/members_photo/'.$member->photo) !!});">
+                <div class="imagePreview" style="background-image: url({!! asset('img/members_photo/'.$member->photo) !!});">
                 </div>
             @else
-                <div id="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
+                <div class="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
                 </div>
             @endif                
         </div>

@@ -11,18 +11,18 @@ function readURL(input, imagePreviewEl) {
 }
 
 function changeAvatar(e, el) {     
-    let imagePreviewEl = $(el).parent().parent().find('div#imagePreview');   
+    let imagePreviewEl = $(el).parent().parent().find('div.imagePreview');   
     readURL(el, imagePreviewEl);
     imagePreviewEl.css('background-size', 'cover');
 }
 
-$('#imageDelete').on('click', function () {        
+$('.imageDelete').on('click', function () {            
     let uploadEl = $(this).parent().parent().find('input[type=file]');        
     if(imgUrl){        
-      $('#imagePreview').css('background-image', 'url('+imgUrl+')');
+      $('.imagePreview').css('background-image', 'url('+imgUrl+')');
     }else{
-      $('#imagePreview').css('background-image', 'url('+noImgUrl+')');
-      $('#imagePreview').css('background-size', 'initial');
+      $('.imagePreview').css('background-image', 'url('+noImgUrl+')');
+      $('.imagePreview').css('background-size', 'initial');
     }        
     uploadEl.val('');
 });
