@@ -33,7 +33,7 @@ class UsersSeeder extends Seeder
         $admin->name = "Admin";
         $admin->username = "admin";
         $admin->email = "admin@admin.com";
-        $admin->password = bcrypt('123456');
+        $admin->password = bcrypt('admin123');
         $admin->telp = "08218831299";
         $admin->alamat = "Jl Rapak Indah no 57";
         $admin->photo = "7efebd6c10c55554e906ebd783b1d73a.jpg";
@@ -44,7 +44,7 @@ class UsersSeeder extends Seeder
         $superadmin->name = "Kepala";
         $superadmin->username = "superadmin";
         $superadmin->email = "superadmin@superadmin.com";
-        $superadmin->password = bcrypt('123456');
+        $superadmin->password = bcrypt('admin123');
         $superadmin->telp = "08218830000";
         $superadmin->alamat = "Jl Rapak Tak Indah no 07";
         $superadmin->photo = "sj76asgy3276h899hsh9ml5ia.jpg";
@@ -56,7 +56,7 @@ class UsersSeeder extends Seeder
         $member->name = "Sample Member";
         $member->username = "member";
         $member->email = "member@member.com";
-        $member->password = bcrypt('123456');
+        $member->password = bcrypt('admin123');
         $member->telp = "08218830000";
         $member->alamat = "Jl Rapak Tak Indah no 17";
         $member->photo = "";
