@@ -27,16 +27,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ route('login') }}"><i class="fa fa-unlock"></i> Login <span class="sr-only">(current)</span></a></li>                      
+            @if (auth()->check())
+              <li class="">
+                <a href="{{ route('login') }}"><i class="fa fa-dashboard"></i> <span class="sr-only">(current)</span></a>
+              </li>                                    
+            @endif
           </ul>         
         </div>
         <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">                   
-          
-          </ul>
-        </div>
+        @include('layouts._nav-profile')      
+        @include('layouts._logout-form')       
         <!-- /.navbar-custom-menu -->
       </div>
       <!-- /.container-fluid -->
