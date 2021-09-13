@@ -50,12 +50,7 @@
                             </div>
                             <button type="submit" id="login-button" class="btn btn-primary">
                                 Login
-                            </button>
-                            <div class="row">
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Lupa Password?
-                                </a>
-                            </div>
+                            </button>                           
                             {!! Form::close() !!}
                         </div>
 

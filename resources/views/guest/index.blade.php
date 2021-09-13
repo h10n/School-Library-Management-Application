@@ -25,9 +25,9 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+        <div class="collapse navbar-collapse pull-right" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>                      
+            <li class="active"><a href="{{ route('login') }}"><i class="fa fa-unlock"></i> Login <span class="sr-only">(current)</span></a></li>                      
           </ul>         
         </div>
         <!-- /.navbar-collapse -->
@@ -47,38 +47,29 @@
     <div class="container">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1>
-          Top Navigation
-          <small>Example 2.0</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Layout</a></li>
-          <li class="active">Top Navigation</li>
-        </ol>
+        @include('guest.carousel')  
       </section>
-
+      
       <!-- Main content -->
-      <section class="content">
-        <div class="callout callout-info">
-          <h4>Tip!</h4>
-
-          <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-            sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-            links instead.</p>
+      <section class="content">        
+        <div class="callout callout-warning">
+          <h4><i class="icon ion-speakerphone"></i> Pengumuman!</h4>          
+            <ul>
+              @foreach($announcements as $announcement)
+                  <li>{{$announcement->text}}</li>
+                  @endforeach
+            </ul>
         </div>
-        <div class="callout callout-danger">
-          <h4>Warning!</h4>
-
-          <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-            and the content will slightly differ than that of the normal layout.</p>
-        </div>
+                       
         <div class="box box-default">
           <div class="box-header with-border">
-            <h3 class="box-title">Blank Box</h3>
+            <h3 class="box-title">Daftar Buku</h3>
+            <div class="table-button-custom">      
+              <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh"> Refresh</span></a>        
+            </div>
           </div>
           <div class="box-body">
-            The great content goes here
+            {!! $html->table(['class' => 'table table-striped table-hover']) !!}
           </div>
           <!-- /.box-body -->
         </div>
@@ -89,30 +80,10 @@
     <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-      </div>
-      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
-    </div>
-    <!-- /.container -->
-  </footer>
+  @include('layouts._footer')
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+@include('layouts._scripts')
+{!! $html->scripts() !!}
 </body>
 </html>
