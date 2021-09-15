@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div class="form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
+<div class="kelas-el form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
   {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-2">
     {!! Form::select('kelas',['X' => 'X','XI' => 'XI','XII' => 'XII'],null,['class' => 'js-selectize','placeholder' =>
@@ -44,7 +44,34 @@
 </div>
 
 <div class="form-group">
-  <div class="col-md-4 col-md-offset-2">    
+  <div class="col-md-4 col-md-offset-2">
     {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
   </div>
 </div>
+
+@push('custom-scripts')
+<script>
+  $(document).ready(function () {
+    $('#jenis_anggota').change();    
+  });
+
+  $('#jenis_anggota').change(function () {
+    let val = this.value;
+    if (val == 'siswa/i') {
+      disableKelas(false);
+    } else {
+      disableKelas();
+    }
+  });
+
+  function disableKelas(arg = true){
+    if(arg){
+    $('.kelas-el').hide();
+    $('#kelas').prop('disabled', true);
+    }else{
+    $('.kelas-el').show();
+    $('#kelas').prop('disabled', false);
+    }
+  }
+</script>
+@endpush

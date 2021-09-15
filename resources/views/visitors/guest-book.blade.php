@@ -16,7 +16,7 @@
         Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}, Silahkan Isi Form Kunjungan Terlebih Dahulu!
       </div>
       {!! Form::open([
-      'route' => 'visitors.store',      
+      'route' => 'visitors.guest-book.store',      
       'class' => 'form-horizontal'
       ])
       !!}

@@ -24,12 +24,6 @@ Route::group(['middleware' => 'web'], function () {
     'as' => 'books.return',
     'uses' => 'BooksController@returnBack'
   ]);
-
-
-    Route::group(['prefix' => 'visitor','middleware' => ['auth','role:visitor']], function () {      
-      Route::post('visitors', 'VisitorsController@store')->name('visitors.store'); //pindah ke bawah (resource)
-      Route::get('guest-book', 'VisitorsController@guestBook')->name('visitors.guest-book');
-    });
   
     Route::group(['prefix' => 'admin','middleware' => ['auth','role:admin']], function () {
         Route::get('template/books', [
@@ -138,6 +132,12 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::resource('carousels', 'CarouselController');// didalam akses admin
         Route::resource('announcements', 'AnnouncementsController');// didalam akses admin
+        Route::resource('visitors', 'VisitorsController');// didalam akses admin
+    });
+
+    Route::group(['prefix' => 'visitor','middleware' => ['auth','role:visitor']], function () {
+        Route::post('guest-book', 'VisitorsController@storeGuestBook')->name('visitors.guest-book.store');
+        Route::get('guest-book', 'VisitorsController@guestBook')->name('visitors.guest-book');
     });
 });
 

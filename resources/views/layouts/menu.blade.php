@@ -46,6 +46,10 @@
         <a href="{{url('/admin/announcements')}}"><i class="fa {{ (request()->is('admin/announcements/*')) || (request()->is('admin/announcements')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengumuman</span>
         </a>
       </li>
+      <li class="{{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'active' : '' }}">
+        <a href="{{url('/admin/visitors')}}"><i class="fa {{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengunjung</span>
+        </a>
+      </li>
     </ul>
   </li>
   <li class="treeview {{ (request()->is('admin/export/visitors','admin/export/transactions')) ? 'active' : '' }}">
