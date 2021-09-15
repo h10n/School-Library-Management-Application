@@ -2,21 +2,6 @@
   <li class="header">
     <i class="fa fa-calendar margin"></i> {{$waktu}}
   </li>
-  @if (!auth()->check())
-  @include('guest.visitor-form')
-  <div class="user-panel ">
-  <div class="box-body">
-    <div class="info-box">
-      <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text">Todays Visit</span>
-        <span class="info-box-number">{{ $todaysvisit }}</span>
-      </div>    
-    </div>
-  </div>
-  </div>
-  @endif
   @role('admin')
   <li class="{{ (request()->is('home')) ? 'active' : '' }}">
     <a href="{{ url('/home') }}"><i class="ion-speedometer"></i> <span>Dashboard</span>
@@ -74,6 +59,12 @@
       <li class="{{ (request()->is('admin/export/transactions')) ? 'active' : '' }}"><a href="{{route('admin.export.transactions')}}"><i class="fa {{ (request()->is('admin/export/transactions')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Laporan Peminjaman Buku</a>
       </li>
     </ul>
+  </li>
+  @endrole
+  @role('visitor')
+  <li class="{{ (request()->is('visitor/guest-book')) ? 'active' : '' }}">
+    <a href="{{ route('visitors.guest-book') }}"><i class="ion-person-add"></i> <span>Buku Tamu</span>
+    </a>
   </li>
   @endrole
   @role('member')

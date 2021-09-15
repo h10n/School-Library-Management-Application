@@ -47,9 +47,7 @@ class HomeController extends Controller
         if (Entrust::hasRole('member')) {
             return $this->memberDashboard();
         }
-        if (Entrust::hasRole('visitor')) {
-            return $this->visitorDashboard();
-        }
+        
         return view('home');
     }
     protected function adminDashboard()
@@ -77,9 +75,5 @@ class HomeController extends Controller
     {
         $borrowLogs = Auth::user()->borrowLogs()->borrowed()->get();
         return view('dashboard.member', compact('borrowLogs'));
-    }
-    protected function visitorDashboard()
-    {
-        return view('dashboard.visitor');
-    }
+    }   
 }

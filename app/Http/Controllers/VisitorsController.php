@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Session;
 
 class VisitorsController extends Controller
 {
+  public function guestBook(Request $request)
+  {
+    return view('visitors.guest-book');
+  }
   public function store(Request $request)
   {
     $this->validate($request,[
