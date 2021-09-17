@@ -72,8 +72,8 @@
   </li>
   @endrole
   @role('member')
-  <li class="{{ (request()->is('home')) ? 'active' : '' }}">
-    <a href="{{ url('/home') }}"><i class="ion-android-home"></i> <span>Dashboard</span>
+  <li class="{{ (request()->is('member/status-history')) ? 'active' : '' }}">
+    <a href="{{  route('members.status-history') }}"><i class="ion-document-text"></i> <span>Status & Riwayat</span>
     </a>
   </li>
   @endrole

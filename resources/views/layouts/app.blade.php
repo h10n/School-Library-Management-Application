@@ -84,7 +84,7 @@ desired effect
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('/') || request()->is('home') || request()->is('visitor/guest-book'))                        
+            @if (request()->is('/') || request()->is('home') || request()->is('visitor/guest-book') || request()->is('member/status-history'))                        
             <div class="content-header">
                 <div class="alert alert-warning">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

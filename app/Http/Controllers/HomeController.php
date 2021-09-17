@@ -43,10 +43,7 @@ class HomeController extends Controller
     {
         if (Entrust::hasRole('admin')) {
             return $this->adminDashboard();
-        }
-        if (Entrust::hasRole('member')) {
-            return $this->memberDashboard();
-        }
+        }      
         
         return view('home');
     }
@@ -70,10 +67,5 @@ class HomeController extends Controller
         }
         
         return view('dashboard.admin')->with(compact('authors', 'books', 'buku', 'penulis', 'anggota', 'penerbit', 'kategori', 'transaksi', 'pinjam', 'petugas'));
-    }
-    protected function memberDashboard()
-    {
-        $borrowLogs = Auth::user()->borrowLogs()->borrowed()->get();
-        return view('dashboard.member', compact('borrowLogs'));
-    }   
+    }  
 }

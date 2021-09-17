@@ -14,7 +14,7 @@
       <h3 class="box-title">Detail Anggota</h3>
       <div class="table-button-custom">
         {{-- <a class="btn bg-orange" href="{{ route('members.create') }}"><span class="ion-android-add"> Tambah
-            Data</span></a> --}}
+          Data</span></a> --}}
         <a class="btn bg-olive" href="{{ route('members.edit',$member->id) }}"><span class="ion-edit"> Edit
             Data</span></a>
         <a class="btn bg-purple" href="{{ route('members.card',$member->id) }}"><span class="ion-printer">
@@ -92,52 +92,8 @@
             {{ $member->phone }}
           </div>
         </div>
-        
       </div>
-      <div class="col-md-12">
-        <h5>Buku yang Sedang Dipinjam</h5>
-        <table class="table table-condensed table-striped">
-          <thead>
-            <tr>
-              <th>Judul</th>
-              <th>Tanggal Peminjaman</th>
-            </tr>
-          </thead>
-          <tbody>
-            @forelse ($member->borrowLogs()->borrowed()->get() as $log)
-            <tr>
-              <td>{{ $log->book->title }}</td>
-              <td>{{ $log->created_at }}</td>
-            </tr>
-            @empty
-            <tr>
-              <td colspan="2">Tidak Ada Data</td>
-            </tr>
-            @endforelse
-          </tbody>
-        </table>
-        <h5>Buku yang Telah Dikembalikan</h5>
-        <table class="table table-condensed table-striped">
-          <thead>
-            <tr>
-              <th>Judul</th>
-              <th>Tanggal Kembali</th>
-            </tr>
-          </thead>
-          <tbody>
-            @forelse ($member->borrowLogs()->returned()->get() as $log)
-            <tr>
-              <td>{{ $log->book->title }}</td>
-              <td>{{ $log->updated_at }}</td>
-            </tr>
-            @empty
-            <tr>
-              <td colspan="2">Tidak Ada Data</td>
-            </tr>
-            @endforelse
-          </tbody>
-        </table>
-      </div>
+      @include('members._status-history-table')
       <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
           Anggota</span></a>
     </div>

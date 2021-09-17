@@ -139,15 +139,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('guest-book', 'VisitorsController@storeGuestBook')->name('visitors.guest-book.store');
         Route::get('guest-book', 'VisitorsController@guestBook')->name('visitors.guest-book');
     });
+
+    Route::group(['prefix' => 'member','middleware' => ['auth','role:member']], function () {        
+        Route::get('status-history', 'MembersController@statusRiwayat')->name('members.status-history');
+    });
 });
 
-
-Route::get('/home', 'HomeController@index');
-
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth','role:admin']);
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
