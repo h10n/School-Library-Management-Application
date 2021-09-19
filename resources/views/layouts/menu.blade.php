@@ -65,7 +65,7 @@
     </ul>
   </li>
   <li class="{{ (request()->is('admin/settings/general/*')) || (request()->is('admin/settings/general')) ? 'active' : '' }}">
-    <a href="{{ url('admin/settings/general') }}"><i class="ion-speedometer"></i> <span>Pengaturan</span>
+    <a href="{{ url('admin/settings/general') }}"><i class="ion-settings"></i> <span>Pengaturan</span>
     </a>
   </li>
   @endrole
