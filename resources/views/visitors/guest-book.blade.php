@@ -13,7 +13,7 @@
     </div>
     <div class="box-body">
       <div class="callout callout-info">
-        Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}, Silahkan Isi Form Kunjungan Terlebih Dahulu!
+        Selamat Datang di Aplikasi {{ $nama_perpus }}, Silahkan Isi Form Kunjungan Terlebih Dahulu!
       </div>
       {!! Form::open([
       'route' => 'visitors.guest-book.store',      

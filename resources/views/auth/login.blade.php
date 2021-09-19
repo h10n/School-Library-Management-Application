@@ -23,7 +23,7 @@
                                 <div class="caption text-center">
                                     <h5>
                                         <strong>
-                                            Selamat Datang di Aplikasi Perpustakaan {{ $nama_perpus }}, Silahkan
+                                            Selamat Datang di Aplikasi {{ $nama_perpus }}, Silahkan
                                             Gunakan Username dan Password Anda Untuk Masuk ke Aplikasi!
                                         </strong>
                                     </h5>
