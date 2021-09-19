@@ -217,9 +217,9 @@ h6,
   font-family: 'Roboto','Source Sans Pro', sans-serif;
 }
 
-.main-header .sidebar-toggle {
+/* .main-header .sidebar-toggle {
   font-family: fontAwesome;
-}
+} */
 
 .main-header .logo {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -297,12 +297,12 @@ body .wrapper .main-header aside{
   .marquee-sibling {
      display: none;
   }        
-  .sidebar-toggle{
+  /* .sidebar-toggle{
     display: block;
-  }
+  } */
 }
 @media (min-width: 767px) {
-  .sidebar-toggle{
+  /* .sidebar-toggle{
     display: none;
-  }
+  } */
 }
