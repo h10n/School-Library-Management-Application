@@ -72,8 +72,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="signup-footer">
-                        <p>Copyright © 2018 Nur Hakim. All rights reserved.</p>
-                        <p>Created By: <a href="#" target="_blank">Nur Hakim</a></p>
+                        <p>Copyright © 2018 <a href="#" target="_blank">Nur Hakim</a>. All rights reserved.</p>                        
                     </div>
                 </div>
             </div>
