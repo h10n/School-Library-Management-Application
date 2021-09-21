@@ -1,6 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
   <li class="header">
-    <i class="fa fa-calendar margin"></i> {{$waktu}}
+    <i class="fa fa-calendar margin"></i> {{$waktu}}    
   </li>
   @role('admin')
   <li class="{{ (request()->is('home')) ? 'active' : '' }}">

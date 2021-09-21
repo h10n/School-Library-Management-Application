@@ -41,17 +41,12 @@ class AppServiceProvider extends ServiceProvider
           $nip_pustakawan = $perpustakan->nip_pustakawan;
           }
           $mytime = Carbon::now();
-          $waktu = $mytime->format('l, d M Y');
+          $waktu = $mytime->formatLocalized('%A, %d %b %Y');
           $announcements = Announcement::all();
           $view->with(compact('nama_perpus','alamat_perpus','tentang','denda','durasi','logo','waktu','jumlah', 'announcements', 'kepala_perpustakaan', 'nip_kepala_perpustakaan', 'pustakawan', 'nip_pustakawan'));
       });
-
-      // Carbon::setLocale('id');
-      // setlocale(LC_TIME,'id_ID');
-      setlocale(LC_ALL, 'id_ID.utf8');
-      Carbon::setLocale('id_ID.utf8');
       
-  
+      setlocale(LC_ALL,'id_ID', 'id', 'ID');  
     }
 
     /**
