@@ -28,9 +28,6 @@
 
 <div class="form-group">
   <div class="col-md-6 col-md-offset-2">
-    <a class="btn bg-red" href="{{ route('carousels.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
-        Slider</span></a>
     {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
-
   </div>
 </div>

@@ -13,12 +13,10 @@
     <div class="box-header">
       <h3 class="box-title">Detail Anggota</h3>
       <div class="table-button-custom">
+        <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back">
+            Kembali</span></a>
         {{-- <a class="btn bg-orange" href="{{ route('members.create') }}"><span class="ion-android-add"> Tambah
           Data</span></a> --}}
-        <a class="btn bg-olive" href="{{ route('members.edit',$member->id) }}"><span class="ion-edit"> Edit
-            Data</span></a>
-        <a class="btn bg-purple" href="{{ route('members.card',$member->id) }}"><span class="ion-printer">
-            Cetak Kartu</span></a>
       </div>
     </div>
     <div class="box-body">
@@ -94,8 +92,12 @@
         </div>
       </div>
       @include('members._status-history-table')
-      <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
-          Anggota</span></a>
+      <div class="col-md-12">        
+        <a class="btn bg-olive" href="{{ route('members.edit',$member->id) }}"><span class="ion-edit"> Edit
+            Data</span></a>
+        <a class="btn bg-purple pull-right" href="{{ route('members.card',$member->id) }}"><span class="ion-printer">
+            Cetak Kartu</span></a>
+      </div>
     </div>
   </div>
 </section>

@@ -10,7 +10,7 @@
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Slider</h3>
+      <h3 class="box-title">Daftar Slider</h3>
       <div class="table-button-custom">
         <a class="btn bg-orange" href="{{ route('carousels.create') }}"><span class="ion-android-add"> Tambah
             Data</span></a>

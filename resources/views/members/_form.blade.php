@@ -104,10 +104,7 @@
    
   </div> 
   <div class="form-group">
-    <div class="col-md-6 col-md-offset-2">
-      <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
-          Anggota</span></a>
-      {{-- {{ Form::reset('Reset',['class' => 'btn bg-yellow']) }} --}}
+    <div class="col-md-6 col-md-offset-2">            
       {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
 
     </div>

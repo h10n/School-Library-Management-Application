@@ -35,7 +35,7 @@
         }
 
         function edit(link, title) {
-            $(".modal-title").html('<span class="glyphicon glyphicon-pencil"></span> Edit Data ' + title);
+            $(".modal-title").html('<span class="glyphicon glyphicon-pencil"></span> Edit ' + title);
             save_method = 'update';
             $('#modal_form').modal('show');
             $.get(link,

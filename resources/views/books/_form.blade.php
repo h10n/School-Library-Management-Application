@@ -138,10 +138,7 @@
 </div>
 
 <div class="form-group">
-  <div class="col-md-4 col-md-offset-2">
-    <a class="btn bg-red" href="{{ route('books.index') }}"><span class="ion-android-arrow-back"> Kembali ke Daftar
-        Buku</span></a>
-    <!--  {{ Form::reset('Reset',['class' => 'btn bg-yellow', 'onclick' => 'resetBuku()']) }} -->
+  <div class="col-md-4 col-md-offset-2">    
     {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
   </div>
 </div>

@@ -10,7 +10,7 @@
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Penerbit</h3>
+      <h3 class="box-title">Daftar Penerbit</h3>
       <div class="table-button-custom">
         <a onclick="add('{{ route('publishers.create')}}','Penerbit')" class="btn bg-orange"><span
             class="ion-android-add"> Tambah Data</span></a>

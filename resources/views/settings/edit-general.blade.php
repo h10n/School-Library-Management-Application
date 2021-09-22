@@ -1,4 +1,3 @@
-
 @push('req-css')
 <link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
 @endpush
@@ -17,6 +16,8 @@
     <div class="box-header">
       <h3 class="box-title">Ubah Pengaturan</h3>
       <div class="table-button-custom">
+        <a class="btn bg-red" href="{{ url('admin/settings/general') }}"><span class="ion-android-arrow-back">
+            Kembali</span></a>
         {{-- <a class="btn bg-orange" href="#"><span class="ion-edit"> Tambah Data</span></a>
         <a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>
         <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a> --}}
@@ -87,81 +88,80 @@
         </div>
       </div>
       {{-- <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
-        {!! Form::label('logo','Logo Perpustakaan',['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-          {!! Form::file('logo') !!}
-          @if (isset($setting) && $setting->logo)
-          <p>{!! Html::image(asset('img/logo/'.$setting->logo),null,['class' => 'img-rounded cover-buku']) !!}</p>
-          @endif
-          {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}
-        </div>
-      </div> --}}
-      <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
-        {!! Form::label('logo','Logo',['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-           <div class="avatar-upload">
-            <div class="avatar-edit">        
-                {!! Form::file('logo',['id' => 'logo', 'onchange' => 'changeAvatar(event, this)']) !!}
-                <label for="logo"></label>
-            </div>
-        
-            <div class="avatar-delete">        
-                <input id="imageDelete" type="button">
-                <label for="imageDelete"></label>
-            </div>
-            <div class="avatar-preview">            
-                @if(isset($setting->logo))
-                    <div id="imagePreview" style="background-image: url({!! asset('img/logo/'.$setting->logo) !!});">
-                    </div>
-                @else
-                    <div id="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
-                    </div>
-                @endif                
-            </div>
-        </div>
-        {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}    
-        </div>       
-      </div> 
-      <div class="row">
-        <div class="col-md-6 col-md-offset-2">
-          <span class="text-muted"><i class="ion-arrow-swap"></i> Peminjaman</span>
-        </div>
+      {!! Form::label('logo','Logo Perpustakaan',['class' => 'col-md-4 control-label']) !!}
+      <div class="col-md-6">
+        {!! Form::file('logo') !!}
+        @if (isset($setting) && $setting->logo)
+        <p>{!! Html::image(asset('img/logo/'.$setting->logo),null,['class' => 'img-rounded cover-buku']) !!}</p>
+        @endif
+        {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}
       </div>
+    </div> --}}
+    <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
+      {!! Form::label('logo','Logo',['class' => 'col-md-4 control-label']) !!}
+      <div class="col-md-6">
+        <div class="avatar-upload">
+          <div class="avatar-edit">
+            {!! Form::file('logo',['id' => 'logo', 'onchange' => 'changeAvatar(event, this)']) !!}
+            <label for="logo"></label>
+          </div>
 
-      <div class="form-group{{ $errors->has('denda') ? ' has-error' : '' }}">
-        {!! Form::label('denda', 'Denda', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-          {!! Form::text('denda',null,['class' => 'form-control']) !!}
-          {!! $errors->first('denda','<p class="help-block">:message</p>') !!}
+          <div class="avatar-delete">
+            <input id="imageDelete" type="button">
+            <label for="imageDelete"></label>
+          </div>
+          <div class="avatar-preview">
+            @if(isset($setting->logo))
+            <div id="imagePreview" style="background-image: url({!! asset('img/logo/'.$setting->logo) !!});">
+            </div>
+            @else
+            <div id="imagePreview"
+              style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
+            </div>
+            @endif
+          </div>
         </div>
+        {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}
       </div>
-      <div class="form-group{{ $errors->has('durasi') ? ' has-error' : '' }}">
-        {!! Form::label('durasi', 'Durasi', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-          {!! Form::text('durasi',null,['class' => 'form-control']) !!}
-          {!! $errors->first('durasi','<p class="help-block">:message</p>') !!}
-        </div>
-      </div>
-      <div class="form-group{{ $errors->has('max_peminjaman') ? ' has-error' : '' }}">
-        {!! Form::label('max_peminjaman', 'Jumlah', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-          {!! Form::text('max_peminjaman',null,['class' => 'form-control']) !!}
-          {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
-        </div>
-      </div>
-
-      <a class="btn bg-red" href="{{ url('admin/settings/general') }}"><span class="ion-android-arrow-back"> Kembali</span></a>
-      {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
-      {!! Form::close() !!}
     </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+        <span class="text-muted"><i class="ion-arrow-swap"></i> Peminjaman</span>
+      </div>
+    </div>
+
+    <div class="form-group{{ $errors->has('denda') ? ' has-error' : '' }}">
+      {!! Form::label('denda', 'Denda', ['class' => 'col-md-4 control-label']) !!}
+      <div class="col-md-6">
+        {!! Form::text('denda',null,['class' => 'form-control']) !!}
+        {!! $errors->first('denda','<p class="help-block">:message</p>') !!}
+      </div>
+    </div>
+    <div class="form-group{{ $errors->has('durasi') ? ' has-error' : '' }}">
+      {!! Form::label('durasi', 'Durasi', ['class' => 'col-md-4 control-label']) !!}
+      <div class="col-md-6">
+        {!! Form::text('durasi',null,['class' => 'form-control']) !!}
+        {!! $errors->first('durasi','<p class="help-block">:message</p>') !!}
+      </div>
+    </div>
+    <div class="form-group{{ $errors->has('max_peminjaman') ? ' has-error' : '' }}">
+      {!! Form::label('max_peminjaman', 'Jumlah', ['class' => 'col-md-4 control-label']) !!}
+      <div class="col-md-6">
+        {!! Form::text('max_peminjaman',null,['class' => 'form-control']) !!}
+        {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
+      </div>
+    </div>
+    {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
+    {!! Form::close() !!}
+  </div>
   </div>
 </section>
 @endsection
 
 @push('req-scripts')
 <script>
-  const imgUrl = "{{ isset($setting->logo) ? asset('img/logo/'.$setting->logo) : '' }}", 
-        noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}"; 
+  const imgUrl = "{{ isset($setting->logo) ? asset('img/logo/'.$setting->logo) : '' }}",
+    noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}";
 </script>
 <script src="{{ asset('js/avatar.js') }}"></script>
 @endpush
