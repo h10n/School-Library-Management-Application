@@ -33,7 +33,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   @role('admin')
-                  <li><a href="{{ url('/home') }}">Dashboard</a></li>
+                  <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                   @endrole
                   @role('member')
                   <li><a href="{{ route('members.status-history') }}">Status & Riwayat</a></li>

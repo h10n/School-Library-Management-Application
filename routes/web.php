@@ -26,6 +26,7 @@ Route::group(['middleware' => 'web'], function () {
   ]);
   
     Route::group(['prefix' => 'admin','middleware' => ['auth','role:admin']], function () {
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
         Route::get('template/books', [
       'as' => 'admin.template.books',
       'uses' => 'BooksController@generateExcelTemplate'

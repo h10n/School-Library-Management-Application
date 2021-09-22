@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        {!! Html::smartNav(url('/home'), 'Dashboard') !!}
+                        {!! Html::smartNav(route('dashboard.index'), 'Dashboard') !!}
                         @role('admin')
                         {!! Html::smartNav(url('/admin/authors'), 'Penulis') !!}
                         {!! Html::smartNav(url('/admin/members'), 'Member') !!}

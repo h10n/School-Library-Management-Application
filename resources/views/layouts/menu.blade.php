@@ -3,8 +3,8 @@
     <i class="fa fa-calendar margin"></i> {{$waktu}}    
   </li>
   @role('admin')
-  <li class="{{ (request()->is('home')) ? 'active' : '' }}">
-    <a href="{{ url('/home') }}"><i class="ion-speedometer"></i> <span>Dashboard</span>
+  <li class="{{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
+    <a href="{{ route('dashboard.index') }}"><i class="ion-speedometer"></i> <span>Dashboard</span>
     </a>
   </li>
   <li class="{{ (request()->is('admin/transactions/*')) || (request()->is('admin/transactions')) ? 'active' : '' }}">
