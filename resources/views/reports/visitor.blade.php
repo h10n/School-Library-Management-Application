@@ -43,29 +43,31 @@
             <i class="fa fa-caret-down"></i>
           </a>
           <div class="box-body">
-            <table class="table table-striped table-hover" id="laporanBulanan">
-              <thead>
-                <tr>
-                  <th rowspan="2">No</th>
-                  <th rowspan="2">Hari/Tanggal</th>
-                  <th colspan="3">Kelas</th>
-                  <th rowspan="2">Guru/Karyawan Sekolah</th>
-                  <th rowspan="2">Jumlah</th>
-                </tr>
-                <tr>
-                  <th>X</th>  
-                  <th>XI</th>  
-                  <th>XII</th>  
-                </tr>
-              </thead>
-              <tbody>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover" id="laporanBulanan">
+                <thead>
+                  <tr>
+                    <th rowspan="2">No</th>
+                    <th rowspan="2">Hari/Tanggal</th>
+                    <th colspan="3">Kelas</th>
+                    <th rowspan="2">Guru/Karyawan Sekolah</th>
+                    <th rowspan="2">Jumlah</th>
+                  </tr>
+                  <tr>
+                    <th>X</th>  
+                    <th>XI</th>  
+                    <th>XII</th>  
+                  </tr>
+                </thead>
+                <tbody>
 
-              </tbody>
-              <tfoot>
+                </tbody>
+                <tfoot>
 
-              </tfoot>
-            </table>
-            {{ csrf_field() }}
+                </tfoot>
+              </table>
+              {{ csrf_field() }}
+            </div>
           </div>
 
         </div>
@@ -130,7 +132,7 @@
                           cache: false,
 
                           beforeSend: function () {
-                            console.log('krece');
+                            // console.log('krece');
                           },
 
                           success: function (data) {
@@ -215,7 +217,7 @@
                 cache: false,
 
                 beforeSend: function () {
-                    console.log('krece');
+                    // console.log('krece');
                 },
 
                 success: function (data) {

@@ -19,9 +19,10 @@
     </div>
     
     <div class="box-body">
-      {!! $html->table(['class' => 'table table-striped table-hover']) !!}
-    </div>
-    
+      <div class="table-responsive">
+        {!! $html->table(['class' => 'table table-striped table-hover']) !!}
+      </div>
+    </div>    
   </div>
   
       </section>

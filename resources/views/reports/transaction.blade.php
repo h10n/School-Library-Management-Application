@@ -47,25 +47,27 @@
             <span><i class="fa fa-calendar"></i> Pilih Periode Laporan Bulanan</span>
             <i class="fa fa-caret-down"></i>
           </a>
-          <div class="box-body">            
-            <table class="table table-striped table-hover" id="laporanBulanan">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Hari / Tanggal</th>
-                  <th>Jumlah Buku Dipinjam</th>
-                  <th>Jumlah Buku Kembali</th>
-                  <th>Keterangan</th>
-                </tr>
-              </thead>
-              <tbody>
+          <div class="box-body">     
+            <div class="table-responsive">       
+              <table class="table table-striped table-hover" id="laporanBulanan">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Hari/Tanggal</th>
+                    <th>Jumlah Buku Dipinjam</th>
+                    <th>Jumlah Buku Kembali</th>
+                    <th>Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-              </tbody>
-              <tfoot>
+                </tbody>
+                <tfoot>
 
-              </tfoot>
-            </table>
-            {{ csrf_field() }}
+                </tfoot>
+              </table>
+              {{ csrf_field() }}
+            </div>
           </div>
 
         </div>
@@ -164,7 +166,7 @@
                         cache: false,
 
                         beforeSend: function () {
-                            console.log('krece');
+                            // console.log('krece');
                         },
 
                         success: function (data) {
@@ -254,7 +256,7 @@
                 cache: false,
 
                 beforeSend: function () {
-                    console.log('krece');
+                    // console.log('krece');
                 },
 
                 success: function (data) {
@@ -275,7 +277,7 @@
 
                       total_peminjaman += val.peminjaman;
                       total_pengembalian += val.pengembalian;
-                      console.log(total_peminjaman);
+                      // console.log(total_peminjaman);
                     });
                     //baris total
                     total += '<tr>';
