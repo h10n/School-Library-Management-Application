@@ -6,5 +6,6 @@
   ]) !!}
   <a href="{{ $detail_url }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
   <a href="{{ $edit_url }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-{!! Form::submit('Hapus', ['class' => 'btn btn-xs btn-danger']) !!}
+{{-- {!! Form::submit('Hapus', ['class' => 'btn btn-xs btn-danger']) !!} --}}
+{!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'name' => 'hapus', 'class' => 'btn btn-xs btn-danger'] )  !!}
 {!! Form::close() !!}
