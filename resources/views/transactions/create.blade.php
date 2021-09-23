@@ -13,6 +13,8 @@
     <div class="box-header">
       <h3 class="box-title">Tambah Peminjaman</h3>
       <div class="table-button-custom">
+        <a class="btn bg-red" href="{{ route('transactions.index') }}"><span class="ion-android-arrow-back">
+          Kembali</span></a>
         {{-- <a class="btn bg-orange" href="{{ route('transactions.create') }}"><span class="ion-edit"> Tambah
             Data</span></a>
         <a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>

@@ -12,6 +12,8 @@
     <div class="box-header">
       <h3 class="box-title">Edit Profil</h3>
       <div class="table-button-custom">
+        <a class="btn bg-red" href="{{ url('admin/settings/profile') }}"><span class="ion-android-arrow-back">
+          Kembali</span></a>
         {{-- <a class="btn bg-orange" href="#"><span class="ion-edit"> Tambah Data</span></a>
         <a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>
         <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a> --}}
@@ -81,8 +83,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-md-6 col-md-offset-4">
-          <a class="btn bg-red" href="{{ url('admin/settings/profile') }}"><span class="ion-android-arrow-back"> Kembali</span></a>          
+        <div class="col-md-6 col-md-offset-4">          
           {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
         </div>
       </div>
