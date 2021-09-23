@@ -29,7 +29,7 @@
       ])
       !!}
       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        {!! Form::label('name', 'Nama', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('name', 'Nama', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::text('name',null,['class' => 'form-control']) !!}
           {!! $errors->first('name','<p class="help-block">:message</p>') !!}
@@ -37,7 +37,7 @@
       </div>
 
       <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-        {!! Form::label('username', 'Username', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('username', 'Username', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::text('username',null,['class' => 'form-control']) !!}
           {!! $errors->first('username','<p class="help-block">:message</p>') !!}
@@ -45,7 +45,7 @@
       </div>
 
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-        {!! Form::label('email', 'Email', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('email', 'Email', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::email('email',null,['class' => 'form-control']) !!}
           {!! $errors->first('email','<p class="help-block">:message</p>') !!}
@@ -53,7 +53,7 @@
       </div>
 
       <div class="form-group{{ $errors->has('telp') ? ' has-error' : '' }}">
-        {!! Form::label('telp', 'No Telepon', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('telp', 'No Telepon', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::text('telp',null,['class' => 'form-control']) !!}
           {!! $errors->first('telp','<p class="help-block">:message</p>') !!}
@@ -62,7 +62,7 @@
 
 
       <div class="form-group{{ $errors->has('alamat') ? ' has-error' : '' }}">
-        {!! Form::label('alamat', 'Alamat', ['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('alamat', 'Alamat', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::text('alamat',null,['class' => 'form-control']) !!}
           {!! $errors->first('alamat','<p class="help-block">:message</p>') !!}
@@ -71,7 +71,7 @@
 
 
       <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">
-        {!! Form::label('photo','Foto',['class' => 'col-md-4 control-label']) !!}
+        {!! Form::label('photo','Foto',['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::file('photo') !!}
           @if (auth()->user() && auth()->user()->photo)
@@ -83,7 +83,7 @@
       </div>
 
       <div class="form-group">
-        <div class="col-md-6 col-md-offset-4">          
+        <div class="col-md-4 col-md-offset-2">          
           {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
         </div>
       </div>
