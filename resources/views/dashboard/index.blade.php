@@ -75,9 +75,9 @@
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="dashboard-div-wrapper bg-red">
                     <div class="divider">
-                        <i class="fa fa-key dashboard-div-icon"></i>
+                        <i class="fa fa-user-plus dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$petugas->count()}} Petugas</h4>
+                    <h4>{{ $todaysvisit }} Pengunjung Hari ini</h4>
                 </div>
             </div>
         </div>

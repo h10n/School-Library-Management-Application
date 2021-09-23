@@ -8,8 +8,6 @@ use App\Carousel;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Entrust;
-use App\Visitor;
-use Carbon\Carbon;
 
 class GuestController extends Controller
 {
@@ -54,10 +52,8 @@ class GuestController extends Controller
       ->addColumn(['data' => 'category.name', 'name' => 'category.name', 'title' => 'Kategori'])
       ->addColumn(['data' => 'cover-buku', 'name' => 'cover-buku', 'title' => 'Cover','orderable' => false, 'searchable' => false]);
 
-      $hariini = Carbon::now()->format('d');
-      $todaysvisit = Visitor::whereDay('created_at', '=', $hariini)->count();
       $carousel = Carousel::all();
 
-      return view('guest.index')->with(compact('html', 'todaysvisit', 'carousel'));
+      return view('guest.index')->with(compact('html', 'carousel'));
     }
 }
