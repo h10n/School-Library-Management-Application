@@ -30,7 +30,7 @@
                 </tr>
               </tbody>
             </table>
-            <a class="btn btn-primary" href="{{ url('/settings/profile/edit') }}">Ubah</a>
+            <a class="btn btn-primary" href="{{ url('/settings/profile/edit') }}"><span class="ion-edit"></span> Edit</a>
           </div>
         </div>
       </div>

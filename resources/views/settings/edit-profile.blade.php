@@ -4,13 +4,13 @@
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
     <li><a href="{{ url('admin/settings/profile') }}"> Profil</a></li>
-    <li class="active">Ubah Profil</li>
+    <li class="active">Edit Profil</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Ubah Profil</h3>
+      <h3 class="box-title">Edit Profil</h3>
       <div class="table-button-custom">
         {{-- <a class="btn bg-orange" href="#"><span class="ion-edit"> Tambah Data</span></a>
         <a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>

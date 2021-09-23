@@ -8,13 +8,13 @@
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
     <li><a href="{{ url('admin/settings/general') }}"> Pengaturan</a></li>
-    <li class="active">Ubah Pengaturan</li>
+    <li class="active">Edit Pengaturan</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Ubah Pengaturan</h3>
+      <h3 class="box-title">Edit Pengaturan</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ url('admin/settings/general') }}"><span class="ion-android-arrow-back">
             Kembali</span></a>
@@ -150,8 +150,9 @@
         {!! Form::text('max_peminjaman',null,['class' => 'form-control']) !!}
         {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
       </div>
-    </div>    
-    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
+    </div>
+    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn
+    btn-primary'] ) !!}
     {!! Form::close() !!}
   </div>
   </div>

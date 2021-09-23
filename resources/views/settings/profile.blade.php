@@ -77,7 +77,7 @@
         </div>
 
       </div>
-      <a class="btn btn-primary" href="{{ url('admin/settings/profile/edit') }}">Ubah</a>
+      <a class="btn btn-primary" href="{{ url('admin/settings/profile/edit') }}"><span class="ion-edit"></span> Edit</a>
     </div>
   </div>
 </section>

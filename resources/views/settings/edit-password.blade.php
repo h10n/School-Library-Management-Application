@@ -6,11 +6,11 @@
     <div class="col-md-12">
       <ul class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-        <li class="active">Ubah Password</li>
+        <li class="active">Edit Password</li>
       </ul>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Ubah Password</h2>
+          <h2 class="panel-title">Edit Password</h2>
         </div>
 
         <div class="panel-body">
