@@ -28,6 +28,6 @@
 
 <div class="form-group">
   <div class="col-md-6 col-md-offset-2">
-    {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
+    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
   </div>
 </div>

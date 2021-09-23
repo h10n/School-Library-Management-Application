@@ -19,7 +19,7 @@ class VisitorsController extends Controller
     {
         //
         if ($request->ajax()) {
-            $items = Visitor::select(['id','name'])->latest('updated_at')->get();
+            $items = Visitor::latest('updated_at')->get();
             return Datatables::of($items)
           ->addColumn('action', function ($item) {
               return view('datatable._carousel-action', [
@@ -46,10 +46,30 @@ class VisitorsController extends Controller
           'printable'      => true,
           'footer'         => '',
       ])
+      ->addColumn([
+        'data' => 'no_induk',
+        'name' => 'no_induk',
+        'title' => 'NIS/NIP'
+      ])
         ->addColumn([
           'data' => 'name',
           'name' => 'name',
           'title' => 'Nama'
+        ])
+        ->addColumn([
+          'data' => 'jenis_anggota',
+          'name' => 'jenis_anggota',
+          'title' => 'Jenis Anggota'
+        ])
+        ->addColumn([
+          'data' => 'kelas',
+          'name' => 'kelas',
+          'title' => 'Kelas'
+        ])
+        ->addColumn([
+          'data' => 'keperluan',
+          'name' => 'keperluan',
+          'title' => 'Keperluan'
         ])
         ->addColumn([
           'data' => 'action',

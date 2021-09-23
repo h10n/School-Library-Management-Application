@@ -11,7 +11,7 @@
     <a href="{{url('/admin/transactions')}}"><i class="ion-ios-list"></i> <span>Peminjaman</span>
     </a>
   </li>
-  <li class="treeview {{ (request()->is('admin/authors', 'admin/publishers','admin/members','admin/books','admin/categories','admin/announcements','admin/carousels','admin/authors/*', 'admin/publishers/*','admin/members/*','admin/books/*','admin/categories/*','admin/announcements/*','admin/carousels/*')) ? 'active' : '' }}">
+  <li class="treeview {{ (request()->is('admin/authors', 'admin/publishers','admin/members','admin/books','admin/categories','admin/announcements','admin/carousels','admin/authors/*', 'admin/publishers/*','admin/members/*','admin/books/*','admin/categories/*','admin/announcements/*','admin/carousels/*', 'admin/visitors', 'admin/visitors/*')) ? 'active' : '' }}">
     <a href="#"><i class="ion-filing"></i> <span>Master Data</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
