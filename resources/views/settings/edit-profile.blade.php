@@ -82,8 +82,8 @@
 
       <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
-          <a class="btn bg-red" href="{{ url('admin/settings/profile') }}"><span class="ion-android-arrow-back"> Kembali</span></a>
-          {!! Form::submit('Simpan', ['class' => 'btn btn-primary']) !!}
+          <a class="btn bg-red" href="{{ url('admin/settings/profile') }}"><span class="ion-android-arrow-back"> Kembali</span></a>          
+          {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
         </div>
       </div>
       {!! Form::close() !!}

@@ -150,8 +150,8 @@
         {!! Form::text('max_peminjaman',null,['class' => 'form-control']) !!}
         {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
       </div>
-    </div>
-    {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
+    </div>    
+    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
     {!! Form::close() !!}
   </div>
   </div>
