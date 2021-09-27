@@ -95,7 +95,7 @@ class VisitorsController extends Controller
         $item = Visitor::create($request->all());
         Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Berhasil menyimpan $item->name"
+        "message" => "Berhasil menambah $item->name"
       ]);
       return redirect()->route('visitors.index');
     }
@@ -151,7 +151,7 @@ class VisitorsController extends Controller
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil memperbaharui $item->name"
+          "message" => "Berhasil mengubah $item->name"
         ]);
         return redirect()->route('visitors.index');
     }
@@ -170,7 +170,7 @@ class VisitorsController extends Controller
         }
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Pengunjung berhasi dihapus"
+          "message" => "Pengunjung berhasil dihapus"
         ]);
         return redirect()->route('visitors.index');
     }

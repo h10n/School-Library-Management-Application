@@ -87,7 +87,7 @@ class PublishersController extends Controller
         $publisher = Publisher::create($request->only('name'));
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $publisher->name"
+          "message" => "Berhasil menambah $publisher->name"
         ]);
         return redirect()->back();
         //->route('publishers.index');
@@ -133,7 +133,7 @@ class PublishersController extends Controller
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $publisher->name"
+          "message" => "Berhasil mengubah $publisher->name"
         ]);
         return redirect()->route('publishers.index');
     }
@@ -150,7 +150,7 @@ class PublishersController extends Controller
         if(!Publisher::destroy($id)) return redirect()->back();
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Penerbit berhasi dihapus"
+          "message" => "Penerbit berhasil dihapus"
         ]);
           return redirect()->route('publishers.index');
 

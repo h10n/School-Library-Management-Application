@@ -131,7 +131,7 @@ class MembersController extends Controller
         // dd($member->id);
         Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Berhasil menyimpan $member->name"
+        "message" => "Berhasil menambah $member->name"
       ]);
         return redirect()->route('members.index');
     }
@@ -199,7 +199,7 @@ class MembersController extends Controller
 
         Session::flash("flash_notification", [
             "level"=>"success",
-            "message"=>"Berhasil menyimpan $member->name"
+            "message"=>"Berhasil mengubah $member->name"
         ]);
 
         return redirect()->route('members.index');

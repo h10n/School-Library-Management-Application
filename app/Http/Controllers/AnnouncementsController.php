@@ -106,7 +106,7 @@ class AnnouncementsController extends Controller
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $announcement->text"
+          "message" => "Berhasil mengubah $announcement->text"
         ]);
         return redirect()->route('announcements.index');
     }

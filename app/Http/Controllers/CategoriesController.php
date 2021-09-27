@@ -86,7 +86,7 @@ class CategoriesController extends Controller
         $category = Category::create($request->only('name'));
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $category->name"
+          "message" => "Berhasil menambah $category->name"
         ]);
         return redirect()->back();
         //->route('categories.index');
@@ -131,7 +131,7 @@ class CategoriesController extends Controller
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $category->name"
+          "message" => "Berhasil mengubah $category->name"
         ]);
         return redirect()->route('categories.index');
     }
@@ -148,7 +148,7 @@ class CategoriesController extends Controller
         if(!Category::destroy($id)) return redirect()->back();
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Kategori berhasi dihapus"
+          "message" => "Kategori berhasil dihapus"
         ]);
           return redirect()->route('categories.index');
 

@@ -143,7 +143,7 @@ class BooksController extends Controller
         }
         Session::flash("flash_notification",[
           "level" => "success",
-          "message" => "Berhasil menyimpan $book->title"
+          "message" => "Berhasil menambah $book->title"
         ]);
         return redirect()->route('books.index');
     }
@@ -217,7 +217,7 @@ if ($request->hasFile('cover')) {
 
 Session::flash("flash_notification", [
     "level"=>"success",
-    "message"=>"Berhasil menyimpan $book->title"
+    "message"=>"Berhasil mengubah $book->title"
 ]);
 
 return redirect()->route('books.index');

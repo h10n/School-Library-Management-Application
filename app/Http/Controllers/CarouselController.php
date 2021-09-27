@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Carousel;
+use App\Traits\FlashNotificationTrait;
 use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
 {
+  use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
@@ -73,7 +75,7 @@ public function index(Request $request, Builder $htmlBuilder)
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {      
         return view('carousels.create');
     }
 
@@ -102,6 +104,8 @@ public function index(Request $request, Builder $htmlBuilder)
             $carousel->img = $filename;
           }
           $carousel->save();
+
+          $this->sendFlashNotification('menambah', $carousel->title);
           return redirect()->route('carousels.index');
     }
 
@@ -141,7 +145,7 @@ public function index(Request $request, Builder $htmlBuilder)
      $this->validate($request, array(
        'title'=>'max:225',
        'text' =>'max:329',
-       'img'=>'required|image'
+      //  'img'=>'required|image'
     ));
 
      $carousel = Carousel::where('id',$id)->first();
@@ -163,6 +167,8 @@ public function index(Request $request, Builder $htmlBuilder)
 
     $carousel->save();
 
+    $this->sendFlashNotification('mengubah', $carousel->title);
+    
     return redirect()->route('carousels.index',
         $carousel->id)->with('success',
         'carousel, '. $carousel->title.' updated');
@@ -179,6 +185,8 @@ public function index(Request $request, Builder $htmlBuilder)
       $carousel = Carousel::findOrFail($id);
         Storage::delete($carousel->img);
         $carousel->delete();
+
+        $this->sendFlashNotification('menghapus', $carousel->title);
         return redirect()->route('carousels.index')->with('success','Slide successfully deleted');
     }
 }

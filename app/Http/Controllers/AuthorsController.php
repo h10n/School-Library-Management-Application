@@ -78,7 +78,7 @@ class AuthorsController extends Controller
      */
     public function create()
     {
-        //
+        //        
         return view('authors.create');
     }
 
@@ -93,7 +93,7 @@ class AuthorsController extends Controller
         $author = Author::create($request->only('name','singkatan'));
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $author->name"
+          "message" => "Berhasil menambah $author->name"
         ]);
         return redirect()->back();
 
@@ -137,7 +137,7 @@ class AuthorsController extends Controller
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $author->name"
+          "message" => "Berhasil mengubah $author->name"
         ]);
         return redirect()->route('authors.index');
     }
@@ -154,7 +154,7 @@ class AuthorsController extends Controller
         if(!Author::destroy($id)) return redirect()->back();
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Penulis berhasi dihapus"
+          "message" => "Penulis berhasil dihapus"
         ]);
           return redirect()->route('authors.index');
 

@@ -165,7 +165,7 @@ $setting->save();
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan Pengaturan"
+          "message" => "Berhasil mengubah Pengaturan"
         ]);
         return redirect('admin/settings/general');
     }
