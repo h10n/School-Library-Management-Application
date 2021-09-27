@@ -84,17 +84,9 @@ desired effect
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('/') || request()->is('home') || request()->is('visitor/guest-book') || request()->is('member/status-history'))                        
-            <div class="content-header">
-                <div class="alert alert-warning">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon ion-speakerphone"></i> Pengumuman!</h4>
-                    <ul>
-                        @foreach($announcements as $announcement)
-                            <li>{{$announcement->text}}</li>
-                            @endforeach
-                    </ul>
-                </div>
+            @if (request()->is('visitor/guest-book') || request()->is('member/status-history'))                        
+            <div class="content-header">                
+                @include('layouts._announcement')
             </div>
             @endif
             @include('layouts._flash')

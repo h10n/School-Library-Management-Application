@@ -67,14 +67,7 @@
 
         <!-- Main content -->
         <section class="content">
-          <div class="callout callout-warning">
-            <h4><i class="icon ion-speakerphone"></i> Pengumuman!</h4>
-            <ul>
-              @foreach($announcements as $announcement)
-              <li>{{$announcement->text}}</li>
-              @endforeach
-            </ul>
-          </div>
+          @include('layouts._announcement')
 
           <div class="box box-default">
             <div class="box-header with-border">
