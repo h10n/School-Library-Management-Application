@@ -7,13 +7,13 @@ use App\Publisher;
 use Yajra\Datatables\Html\Builder;
 use App\Http\Requests\StorePublisherRequest;
 use App\Http\Requests\UpdatePublisherRequest;
+use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Datatables;
 use Session;
 
-
-
 class PublishersController extends Controller
 {
+  use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
@@ -23,10 +23,10 @@ class PublishersController extends Controller
     {
         //
         if ($request->ajax()) {
-          $publishers = Publisher::select(['id','name'])->latest('updated_at')->get();
-          return Datatables::of($publishers)
-          ->addColumn('action',function($publisher){
-            return view('datatable._action',[
+            $publishers = Publisher::select(['id','name'])->latest('updated_at')->get();
+            return Datatables::of($publishers)
+          ->addColumn('action', function ($publisher) {
+              return view('datatable._action', [
               'model' => $publisher,
               'form_url' => route('publishers.destroy', $publisher->id),
               'edit_url' => route('publishers.edit', $publisher->id),
@@ -91,8 +91,6 @@ class PublishersController extends Controller
         ]);
         return redirect()->back();
         //->route('publishers.index');
-
-
     }
 
     /**
@@ -128,7 +126,7 @@ class PublishersController extends Controller
      */
     public function update(UpdatePublisherRequest $request, $id)
     {
-      $publisher = Publisher::find($id);
+        $publisher = Publisher::find($id);
         $publisher->update($request->only('name'));
 
         Session::flash("flash_notification", [
@@ -147,12 +145,16 @@ class PublishersController extends Controller
     public function destroy($id)
     {
         //
-        if(!Publisher::destroy($id)) return redirect()->back();
-        Session::flash("flash_notification", [
-          "level" => "success",
-          "message" => "Penerbit berhasil dihapus"
-        ]);
-          return redirect()->route('publishers.index');
-
+        // if(!Publisher::destroy($id)) return redirect()->back();
+        // Session::flash("flash_notification", [
+        //   "level" => "success",
+        //   "message" => "Penerbit berhasil dihapus"
+        // ]);
+        $item = Publisher::findOrFail($id);
+        if (!$item->delete()) {
+            return redirect()->back();
+        }
+        $this->sendFlashNotification('menghapus', $item->name);
+        return redirect()->route('publishers.index');
     }
 }

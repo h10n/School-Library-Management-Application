@@ -11,31 +11,32 @@ use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
 {
-  use FlashNotificationTrait;
+    use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-  /*  public function index()
+    /*  public function index()
+      {
+        $carousels = Carousel::orderby('id', 'desc')->paginate(10);
+        return view('carousels.index', compact('carousels')); //sementara view nya gk usah dipisah
+      }*/
+    //index with htmlBuilder
+
+    public function index(Request $request, Builder $htmlBuilder)
     {
-      $carousels = Carousel::orderby('id', 'desc')->paginate(10);
-      return view('carousels.index', compact('carousels')); //sementara view nya gk usah dipisah
-    }*/
-//index with htmlBuilder
-
-public function index(Request $request, Builder $htmlBuilder)
-{
-  if ($request->ajax()) {
-    $carousels = Carousel::select(['id','title','text','img'])->latest('updated_at')->get();
-    return Datatables::of($carousels)
-    ->addColumn('image',function($carousels){
-      if (!$carousels->img) return '';
-      return view('carousels.img',['imgcarousel' => $carousels->img]);
-
+        if ($request->ajax()) {
+            $carousels = Carousel::select(['id','title','text','img'])->latest('updated_at')->get();
+            return Datatables::of($carousels)
+    ->addColumn('image', function ($carousels) {
+        if (!$carousels->img) {
+            return '';
+        }
+        return view('carousels.img', ['imgcarousel' => $carousels->img]);
     })
-    ->addColumn('action',function($carousel){
-      return view('datatable._carousel-action',[
+    ->addColumn('action', function ($carousel) {
+        return view('datatable._carousel-action', [
         'model' => $carousel,
         'form_url' => route('carousels.destroy', $carousel->id),
         'edit_url' => route('carousels.edit', $carousel->id),
@@ -46,9 +47,9 @@ public function index(Request $request, Builder $htmlBuilder)
     ->rawColumns(['image','action'])
     ->addIndexColumn()
     ->make(true);
-  }
+        }
 
-  $html = $htmlBuilder
+        $html = $htmlBuilder
   ->addColumn([
     'defaultContent' => '',
     'data'           => 'DT_Row_Index',
@@ -65,8 +66,8 @@ public function index(Request $request, Builder $htmlBuilder)
   ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
   ->addColumn(['data' => 'image', 'name' => 'image', 'title' => 'Gambar','orderable' => false, 'searchable' => false])
   ->addColumn(['data' => 'action','name' => 'action','title' => '','orderable' => false,'searchable' => false]);
-  return view('carousels.index')->with(compact('html'));
-}
+        return view('carousels.index')->with(compact('html'));
+    }
 
 
     /**
@@ -75,7 +76,7 @@ public function index(Request $request, Builder $htmlBuilder)
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {      
+    {
         return view('carousels.create');
     }
 
@@ -92,21 +93,21 @@ public function index(Request $request, Builder $htmlBuilder)
             'text'=>'max:225',
             'img'=>'required|image',
           ));
-          $carousel = new Carousel;
-          $carousel->title = $request->input('title');
-          $carousel->text = $request->input('text');
-          if ($request->hasFile('img')) {
+        $carousel = new Carousel;
+        $carousel->title = $request->input('title');
+        $carousel->text = $request->input('text');
+        if ($request->hasFile('img')) {
             $img = $request->file('img');
             $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
             $location = public_path('img/slider/');
             $request->file('img')->move($location, $filename);
 
             $carousel->img = $filename;
-          }
-          $carousel->save();
+        }
+        $carousel->save();
 
-          $this->sendFlashNotification('menambah', $carousel->title);
-          return redirect()->route('carousels.index');
+        $this->sendFlashNotification('menambah', $carousel->title);
+        return redirect()->route('carousels.index');
     }
 
     /**
@@ -128,8 +129,8 @@ public function index(Request $request, Builder $htmlBuilder)
      */
     public function edit($id)
     {
-      $carousel = Carousel::findOrFail($id);
-      return view('carousels.edit', compact('carousel'));
+        $carousel = Carousel::findOrFail($id);
+        return view('carousels.edit', compact('carousel'));
     }
 
     /**
@@ -141,37 +142,41 @@ public function index(Request $request, Builder $htmlBuilder)
      */
     public function update(Request $request, $id)
     {
-      $carousel = Carousel::find($id);
-     $this->validate($request, array(
+        $carousel = Carousel::find($id);
+        $this->validate($request, array(
        'title'=>'max:225',
        'text' =>'max:329',
       //  'img'=>'required|image'
     ));
 
-     $carousel = Carousel::where('id',$id)->first();
+        $carousel = Carousel::where('id', $id)->first();
 
-     $carousel->title = $request->input('title');
+        $carousel->title = $request->input('title');
 
-     if ($request->hasFile('img')) {
-      $img = $request->file('img');
-      $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
-      $location = public_path('img/slider');
-      $request->file('img')->move($location, $filename);
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
+            $location = public_path('img/slider');
+            $request->file('img')->move($location, $filename);
 
-      $oldFilename = $carousel->img;
-      $carousel->img= $filename;
-      if(!empty($carousel->img)){
-        Storage::delete($oldFilename);
-      }
-    }
+            $oldFilename = $carousel->img;
+            $carousel->img= $filename;
+            if (!empty($carousel->img)) {
+                Storage::delete($oldFilename);
+            }
+        }
 
-    $carousel->save();
+        $carousel->save();
 
-    $this->sendFlashNotification('mengubah', $carousel->title);
+        $this->sendFlashNotification('mengubah', $carousel->title);
     
-    return redirect()->route('carousels.index',
-        $carousel->id)->with('success',
-        'carousel, '. $carousel->title.' updated');
+        return redirect()->route(
+            'carousels.index',
+            $carousel->id
+        )->with(
+            'success',
+            'carousel, '. $carousel->title.' updated'
+        );
     }
 
     /**
@@ -182,11 +187,10 @@ public function index(Request $request, Builder $htmlBuilder)
      */
     public function destroy($id)
     {
-      $carousel = Carousel::findOrFail($id);
-        Storage::delete($carousel->img);
-        $carousel->delete();
-
-        $this->sendFlashNotification('menghapus', $carousel->title);
-        return redirect()->route('carousels.index')->with('success','Slide successfully deleted');
+        $item = Carousel::findOrFail($id);
+        Storage::delete($item->img);
+        if(!$item->delete()) return redirect()->back(); 
+        $this->sendFlashNotification('menghapus', $item->title);
+        return redirect()->route('carousels.index')->with('success', 'Slide successfully deleted');
     }
 }

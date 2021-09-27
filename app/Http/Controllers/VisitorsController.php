@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VisitorRequest;
+use App\Traits\FlashNotificationTrait;
 use App\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -10,6 +11,7 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 class VisitorsController extends Controller
 {
+  use FlashNotificationTrait;
     /**
        * Display a listing of the resource.
        *
@@ -165,13 +167,18 @@ class VisitorsController extends Controller
     public function destroy($id)
     {
         //
-        if (!Visitor::destroy($id)) {
+        // if (!Visitor::destroy($id)) {
+        //     return redirect()->back();
+        // }
+        // Session::flash("flash_notification", [
+        //   "level" => "success",
+        //   "message" => "Pengunjung berhasil dihapus"
+        // ]);
+        $item = Visitor::findOrFail($id);
+        if (!$item->delete()) {
             return redirect()->back();
         }
-        Session::flash("flash_notification", [
-          "level" => "success",
-          "message" => "Pengunjung berhasil dihapus"
-        ]);
+        $this->sendFlashNotification('menghapus', $item->name);
         return redirect()->route('visitors.index');
     }
 }

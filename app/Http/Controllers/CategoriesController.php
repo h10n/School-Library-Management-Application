@@ -7,12 +7,13 @@ use App\Category;
 use Yajra\Datatables\Html\Builder;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Datatables;
 use Session;
 
-
 class CategoriesController extends Controller
 {
+  use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
@@ -20,12 +21,11 @@ class CategoriesController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
-        
         if ($request->ajax()) {
-          $categories = Category::select(['id','name'])->latest('updated_at')->get();
-          return Datatables::of($categories)
-          ->addColumn('action',function($category){
-            return view('datatable._action',[
+            $categories = Category::select(['id','name'])->latest('updated_at')->get();
+            return Datatables::of($categories)
+          ->addColumn('action', function ($category) {
+              return view('datatable._action', [
               'model' => $category,
               'form_url' => route('categories.destroy', $category->id),
               'edit_url' => route('categories.edit', $category->id),
@@ -35,7 +35,7 @@ class CategoriesController extends Controller
           })
           ->addIndexColumn()
           ->make(true);
-        }        		
+        }
         $html = $htmlBuilder
         ->addColumn([
           'defaultContent' => '',
@@ -90,7 +90,6 @@ class CategoriesController extends Controller
         ]);
         return redirect()->back();
         //->route('categories.index');
-
     }
 
     /**
@@ -125,7 +124,7 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, $id)
-    {      
+    {
         $category = Category::findOrFail($id);
         $category->update($request->only('name'));
 
@@ -143,14 +142,15 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
-        if(!Category::destroy($id)) return redirect()->back();
-        Session::flash("flash_notification", [
-          "level" => "success",
-          "message" => "Kategori berhasil dihapus"
-        ]);
-          return redirect()->route('categories.index');
-
+    {      
+        // if(!Category::destroy($id)) return redirect()->back();
+        // Session::flash("flash_notification", [
+        //   "level" => "success",
+        //   "message" => "Kategori berhasil dihapus"
+        // ]);
+        $item = Category::findOrFail($id);
+        if(!$item->delete()) return redirect()->back();
+        $this->sendFlashNotification('menghapus', $item->name);
+        return redirect()->route('categories.index');
     }
 }

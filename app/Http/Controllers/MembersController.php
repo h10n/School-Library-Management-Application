@@ -9,6 +9,7 @@ use App\Member;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Html\Builder;
 use Barryvdh\DomPDF\Facade as PDF;
 use Yajra\Datatables\Facades\Datatables;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MembersController extends Controller
 {
+  use FlashNotificationTrait;
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
@@ -208,7 +210,7 @@ class MembersController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $member = Member::find($id);
+        $member = Member::find($id);        
         $photo = $member->photo;
         if (!$member->delete()) {
             return redirect()->back();
@@ -219,15 +221,16 @@ class MembersController extends Controller
         }
         //hapus cover jika ada
         $this->deletePhoto($photo);
-        Session::flash("flash_notification", [
-        "level" => "success",
-        "message" => "$member->name berhasil dihapus"
-      ]);
+      //   Session::flash("flash_notification", [
+      //   "level" => "success",
+      //   "message" => "$member->name berhasil dihapus"
+      // ]);      
+        $this->sendFlashNotification('menghapus', $member->name);
         return redirect()->route('members.index');
     }
 
     private function deletePhoto($photo)
-    {
+    {      
         if ($photo) {
             $old_photo = $photo;
             $filepath = public_path().DIRECTORY_SEPARATOR.'img/members_photo'.DIRECTORY_SEPARATOR.$photo;

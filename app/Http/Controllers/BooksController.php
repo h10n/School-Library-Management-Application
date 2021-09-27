@@ -14,6 +14,7 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Exceptions\BookException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\BorrowLog;
+use App\Traits\FlashNotificationTrait;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BooksController extends Controller
 {
+  use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
@@ -238,11 +240,9 @@ return redirect()->route('books.index');
         //handle deleting books via ajax
         if ($request->ajax()) return response()->json(['id' => $id]);
         //hapus cover jika ada
-        $this->deleteCover($cover);
-        Session::flash("flash_notification",[
-          "level" => "success",
-          "message" => "Buku berhasil dihapus"
-        ]);
+        $this->deleteCover($cover);        
+       
+        $this->sendFlashNotification('menghapus', $book->title);
         return redirect()->route('books.index');
     }
 

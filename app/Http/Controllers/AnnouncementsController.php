@@ -6,22 +6,25 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Announcement;
+use App\Traits\FlashNotificationTrait;
 use Illuminate\Support\Facades\Storage;
 use Session;
+
 class AnnouncementsController extends Controller
 {
+    use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function index(Request $request, Builder $htmlBuilder)
-     {
-       if ($request->ajax()) {
-         $announcements = Announcement::select(['id','text']);
-         return Datatables::of($announcements)
-         ->addColumn('action',function($announcement){
-           return view('datatable._action',[
+    public function index(Request $request, Builder $htmlBuilder)
+    {
+        if ($request->ajax()) {
+            $announcements = Announcement::select(['id','text']);
+            return Datatables::of($announcements)
+         ->addColumn('action', function ($announcement) {
+             return view('datatable._action', [
              'model' => $announcement,
              'form_url' => route('announcements.destroy', $announcement->id),
              'edit_url' => route('announcements.edit', $announcement->id),
@@ -30,13 +33,13 @@ class AnnouncementsController extends Controller
            ]);
          })
          ->make(true);
-       }
+        }
 
-       $html = $htmlBuilder
+        $html = $htmlBuilder
        ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
        ->addColumn(['data' => 'action','name' => 'action','title' => '','orderable' => false,'searchable' => false]);
-       return view('announcements.index')->with(compact('html'));
-     }
+        return view('announcements.index')->with(compact('html'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -56,12 +59,14 @@ class AnnouncementsController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, array(
+        $this->validate($request, array(
           'text'=>'max:225',
         ));
-        $announcements = new Announcement;
-        $announcements->text = $request->input('text');
-        $announcements->save();
+        $announcement = new Announcement;
+        $announcement->text = $request->input('text');
+        $announcement->save();
+
+        $this->sendFlashNotification('menambah', $announcement->text);
         return redirect()->route('announcements.index');
     }
 
@@ -84,8 +89,8 @@ class AnnouncementsController extends Controller
      */
     public function edit($id)
     {
-      $announcement = Announcement::findOrFail($id);
-      return view('announcements.edit', compact('announcement'));
+        $announcement = Announcement::findOrFail($id);
+        return view('announcements.edit', compact('announcement'));
     }
 
     /**
@@ -97,17 +102,15 @@ class AnnouncementsController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $announcement = Announcement::find($id);
-      $this->validate($request, array(
+        $announcement = Announcement::find($id);
+        $this->validate($request, array(
         'text' =>'max:255'
      ));
 
         $announcement->update($request->only('text'));
 
-        Session::flash("flash_notification", [
-          "level" => "success",
-          "message" => "Berhasil mengubah $announcement->text"
-        ]);
+        $this->sendFlashNotification('mengubah', $announcement->text);
+
         return redirect()->route('announcements.index');
     }
 
@@ -119,9 +122,9 @@ class AnnouncementsController extends Controller
      */
     public function destroy($id)
     {
-      $announcement = Announcement::findOrFail($id);
-        Storage::delete($announcement->img);
-        $announcement->delete();
-        return redirect()->route('announcements.index')->with('success','Announcement successfully deleted');
+        $item = Announcement::findOrFail($id);
+        if(!$item->delete()) return redirect()->back();        
+        $this->sendFlashNotification('menghapus', $item->text);
+        return redirect()->route('announcements.index');
     }
 }
