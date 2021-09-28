@@ -13,7 +13,7 @@
     </div>
     <div class="box-body">
       <div class="callout callout-info">
-        Selamat Datang di Aplikasi {{ $nama_perpus }}
+        Selamat Datang di {{ $tentang }}
       </div>      
       @include('members._status-history-table')     
     </div>

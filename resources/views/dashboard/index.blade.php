@@ -13,7 +13,7 @@
         </div>
         <div class="box-body">
             <div class="callout callout-info">
-                Selamat Datang di Aplikasi {{ $nama_perpus }}
+                Selamat Datang di {{ $tentang }}
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="dashboard-div-wrapper bg-olive">

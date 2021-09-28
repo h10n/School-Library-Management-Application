@@ -23,7 +23,7 @@
                         <caption><span class="ion-ios-gear"> Umum</caption>
                         <tbody>
                             <tr>
-                                <td class="text-muted">Nama Perpustakaan</td>
+                                <td class="text-muted">Nama</td>
                                 <td>{{ $nama_perpus }}</td>
                             </tr>
                             <tr>
@@ -51,7 +51,7 @@
                                 <td>{{ $nip_pustakawan }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Logo Perpustakan</td>
+                                <td class="text-muted">Logo</td>
                                 <td>
                                     @if ($logo)
                                     <p>{!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-rounded
