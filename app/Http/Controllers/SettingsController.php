@@ -114,7 +114,8 @@ if ($request->hasFile('photo')) {
     }
     public function general()
     {
-      return view('settings.general');
+      $item =  Setting::first();
+      return view('settings.general', ['item' => $item]);
     }
     public function editGeneral()
     {
@@ -129,6 +130,9 @@ if ($request->hasFile('photo')) {
       $this->validate($request,[
         'name' => 'required',
         'address' => 'required',
+        'website' => 'required',
+        'email' => 'required',
+        'pengelola' => 'required',
         'about' => 'required',
         'denda' => 'required',
         'durasi' => 'required',

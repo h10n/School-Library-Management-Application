@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Announcement;
 use Illuminate\Http\Request;
 use App\Role;
 use App\User; //delete this when not needed anymore
@@ -9,6 +10,7 @@ use App\Member;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Setting;
 use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Html\Builder;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -245,16 +247,18 @@ class MembersController extends Controller
 
     public function printCard($id)
     {
-        $members = Member::find($id);
-        // dd($members);
-        if (!$members) {
+        $member = Member::find($id);
+        $setting =  Setting::first();
+        $announcements = Announcement::all();
+
+        if (!$member) {
             Session::flash("flash_notification", [
           "level" => "danger",
           "message" => "Gagal mencetak kartu!"
         ]);
             return redirect()->back();
         } else {
-            $pdf = PDF::loadview('pdf.members-card', compact('members'));
+            $pdf = PDF::loadview('pdf.members-card', ['member' => $member, 'setting' => $setting, 'announcements' => $announcements]);
             return $pdf->stream("members-card.pdf", array("Attachment" => false));
         }
     }

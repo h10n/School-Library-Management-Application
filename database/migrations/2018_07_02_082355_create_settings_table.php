@@ -17,6 +17,9 @@ class CreateSettingsTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('address')->nullable();
+            $table->string('website')->nullable();
+            $table->string('email')->nullable();
+            $table->string('pengelola')->nullable();
             $table->string('kepala_perpustakaan')->nullable();
             $table->string('nip_kepala_perpustakaan')->nullable();
             $table->string('pustakawan')->nullable();

@@ -24,37 +24,49 @@
                         <tbody>
                             <tr>
                                 <td class="text-muted">Nama</td>
-                                <td>{{ $nama_perpus }}</td>
+                                <td>{{ $item->name }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Alamat</td>
-                                <td>{{ $alamat_perpus }}</td>
+                                <td>{{ $item->address }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Website</td>
+                                <td>{{ $item->website }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Email</td>
+                                <td>{{ $item->email }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Pengelola</td>
+                                <td>{{ $item->pengelola }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Tentang</td>
-                                <td>{{ $tentang }}</td>
+                                <td>{{ $item->about }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Kepala Perpustakaan</td>
-                                <td>{{ $kepala_perpustakaan }}</td>
+                                <td>{{ $item->kepala_perpustakaan }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">NIP Kepala Perpustakaan</td>
-                                <td>{{ $nip_kepala_perpustakaan }}</td>
+                                <td>{{ $item->nip_kepala_perpustakaan }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Pustakawan</td>
-                                <td>{{ $pustakawan }}</td>
+                                <td>{{ $item->pustakawan }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">NIP Pustakawan</td>
-                                <td>{{ $nip_pustakawan }}</td>
+                                <td>{{ $item->nip_pustakawan }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Logo</td>
                                 <td>
-                                    @if ($logo)
-                                    <p>{!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-rounded
+                                    @if ($item->logo)
+                                    <p>{!! Html::image(asset('img/logo/'.$item->logo),null,['class' => 'img-rounded
                                         cover-buku']) !!}
                                     </p>
                                     @endif
@@ -69,15 +81,15 @@
                         <tbody>
                             <tr>
                                 <td class="text-muted">Nominal Denda</td>
-                                <td>Rp.{{ $denda }}/Hari</td>
+                                <td>Rp.{{ $item->denda }}/Hari</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Max Durasi Peminjaman</td>
-                                <td>{{ $durasi }} Hari</td>
+                                <td>{{ $item->durasi }} Hari</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">Max Jumlah Peminjaman</td>
-                                <td>{{ $jumlah }} Buku</td>
+                                <td>{{ $item->max_peminjaman }} Buku</td>
                             </tr>
                         </tbody>
                     </table>

@@ -52,6 +52,27 @@
           {!! $errors->first('address','<p class="help-block">:message</p>') !!}
         </div>
       </div>
+      <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
+        {!! Form::label('website', 'Website', ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::text('website',null,['class' => 'form-control']) !!}
+          {!! $errors->first('website','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
+      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+        {!! Form::label('email', 'Email', ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::email('email',null,['class' => 'form-control']) !!}
+          {!! $errors->first('email','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
+      <div class="form-group{{ $errors->has('pengelola') ? ' has-error' : '' }}">
+        {!! Form::label('pengelola', 'Pengelola', ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-6">
+          {!! Form::text('pengelola',null,['class' => 'form-control']) !!}
+          {!! $errors->first('pengelola','<p class="help-block">:message</p>') !!}
+        </div>
+      </div>
       <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
         {!! Form::label('about', 'Deskripsi', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
