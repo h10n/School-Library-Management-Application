@@ -19,6 +19,7 @@ class CreateMembersTable extends Migration
             $table->string('name')->nullable();
             $table->string('kelas')->nullable();
             $table->string('jurusan')->nullable();
+            $table->string('jenis_anggota')->nullable();
             $table->string('address')->nullable();
             $table->string('email',60)->unique()->nullable();
             $table->string('phone')->nullable();

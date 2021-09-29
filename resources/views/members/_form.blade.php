@@ -2,7 +2,6 @@
 @push('req-css')
 <link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
 @endpush
-
 <div class="col-md-10">
   <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
     {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
@@ -11,34 +10,36 @@
       {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-  
   <div class="form-group{{$errors->has('name') ? ' has-error' : ''}}">
     {!! Form::label('name','Nama',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
       {!! Form::text('name',null,['class' => 'form-control','maxlength' => '45']) !!}
       {!! $errors->first('name','<p class="help-block"><strong>:message</strong></p>') !!}
-  
     </div>
   </div>
-  <div class="form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
+  <div class="form-group{{$errors->has('jenis_anggota') ? ' has-error' : ''}}">
+    {!! Form::label('jenis_anggota','Jenis Anggota',['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-3">
+      {!! Form::select('jenis_anggota',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i'],null,['class' =>
+      'js-selectize','placeholder' => 'Pilih Jenis Anggota']) !!}
+      {!! $errors->first('jenis_anggota','<p class="help-block"><strong>:message</strong></p>') !!}
+    </div>
+  </div>
+  <div class="kelas-el form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
     {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
       {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Pilih Kelas','class' =>
       'form-control']) !!}
       {!! $errors->first('kelas','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
-  
   </div>
-  
-  <div class="form-group{{$errors->has('jurusan') ? ' has-error' : ''}}">
+  <div class="jurusan-el form-group{{$errors->has('jurusan') ? ' has-error' : ''}}">
     {!! Form::label('jurusan','Jurusan',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
       {!! Form::text('jurusan',null,['class' => 'form-control','maxlength' => '10']) !!}
       {!! $errors->first('jurusan','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
-  
   </div>
-  
   <div class="form-group{{$errors->has('address') ? ' has-error' : ''}}">
     {!! Form::label('address','Alamat',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
@@ -116,4 +117,35 @@
         noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}"; 
 </script>
 <script src="{{ asset('js/avatar.js') }}"></script>
+@endpush
+
+@push('custom-scripts')
+<script>
+  $(document).ready(function () {
+    $('#jenis_anggota').change();    
+  });
+
+  $('#jenis_anggota').change(function () {
+    let val = this.value;
+    if (val == 'siswa/i') {
+      disableKelas(false);
+    } else {
+      disableKelas();
+    }
+  });
+
+  function disableKelas(arg = true){
+    if(arg){
+    $('.kelas-el').hide();
+    $('#kelas').prop('disabled', true);
+    $('.jurusan-el').hide();
+    $('#jurusan').prop('disabled', true);
+    }else{
+    $('.kelas-el').show();
+    $('#kelas').prop('disabled', false);
+    $('.jurusan-el').show();
+    $('#jurusan').prop('disabled', false);
+    }
+  }
+</script>
 @endpush

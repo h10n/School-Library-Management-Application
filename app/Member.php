@@ -9,7 +9,7 @@ use App\BorrowLog;
 class Member extends Model
 {
     protected $appends = ['tgl_terdaftar'];
-    protected $fillable = ['no_induk','name','kelas','jurusan','address','email','phone','photo'];
+    protected $fillable = ['no_induk','name','kelas','jurusan','jenis_anggota','address','email','phone','photo'];
     public function books()
     {
         return $this->hasMany('App\Book');

@@ -31,7 +31,6 @@
           <div class="col-md-4">
             NIS/NIP
           </div>
-
           <div class="col-md-8">
             {{ $member->no_induk }}
           </div>
@@ -44,7 +43,14 @@
             {{ $member->name }}
           </div>
         </div>
-
+        <div class="row">
+          <div class="col-md-4">
+            Jenis Anggota
+          </div>
+          <div class="col-md-8">
+            {{ $member->jenis_anggota }}
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-4">
             Kelas
@@ -53,7 +59,6 @@
             {{ $member->kelas }}
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-4">
             Jurusan
@@ -61,8 +66,7 @@
           <div class="col-md-8">
             {{ $member->jurusan }}
           </div>
-        </div>
-
+        </div>      
         <div class="row">
           <div class="col-md-4">
             Alamat
@@ -71,17 +75,14 @@
             {{ $member->address }}
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-4">
             E-mail
           </div>
-
           <div class="col-md-8">
             {{ $member->email }}
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-4">
             No Telepon

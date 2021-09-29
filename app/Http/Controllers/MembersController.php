@@ -64,6 +64,11 @@ class MembersController extends Controller
         'title' => 'Nama'
       ])
       ->addColumn([
+        'data' => 'jenis_anggota',
+        'name' => 'jenis_anggota',
+        'title' => 'Jenis Anggota'
+      ])   
+      ->addColumn([
         'data' => 'kelas',
         'name' => 'kelas',
         'title' => 'Kelas'
@@ -72,7 +77,7 @@ class MembersController extends Controller
         'data' => 'jurusan',
         'name' => 'jurusan',
         'title' => 'Jurusan'
-      ])     
+      ])             
       ->addColumn([
         'data' => 'phone',
         'name' => 'phone',
