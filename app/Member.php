@@ -6,29 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use App\BorrowLog;
 
-
 class Member extends Model
 {
-    //
+    protected $appends = ['tgl_terdaftar'];
     protected $fillable = ['nis','name','kelas','jurusan','address','email','phone','photo'];
     public function books()
     {
-      return $this->hasMany('App\Book');
+        return $this->hasMany('App\Book');
     }
 
     public function getTitleAttribute($value)
-{
-    return $this->nis.' - '.$this->name;
-}
+    {
+        return $this->nis.' - '.$this->name;
+    }
+    public function getTglTerdaftarAttribute()
+    {
+        return $this->created_at->format('d-m-Y');
+    }
 
-public function borrowLogs()
-{
-  return $this->hasMany('App\BorrowLog');
-}
+    public function borrowLogs()
+    {
+        return $this->hasMany('App\BorrowLog');
+    }
 
-public function user()
-{
-  return $this->hasOne('App\User');
-}
-
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 }
