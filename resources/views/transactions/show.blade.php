@@ -23,11 +23,11 @@
       <div class="detail-buku">
         <div class="row">
           <div class="col-md-4">
-            NIS
+            NIS/NIP
           </div>
 
           <div class="col-md-8">
-            <a href="{{ route('members.show',$transaction->member_id) }}">{{ $transaction->member->nis }}</a>
+            <a href="{{ route('members.show',$transaction->member_id) }}">{{ $transaction->member->no_induk }}</a>
           </div>
         </div>
         <div class="row">

@@ -10,7 +10,7 @@ class UpdateMemberRequest extends StoreMemberRequest
     {
       $member = Member::find($this->route('member'));
       $rules = parent::rules();
-      $rules['nis'] = 'required|numeric|unique:members,nis,'.$this->route('member');
+      $rules['no_induk'] = 'required|numeric|unique:members,no_induk,'.$this->route('member');
       $rules['email'] = 'required|email|unique:members,email,'.$this->route('member');
       $rules['password'] = '';
       return $rules;

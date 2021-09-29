@@ -4,11 +4,11 @@
 @endpush
 
 <div class="col-md-10">
-  <div class="form-group{{$errors->has('nis') ? ' has-error' : ''}}">
-    {!! Form::label('nis','NIS',['class' => 'col-md-2 control-label']) !!}
+  <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
+    {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
-      {!! Form::text('nis',null,['class' => 'form-control','maxlength' => '15']) !!}
-      {!! $errors->first('nis','<p class="help-block"><strong>:message</strong></p>') !!}
+      {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '15']) !!}
+      {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   

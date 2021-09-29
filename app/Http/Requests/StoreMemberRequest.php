@@ -25,7 +25,7 @@ class StoreMemberRequest extends FormRequest
      public function rules()
      {
          return [
-               'nis' => 'required|numeric|unique:members,nis',
+               'no_induk' => 'required|numeric|unique:members,no_induk',
                'name' => 'required|regex:/^[\pL\s]+$/u',
                'address' => 'required',
                'email' => 'required|email|unique:members,email',

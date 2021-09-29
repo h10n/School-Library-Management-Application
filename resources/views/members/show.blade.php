@@ -29,11 +29,11 @@
       <div class="col-md-10 detail-buku">
         <div class="row">
           <div class="col-md-4">
-            NIS
+            NIS/NIP
           </div>
 
           <div class="col-md-8">
-            {{ $member->nis }}
+            {{ $member->no_induk }}
           </div>
         </div>
         <div class="row">
@@ -95,7 +95,7 @@
       <div class="col-md-12">        
         <a class="btn bg-olive" href="{{ route('members.edit',$member->id) }}"><span class="ion-edit"> Edit
             Data</span></a>
-        <a class="btn bg-purple pull-right" href="{{ route('members.card',$member->id) }}"><span class="ion-printer">
+        <a class="btn bg-purple pull-right" href="{{ route('members.card',$member->id) }}" target="_blank"><span class="ion-printer">
             Cetak Kartu</span></a>
       </div>
     </div>

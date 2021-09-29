@@ -54,9 +54,9 @@ class MembersController extends Controller
         'footer'         => '',
     ])
       ->addColumn([
-        'data' => 'nis',
-        'name' => 'nis',
-        'title' => 'NIS'
+        'data' => 'no_induk',
+        'name' => 'no_induk',
+        'title' => 'NIS/NIP'
       ])
       ->addColumn([
         'data' => 'name',

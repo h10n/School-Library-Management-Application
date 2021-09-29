@@ -82,8 +82,8 @@ class TransactionsController extends Controller
 
      $html = $htmlBuilder
      //ini kalo dihapus bakalan error V
-    //  ->addColumn(['data' => 'transaction_code', 'nis' => 'transaction_code', 'title' => 'Kode ']) // <-- ini kalo dihapus bakalan error
-     ->addColumn(['data' => 'member.nis', 'name' => 'member.nis', 'title' => 'NIS'])
+    //  ->addColumn(['data' => 'transaction_code', 'no_induk' => 'transaction_code', 'title' => 'Kode ']) // <-- ini kalo dihapus bakalan error
+     ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'NIS/NIP'])
      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Peminjam'])
      ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Judul'])
      ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Tanggal Peminjaman','searchable' => false, 'orderable' => false])

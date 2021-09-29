@@ -123,7 +123,7 @@
 			<tr>
 				<td>Nomor</td>
 				<td>:</td>
-				<td>{{ $member->nis }}</td>
+				<td>{{ $member->no_induk }}</td>
 			</tr>
 			<tr>
 				<td>Nama</td>

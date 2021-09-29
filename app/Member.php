@@ -9,7 +9,7 @@ use App\BorrowLog;
 class Member extends Model
 {
     protected $appends = ['tgl_terdaftar'];
-    protected $fillable = ['nis','name','kelas','jurusan','address','email','phone','photo'];
+    protected $fillable = ['no_induk','name','kelas','jurusan','address','email','phone','photo'];
     public function books()
     {
         return $this->hasMany('App\Book');
@@ -17,7 +17,7 @@ class Member extends Model
 
     public function getTitleAttribute($value)
     {
-        return $this->nis.' - '.$this->name;
+        return $this->no_induk.' - '.$this->name;
     }
     public function getTglTerdaftarAttribute()
     {
