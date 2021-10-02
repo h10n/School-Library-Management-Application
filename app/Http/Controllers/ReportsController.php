@@ -91,8 +91,8 @@ class ReportsController extends Controller
             $visitor_tahunan = $this->visitorReportDataTahunan($request);        
             $data = ['visitor_tahunan' => $visitor_tahunan,'tahun' => $request->what_year]; 
         }
-    
-        $pdf = PDF::loadView('pdf.laporan', $data)->setPaper('a4', 'potrait');
+        $data['setting'] =  Setting::first();  
+        $pdf = PDF::loadView('pdf.laporan.laporan-kunjungan', $data)->setPaper('a4', 'potrait');
         return $pdf->stream("laporan.pdf", array("Attachment" => false));
     } 
 
