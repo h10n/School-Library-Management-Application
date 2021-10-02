@@ -159,6 +159,9 @@ class MembersController extends Controller
         $member = Member::find($id);
         $photo = $member->photo;
 
+        $request['kelas'] = $request['kelas'] ?? '';
+        $request['jurusan'] = $request['jurusan'] ?? '';
+
         if (!$member->update($request->all())) {
             return redirect()->back();
         }

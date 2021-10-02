@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +11,16 @@
 			width: 283px;
 			height: 196px;
 			border: 1px solid black;
-			background-image: url({{ asset('img/card-bg.jpg')}}
-		);
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-position: center center;
+			background-image: url("{{ asset('img/card-bg.jpg')}}");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
 		}
 
 		.avatar {
 			position: absolute;
-			top: 81px;
-			margin-left: 10px;
+			top: 71px;
+			margin-left: 15px;
 		}
 
 		#kop {
@@ -104,11 +102,16 @@
 	</style>
 </head>
 <body>
+	@php
+		$logoImg = !empty($setting->logo) ? $setting->logo : '';
+		$avatarImg = !empty($member->photo) ? $member->photo : '';
+	@endphp
 	<div class="card">
 		<table id="kop" width="100%">
 			<tr>
-				<td><img src="{{ asset('img/logo/'.$img_name = !empty($setting->logo) ? $setting->logo : '')  }}"
-						width="37px"></td>
+				<td>
+					<img src="{{ asset('img/logo/'.$logoImg) }}" width="37px">
+				</td>
 				<td id="identitasPerpus">
 					<p id='kop1'><b>KARTU ANGGOTA PERPUSTAKAAN</b></p>
 					<p id='kop2'><b>{{ $setting->name }}</b></p>
@@ -117,10 +120,12 @@
 				</td>
 			</tr>
 		</table>
-		<br>
-		<div class="avatar"><img src="{{ asset('img/members_photo/'.$img_name = !empty($members->photo) ? $members->photo : '')  }}" width="76" height="auto" /></div>
-		<table id="identitas">
-			<tr>
+		<br>	
+		<div class="avatar">
+			<img src="{{ asset('img/members_photo/'.$avatarImg) }}" width="46px">			
+		</div>
+		<table id="identitas" border="0">
+			<tr>				
 				<td>Nomor</td>
 				<td>:</td>
 				<td>{{ $member->no_induk }}</td>
@@ -130,18 +135,19 @@
 				<td>:</td>
 				<td>{{ $member->name }}</td>
 			</tr>
-			<tr>
-				<td>Jenis</td>
-				<td>:</td>
-				<td>Siswa/i</td>
-			</tr>
-			<tr>
-				<td>Kelas</td>
-				<td>:</td>
-				<td>X TKJ</td>
-			</tr>
+			@if ($member->jenis_anggota === 'siswa/i')
+				<tr>
+					<td>Kelas</td>
+					<td>:</td>
+					<td>{{ $member->kelas }}</td>
+				</tr>
+				<tr>
+					<td>Jurusan</td>
+					<td>:</td>
+					<td>{{ $member->jurusan }}</td>
+				</tr>				
+			@endif			
 		</table>
-		
 		<table id="ttdTable">
 			<tr>
 				<td>Samarinda, {{ Carbon\Carbon::now()->formatLocalized('%d %B %Y') }}</td>

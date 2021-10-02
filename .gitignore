@@ -1,5 +1,9 @@
 /node_modules
 /public/hot
+/public/img/members_photo
+/public/img/admins_photo
+/public/img/logo
+/public/img/slider
 /public/storage
 /storage/*.key
 /vendor
