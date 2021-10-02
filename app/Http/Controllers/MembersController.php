@@ -256,7 +256,7 @@ class MembersController extends Controller
         ]);
             return redirect()->back();
         } else {
-            $pdf = PDF::loadview('pdf.members-card', ['member' => $member, 'setting' => $setting, 'announcements' => $announcements]);
+            $pdf = PDF::loadview('pdf.members-card', ['member' => $member, 'setting' => $setting, 'announcements' => $announcements])->setPaper('a4', 'potrait');
             return $pdf->stream("members-card.pdf", array("Attachment" => false));
         }
     }

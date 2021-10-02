@@ -92,7 +92,7 @@ class ReportsController extends Controller
             $data = ['visitor_tahunan' => $visitor_tahunan,'tahun' => $request->what_year]; 
         }
     
-        $pdf = PDF::loadView('pdf.laporan', $data);
+        $pdf = PDF::loadView('pdf.laporan', $data)->setPaper('a4', 'potrait');
         return $pdf->stream("laporan.pdf", array("Attachment" => false));
     } 
 
@@ -100,14 +100,13 @@ class ReportsController extends Controller
         if ($request->jenis == "bulanan") {
             $transaction_bulanan = $this->transactionReportDataBulanan($request);        
             $data = ['transaction_bulanan' => $transaction_bulanan];  
-        } elseif ($request->jenis == "tahunan") {
-            // dd($request->all());
+        } elseif ($request->jenis == "tahunan") {            
             $transaction_tahunan = $this->transactionReportDataTahunan($request);        
             $data = ['transaction_tahunan' => $transaction_tahunan,'tahun' => $request->what_year]; 
         }
         $data['setting'] =  Setting::first();  
     
-        $pdf = PDF::loadView('pdf.laporan-transaction', $data);
+        $pdf = PDF::loadView('pdf.laporan.laporan-peminjaman', $data)->setPaper('a4', 'potrait');
         return $pdf->stream("laporan.pdf", array("Attachment" => false));
     } 
 

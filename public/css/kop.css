@@ -1,0 +1,45 @@
+.kop {
+    padding: 0;
+    margin: 0;
+    border-bottom: 5px double black;
+}
+
+.kop p {
+    padding: 0;
+    margin: 0;
+}
+
+.kop1 {
+    font-size: 13.5pt;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.kop2 {
+
+    font-size: 20pt;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.kop3 {
+    font-size: 10.5pt;
+    text-align: center;
+}
+
+.kop img {
+    width: 100px;
+}
+
+header {
+    position: fixed;
+    left: 0px;
+    top: -130px;
+    right: 0px;
+    height: 150px;
+    text-align: center;
+}
+
+@page {
+    margin-top: 130px;
+}
