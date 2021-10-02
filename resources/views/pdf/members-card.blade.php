@@ -160,7 +160,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>{{ $setting->pustakawan }}</td>
+				<td>{{ auth::user()->name ?? '' }}</td>
 			</tr>
 		</table>
 	</div>

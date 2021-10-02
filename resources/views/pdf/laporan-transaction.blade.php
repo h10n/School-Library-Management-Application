@@ -58,7 +58,7 @@
         #kop {
           padding-left: 5px;
           padding-right: 5px;
-          padding-top: 5px;
+          padding-top: 0px;
           border-bottom: 5px double black;
         }
 
@@ -67,20 +67,22 @@
           margin: 0;
         }
 
-        #kop1 {
-          font-size: 16pt;
+        .kop1 {
+          font-size: 11pt;
           text-align: center;
+          text-transform: uppercase;
         }
 
         .kop2 {
 
-          font-size: 11pt;
+          font-size: 16pt;
           text-align: center;
+          text-transform: uppercase;
         }
 
         .kop3 {
 
-          font-size: 10pt;
+          font-size: 9pt;
           text-align: center;
         }
 
@@ -96,18 +98,21 @@
         </style>
 </head>
 <body>
-  @if (!empty($transaction_bulanan)) 
-  <img src="{{ asset('img/logo/Logo_Kota_Samarinda.png')  }}" >
+  @if (!empty($transaction_bulanan))  
+  @php
+		$logoImg = !empty($setting->logo) ? $setting->logo : '';		
+	@endphp
+  <img src="{{ asset('img/logo/'.$logoImg) }}" width="37px">
   <table id="kop" width="100%">
     <tr>
       <td id="identitasPerpus">
-        <p id='kop1'><b>PEMERINTAH KOTA SAMARINDA</b></p>
-        <p id='kop1'><b>DINAS PENDIDIKAN</b></p>
-        <p id='kop1'><b>UPTD SMK NEGERI 7 SAMARINDA</b></p>
-        <p class='kop2'>KOMPETENSI KEAHLIAN :</p>
-        <p class='kop2'>Rekayasa Perangkat Lunak - Teknik Komputer dan Jaringan - Multimedia</p>
-        <p class='kop3'>Jl. Aminah Syukur No. 82 Tel : (0541) 7777769, Fax : (0541) 731374 Samarinda</p>
-        <p class='kop3'>Email : smkn07samarinda@yahoo.com Website : www.smkn7smr.sch.id</span></p>
+        @foreach ($setting->pengelola_kop as $pengelola)
+        <p class='kop1'><b>{{ $pengelola }}</b></p>          
+        @endforeach        
+        <p class='kop2'><b>{{ $setting->name }}</b></p>    
+        <p class='kop3'>{{ $setting->address }}</p>
+        <p class='kop3'>Website : {{ $setting->website }}</span></p>
+        <p class='kop3'>Email : {{ $setting->email }}</span></p>
       </td>
     </tr>
   </table>
@@ -162,9 +167,9 @@
         <table id="kop" width="100%">
           <tr>
             <td id="identitasPerpus">
-              <p id='kop1'><b>PEMERINTAH KOTA SAMARINDA</b></p>
-              <p id='kop1'><b>DINAS PENDIDIKAN</b></p>
-              <p id='kop1'><b>UPTD SMK NEGERI 7 SAMARINDA</b></p>
+              <p class='kop1'><b>PEMERINTAH KOTA SAMARINDA</b></p>
+              <p class='kop1'><b>DINAS PENDIDIKAN</b></p>
+              <p class='kop1'><b>UPTD SMK NEGERI 7 SAMARINDA</b></p>
               <p class='kop2'>KOMPETENSI KEAHLIAN :</p>
               <p class='kop2'>Rekayasa Perangkat Lunak - Teknik Komputer dan Jaringan - Multimedia</p>
               <p class='kop3'>Jl. Aminah Syukur No. 82 Tel : (0541) 7777769, Fax : (0541) 731374 Samarinda</p>

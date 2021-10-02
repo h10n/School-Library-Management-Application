@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Visitor;
 use App\Book;
 use App\BorrowLog;
+use App\Setting;
 //use Response;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -104,6 +105,7 @@ class ReportsController extends Controller
             $transaction_tahunan = $this->transactionReportDataTahunan($request);        
             $data = ['transaction_tahunan' => $transaction_tahunan,'tahun' => $request->what_year]; 
         }
+        $data['setting'] =  Setting::first();  
     
         $pdf = PDF::loadView('pdf.laporan-transaction', $data);
         return $pdf->stream("laporan.pdf", array("Attachment" => false));
