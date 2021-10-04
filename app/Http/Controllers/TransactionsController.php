@@ -13,16 +13,19 @@ use Carbon\Carbon;
 use App\Exceptions\BookException;
 use App\Http\Requests\StoreTransactionsRequest;
 use App\Http\Requests\UpdateTransactionsRequest;
+use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Support\Facades\Session;
 
 class TransactionsController extends Controller
 {
+  use FlashNotificationTrait;
     public function index(Request $request, Builder $htmlBuilder)
     {
       if ($request->ajax()) {
        $stats = BorrowLog::with(['book','user','member'])->get();
+       //jika ada ->get() maka filternya gk jalan, tapi jika dihapus maka id peminjamanya salah, dan ->latest('updated_at') gk fungsi
        if ($request->get('status') == 'returned') $stats->returned();
        if ($request->get('status') == 'not-returned') $stats->borrowed();
        return Datatables::of($stats)
@@ -87,7 +90,7 @@ class TransactionsController extends Controller
      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'NIS/NIP'])
      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Peminjam'])
      ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Judul'])
-     ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Tanggal Peminjaman','searchable' => false, 'orderable' => false])
+     ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Tanggal Peminjaman','searchable' => false, 'orderable' => true])
      ->addColumn(['data' => 'returned_at', 'name' => 'returned_at', 'title' => 'Max Tanggal Pengembalian','searchable' => false, 'orderable' => false])
      ->addColumn(['data' => 'status', 'name' => 'tatus', 'title' => 'Status','searchable' => false, 'orderable' => false])
      ->addColumn(['data' => 'denda', 'name' => 'denda', 'title' => 'Denda','searchable' => false, 'orderable' => false])
@@ -203,5 +206,12 @@ class TransactionsController extends Controller
       }
         return redirect()->route('transactions.index');
     }
-
+    public function destroy($id)
+    {
+        $item = BorrowLog::findOrFail($id);
+        // dd($item->book);
+        if(!$item->delete()) return redirect()->back();        
+        $this->sendFlashNotification('menghapus', 'peminjaman '.$item->book->title.' atas nama '.$item->member->name.' ('.$item->member->no_induk.')');
+        return redirect()->route('transactions.index');
+    }
 }
