@@ -74,6 +74,7 @@ class TransactionsController extends Controller
            'form_url' => route('transactions.destroy',$stat->transaction_code),
            'edit_url' => route('transactions.edit',$stat->transaction_code),
            'detail_url' => route('transactions.show',$stat->transaction_code),
+           'update_url' => route('transactions.update',$stat->transaction_code),
            'title' => 'Transactions',
            'confirm_message' => 'Yakin ingin menghapus  ?'
          ]);

@@ -293,6 +293,10 @@ body .wrapper .main-header aside{
     overflow:hidden;    
 }
 
+.swal2-container {
+  zoom: 1.5;
+}
+
 @media (max-width: 767px) {
   .marquee-sibling {
      display: none;

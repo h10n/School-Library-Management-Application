@@ -15,40 +15,8 @@
     <script src="{{asset('dist/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
     {{-- <script src="{{ asset('js/marquee.js') }}"></script> --}}    
     <!-- page script -->
-    <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-        function add(link, title) {
-            $(".modal-title").html('<span class="glyphicon glyphicon-plus"></span> Tambah ' + title);
-            save_method = 'add';
-            $('#modal_form').modal('show');
-            $.get(link,
-                function (html) {
-                    $(".modal-body").html(html);
-                }
-            );
-        }
-
-        function edit(link, title) {
-            $(".modal-title").html('<span class="glyphicon glyphicon-pencil"></span> Edit ' + title);
-            save_method = 'update';
-            $('#modal_form').modal('show');
-            $.get(link,
-                function (html) {
-                    $(".modal-body").html(html);
-                }
-            );
-        }
-        // $(function () {
-        //     createMarquee({
-        //         duration: 90000
-        //     });
-        // });
-    </script>
 @stack('req-scripts')
 @stack('custom-scripts')
