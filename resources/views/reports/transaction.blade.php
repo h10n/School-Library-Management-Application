@@ -211,7 +211,7 @@
 
                 }
             });
-
+           
             $('#daterange-btn').daterangepicker({
                 ranges: {
                     'Hari Ini': [moment(), moment()],
@@ -222,7 +222,8 @@
                     'Bulan Kemarin': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
                 startDate: moment().subtract(29, 'days'),
-                endDate: moment()
+                endDate: moment(),
+                autoApply:true
             },
             function (start, end) {
                 $('#daterange-btn span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
