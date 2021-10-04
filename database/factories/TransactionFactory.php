@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\BorrowLog::class, function (Faker $faker) {    
     return [
-        'transaction_code' => $faker->unique()->randomNumber($nbDigits = 7),
+        // 'transaction_code' => $faker->unique()->randomNumber($nbDigits = 7),
         'book_id' => $faker->unique()->numberBetween($min = 1, $max = 85),
         'member_id' => $faker->unique()->numberBetween($min = 1, $max = 100),
         'user_id' => '1',

@@ -15,7 +15,7 @@ class CreateBorrowLogsTable extends Migration
     {
         Schema::create('borrow_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('transaction_code',60)->unique()->nullable();
+            // $table->string('transaction_code',60)->unique()->nullable();
             $table->integer('book_id')->unsigned()->index()->nullable();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('member_id')->unsigned()->index()->nullable();

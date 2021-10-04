@@ -1,13 +1,13 @@
-<div class="form-group{{$errors->has('transaction_code') ? ' has-error' : ''}}">
+{{-- <div class="form-group{{$errors->has('transaction_code') ? ' has-error' : ''}}">
   {!! Form::label('transaction_code','Kode Transaksi',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::text('transaction_code',null,['class' => 'form-control']) !!}
     {!! $errors->first('transaction_code','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
-</div>
+</div> --}}
 
 <div class="form-group{{$errors->has('member_id') ? ' has-error' : ''}}">
-  {!! Form::label('member_id','NIS/Nama Anggota',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('member_id','Nomor/Nama Anggota',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::select('member_id',['' => '']+App\Member::get()->pluck('title','id')->all(),null,['class' => 'js-selectize','placeholder' => 'Pilih Anggota']) !!}
     {!! $errors->first('member_id','<p class="help-block"><strong>:message</strong></p>') !!}

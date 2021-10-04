@@ -22,7 +22,7 @@ class TransactionsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
       if ($request->ajax()) {
-       $stats = BorrowLog::with(['book','user','member']);
+       $stats = BorrowLog::with(['book','user','member'])->get();
        if ($request->get('status') == 'returned') $stats->returned();
        if ($request->get('status') == 'not-returned') $stats->borrowed();
        return Datatables::of($stats)
@@ -71,10 +71,10 @@ class TransactionsController extends Controller
        ->addColumn('action',function($stat){
          return view('datatable._transaction-action',[
            'model' => $stat,
-           'form_url' => route('transactions.destroy',$stat->transaction_code),
-           'edit_url' => route('transactions.edit',$stat->transaction_code),
-           'detail_url' => route('transactions.show',$stat->transaction_code),
-           'update_url' => route('transactions.update',$stat->transaction_code),
+           'form_url' => route('transactions.destroy',$stat->id),
+           'edit_url' => route('transactions.edit',$stat->id),
+           'detail_url' => route('transactions.show',$stat->id),
+           'update_url' => route('transactions.update',$stat->id),
            'title' => 'Transactions',
            'confirm_message' => 'Yakin ingin menghapus  ?'
          ]);
@@ -121,7 +121,7 @@ class TransactionsController extends Controller
         }
 
         $borrowLog = BorrowLog::create([
-          'transaction_code' => $request->get('transaction_code'),
+          // 'transaction_code' => $request->get('transaction_code'),
           'member_id' => $request->get('member_id'),
           'user_id' =>  Auth::user()->id,
           'book_id' => $book->id,
@@ -150,7 +150,7 @@ class TransactionsController extends Controller
 
     public function show($id)
     {
-      $transaction = BorrowLog::with(['Book','Member','User'])->where('transaction_code',$id)->first();
+      $transaction = BorrowLog::with(['Book','Member','User'])->where('id',$id)->first();
       //jadikan satu fungsi
       $setting = Setting::find('1');
 
@@ -185,13 +185,13 @@ class TransactionsController extends Controller
 
     public function edit($id)
     {
-      $transaction = BorrowLog::where('transaction_code', $id)->first();
+      $transaction = BorrowLog::findOrFail($id);
       return view('transactions.edit')->with(compact('transaction'));
     }
 
     public function update(Request $request, $id)
     {
-      $transaction = BorrowLog::where('transaction_code', $id)->first();
+      $transaction = BorrowLog::findOrFail($id);
       if ($transaction) {
         $transaction->is_returned = true;
         $transaction->save();

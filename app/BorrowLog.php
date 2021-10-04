@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BorrowLog extends Model
 {
-    //
-    protected $fillable = ['transaction_code','book_id','member_id','user_id','is_returned'];
+    //    
+    protected $fillable = ['book_id','member_id','user_id','is_returned'];
     protected $casts = ['is_returned' => 'boolean'];
     public function book()
     {

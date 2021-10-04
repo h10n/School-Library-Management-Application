@@ -1,5 +1,5 @@
 {!! Form::model($transaction,[
-'url' => route('transactions.update', $transaction->transaction_code),
+'url' => route('transactions.update', $transaction->id),
 'method' => 'PUT',
 'class' => 'form-horizontal'
 ])
