@@ -52,8 +52,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('publishers', 'PublishersController');
         Route::resource('categories', 'CategoriesController');
         Route::resource('books', 'BooksController');
-        Route::resource('transactions', 'TransactionsController');
-
+        Route::resource('transactions', 'TransactionsController');        
 
         Route::get('members/card/{id}', [
         'as' => 'members.card',
@@ -134,6 +133,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::resource('carousels', 'CarouselController');// didalam akses admin
         Route::resource('announcements', 'AnnouncementsController');// didalam akses admin
         Route::resource('visitors', 'VisitorsController');// didalam akses admin
+        Route::resource('users', 'UsersController');
     });
 
     Route::group(['prefix' => 'visitor','middleware' => ['auth','role:visitor']], function () {

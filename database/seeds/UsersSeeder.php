@@ -23,11 +23,11 @@ class UsersSeeder extends Seeder
         $memberRole->name = "member";
         $memberRole->display_name = "Member";
         $memberRole->save();
-        //buat role Super Admin
-        $superadminRole = new Role();
-        $superadminRole->name = "superadmin";
-        $superadminRole->display_name = "Super Admin";
-        $superadminRole->save();
+        //buat role pegawai
+        $staffRole = new Role();
+        $staffRole->name = "staff";
+        $staffRole->display_name = "staff";
+        $staffRole->save();
         //buat role pengunjung
         $visitorRole = new Role();
         $visitorRole->name = 'visitor';
@@ -36,7 +36,7 @@ class UsersSeeder extends Seeder
 
         //buat sample Admin
         $admin = new User();
-        $admin->name = "Staf";
+        $admin->name = "admin";
         $admin->username = "admin";
         $admin->email = "admin@perpus.com";
         $admin->password = bcrypt('admin123');
@@ -46,16 +46,16 @@ class UsersSeeder extends Seeder
         $admin->save();
         $admin->attachRole($adminRole);
         //buat sample Super Admin
-        $superadmin = new User();
-        $superadmin->name = "Kepala";
-        $superadmin->username = "superadmin";
-        $superadmin->email = "superadmin@perpus.com";
-        $superadmin->password = bcrypt('admin123');
-        $superadmin->telp = "08218830220";
-        $superadmin->alamat = "Jl Rapak Tak Indah no 07";
-        $superadmin->photo = "sj76asgy3276h899hsh9ml5ia.jpg";
-        $superadmin->save();
-        $superadmin->attachRole($superadminRole);
+        $staff = new User();
+        $staff->name = "Pegawai";
+        $staff->username = "staff";
+        $staff->email = "staff@perpus.com";
+        $staff->password = bcrypt('admin123');
+        $staff->telp = "08218830220";
+        $staff->alamat = "Jl Rapak Tak Indah no 07";
+        $staff->photo = "sj76asgy3276h899hsh9ml5ia.jpg";
+        $staff->save();
+        $staff->attachRole($staffRole);
 
         //buat sample member
         $member = new User();

@@ -11,7 +11,7 @@
     <a href="{{url('/admin/transactions')}}"><i class="ion-ios-list"></i> <span>Peminjaman</span>
     </a>
   </li>
-  <li class="treeview {{ (request()->is('admin/authors', 'admin/publishers','admin/members','admin/books','admin/categories','admin/announcements','admin/carousels','admin/authors/*', 'admin/publishers/*','admin/members/*','admin/books/*','admin/categories/*','admin/announcements/*','admin/carousels/*', 'admin/visitors', 'admin/visitors/*')) ? 'active' : '' }}">
+  <li class="treeview {{ (request()->is('admin/authors', 'admin/publishers','admin/members','admin/books','admin/categories','admin/announcements','admin/carousels','admin/authors/*', 'admin/publishers/*','admin/members/*','admin/books/*','admin/categories/*','admin/announcements/*','admin/carousels/*', 'admin/visitors', 'admin/visitors/*', 'admin/users', 'admin/users/*')) ? 'active' : '' }}">
     <a href="#"><i class="ion-filing"></i> <span>Master Data</span>
       <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
@@ -48,6 +48,10 @@
       </li>
       <li class="{{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'active' : '' }}">
         <a href="{{url('/admin/visitors')}}"><i class="fa {{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengunjung</span>
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/users/*')) || (request()->is('admin/users')) ? 'active' : '' }}">
+        <a href="{{url('/admin/users')}}"><i class="fa {{ (request()->is('admin/users/*')) || (request()->is('admin/users')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengguna</span>
         </a>
       </li>
     </ul>

@@ -14,6 +14,8 @@ class User extends Authenticatable
 {
     use EntrustUserTrait;
     use Notifiable;
+
+    protected $appends = ['role_name'];
     /**
      * The attributes that are mass assignable.
      *
@@ -54,6 +56,17 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Member');
     }
+
+    public function getRoleNameAttribute()
+    {
+      $val = $this->roles()->first();
+      return $val ? $val->name : '';
+    }
+
+    // public function employee()
+    // {
+    //   return $this->hasOne(Employee::class)->latest();
+    // }
     public static function boot()
     {
       parent::boot();
