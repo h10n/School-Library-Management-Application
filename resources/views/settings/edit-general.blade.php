@@ -94,7 +94,7 @@
           {!! $errors->first('nip_kepala_perpustakaan','<p class="help-block">:message</p>') !!}
         </div>
       </div>
-      <div class="form-group{{ $errors->has('pustakawan') ? ' has-error' : '' }}">
+      {{-- <div class="form-group{{ $errors->has('pustakawan') ? ' has-error' : '' }}">
         {!! Form::label('pustakawan', 'Pustakawan', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
           {!! Form::text('pustakawan',null,['class' => 'form-control']) !!}
@@ -107,7 +107,7 @@
           {!! Form::text('nip_pustakawan',null,['class' => 'form-control']) !!}
           {!! $errors->first('nip_pustakawan','<p class="help-block">:message</p>') !!}
         </div>
-      </div>
+      </div> --}}
       {{-- <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
       {!! Form::label('logo','Logo Perpustakaan',['class' => 'col-md-2 control-label']) !!}
       <div class="col-md-6">

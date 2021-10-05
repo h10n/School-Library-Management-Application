@@ -54,14 +54,14 @@
                                 <td class="text-muted">NIP Kepala Perpustakaan</td>
                                 <td>{{ $item->nip_kepala_perpustakaan }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td class="text-muted">Pustakawan</td>
                                 <td>{{ $item->pustakawan }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted">NIP Pustakawan</td>
                                 <td>{{ $item->nip_pustakawan }}</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td class="text-muted">Logo</td>
                                 <td>

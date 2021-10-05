@@ -22,8 +22,8 @@ class CreateSettingsTable extends Migration
             $table->string('pengelola')->nullable();
             $table->string('kepala_perpustakaan')->nullable();
             $table->string('nip_kepala_perpustakaan')->nullable();
-            $table->string('pustakawan')->nullable();
-            $table->string('nip_pustakawan')->nullable();
+            // $table->string('pustakawan')->nullable();
+            // $table->string('nip_pustakawan')->nullable();
             $table->string('about')->nullable();
             $table->integer('denda')->nullable();
             $table->integer('durasi')->nullable();

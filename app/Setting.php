@@ -18,8 +18,8 @@ class Setting extends Model
             'max_peminjaman',
             'kepala_perpustakaan',
             'nip_kepala_perpustakaan',
-            'pustakawan',
-            'nip_pustakawan'
+            // 'pustakawan',
+            // 'nip_pustakawan'
       ];
 
     public function getPengelolaKopAttribute()

@@ -12,8 +12,8 @@
             <td>
               <span>Samarinda, {{ Carbon\Carbon::now()->formatLocalized('%d %B %Y') }}</span>
               <span>Pustakawan</span>
-              <span style="margin-top: 10%"><u>{{ $pustakawan }}</u></span>              
-              <span>{{ $nip_pustakawan ? 'NIP.'.$nip_pustakawan : '' }}</span>
+              <span style="margin-top: 10%"><u>{{ auth()->user()->name }}</u></span>              
+              <span>{{ auth()->user()->nip ? 'NIP.'.auth()->user()->nip : '' }}</span>
             </td>            
           </tr>    
         </table>

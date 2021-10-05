@@ -37,13 +37,13 @@ class AppServiceProvider extends ServiceProvider
           $logo = $perpustakan->logo;
           $kepala_perpustakaan = $perpustakan->kepala_perpustakaan;
           $nip_kepala_perpustakaan = $perpustakan->nip_kepala_perpustakaan;
-          $pustakawan = $perpustakan->pustakawan;
-          $nip_pustakawan = $perpustakan->nip_pustakawan;
+          // $pustakawan = $perpustakan->pustakawan;
+          // $nip_pustakawan = $perpustakan->nip_pustakawan;
           }
           $mytime = Carbon::now();
           $waktu = $mytime->formatLocalized('%A, %d %b %Y');
           $announcements = Announcement::all();
-          $view->with(compact('nama_perpus','alamat_perpus','tentang','denda','durasi','logo','waktu','jumlah', 'announcements', 'kepala_perpustakaan', 'nip_kepala_perpustakaan', 'pustakawan', 'nip_pustakawan'));
+          $view->with(compact('nama_perpus','alamat_perpus','tentang','denda','durasi','logo','waktu','jumlah', 'announcements', 'kepala_perpustakaan', 'nip_kepala_perpustakaan'));
       });
       
       setlocale(LC_ALL,'id_ID', 'id', 'ID');  
