@@ -14,10 +14,10 @@
     {!! $errors->first('author_id','<p class="help-block"><strong>:message</strong></p>') !!}
 
   </div>
-  <div class="col-md-2">
+  {{-- <div class="col-md-2">
     <a onclick="add('{{ route('authors.create')}}','Penulis')" class="btn bg-blue"><span class="ion-plus"> Tambah
         Penulis</span></a>
-  </div>
+  </div> --}}
 </div>
 
 <div class="form-group{{$errors->has('published_location') ? ' has-error' : ''}}">
@@ -36,10 +36,10 @@
     'js-selectize','placeholder' => 'Pilih Penerbit']) !!}
     {!! $errors->first('publisher_id','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
-  <div class="col-md-2">
+  {{-- <div class="col-md-2">
     <a onclick="add('{{ route('publishers.create')}}','Penerbit')" class="btn bg-blue"><span class="ion-plus"> Tambah
         Penerbit</span></a>
-  </div>
+  </div> --}}
 </div>
 
 <div class="form-group{{$errors->has('published_year') ? ' has-error' : ''}}">
@@ -84,10 +84,10 @@
     'js-selectize','placeholder' => 'Pilih Kategori']) !!}
     {!! $errors->first('category_id','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
-  <div class="col-md-2">
+  {{-- <div class="col-md-2">
     <a onclick="add('{{ route('categories.create')}}','Kategori')" class="btn bg-blue"><span class="ion-plus"> Tambah
         Kategori</span></a>
-  </div>
+  </div> --}}
 </div>
 
 <div class="form-group{{$errors->has('initial') ? ' has-error' : ''}}">

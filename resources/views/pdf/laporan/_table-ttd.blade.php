@@ -13,7 +13,7 @@
               <span>Samarinda, {{ Carbon\Carbon::now()->formatLocalized('%d %B %Y') }}</span>
               <span>Pustakawan</span>
               <span style="margin-top: 10%"><u>{{ auth()->user()->name }}</u></span>              
-              <span>{{ auth()->user()->nip ? 'NIP.'.auth()->user()->nip : '' }}</span>
+              <span>{{ auth()->user()->no_induk ? 'NIP.'.auth()->user()->no_induk : '' }}</span>
             </td>            
           </tr>    
         </table>
