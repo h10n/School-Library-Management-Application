@@ -37,11 +37,11 @@ class TransactionsController extends Controller
           $tgl_pinjam = $stat->created_at;
           $durasi = $setting->durasi;
           $max_return = $tgl_pinjam->addDays($durasi);
-          return $tgl_pinjam->format('d/m/Y H:i');
+          return $tgl_pinjam->format('d-m-Y');
        })
        ->addColumn('status', function($stat){
   if ($stat->is_returned) {
-    return "Dikembalikan Pada ".$stat->updated_at->format('d/m/Y H:i'); //$stat->updated_at->format('d/m/Y');
+    return "Dikembalikan Pada ".$stat->updated_at->format('d-m-Y');
   }
   return "Sedang Dipinjam";
 })
@@ -90,7 +90,7 @@ class TransactionsController extends Controller
      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'NIS/NIP'])
      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Peminjam'])
      ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Judul'])
-     ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => 'Tanggal Peminjaman','searchable' => false, 'orderable' => true])
+     ->addColumn(['data' => 'tgl_peminjaman', 'name' => 'tgl_peminjaman', 'title' => 'Tanggal Peminjaman','searchable' => false, 'orderable' => true])
      ->addColumn(['data' => 'returned_at', 'name' => 'returned_at', 'title' => 'Max Tanggal Pengembalian','searchable' => false, 'orderable' => false])
      ->addColumn(['data' => 'status', 'name' => 'tatus', 'title' => 'Status','searchable' => false, 'orderable' => false])
      ->addColumn(['data' => 'denda', 'name' => 'denda', 'title' => 'Denda','searchable' => false, 'orderable' => false])

@@ -86,7 +86,7 @@ class MembersController extends Controller
       ->addColumn([
         'data' => 'tgl_terdaftar',
         'name' => 'tgl_terdaftar',
-        'title' => 'Tanggal'
+        'title' => 'Terdaftar'
       ])     
       ->addColumn([
         'data' => 'action',
