@@ -103,14 +103,14 @@
 </head>
 <body>
 	@php
-		$logoImg = !empty($setting->logo) ? $setting->logo : '';
-		$avatarImg = !empty($member->photo) ? $member->photo : '';
+		$logoImg = !empty($setting->logo) ? asset('img/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
+		$avatarImg = !empty($member->photo) ? asset('img/members_photo/'.$member->photo) : asset('img/icons8-no-camera.svg');
 	@endphp
 	<div class="card">
 		<table id="kop" width="100%">
 			<tr>
 				<td>
-					<img src="{{ asset('img/logo/'.$logoImg) }}" width="37px">
+					<img src="{{ $logoImg }}" width="37px">
 				</td>
 				<td id="identitasPerpus">
 					<p id='kop1'><b>KARTU ANGGOTA PERPUSTAKAAN</b></p>
@@ -122,7 +122,7 @@
 		</table>
 		<br>	
 		<div class="avatar">
-			<img src="{{ asset('img/members_photo/'.$avatarImg) }}" width="46px">			
+			<img src="{{ $avatarImg }}" width="46px">			
 		</div>
 		<table id="identitas" border="0">
 			<tr>				

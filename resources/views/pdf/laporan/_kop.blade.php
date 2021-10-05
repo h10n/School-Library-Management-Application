@@ -1,10 +1,10 @@
 @php
-$logoImg = !empty($setting->logo) ? $setting->logo : '';
+$logoImg = !empty($setting->logo) ? asset('img/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
 @endphp
 <table class="kop" width="100%" border="0">
     <tr>
         <td style="width: 102px">
-            <img src="{{ asset('img/logo/'.$logoImg) }}">
+            <img src="{{ $logoImg }}">
         </td>
         <td>
             @foreach ($setting->pengelola_kop as $pengelola)
