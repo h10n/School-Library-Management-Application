@@ -38,10 +38,10 @@ class UsersSeeder extends Seeder
         $admin = new User();
         $admin->name = "admin";
         $admin->username = "admin";
-        $admin->email = "admin@perpus.com";
+        // $admin->email = "admin@perpus.com";
         $admin->password = bcrypt('admin123');
-        $admin->telp = "08218831299";
-        $admin->alamat = "Jl Rapak Indah no 57";
+        // $admin->telp = "08218831299";
+        // $admin->alamat = "Jl Rapak Indah no 57";
         $admin->photo = "7efebd6c10c55554e906ebd783b1d73a.jpg";
         $admin->save();
         $admin->attachRole($adminRole);
@@ -49,11 +49,11 @@ class UsersSeeder extends Seeder
         $staff = new User();
         $staff->name = "Pegawai";
         $staff->username = "staff";
-        $staff->email = "staff@perpus.com";
+        // $staff->email = "staff@perpus.com";
         $staff->password = bcrypt('admin123');
-        $staff->telp = "08218830220";
-        $staff->alamat = "Jl Rapak Tak Indah no 07";
-        $staff->photo = "sj76asgy3276h899hsh9ml5ia.jpg";
+        // $staff->telp = "08218830220";
+        // $staff->alamat = "Jl Rapak Tak Indah no 07";
+        $staff->photo = "";
         $staff->save();
         $staff->attachRole($staffRole);
 
@@ -61,10 +61,10 @@ class UsersSeeder extends Seeder
         $member = new User();
         $member->name = "Anggota";
         $member->username = "member";
-        $member->email = "member@perpus.com";
+        // $member->email = "member@perpus.com";
         $member->password = bcrypt('admin123');
-        $member->telp = "08218836660";
-        $member->alamat = "Jl Rapak Tak Indah no 17";
+        // $member->telp = "08218836660";
+        // $member->alamat = "Jl Rapak Tak Indah no 17";
         $member->photo = "";
         $member->member_id = "1";
         $member->save();
@@ -74,10 +74,10 @@ class UsersSeeder extends Seeder
         $visitor = new User();
         $visitor->name = "Pengunjung";
         $visitor->username = "visitor";
-        $visitor->email = "visitor@perpus.com";
+        // $visitor->email = "visitor@perpus.com";
         $visitor->password = bcrypt('admin123');
-        $visitor->telp = "08218832100";
-        $visitor->alamat = "Jl Rapak Tak Indah no 17";
+        // $visitor->telp = "08218832100";
+        // $visitor->alamat = "Jl Rapak Tak Indah no 17";
         $visitor->photo = "";    
         $visitor->save();
         $visitor->attachRole($visitorRole);        

@@ -2,7 +2,7 @@
   <li class="header">
     <i class="fa fa-calendar margin"></i> {{$waktu}}    
   </li>
-  @role('admin')
+  @role(['admin','staff'])
   <li class="{{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
     <a href="{{ route('dashboard.index') }}"><i class="ion-speedometer"></i> <span>Dashboard</span>
     </a>
@@ -50,12 +50,15 @@
         <a href="{{url('/admin/visitors')}}"><i class="fa {{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengunjung</span>
         </a>
       </li>
+      @role('admin')
       <li class="{{ (request()->is('admin/users/*')) || (request()->is('admin/users')) ? 'active' : '' }}">
         <a href="{{url('/admin/users')}}"><i class="fa {{ (request()->is('admin/users/*')) || (request()->is('admin/users')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Pengguna</span>
         </a>
       </li>
+      @endrole
     </ul>
   </li>
+  @role('admin')
   <li class="treeview {{ (request()->is('admin/export/visitors','admin/export/transactions')) ? 'active' : '' }}">
     <a href="#"><i class="ion-ios-printer"></i> <span>Laporan</span>
       <span class="pull-right-container">
@@ -67,11 +70,13 @@
       <li class="{{ (request()->is('admin/export/transactions')) ? 'active' : '' }}"><a href="{{route('admin.export.transactions')}}"><i class="fa {{ (request()->is('admin/export/transactions')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Laporan Peminjaman Buku</a>
       </li>
     </ul>
-  </li>
+  </li>  
   <li class="{{ (request()->is('admin/settings/general/*')) || (request()->is('admin/settings/general')) ? 'active' : '' }}">
     <a href="{{ url('admin/settings/general') }}"><i class="ion-settings"></i> <span>Pengaturan</span>
     </a>
   </li>
+  @endrole
+  
   @endrole
   @role('visitor')
   <li class="{{ (request()->is('visitor/guest-book')) ? 'active' : '' }}">

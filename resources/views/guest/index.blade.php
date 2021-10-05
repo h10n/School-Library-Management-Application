@@ -32,7 +32,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  @role('admin')
+                  @role(['admin', 'staff'])
                   <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                   @endrole
                   @role('member')

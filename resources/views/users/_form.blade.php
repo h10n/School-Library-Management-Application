@@ -5,13 +5,13 @@
     {!! $errors->first('name','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
-<div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
+{{-- <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
   {!! Form::label('email','E-mail',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::email('email',null,['class' => 'form-control','maxlength' => '70']); !!}
     {!! $errors->first('email','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
-</div>
+</div> --}}
 <div class="form-group{{$errors->has('role') ? ' has-error' : ''}}">
   {!! Form::label('role','Role',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
