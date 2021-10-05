@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Traits\FlashNotificationTrait;
-
+use App\Role;
 class UsersController extends Controller
 {
     use FlashNotificationTrait;
@@ -56,7 +57,7 @@ class UsersController extends Controller
         ->addColumn([
           'data' => 'role_name',
           'name' => 'role_name',
-          'title' => 'roles',
+          'title' => 'Role',
         //   'render' => 'function(){return data != undefined ? data : ""}'
         ])        
         ->addColumn([
@@ -85,9 +86,25 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(UsersRequest $request)
+    {                
+        $request['password'] = bcrypt($request->password);
+
+        $user = User::create($request->all());
+        $role = Role::where('name', '=', $request->role)->first();
+        $user->attachRole($role);
+
+        $this->sendFlashNotification('menambah', $user->username);
+        return redirect()->route('users.index');
+    
+        // $user->assignRole($request->role?? 'perusahaan');
+
+        // if(substr_count($request->role, 'Petugas'))
+        //     $user->petugas()->save(new Petugas(['nama'=>$request->name, 'nip'=>$request->nip_petugas]));
+        // else
+        //     $user->perusahaan()->save(new Perusahaan($request->only(['nama_perusahaan','npwp_perusahaan'])));
+
+        // return response()->json($user);
     }
 
     /**
