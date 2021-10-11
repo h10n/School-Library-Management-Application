@@ -2,10 +2,10 @@
 @push('req-css')
 <link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
 @endpush
-<div class="col-md-10">
+<div class="col-md-12">
   <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
     {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4">
+    <div class="col-md-3">
       {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '15']) !!}
       {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
@@ -19,33 +19,26 @@
   </div>
   <div class="form-group{{$errors->has('jenis_anggota') ? ' has-error' : ''}}">
     {!! Form::label('jenis_anggota','Jenis Anggota',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-3">
+    <div class="col-md-2">
       {!! Form::select('jenis_anggota',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i'],null,['class' =>
-      'js-selectize','placeholder' => 'Pilih Jenis Anggota']) !!}
+      'js-selectize','placeholder' => 'Jenis Anggota']) !!}
       {!! $errors->first('jenis_anggota','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="kelas-el form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
     {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4">
-      {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Pilih Kelas','class' =>
+    <div class="col-md-2">
+      {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Kelas','class' =>
       'form-control']) !!}
       {!! $errors->first('kelas','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="jurusan-el form-group{{$errors->has('jurusan') ? ' has-error' : ''}}">
     {!! Form::label('jurusan','Jurusan',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4">
+    <div class="col-md-2">
       {!! Form::text('jurusan',null,['class' => 'form-control','maxlength' => '10']) !!}
       {!! $errors->first('jurusan','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
-  </div>
-  <div class="form-group{{$errors->has('address') ? ' has-error' : ''}}">
-    {!! Form::label('address','Alamat',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4">
-      {!! Form::text('address',null,['class' => 'form-control','maxlength' => '100']) !!}
-      {!! $errors->first('address','<p class="help-block"><strong>:message</strong></p>') !!}
-    </div>  
   </div>
   
   <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
@@ -63,7 +56,13 @@
       {!! $errors->first('phone','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-  
+  <div class="form-group{{$errors->has('address') ? ' has-error' : ''}}">
+    {!! Form::label('address','Alamat',['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-4">    
+      {!! Form::textarea('address',null,['class' => 'form-control','maxlength' => '100', 'rows' => '4']) !!}
+      {!! $errors->first('address','<p class="help-block"><strong>:message</strong></p>') !!}
+    </div>  
+  </div>
   <div class="form-group{{$errors->has('username') ? ' has-error' : ''}}">
     {!! Form::label('username','Username',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">

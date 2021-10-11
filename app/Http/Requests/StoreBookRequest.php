@@ -33,7 +33,7 @@ class StoreBookRequest extends FormRequest
               'published_year' => 'required|date_format:Y',
               'book_year' => 'required|date_format:Y',
               'category_id' => 'required|exists:categories,id',
-              'initial' => 'required|string|min:1|max:1',
+            //   'initial' => 'required|string|min:1|max:1',
               'no_induk' => 'required|unique:books,no_induk',
               'amount' => 'required|numeric',
               'cover' => 'image|max:2048'

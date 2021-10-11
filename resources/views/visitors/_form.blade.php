@@ -1,6 +1,6 @@
 <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
   {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
-  <div class="col-md-4">
+  <div class="col-md-3">
     {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '40', 'placeholder' =>
     'No Induk']) !!}
     {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
@@ -18,9 +18,9 @@
 
 <div class="form-group{{$errors->has('jenis_anggota') ? ' has-error' : ''}}">
   {!! Form::label('jenis_anggota','Jenis Anggota',['class' => 'col-md-2 control-label']) !!}
-  <div class="col-md-3">
+  <div class="col-md-2">
     {!! Form::select('jenis_anggota',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i'],null,['class' =>
-    'js-selectize','placeholder' => 'Pilih Jenis Anggota']) !!}
+    'js-selectize','placeholder' => 'Jenis Anggota']) !!}
     {!! $errors->first('jenis_anggota','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
@@ -29,7 +29,7 @@
   {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-2">
     {!! Form::select('kelas',['X' => 'X','XI' => 'XI','XII' => 'XII'],null,['class' => 'js-selectize','placeholder' =>
-    'Pilih Kelas']) !!}
+    'Kelas']) !!}
     {!! $errors->first('kelas','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
@@ -37,7 +37,7 @@
 <div class="form-group{{$errors->has('keperluan') ? ' has-error' : ''}}">
   {!! Form::label('keperluan','Keperluan',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::textarea('keperluan',null,['class' => 'form-control','maxlength' => '200', 'placeholder' =>
+    {!! Form::textarea('keperluan',null,['class' => 'form-control', 'rows' => '4','maxlength' => '200', 'placeholder' =>
     'Tulis Keperluan']) !!}
     {!! $errors->first('keperluan','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>

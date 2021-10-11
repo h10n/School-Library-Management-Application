@@ -99,14 +99,14 @@
             {{ $book->category->name }}
           </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-md-4">
             Inisial Buku
           </div>
           <div class="col-md-8">
             {{ $book->initial }}
           </div>
-        </div>
+        </div> --}}
         <div class="row">
           <div class="col-md-4">
             Sumber

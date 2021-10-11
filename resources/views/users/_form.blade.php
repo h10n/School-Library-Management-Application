@@ -17,9 +17,9 @@
 </div> --}}
 <div class="form-group{{$errors->has('role') ? ' has-error' : ''}}">
   {!! Form::label('role','Role',['class' => 'col-md-2 control-label']) !!}
-  <div class="col-md-4">
+  <div class="col-md-2">
     {!! Form::select('role',\DB::table('roles')->where('name','!=','member')->get()->pluck('name', 'name'),isset($item) ? $item->role_name : '',['class' =>
-    'js-selectize','placeholder' => 'Pilih Role Pengguna']) !!}
+    'js-selectize','placeholder' => 'Pilih Role']) !!}
     {!! $errors->first('role','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>

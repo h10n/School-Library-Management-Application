@@ -40,7 +40,7 @@
 
       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         {!! Form::label('name', 'Nama', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">
+        <div class="col-md-4">
           {!! Form::text('name',null,['class' => 'form-control']) !!}
           {!! $errors->first('name','<p class="help-block">:message</p>') !!}
         </div>
@@ -48,20 +48,20 @@
       <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
         {!! Form::label('address', 'Alamat', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-6">
-          {!! Form::text('address',null,['class' => 'form-control']) !!}
+          {!! Form::textarea('address',null,['class' => 'form-control','maxlength' => '100', 'rows' => '4']) !!}
           {!! $errors->first('address','<p class="help-block">:message</p>') !!}
         </div>
       </div>
       <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}">
         {!! Form::label('website', 'Website', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">
+        <div class="col-md-4">
           {!! Form::text('website',null,['class' => 'form-control']) !!}
           {!! $errors->first('website','<p class="help-block">:message</p>') !!}
         </div>
       </div>
       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         {!! Form::label('email', 'Email', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">
+        <div class="col-md-4">
           {!! Form::email('email',null,['class' => 'form-control']) !!}
           {!! $errors->first('email','<p class="help-block">:message</p>') !!}
         </div>
@@ -75,21 +75,21 @@
       </div>
       <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
         {!! Form::label('about', 'Deskripsi', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">
-          {!! Form::text('about',null,['class' => 'form-control']) !!}
+        <div class="col-md-6">          
+          {!! Form::textarea('about',null,['class' => 'form-control','maxlength' => '100', 'rows' => '4']) !!}
           {!! $errors->first('about','<p class="help-block">:message</p>') !!}
         </div>
       </div>
       <div class="form-group{{ $errors->has('kepala_perpustakaan') ? ' has-error' : '' }}">
         {!! Form::label('kepala_perpustakaan', 'Kepala Perpustakaan', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">
+        <div class="col-md-4">
           {!! Form::text('kepala_perpustakaan',null,['class' => 'form-control']) !!}
           {!! $errors->first('kepala_perpustakaan','<p class="help-block">:message</p>') !!}
         </div>
       </div>
       <div class="form-group{{ $errors->has('nip_kepala_perpustakaan') ? ' has-error' : '' }}">
         {!! Form::label('nip_kepala_perpustakaan', 'NIP Kepala Perpustakaan', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">
+        <div class="col-md-3">
           {!! Form::text('nip_kepala_perpustakaan',null,['class' => 'form-control']) !!}
           {!! $errors->first('nip_kepala_perpustakaan','<p class="help-block">:message</p>') !!}
         </div>
@@ -152,22 +152,22 @@
     </div>
 
     <div class="form-group{{ $errors->has('denda') ? ' has-error' : '' }}">
-      {!! Form::label('denda', 'Denda', ['class' => 'col-md-2 control-label']) !!}
-      <div class="col-md-6">
+      {!! Form::label('denda', 'Denda (Rp)', ['class' => 'col-md-2 control-label']) !!}
+      <div class="col-md-2">
         {!! Form::text('denda',null,['class' => 'form-control']) !!}
         {!! $errors->first('denda','<p class="help-block">:message</p>') !!}
       </div>
     </div>
     <div class="form-group{{ $errors->has('durasi') ? ' has-error' : '' }}">
-      {!! Form::label('durasi', 'Durasi', ['class' => 'col-md-2 control-label']) !!}
-      <div class="col-md-6">
+      {!! Form::label('durasi', 'Durasi (hari)', ['class' => 'col-md-2 control-label']) !!}
+      <div class="col-md-1">
         {!! Form::text('durasi',null,['class' => 'form-control']) !!}
         {!! $errors->first('durasi','<p class="help-block">:message</p>') !!}
       </div>
     </div>
     <div class="form-group{{ $errors->has('max_peminjaman') ? ' has-error' : '' }}">
       {!! Form::label('max_peminjaman', 'Jumlah', ['class' => 'col-md-2 control-label']) !!}
-      <div class="col-md-6">
+      <div class="col-md-1">
         {!! Form::text('max_peminjaman',null,['class' => 'form-control']) !!}
         {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
       </div>
