@@ -159,7 +159,7 @@ class UsersController extends Controller
                 'password' => bcrypt($request->password)
               ]);
             }
-            
+
             $this->uploadPhoto($request, $user);
             $role = Role::where('name', '=', $request->role)->first();
             $user->detachRoles($user->roles);
@@ -179,8 +179,8 @@ class UsersController extends Controller
     public function destroy($id)
     {
       $item = User::findOrFail($id);
-      if(!$item->delete()) return redirect()->back(); 
-      // Storage::delete($item->photo);
+      if(!$item->delete()) return redirect()->back();       
+      $this->deleteFile('user', $item->photo);
       $this->sendFlashNotification('menghapus', $item->username);
       return redirect()->route('users.index');
     }
