@@ -53,6 +53,11 @@ class UsersController extends Controller
           'footer'         => '',
       ])
         ->addColumn([
+          'data' => 'name',
+          'name' => 'name',
+          'title' => 'Nama'
+        ])
+        ->addColumn([
           'data' => 'username',
           'name' => 'username',
           'title' => 'Username'
@@ -141,22 +146,24 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UsersRequest $request, User $user)
-    {
-        if ($request->password) {
-            $request['password'] = bcrypt($request->password);
-        }
-
+    {        
         // $user->update($request->all());
         // sesuakan entrust
-        if ($user->update($request->except(['role']))) {
+        if ($user->update($request->except(['role', 'password']))) {
             // if (!$user->roles->isEmpty()) {
             //     $user->removeRole($user->roles->first()->name);
             // }      
             // $user->assignRole($request->role);
-
+            if ($request->password) {
+              $user->update([
+                'password' => bcrypt($request->password)
+              ]);
+            }
             $role = Role::where('name', '=', $request->role)->first();
             $user->detachRoles($user->roles);
             $user->attachRole($role);
+
+            $this->sendFlashNotification('mengubah', $user->username);
         }
 
         return redirect()->route('users.index');
@@ -170,6 +177,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $item = User::findOrFail($id);
+      if(!$item->delete()) return redirect()->back(); 
+      // Storage::delete($item->photo);
+      $this->sendFlashNotification('menghapus', $item->username);
+      return redirect()->route('users.index');
     }
 }
