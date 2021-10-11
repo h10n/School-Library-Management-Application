@@ -21,7 +21,7 @@
     </div>
     
     <div class="box-body">
-      {{ Form::open(array('route' => 'users.store', 'class' => 'form-horizontal')) }}      
+      {{ Form::open(array('route' => 'users.store', 'files' => true, 'class' => 'form-horizontal')) }}      
       @include('users._form')  
       {{ Form::close() }}
     </div>  

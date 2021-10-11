@@ -22,7 +22,7 @@
     </div>
     
     <div class="box-body">
-      {{ Form::model($item, array('route' => array('users.update', $item->id), 'method' => 'PUT', 'class' => 'form-horizontal')) }}
+      {{ Form::model($item, array('route' => array('users.update', $item->id), 'method' => 'PUT', 'files' => true, 'class' => 'form-horizontal')) }}
       @include('users._form')    
       {{Form::close()}}
     </div>

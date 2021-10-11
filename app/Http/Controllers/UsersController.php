@@ -10,10 +10,11 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Traits\FlashNotificationTrait;
 use App\Role;
+use App\Traits\UploadFileTrait;
 
 class UsersController extends Controller
 {
-    use FlashNotificationTrait;
+    use FlashNotificationTrait,UploadFileTrait;
     /**
      * Display a listing of the resource.
      *
@@ -97,12 +98,15 @@ class UsersController extends Controller
     public function store(UsersRequest $request)
     {
         $request['password'] = bcrypt($request->password);
-
         $user = User::create($request->all());
-        $role = Role::where('name', '=', $request->role)->first();
-        $user->attachRole($role);
 
-        $this->sendFlashNotification('menambah', $user->username);
+        if ($user) {          
+          $this->uploadPhoto($request, $user);
+          $role = Role::where('name', '=', $request->role)->first();
+          $user->attachRole($role);
+          $this->sendFlashNotification('menambah', $user->username);
+        }
+
         return redirect()->route('users.index');
     
         // $user->assignRole($request->role?? 'perusahaan');
@@ -149,20 +153,17 @@ class UsersController extends Controller
     {        
         // $user->update($request->all());
         // sesuakan entrust
-        if ($user->update($request->except(['role', 'password']))) {
-            // if (!$user->roles->isEmpty()) {
-            //     $user->removeRole($user->roles->first()->name);
-            // }      
-            // $user->assignRole($request->role);
+        if ($user->update($request->except(['role', 'password']))) {           
             if ($request->password) {
               $user->update([
                 'password' => bcrypt($request->password)
               ]);
             }
+            
+            $this->uploadPhoto($request, $user);
             $role = Role::where('name', '=', $request->role)->first();
             $user->detachRoles($user->roles);
             $user->attachRole($role);
-
             $this->sendFlashNotification('mengubah', $user->username);
         }
 
@@ -182,5 +183,16 @@ class UsersController extends Controller
       // Storage::delete($item->photo);
       $this->sendFlashNotification('menghapus', $item->username);
       return redirect()->route('users.index');
+    }
+
+    protected function uploadPhoto($request, $user){
+      if ($request->photo_file) {
+        $oldfilename = $user->photo;
+        $fileName = $this->upload('user', $request->photo_file, $oldfilename);
+        if ($fileName) {
+            $user->photo = $fileName;
+            $user->save();
+        }            
+    }
     }
 }

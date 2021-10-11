@@ -1,3 +1,6 @@
+@push('req-css')
+<link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
+@endpush
 <div class="form-group{{$errors->has('name') ? ' has-error' : ''}}">
   {!! Form::label('name','Nama',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
@@ -35,11 +38,15 @@
     {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
+@include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'user','label' => 'Foto', 'data' => $item->photo ?? null])
 <div class="form-group">
   <div class="col-md-4 col-md-offset-2">        
     {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
   </div>
 </div>
+@push('req-scripts')
+<script src="{{ asset('js/avatar.js') }}"></script>
+@endpush
 
 @push('custom-scripts')
 <script>
