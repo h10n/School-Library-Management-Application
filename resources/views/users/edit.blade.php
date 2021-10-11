@@ -4,7 +4,7 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li><a href="{{ url('/admin/visitors') }}"> Pengguna</a></li>
+    <li><a href="{{ url('/admin/users') }}"> Pengguna</a></li>
     <li class="active">Edit Pengguna</li>
   </ol>
 </section>

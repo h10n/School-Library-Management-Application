@@ -22,10 +22,11 @@ class UsersRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {                  
+        // dd($this->route('user')->id ?? '');      
         $rules = [
             'name' => 'required',            
-            'username' => 'required|unique:users,username',            
+            'username' => 'required|unique:users,username,'. ($this->route('user')->id ?? ''),            
             'role' => 'required',
             // 'email' => 'required|unique:users,email',
         ];

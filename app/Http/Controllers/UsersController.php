@@ -10,6 +10,7 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Traits\FlashNotificationTrait;
 use App\Role;
+
 class UsersController extends Controller
 {
     use FlashNotificationTrait;
@@ -21,7 +22,9 @@ class UsersController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $items = User::latest('updated_at')->get();
+            $items = User::whereHas('roles', function ($q) {
+                $q->where('name', '!=', 'member');
+            })->latest('updated_at')->get();
             // dd($items);
             return Datatables::of($items)
           ->addColumn('action', function ($item) {
@@ -48,18 +51,18 @@ class UsersController extends Controller
           'exportable'     => false,
           'printable'      => true,
           'footer'         => '',
-      ])      
+      ])
         ->addColumn([
           'data' => 'username',
           'name' => 'username',
           'title' => 'Username'
-        ])        
+        ])
         ->addColumn([
           'data' => 'role_name',
           'name' => 'role_name',
           'title' => 'Role',
         //   'render' => 'function(){return data != undefined ? data : ""}'
-        ])        
+        ])
         ->addColumn([
           'data' => 'action',
           'name' => 'action',
@@ -87,7 +90,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(UsersRequest $request)
-    {                
+    {
         $request['password'] = bcrypt($request->password);
 
         $user = User::create($request->all());
@@ -125,8 +128,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {      
+      $item = User::findOrFail($id);    
+      return view('users.edit', compact('item'));
     }
 
     /**
@@ -136,9 +140,26 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersRequest $request, User $user)
     {
-        //
+        if ($request->password) {
+            $request['password'] = bcrypt($request->password);
+        }
+
+        // $user->update($request->all());
+        // sesuakan entrust
+        if ($user->update($request->except(['role']))) {
+            // if (!$user->roles->isEmpty()) {
+            //     $user->removeRole($user->roles->first()->name);
+            // }      
+            // $user->assignRole($request->role);
+
+            $role = Role::where('name', '=', $request->role)->first();
+            $user->detachRoles($user->roles);
+            $user->attachRole($role);
+        }
+
+        return redirect()->route('users.index');
     }
 
     /**
