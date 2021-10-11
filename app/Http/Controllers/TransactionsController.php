@@ -30,9 +30,9 @@ class TransactionsController extends Controller
        if ($request->get('status') == 'not-returned') $stats->borrowed();
        return Datatables::of($stats)
        ->addColumn('returned_at', function($stat){
-         if ($stat->is_returned) {
-           return "-";
-         }
+        //  if ($stat->is_returned) {
+        //    return "-";
+        //  }
          $setting = Setting::find('1');
           $tgl_pinjam = $stat->created_at;
           $durasi = $setting->durasi;

@@ -68,7 +68,7 @@
             Tanggal Peminjaman
           </div>
           <div class="col-md-8">
-            {{ $transaction->created_at }}
+            {{ $transaction->tgl_peminjaman }}
           </div>
         </div>
         <div class="row">
@@ -76,7 +76,7 @@
             Max Tanggal Pengembalian
           </div>
           <div class="col-md-8">
-            {{ $max_return }}
+            {{ $max_return->format('d-m-Y') }}
           </div>
         </div>
         <div class="row">

@@ -5,13 +5,17 @@
             <tr>
                 <th>Judul</th>
                 <th>Tanggal Peminjaman</th>
+                <th>Max Tanggal Pengembalian</th>
+                <th>Denda</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($member->borrowLogs()->borrowed()->get() as $log)
             <tr>
                 <td>{{ $log->book->title }}</td>
-                <td>{{ $log->created_at }}</td>
+                <td>{{ $log->tgl_peminjaman }}</td>                
+                <td>{{ $log->tgl_max }}</td>                
+                <td>{{ $log->total_denda }}</td>                
             </tr>
             @empty
             <tr>
@@ -25,6 +29,7 @@
         <thead>
             <tr>
                 <th>Judul</th>
+                <th>Tanggal Peminjaman</th>
                 <th>Tanggal Kembali</th>
             </tr>
         </thead>
@@ -32,7 +37,8 @@
             @forelse ($member->borrowLogs()->returned()->get() as $log)
             <tr>
                 <td>{{ $log->book->title }}</td>
-                <td>{{ $log->updated_at }}</td>
+                <td>{{ $log->tgl_peminjaman }}</td>
+                <td>{{ $log->tgl_kembali }}</td>
             </tr>
             @empty
             <tr>
