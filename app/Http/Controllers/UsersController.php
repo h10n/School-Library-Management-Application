@@ -130,6 +130,12 @@ class UsersController extends Controller
         //
     }
 
+    public function profile()
+    {      
+      $item = auth()->user();
+      return view('users.profile',['item' => $item]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

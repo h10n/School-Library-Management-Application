@@ -63,6 +63,10 @@ Route::group(['middleware' => 'web'], function ()
     {
         Route::get('status-history', 'MembersController@statusRiwayat')->name('members.status-history');
     });
+    Route::group(['middleware' => ['auth']], function ()
+    {
+        Route::get('users/profile', 'UsersController@profile')->name('users.profile');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', 'role:admin']);
