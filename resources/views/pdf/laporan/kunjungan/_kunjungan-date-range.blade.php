@@ -1,5 +1,7 @@
 <h3>Rekapitulasi Jumlah Pengunjung </h3>
-<h5>Periode : {{ $firstKey = array_key_first($visitor_bulanan) }} s.d {{ $firstKey = array_key_last($visitor_bulanan) }}
+<h5>Periode : {{ $firstKey = array_keys($visitor_bulanan)[0] }} s.d {{ $firstKey = key(array_slice($visitor_bulanan, -1, 1, true)) }}
+{{-- deprecated, min php 7.3--}}
+{{-- <h5>Periode : {{ $firstKey = array_key_first($visitor_bulanan) }} s.d {{ $firstKey = array_key_last($visitor_bulanan) }} --}}
 </h5>
 <table class="laporanTable">
     <tr>

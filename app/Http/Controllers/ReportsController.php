@@ -17,9 +17,18 @@ class ReportsController extends Controller
 {
 
 //laporan pengunjung
+    public function export()
+    {
+        return view('reports.export');
+    }
+
     public function visitorReport()
     {
         return view('reports.visitor');
+    }
+    public function printExport()
+    {
+        dd(request()->all());
     }
     public function transactionReport()
     {

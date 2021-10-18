@@ -4,107 +4,57 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Laporan Pengunjung</li>
+    <li class="active">Eksport</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
+    {{ Form::open(['route' => 'admin.export-cetak', 'method' => 'POST', 'target' => '_blank']) }}
     <div class="box-header">
-      <h3 class="box-title">Laporan Pengunjung</h3>
-      <div class="table-button-custom">
-        {{ Form::open(['route' => 'admin.reports.visitors.cetak', 'method' => 'POST', 'target' => '_blank']) }}
+      <h3 class="box-title">Eksport</h3>
+      <div class="table-button-custom">        
         <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh"> Reset</span></a>
         {{ Form::hidden('from_date') }}
         {{ Form::hidden('to_date') }}
         {{ Form::hidden('what_year') }}
         {{ Form::hidden('jenis', 'bulanan') }}
-        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-ios-paper"> Cetak</span></button>
-        {{ Form::close() }}
+        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-ios-paper"> Cetak</span></button>        
       </div>
     </div>
-    <!-- batas-->
-    <div class="panel-body">
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a href="#report-month-panel" aria-controls="form" role="tab" data-toggle="tab" onClick="jenisLaporan('bulanan');">
-            <i class="ion-android-calendar"></i> Bulanan
-          </a>
-        </li>
-        <li role="presentation">
-          <a href="#report-year-panel" aria-controls="upload" role="tab" data-toggle="tab" onClick="jenisLaporan('tahunan');">
-            <i class="ion-calendar"></i> Tahunan
-          </a>
-        </li>
-      </ul>
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active add-little-padding-panel" id="report-month-panel">
-          <a class="btn bg-blue" id="daterange-btn"  style="margin-left:15px;">
-            <span><i class="fa fa-calendar"></i> Pilih Periode</span>
-            <i class="fa fa-caret-down"></i>
-          </a>
-          <div class="box-body">
-            <div class="table-responsive">
-              <table class="table table-striped table-hover" id="laporanBulanan">
-                <thead>
-                  <tr>
-                    <th rowspan="2">No</th>
-                    <th rowspan="2">Hari/Tanggal</th>
-                    <th colspan="3">Kelas</th>
-                    <th rowspan="2">Guru/Karyawan Sekolah</th>
-                    <th rowspan="2">Jumlah</th>
-                  </tr>
-                  <tr>
-                    <th>X</th>  
-                    <th>XI</th>  
-                    <th>XII</th>  
-                  </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-                <tfoot>
-
-                </tfoot>
-              </table>
-              {{ csrf_field() }}
-            </div>
-          </div>
-
-        </div>
-        <div role="tabpanel" class="tab-pane add-little-padding-panel" id="report-year-panel">
-          <div class="col-md-2">
-            <div class="input-group date">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-              </div>
-              <input class="form-control" name="report_year" type="text" id="report_year" placeholder="Pilih Tahun">
-
-            </div>
-          </div>
-          <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />
-          <div class="box-body">            
-            <table class="table table-striped table-hover" id="laporanTahunan">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Bulan</th>
-                  <th>Jumlah Pengunjung</th>
-                  <th>Ket</th>
-                </tr>
-              </thead>
-              <tbody>
-
-              </tbody>
-              <tfoot>
-
-              </tfoot>
-            </table>
-            {{ csrf_field() }}
-          </div>
-        </div>
+    <div class="box-body">
+      <div class="form-group">
+        <a class="btn bg-blue" id="daterange-btn" style="margin-left:15px;">
+          <span><i class="fa fa-calendar"></i> Pilih Periode</span>
+          <i class="fa fa-caret-down"></i>
+        </a>
       </div>
-    </div>
-    <!-- batas -->
+
+      <div class="form-group{{$errors->has('jenis') ? ' has-error' : ''}}">
+        {!! Form::label('jenis','Jenis Data :',['class' => 'col-md-12 control-label']) !!}
+        <div class="col-md-12">
+        <div class="radio">
+          <label>
+            <input type="radio" name="jenis" id="pengunjung" value="pengunjung" checked>
+            Pengunjung
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="jenis" id="anggota" value="anggota">
+            Anggota
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="jenis" id="buku" value="buku">
+            Buku
+          </label>
+        </div>
+        </div>
+          {!! $errors->first('jenis','<p class="help-block"><strong>:message</strong></p>') !!}      
+      </div>
+    </div>  
+    {{ Form::close() }}
   </div>
 </section>
 @endsection

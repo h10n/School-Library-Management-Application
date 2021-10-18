@@ -51,6 +51,8 @@ Route::group(['middleware' => 'web'], function ()
         Route::post('/settings/profile', 'SettingsController@updateProfile');
         Route::get('/settings/password', 'SettingsController@editPassword');
         Route::post('/settings/password', 'SettingsController@updatePassword');
+        Route::get('export', 'ReportsController@export')->name('admin.export');
+        Route::post('export/cetak', 'ReportsController@printExport')->name('admin.export-cetak');
     });
 
     Route::group(['prefix' => 'visitor', 'middleware' => ['auth', 'role:visitor']], function ()
