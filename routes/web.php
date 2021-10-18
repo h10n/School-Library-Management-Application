@@ -67,6 +67,7 @@ Route::group(['middleware' => 'web'], function ()
     {
         Route::get('users/profile', 'UsersController@profile')->name('users.profile');
         Route::get('users/password/edit', 'UsersController@editPassword')->name('users.password-edit');
+        Route::post('users/password/update', 'UsersController@updatePassword')->name('users.password-update');
     });
 });
 

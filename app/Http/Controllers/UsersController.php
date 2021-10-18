@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UsersRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -140,6 +141,12 @@ class UsersController extends Controller
     {      
       $item = auth()->user();
       return view('users.password-edit',['item' => $item]);
+    }
+    public function updatePassword(ChangePasswordRequest $request)
+    {      
+      $item = auth()->user();
+      $item->update(['password'=> bcrypt($request->new_password)]);
+      return view('users.profile',['item' => $item]);
     }
 
     /**

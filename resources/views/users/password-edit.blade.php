@@ -22,7 +22,7 @@
 
     <div class="box-body">
       {!! Form::model($item, [
-      'url' => route('users.update', $item->id),
+      'url' => route('users.password-update'),
       'method' => 'post',
       'files' => 'true',
       'class' => 'form-horizontal'
@@ -40,6 +40,13 @@
           <div class="col-md-4">
             {!! Form::password('new_password',['class' => 'form-control','maxlength' => '15']) !!}
             {!! $errors->first('new_password','<p class="help-block"><strong>:message</strong></p>') !!}
+          </div>
+        </div>
+        <div class="form-group{{$errors->has('confirm_password') ? ' has-error' : ''}}">
+          {!! Form::label('confirm_password','Ulangi Password Baru',['class' => 'col-md-2 control-label']) !!}
+          <div class="col-md-4">
+            {!! Form::password('confirm_password',['class' => 'form-control','maxlength' => '15']) !!}
+            {!! $errors->first('confirm_password','<p class="help-block"><strong>:message</strong></p>') !!}
           </div>
         </div>
         <div class="form-group">
