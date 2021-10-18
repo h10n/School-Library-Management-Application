@@ -16,6 +16,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $appends = ['role_name'];
+    protected $dates = ['last_login'];
     /**
      * The attributes that are mass assignable.
      *

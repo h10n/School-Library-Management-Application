@@ -60,7 +60,7 @@
             Login Terakhir
           </div>
           <div class="col-md-8">
-            {{$item->last_login }}
+            {{$item->last_login->format('d-m-Y H:i') }}
           </div>
         </div>
         <div class="row">
