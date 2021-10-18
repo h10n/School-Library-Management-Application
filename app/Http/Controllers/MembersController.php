@@ -123,7 +123,7 @@ class MembersController extends Controller
         }
         $request['member_id'] = $member->id;
         $request['password'] = bcrypt($request['password']);
-        $user = User::create($request->only(['name','username','email','password','member_id']));
+        $user = User::create($request->only(['name','username','password','member_id']));
         $role = Role::where('name', '=', 'member')->first();
         $user->attachRole($role);
       
@@ -189,11 +189,11 @@ class MembersController extends Controller
             $request['member_id'] = $id;
             if ($request->password) {
                 $request['password'] = bcrypt($request['password']);
-                if (!$user->update($request->only(['name','username','email','password','member_id']))) {
+                if (!$user->update($request->only(['name','username','password','member_id']))) {
                     return redirect()->back();
                 }
             } else {
-                if (!$user->update($request->only(['name','username','email','member_id']))) {
+                if (!$user->update($request->only(['name','username','member_id']))) {
                     return redirect()->back();
                 }
             }
