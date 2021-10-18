@@ -136,6 +136,12 @@ class UsersController extends Controller
       return view('users.profile',['item' => $item]);
     }
 
+    public function editPassword()
+    {      
+      $item = auth()->user();
+      return view('users.password-edit',['item' => $item]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

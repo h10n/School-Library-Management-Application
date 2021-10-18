@@ -65,7 +65,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <a class="btn btn-primary" href="{{ url('admin/settings/profile/edit') }}"><span class="ion-edit"></span> Edit</a>
+            <a class="btn btn-primary" href="{{ url('users/password/edit') }}"><span class="ion-key"></span> Ganti Password</a>
           </div>
           <div class="col-md-8">            
           </div>

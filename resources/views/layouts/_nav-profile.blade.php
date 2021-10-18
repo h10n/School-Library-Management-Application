@@ -13,7 +13,7 @@
                     $imgDir = 'storage/uploads/user/';
                 }  
 
-                $imgUrl = $photoData ? asset($imgDir.$photoData) : asset('img/no-avatar-small.svg');                
+                $imgUrl = $photoData ? asset($imgDir.$photoData) : asset('img/icons8-no-camera.svg');                
             @endphp
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">                    
