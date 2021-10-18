@@ -116,6 +116,7 @@ return [
     'uploaded'    => ':attribute gagal diunggah.',
     'url'         => 'Format :attribute tidak valid.',
     'uuid'        => ':attribute harus merupakan UUID yang valid.',
+    'passcheck' => ':attribute tidak valid.',
 
     /*
     |---------------------------------------------------------------------------------------

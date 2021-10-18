@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class ChangePasswordRequest extends FormRequest
 {
     /**
@@ -24,9 +24,9 @@ class ChangePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
-            'confirm_password' => ['same:new_password'],
+            'current_password' => 'required|passcheck:'.auth()->user()->password,
+            'new_password' => 'required',
+            'confirm_password' => 'required|same:new_password',
         ];
     }
 }
