@@ -139,6 +139,10 @@
           </div>
         </div>
       </div>
+      <div class="col-md-12">        
+        <a class="btn bg-olive" href="{{ route('books.edit',$book->id) }}"><span class="ion-edit"> Edit
+            Data</span></a>        
+      </div>
     </div>
   </div>
 </section>

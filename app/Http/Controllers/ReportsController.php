@@ -53,7 +53,7 @@ class ReportsController extends Controller
             $date_from = Carbon::parse($request->from_date)->startOfDay();
             $date_to = Carbon::parse($request->to_date)->endOfDay();
 
-            $data['data'] = $model->whereBetween('created_at', [$date_from->toDateTimeString(), $date_to->toDateTimeString()])->get();
+            $data['data'] = $model->whereBetween('created_at', [$date_from->toDateTimeString(), $date_to->toDateTimeString()])->oldest()->get();
             $data['request']['periode_awal'] = $date_from->formatLocalized('%A, %d-%m-%Y');
             $data['request']['periode_akhir'] = $date_to->formatLocalized('%A, %d-%m-%Y');
         }
