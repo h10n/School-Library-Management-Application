@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Visitor;
 use App\Book;
 use App\BorrowLog;
+use App\Member;
 use App\Setting;
 //use Response;
 use Carbon\Carbon;
@@ -26,9 +27,44 @@ class ReportsController extends Controller
     {
         return view('reports.visitor');
     }
-    public function printExport()
+    public function printExport(Request $request)
     {
-        dd(request()->all());
+ 
+        $data['data'] = [];
+        
+        switch ($request->jenis) {
+            case 'buku':
+                $model = new Book();
+                $bladeTable = '_ekspor-buku-tabel';
+                break;
+            
+            case 'anggota':
+                $model = new Member();
+                $bladeTable = '_ekspor-anggota-tabel';
+                break;
+            
+            default:
+                $model = new Visitor();
+                $bladeTable = '_ekspor-pengunjung-tabel';
+                break;
+        }
+
+        if ($request->from_date != '' && $request->to_date != '') {
+            $date_from = Carbon::parse($request->from_date)->startOfDay();
+            $date_to = Carbon::parse($request->to_date)->endOfDay();
+
+            $data['data'] = $model->whereBetween('created_at', [$date_from->toDateTimeString(), $date_to->toDateTimeString()])->get();
+            $data['request']['periode_awal'] = $date_from->formatLocalized('%A, %d-%m-%Y');
+            $data['request']['periode_akhir'] = $date_to->formatLocalized('%A, %d-%m-%Y');
+        }
+
+        $data['setting'] =  Setting::first();  
+        $data['table'] =  $bladeTable;  
+        $data['request']['jenis'] = $request->jenis;
+
+// dd($data);
+        $pdf = PDF::loadView('pdf.laporan.ekspor', $data)->setPaper('a4', 'potrait');
+        return $pdf->stream("laporan-$request->jenis.pdf", array("Attachment" => false));
     }
     public function transactionReport()
     {

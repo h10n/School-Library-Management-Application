@@ -11,7 +11,7 @@
   <div class="box">
     {{ Form::open(['route' => 'admin.export-cetak', 'method' => 'POST', 'target' => '_blank']) }}
     <div class="box-header">
-      <h3 class="box-title">Eksport</h3>
+      <h3 class="box-title">Ekspor</h3>
       <div class="table-button-custom">        
         <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh"> Reset</span></a>
         {{ Form::hidden('from_date') }}

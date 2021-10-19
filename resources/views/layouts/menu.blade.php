@@ -68,7 +68,7 @@
     <ul class="treeview-menu">
       <li class="{{ (request()->is('admin/export/visitors')) ? 'active' : '' }}"><a href="{{route('admin.export.visitors')}}"><i class="fa {{ (request()->is('admin/export/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Laporan Pengunjung</a></li>
       <li class="{{ (request()->is('admin/export/transactions')) ? 'active' : '' }}"><a href="{{route('admin.export.transactions')}}"><i class="fa {{ (request()->is('admin/export/transactions')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Laporan Peminjaman Buku</a>
-        <li class="{{ (request()->is('admin/export')) ? 'active' : '' }}"><a href="{{route('admin.export')}}"><i class="fa {{ (request()->is('admin/export')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Eksport</a>
+        <li class="{{ (request()->is('admin/export')) ? 'active' : '' }}"><a href="{{route('admin.export')}}"><i class="fa {{ (request()->is('admin/export')) ? 'fa-circle' : 'fa-circle-o' }}"></i> Ekspor</a>
       </li>
     </ul>
   </li>  
