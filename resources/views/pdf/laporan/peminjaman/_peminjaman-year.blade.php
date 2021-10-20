@@ -1,6 +1,7 @@
 <h3>Rekapitulasi Peminjaman Buku </h3>
 <h5>Tahun : {{ $tahun }}</h5>
 <table class="laporanTable">
+    <thead>
     <tr>
         <th>No</th>
         <th>Bulan</th>
@@ -8,6 +9,8 @@
         <th>Jumlah Buku Kembali</th>
         <th>Ket</th>
     </tr>
+    </thead>
+    <tbody>
     @php
     $total_peminjaman = 0;
     $total_pengembalian = 0;
@@ -36,4 +39,5 @@
         <td>{{ $total_pengembalian }}</td>
         <td></td>
     </tr>
+    </tbody>
 </table>

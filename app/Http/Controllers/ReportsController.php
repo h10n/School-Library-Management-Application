@@ -11,7 +11,7 @@ use App\Setting;
 //use Response;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -75,6 +75,13 @@ class ReportsController extends Controller
         if ($request->from_date != '' && $request->to_date != '') {
             $date_from = Carbon::parse($request->from_date)->startOfDay();
             $date_to = Carbon::parse($request->to_date)->endOfDay();
+
+            //simpler using carbon period instead while do
+            // $period = CarbonPeriod::create($date_from, $date_to);
+            // foreach ($period as $date) {
+            //     $days[$date->formatLocalized('%A, %d-%m-%Y')] = $date->format('Y-m-d');
+            // }
+            // dd($days);
 
             do {
               $days[$date_from->formatLocalized('%A, %d-%m-%Y')] = $date_from->format('Y-m-d');

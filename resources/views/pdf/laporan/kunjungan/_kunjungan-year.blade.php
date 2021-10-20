@@ -1,12 +1,15 @@
 <h3>Rekapitulasi Jumlah Pengunjung </h3>
 <h5>Tahun : {{ $tahun }}</h5>
 <table class="laporanTable">
+    <thead>
     <tr>
         <th>No</th>
         <th>Bulan</th>
         <th>Jumlah Pengunjung</th>
         <th>Ket</th>
     </tr>
+    </thead>
+    <tbody>
     @php
     $total_jumlah = 0;
     $no = 0;
@@ -31,4 +34,5 @@
         <td>{{ $total_jumlah }}</td>
         <td></td>
     </tr>
+    </tbody>
 </table>

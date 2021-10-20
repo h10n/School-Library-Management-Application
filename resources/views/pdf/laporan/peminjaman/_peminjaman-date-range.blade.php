@@ -3,6 +3,7 @@
 {{-- deprecated, min php 7.3--}}
 {{-- <h5>Periode : {{ $firstKey = array_key_first($transaction_bulanan) }} s.d {{ $firstKey = array_key_last($transaction_bulanan) }}</h5> --}}
 <table class="laporanTable">
+    <thead>
     <tr>
         <th>No</th>
         <th>Hari / Tanggal</th>
@@ -10,6 +11,8 @@
         <th>Jumlah Buku Kembali</th>
         <th>Keterangan</th>
     </tr>
+    </thead>
+    <tbody>
     @php
     // $total = '';
     $total_peminjaman = 0;
@@ -39,4 +42,5 @@
         <td>{{ $total_pengembalian }}</td>
         <td></td>
     </tr>
+    </tbody>
 </table>
