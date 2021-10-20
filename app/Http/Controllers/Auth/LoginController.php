@@ -30,7 +30,7 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole(['admin', 'staff'])) {
             return redirect()->route('dashboard.index');
         } elseif ($user->hasRole('visitor')) {
             return redirect()->route('visitors.guest-book');
