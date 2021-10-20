@@ -25,7 +25,7 @@
                         <img src="{{ $imgUrl }}" class="img-circle" alt="User Image">                        
                         <p>
                             {{ $user->name }}
-                            <small>Login Terakhir {{ $user->last_login->format('d-m-Y H:i') }}</small>
+                            <small>{{ $user->last_login ? 'Login Terakhir '.$user->last_login->format('d-m-Y H:i') : '' }}</small>
                         </p>
                     </li>
                     <!-- Menu Body -->

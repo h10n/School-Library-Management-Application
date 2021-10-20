@@ -113,9 +113,9 @@
           </div>
           <div class="col-md-8">
 
-            @if ($book->source=='S')
+            @if ($book->source=='hadiah')
             <p>Hadiah</p>
-            @elseif ($book->source=='P')
+            @elseif ($book->source=='pengadaan')
             <p>Pengadaan</p>
             @endif
           </div>

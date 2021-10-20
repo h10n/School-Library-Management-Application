@@ -25,7 +25,7 @@ class CreateBooksTable extends Migration
             $table->string('published_location')->nullable();
             $table->string('classification_code')->nullable();
             $table->char('initial',1)->nullable();
-            $table->char('source',1)->nullable();
+            $table->string('source',10)->nullable();
             $table->string('no_induk',60)->unique()->nullable();
             $table->integer('amount')->unsigned()->nullable();
             $table->string('cover')->nullable();

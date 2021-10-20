@@ -101,7 +101,7 @@
 <div class="form-group{{$errors->has('source') ? ' has-error' : ''}}">
   {!! Form::label('source','Sumber',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-2">
-    {!! Form::select('source',['' => '','P' => 'Pengadaan','S' => 'Hadiah'],null,['class' =>
+    {!! Form::select('source',['' => '','pengadaan' => 'Pengadaan','hadiah' => 'Hadiah'],null,['class' =>
     'js-selectize','placeholder' => 'Pilih Sumber']) !!}
     {!! $errors->first('source','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
