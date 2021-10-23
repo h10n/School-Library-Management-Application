@@ -24,13 +24,13 @@
             <td>{{ $item->tgl_terdaftar }}</td>
             <td>{{ $item->no_induk }}</td>
             <td>{{ $item->title }}</td>
-            <td>{{ $item->author->name ?? '' }}</td>
+            <td>{{ $item->author->name ?? '-' }}</td>
             <td>{{ $item->published_location }}</td>            
-            <td>{{ $item->publisher->name ?? '' }}</td>
+            <td>{{ $item->publisher->name ?? '-' }}</td>
             <td>{{ $item->published_year }}</td>
             <td>{{ $item->book_year }}</td>
             <td>{{ $item->classification_code }}</td>
-            <td>{{ $item->category->name ?? '' }}</td>
+            <td>{{ $item->category->name ?? '-' }}</td>
             <td>{{ $item->source }}</td>
             <td>{{ $item->amount }}</td>
             <td>{{ $item->stock }}</td>            

@@ -19,7 +19,7 @@
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $item->tgl_peminjaman }}</td>
-            <td>{{ $item->member->no_induk ?? '' }}</td>
+            <td>{{ $item->member->no_induk ?? '-' }}</td>
             <td>{{ $item->member->name ?? '-' }}</td>
             <td>{{ $item->book->no_induk ?? '-' }}</td>
             <td>{{ $item->book->title ?? '-' }}</td>            
