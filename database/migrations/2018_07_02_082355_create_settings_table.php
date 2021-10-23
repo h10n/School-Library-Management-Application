@@ -28,7 +28,7 @@ class CreateSettingsTable extends Migration
             $table->integer('denda')->nullable();
             $table->integer('durasi')->nullable();
 		    $table->integer('max_peminjaman')->nullable();
-            $table->string('logo')->nullable();
+            $table->text('logo')->nullable();
             $table->timestamps();
         });
     }

@@ -152,14 +152,14 @@
     </div>
 
     <div class="form-group{{ $errors->has('denda') ? ' has-error' : '' }}">
-      {!! Form::label('denda', 'Denda (Rp)', ['class' => 'col-md-2 control-label']) !!}
+      {!! Form::label('denda', 'Denda (Rp/Hari)', ['class' => 'col-md-2 control-label']) !!}
       <div class="col-md-2">
         {!! Form::text('denda',null,['class' => 'form-control']) !!}
         {!! $errors->first('denda','<p class="help-block">:message</p>') !!}
       </div>
     </div>
     <div class="form-group{{ $errors->has('durasi') ? ' has-error' : '' }}">
-      {!! Form::label('durasi', 'Durasi (hari)', ['class' => 'col-md-2 control-label']) !!}
+      {!! Form::label('durasi', 'Durasi (Hari)', ['class' => 'col-md-2 control-label']) !!}
       <div class="col-md-1">
         {!! Form::text('durasi',null,['class' => 'form-control']) !!}
         {!! $errors->first('durasi','<p class="help-block">:message</p>') !!}
