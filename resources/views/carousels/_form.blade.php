@@ -1,7 +1,7 @@
 <div class="form-group{{$errors->has('title') ? ' has-error' : ''}}">
   {!! Form::label('title','Title',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::text('title',null,['class' => 'form-control','maxlength' => '40']) !!}
+    {!! Form::text('title',null,['class' => 'form-control','maxlength' => '50']) !!}
     {!! $errors->first('title','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>

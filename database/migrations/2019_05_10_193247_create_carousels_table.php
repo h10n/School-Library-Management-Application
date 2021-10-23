@@ -17,7 +17,7 @@ class CreateCarouselsTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->text('text')->nullable();
-            $table->string('img')->nullable();
+            $table->text('img')->nullable();
             $table->timestamps();
         });
     }
