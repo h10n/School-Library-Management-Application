@@ -82,8 +82,8 @@
           <div class="col-md-4">
             Max Tanggal Pengembalian
           </div>
-          <div class="col-md-8">
-            {{ $max_return->format('d-m-Y') }}
+          <div class="col-md-8">            
+            {{ $transaction->tgl_max }}
           </div>
         </div>
         <div class="row">
@@ -91,11 +91,7 @@
             Status
           </div>
           <div class="col-md-8">
-            @if ($transaction->is_returned)
-            Telah Dikembalikan Pada {{$transaction->updated_at}}
-            @else
-            Sedang Dipinjam
-            @endif
+            {{ $transaction->status }}            
           </div>
         </div>
         <div class="row">
@@ -103,7 +99,7 @@
             Denda
           </div>
           <div class="col-md-8">
-            {{$total_denda}}
+            {{ $transaction->total_denda }}       
           </div>
         </div>
       </div>

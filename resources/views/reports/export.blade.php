@@ -50,6 +50,12 @@
             Buku
           </label>
         </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="jenis" id="peminjaman" value="peminjaman">
+            Peminjaman
+          </label>
+        </div>
         </div>
           {!! $errors->first('jenis','<p class="help-block"><strong>:message</strong></p>') !!}      
       </div>

@@ -42,6 +42,11 @@ class ReportsController extends Controller
                 $model = new Member();
                 $bladeTable = '_ekspor-anggota-tabel';
                 break;
+
+            case 'peminjaman':
+                $model = new BorrowLog();
+                $bladeTable = '_ekspor-peminjaman-tabel';
+                break;
             
             default:
                 $model = new Visitor();

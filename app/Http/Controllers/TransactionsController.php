@@ -28,49 +28,7 @@ class TransactionsController extends Controller
        //jika ada ->get() maka filternya gk jalan, tapi jika dihapus maka id peminjamanya salah, dan ->latest('updated_at') gk fungsi
        if ($request->get('status') == 'returned') $stats->returned();
        if ($request->get('status') == 'not-returned') $stats->borrowed();
-       return Datatables::of($stats)
-       ->addColumn('returned_at', function($stat){
-        //  if ($stat->is_returned) {
-        //    return "-";
-        //  }
-         $setting = Setting::find('1');
-          $tgl_pinjam = $stat->created_at;
-          $durasi = $setting->durasi;
-          $max_return = $tgl_pinjam->addDays($durasi);
-          return $tgl_pinjam->format('d-m-Y');
-       })
-       ->addColumn('status', function($stat){
-  if ($stat->is_returned) {
-    return "Dikembalikan Pada ".$stat->updated_at->format('d-m-Y');
-  }
-  return "Sedang Dipinjam";
-})
-       ->addColumn('denda', function($stat){
-         $setting = Setting::find('1');
-         //jadikan satu fungsi
-         if ($stat->is_returned) {
-           $start_time =  $stat->created_at;
-           $finish_time = $stat->updated_at;
-           $result = $start_time->diffInDays($finish_time, false);
-           if ($result > $setting->durasi) {
-               $telat = $result - $setting->durasi;
-           return $denda = $telat * $setting->denda;
-         }else {
-           return "0";
-         }
-       }else {
-         $start_time =  $stat->created_at;
-         $finish_time = Carbon::now();
-         $result = $start_time->diffInDays($finish_time, false);
-         if ($result > $setting->durasi) {
-             $telat = $result - $setting->durasi;
-         return $denda = $telat * $setting->denda;
-       }else {
-         return "0";
-       }
-       }
-         return "0";
-       })
+       return Datatables::of($stats)       
        ->addColumn('action',function($stat){
          return view('datatable._transaction-action',[
            'model' => $stat,
@@ -91,9 +49,9 @@ class TransactionsController extends Controller
      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Peminjam'])
      ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Judul'])
      ->addColumn(['data' => 'tgl_peminjaman', 'name' => 'tgl_peminjaman', 'title' => 'Tanggal Peminjaman','searchable' => false, 'orderable' => true])
-     ->addColumn(['data' => 'returned_at', 'name' => 'returned_at', 'title' => 'Max Tanggal Pengembalian','searchable' => false, 'orderable' => false])
-     ->addColumn(['data' => 'status', 'name' => 'tatus', 'title' => 'Status','searchable' => false, 'orderable' => false])
-     ->addColumn(['data' => 'denda', 'name' => 'denda', 'title' => 'Denda','searchable' => false, 'orderable' => false])
+     ->addColumn(['data' => 'tgl_max', 'name' => 'tgl_max', 'title' => 'Max Tanggal Pengembalian'])
+     ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status'])
+     ->addColumn(['data' => 'total_denda', 'name' => 'total_denda', 'title' => 'Denda','searchable' => false, 'orderable' => true])
      ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false ]);
      return view('transactions.index')->with(compact('html'));
     }
@@ -153,37 +111,8 @@ class TransactionsController extends Controller
 
     public function show($id)
     {
-      $transaction = BorrowLog::with(['Book','Member','User'])->where('id',$id)->first();
-      //jadikan satu fungsi
-      $setting = Setting::find('1');
-
-      $tgl_pinjam = $transaction->created_at;
-      $durasi = $setting->durasi;
-      $max_return = $tgl_pinjam->addDays($durasi);
-//jadikan satu fungsi
-
-      if ($transaction->is_returned) {
-        $start_time =  $transaction->created_at;
-        $finish_time = $transaction->updated_at;
-        $result = $start_time->diffInDays($finish_time, false);
-        if ($result > $setting->durasi) {
-        $telat = $result - $setting->durasi;
-        $total_denda = $telat * $setting->denda;
-      }else {
-        $total_denda = "0";
-      }
-    }else {
-      $start_time =  $transaction->created_at;
-      $finish_time = Carbon::now();
-      $result = $start_time->diffInDays($finish_time, false);
-      if ($result > $setting->durasi) {
-          $telat = $result - $setting->durasi;
-      $total_denda = $telat * $setting->denda;
-    }else {
-      $total_denda = "0";
-    }
-    }
-      return view('transactions.show', compact('transaction','total_denda','max_return'));
+      $transaction = BorrowLog::with(['Book','Member','User'])->where('id',$id)->first();          
+      return view('transactions.show', compact('transaction'));
     }
 
     public function edit($id)

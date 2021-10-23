@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class BorrowLog extends Model
 {
-    protected $appends = ['tgl_peminjaman', 'tgl_kembali', 'tgl_max', 'total_denda'];
+    protected $appends = ['tgl_peminjaman', 'tgl_kembali', 'tgl_max', 'total_denda', 'status'];
     protected $fillable = ['book_id','member_id','user_id','is_returned'];
     protected $casts = ['is_returned' => 'boolean'];
     public function book()
@@ -36,6 +36,17 @@ class BorrowLog extends Model
     {
         $setting = Setting::first();        
         return $this->created_at->addDays($setting->durasi)->format('d-m-Y');
+    }
+
+    public function getStatusAttribute()
+    {        
+      if ($this->is_returned){
+        $status = 'Telah Dikembalikan Pada '.$this->updated_at->format('d-m-Y');
+      }else{
+        $status = 'Sedang Dipinjam';
+      }
+                    
+        return $status;
     }
     public function getTotalDendaAttribute()
     {
