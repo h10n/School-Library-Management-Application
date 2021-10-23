@@ -28,7 +28,7 @@ class CreateBooksTable extends Migration
             $table->string('source',10)->nullable();
             $table->string('no_induk',60)->unique()->nullable();
             $table->integer('amount')->unsigned()->nullable();
-            $table->string('cover')->nullable();
+            $table->text('cover')->nullable();
             $table->timestamps();
 
 

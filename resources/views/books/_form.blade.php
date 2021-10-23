@@ -71,7 +71,7 @@
 <div class="form-group{{$errors->has('classification_code') ? ' has-error' : ''}}">
   {!! Form::label('classification_code','No Klasifikasi',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-3">
-    {!! Form::text('classification_code',null,['class' => 'form-control','maxlength' => '10']) !!}
+    {!! Form::text('classification_code',null,['class' => 'form-control','maxlength' => '15']) !!}
     {!! $errors->first('classification_code','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>

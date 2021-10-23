@@ -197,6 +197,7 @@ class TransactionsController extends Controller
       $transaction = BorrowLog::findOrFail($id);
       if ($transaction) {
         $transaction->is_returned = true;
+        $transaction->user_returned_id =  Auth::user()->id;
         $transaction->save();
 
         Session::flash("flash_notification",[

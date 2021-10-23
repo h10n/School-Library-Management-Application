@@ -56,11 +56,18 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Petugas
+            Petugas Peminjaman
           </div>
           <div class="col-md-8">
             {{ $transaction->user->name }}
-
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            Petugas Pengembalian
+          </div>
+          <div class="col-md-8">
+            {{ $transaction->userReturned->name ?? '-' }}
           </div>
         </div>
         <div class="row">

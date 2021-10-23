@@ -37,6 +37,11 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\BorrowLog');
     }
+
+    public function borrowLogsReturned()
+    {
+        return $this->hasMany('App\BorrowLog', 'user_returned_id');
+    }
     public function borrow(Book $book)
     {
       //apakah masih ada stok bagus nya sebelum adtau sesudah ya?

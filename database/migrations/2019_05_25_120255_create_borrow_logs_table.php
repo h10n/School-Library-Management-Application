@@ -22,6 +22,8 @@ class CreateBorrowLogsTable extends Migration
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('user_id')->unsigned()->index()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('user_returned_id')->unsigned()->nullable();
+            $table->foreign('user_returned_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('is_returned')->default(false);
             $table->timestamps();
         });

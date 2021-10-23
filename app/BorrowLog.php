@@ -18,6 +18,12 @@ class BorrowLog extends Model
     {
       return $this->belongsTo('App\User');
     }
+
+    public function userReturned()
+    {        
+        return $this->belongsTo('App\User', 'user_returned_id');
+    }
+
     public function member()
     {
       return $this->belongsTo('App\Member');
