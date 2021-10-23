@@ -12,7 +12,7 @@ $factory->define(App\Visitor::class, function (Faker $faker) {
     return [
         'no_induk' => $faker->unique()->randomNumber($nbDigits = 7),
         'name' => $faker->firstName." ".$faker->lastName,
-        'jenis_anggota' => $jenis_anggota,
+        'jenis' => $jenis_anggota,
         'kelas' => $kelas,
         'keperluan' => "Membaca Buku",
         'created_at' => $faker->dateTimeBetween($startDate = '-60 days', $endDate = 'now', $timezone = 'Asia/Makassar'),

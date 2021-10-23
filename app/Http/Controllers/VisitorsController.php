@@ -59,8 +59,8 @@ class VisitorsController extends Controller
           'title' => 'Nama'
         ])
         ->addColumn([
-          'data' => 'jenis_anggota',
-          'name' => 'jenis_anggota',
+          'data' => 'jenis',
+          'name' => 'jenis',
           'title' => 'Jenis Anggota'
         ])
         ->addColumn([

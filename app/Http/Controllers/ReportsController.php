@@ -96,7 +96,7 @@ class ReportsController extends Controller
               $kelas_x = Visitor::whereDate('created_at', '=', $hari)->where('kelas', 'X')->get()->count();
               $kelas_xi = Visitor::whereDate('created_at', '=', $hari)->where('kelas', 'XI')->get()->count();
               $kelas_xii = Visitor::whereDate('created_at', '=', $hari)->where('kelas', 'XII')->get()->count();
-              $guru_staff = Visitor::whereDate('created_at', '=', $hari)->where('jenis_anggota', 'guru/staff')->get()->count();
+              $guru_staff = Visitor::whereDate('created_at', '=', $hari)->where('jenis', 'guru/staff')->get()->count();
               $jumlah = $kelas_x+$kelas_xi+$kelas_xii+$guru_staff;
               $data[$key] = ['kelas_x' => $kelas_x, 'kelas_xi' => $kelas_xi, 'kelas_xii' => $kelas_xii, 'guru_staff' => $guru_staff, 'jumlah' => $jumlah];
           }

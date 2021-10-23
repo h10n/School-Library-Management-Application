@@ -17,7 +17,7 @@ class CreateVisitorsTable extends Migration
             $table->increments('id');
             $table->string('no_induk')->nullable();
             $table->string('name')->nullable();
-            $table->string('jenis_anggota')->nullable();
+            $table->string('jenis')->nullable();
             $table->string('kelas')->default('');
             $table->string('keperluan')->nullable();
             $table->timestamps();

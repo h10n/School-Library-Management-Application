@@ -27,8 +27,8 @@ class VisitorRequest extends FormRequest
             'no_induk' => 'required|numeric',
             'name' => 'required',
             'keperluan' => 'required',
-            'jenis_anggota' => 'required',
-            'kelas' => 'nullable|required_unless:jenis_anggota,guru/staff|in:X,XI,XII'
+            'jenis' => 'required',
+            'kelas' => 'nullable|required_unless:jenis,guru/staff|in:X,XI,XII'
         ];
         
         return $rules;

@@ -17,7 +17,7 @@
             <td>{{ $item->tgl_terdaftar }}</td>
             <td>{{ $item->no_induk }}</td>
             <td>{{ $item->name }}</td>
-            <td>{{ $item->jenis_anggota }}</td>
+            <td>{{ $item->jenis }}</td>
             <td>{{ $item->kelas }}</td>
             <td>{{ $item->keperluan }}</td>
         </tr>
