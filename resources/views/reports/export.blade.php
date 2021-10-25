@@ -4,14 +4,14 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Eksport</li>
+    <li class="active">Ekspor Data</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     {{ Form::open(['route' => 'admin.export-cetak', 'method' => 'POST', 'target' => '_blank']) }}
     <div class="box-header">
-      <h3 class="box-title">Ekspor</h3>
+      <h3 class="box-title">Ekspor Data</h3>
       <div class="table-button-custom">        
         <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh"> Reset</span></a>
         {{ Form::hidden('from_date') }}
