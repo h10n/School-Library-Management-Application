@@ -24,7 +24,7 @@ class MembersController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $members = Member::latest('updated_at')->get();            
+            $members = Member::with('user')->latest('updated_at')->get();            
             return Datatables::of($members)
         ->addColumn('action', function ($member) {
             return view('datatable._member-action', [
@@ -79,9 +79,9 @@ class MembersController extends Controller
         'title' => 'Jurusan'
       ])             
       ->addColumn([
-        'data' => 'phone',
-        'name' => 'phone',
-        'title' => 'No Telepon'
+        'data' => 'user.username',
+        'name' => 'user.username',
+        'title' => 'Username'
       ])
       ->addColumn([
         'data' => 'tgl_terdaftar',

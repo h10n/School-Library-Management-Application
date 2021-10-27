@@ -2,7 +2,7 @@
 
 use App\Member;
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class MembersSeeder extends Seeder
 {
     /**
@@ -45,5 +45,12 @@ Member::create(['no_induk' => '197104',  'name' => 'Al-Farisi', 'kelas' => '12',
 Member::create(['no_induk' => '197105',  'name' => 'Akbar Wahyu Firdaus', 'kelas' => '12', 'jurusan' => 'TKJ', 'jenis_anggota' => 'siswa/i', 'address' => '', 'email' => 'Akbar_Wahyu_Firdaus@perpus.com', 'phone' => '', 'photo' => '']);
 Member::create(['no_induk' => '207220',  'name' => 'Muhammad Erwin Maulana', 'kelas' => '12', 'jurusan' => 'TKJ', 'jenis_anggota' => 'siswa/i', 'address' => '', 'email' => 'Muhammad_Erwin_Maulana@perpus.com', 'phone' => '', 'photo' => '']);
 
+$members =  Member::all();
+foreach ($members as $key => $member) {
+    $random = Carbon::today()->subDays(rand(0, 90));
+    $member->created_at = $random;
+    $member->updated_at = $random;
+    $member->save();
+}
     }
 }

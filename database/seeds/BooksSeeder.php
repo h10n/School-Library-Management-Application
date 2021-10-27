@@ -8,6 +8,7 @@ use App\User;
 use App\Publisher;
 use App\Category;
 use App\BorrowLog;
+use Carbon\Carbon;
 
 class BooksSeeder extends Seeder
 {
@@ -72,7 +73,7 @@ Book::create(['no_induk' => '4265','title' => 'Masa Prakemerdekaan Putra Sang Fa
 Book::create(['no_induk' => '4270','title' => 'Masa Kemerdekaan Putra Sang Fajar','author_id' => '971', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2006', 'book_year' => '2006','classification_code' => '950007', 'initial' => 'M','amount' => '5','category_id' => '89', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '4275','title' => 'Masa Pemerintahan Putra Sang Fajar','author_id' => '971', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2006', 'book_year' => '2006','classification_code' => '950008', 'initial' => 'M','amount' => '4','category_id' => '89', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '4279','title' => 'Masa Senja Putra Sang Fajar','author_id' => '971', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2006', 'book_year' => '2006','classification_code' => '950009', 'initial' => 'M','amount' => '5','category_id' => '89', 'cover' => '', 'source' => '']);
-Book::create(['no_induk' => '4284','title' => 'Bung Hatta Masa Kecil','author_id' => '149', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2009', 'book_year' => '2009','classification_code' => '950010', 'initial' => 'B','amount' => '5','category_id' => '89', 'cover' => '', 'source' => '']);
+Book::create(['no_induk' => '4284','title' => 'Bung Hatta Masa Kecil','author_id' => '149', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2009', 'book_year' => '2009','classification_code' => '950010', 'initial' => 'B','amount' => '5','category_id' => '89', 'cover' => 'f1f426bcebbc90cc85071e360afb968d.jpg', 'source' => '']);
 Book::create(['no_induk' => '4289','title' => 'Bung Hatta Masa Remaja','author_id' => '149', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2009', 'book_year' => '2009','classification_code' => '950011', 'initial' => 'B','amount' => '5','category_id' => '89', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '4294','title' => 'Bung Hatta Masa Pemuda','author_id' => '149', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2009', 'book_year' => '2009','classification_code' => '950012', 'initial' => 'B','amount' => '5','category_id' => '89', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '4299','title' => 'Bung Hatta Masa Prakemerdekaan','author_id' => '149', 'publisher_id' => '360', 'published_location' => 'Bandung', 'published_year' => '2009', 'book_year' => '2009','classification_code' => '950013', 'initial' => 'B','amount' => '5','category_id' => '89', 'cover' => '', 'source' => '']);
@@ -105,6 +106,14 @@ Book::create(['no_induk' => '4373','title' => 'Kurs Gua batugamping, sungai bawa
 // Book::create(['no_induk' => '4377','title' => 'mengenal kegiatan distribusi','author_id' => '1142', 'publisher_id' => '', 'published_location' => '', 'published_year' => '', 'book_year' => '','classification_code' => '960005', 'initial' => 'M','amount' => '2','category_id' => '86', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '4379','title' => 'Minyak bumi','author_id' => '698', 'publisher_id' => '71', 'published_location' => 'Yogyakarta', 'published_year' => '2008', 'book_year' => '2008','classification_code' => '960006', 'initial' => 'M','amount' => '2','category_id' => '86', 'cover' => '', 'source' => '']);
 Book::create(['no_induk' => '18115','title' => 'Geografi untuk SMA/MA Kelas X ( K-13 )','author_id' => '620', 'publisher_id' => '284', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'G','amount' => '1','category_id' => '86', 'cover' => '', 'source' => '']);
-Book::create(['no_induk' => '18220','title' => 'Atlas Indonesia dan Dunia Edisi 33 Provinsi di indonesia','author_id' => '179', 'publisher_id' => '47', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'A','amount' => '1','category_id' => '86', 'cover' => '', 'source' => '']);
-    }
+Book::create(['no_induk' => '18220','title' => 'Atlas Indonesia dan Dunia Edisi 33 Provinsi di indonesia','author_id' => '179', 'publisher_id' => '47', 'published_location' => 'Jakarta', 'published_year' => '2013', 'book_year' => '2013','classification_code' => '960.007.001', 'initial' => 'A','amount' => '1','category_id' => '86', 'cover' => 'fa28720b6c19f75b070085bc3fec6fab.jpg', 'source' => '']);
+
+$books =  Book::all();
+foreach ($books as $key => $book) {
+    $random = Carbon::today()->subDays(rand(0, 90));
+    $book->created_at = $random;
+    $book->updated_at = $random;
+    $book->save();
+}
+}
 }

@@ -40,14 +40,6 @@
   </div>      
   <div class="row">
     <div class="col-md-4">
-      Alamat
-    </div>
-    <div class="col-md-8">
-      {{ $member->address }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
       E-mail
     </div>
     <div class="col-md-8">
@@ -62,3 +54,20 @@
       {{ $member->phone }}
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      Alamat
+    </div>
+    <div class="col-md-8">
+      {{ $member->address }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      Username
+    </div>
+    <div class="col-md-8">
+      {{ $member->user->username ?? '' }}
+    </div>
+  </div>
+  
