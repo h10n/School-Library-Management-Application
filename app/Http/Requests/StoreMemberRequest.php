@@ -27,9 +27,9 @@ class StoreMemberRequest extends FormRequest
          return [
                'no_induk' => 'required|numeric|unique:members,no_induk',
                'name' => 'required|regex:/^[\pL\s]+$/u',
-               'address' => 'required',
+            //    'address' => 'required',
                'email' => 'required|email|unique:members,email',
-               'phone' => 'required|numeric',
+            //    'phone' => 'required|numeric',
                'photo' => 'image|max:2048',
                'username' => 'required',
                'password' => 'required'

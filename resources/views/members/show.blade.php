@@ -20,11 +20,11 @@
       </div>
     </div>
     <div class="box-body">
-      <div class="col-md-2">
-        @if (isset($member) && $member->photo)
-        <p>{!! Html::image(asset('img/members_photo/'.$member->photo),null,['class' => 'img-fluid member-photo']) !!}
-        </p>
-        @endif
+      <div class="col-md-2">        
+        @php
+            $avatarImg = !empty($member->photo) ? asset('img/members_photo/'.$member->photo) : asset('img/no-avatar-small.svg');
+        @endphp
+        <p>{!! Html::image($avatarImg,null,['class' => 'img-fluid member-photo']) !!}</p>        
       </div>
       <div class="col-md-10 detail-buku">
         @include('members._detail-show')
