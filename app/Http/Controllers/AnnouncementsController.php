@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Announcement;
+use App\Http\Requests\AnnouncementRequest;
 use App\Traits\FlashNotificationTrait;
 use Illuminate\Support\Facades\Storage;
 use Session;
@@ -57,7 +58,7 @@ class AnnouncementsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnnouncementRequest $request)
     {
         $this->validate($request, array(
           'text'=>'max:225',
@@ -100,7 +101,7 @@ class AnnouncementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AnnouncementRequest $request, $id)
     {
         $announcement = Announcement::find($id);
         $this->validate($request, array(

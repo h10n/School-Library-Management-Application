@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class StoreCategoryRequest extends FormRequest
+class AnnouncementRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -25,8 +24,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-        //   'classification_code' => 'required|unique:categories',
-          'name' => 'required|string|max:80|unique:categories'
+            'text' => 'required|string|max:220|unique:announcements,text,'.$this->route('announcement')
         ];
     }
 }
