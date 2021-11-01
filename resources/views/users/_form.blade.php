@@ -4,7 +4,7 @@
 <div class="form-group{{$errors->has('name') ? ' has-error' : ''}}">
   {!! Form::label('name','Nama',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::text('name',null,['class' => 'form-control','maxlength' => '45']) !!}
+    {!! Form::text('name',null,['class' => 'form-control','maxlength' => '50']) !!}
     {!! $errors->first('name','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
@@ -26,7 +26,7 @@
 <div class="form-group{{$errors->has('username') ? ' has-error' : ''}}">
   {!! Form::label('username','Username',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::text('username',null,['class' => 'form-control','maxlength' => '15']) !!}
+    {!! Form::text('username',null,['class' => 'form-control','maxlength' => '30']) !!}
     {{-- {!! Form::text('username',old('username', $member->user->username ?? ''),['class' => 'form-control','maxlength' => '15']) !!} --}}
     {!! $errors->first('username','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
@@ -34,7 +34,7 @@
 <div class="form-group{{$errors->has('password') ? ' has-error' : ''}}">
   {!! Form::label('password','Password',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::password('password',['class' => 'form-control','maxlength' => '15']) !!}
+    {!! Form::password('password',['class' => 'form-control']) !!}
     {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>

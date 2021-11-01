@@ -25,14 +25,14 @@ class UsersRequest extends FormRequest
     {                  
         // dd($this->route('user')->id ?? '');      
         $rules = [
-            'name' => 'required',            
-            'username' => 'required|unique:users,username,'. ($this->route('user')->id ?? ''),            
+            'name' => 'required|string|max:50',
+            'username' => 'required|string|max:30|unique:users,username,'. ($this->route('user')->id ?? ''),
             'role' => 'required',
             // 'email' => 'required|unique:users,email',
         ];
 
         if ($this->isMethod('post')) {            
-            $rules['password'] = 'required';            
+            $rules['password'] = 'required';
         }
         return $rules;
     }
