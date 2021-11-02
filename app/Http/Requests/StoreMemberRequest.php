@@ -25,14 +25,18 @@ class StoreMemberRequest extends FormRequest
      public function rules()
      {
          return [
-               'no_induk' => 'required|numeric|unique:members,no_induk',
-               'name' => 'required|regex:/^[\pL\s]+$/u',
-            //    'address' => 'required',
-               'email' => 'required|email|unique:members,email',
-            //    'phone' => 'required|numeric',
-               'photo' => 'image|max:2048',
-               'username' => 'required',
-               'password' => 'required'
+               'no_induk' => 'required|digits_between:1,20|numeric|unique:members,no_induk',
+               'name' => 'required|string|max:50|regex:/^[\pL\s]+$/u',
+               'kelas' => 'nullable|string|max:10|required_unless:jenis_anggota,guru/staff|in:10,11,12',
+               'jurusan' => 'nullable|string|max:20|required_unless:jenis_anggota,guru/staff',
+               'jenis_anggota' => 'required|string|max:15',
+               'address' => 'string|max:100',
+               'email' => 'required|string|max:60|email|unique:members,email',
+               'phone' => 'numeric|digits_between:1,20',
+               'photo' => 'image|max:5120',
+
+               'username' => 'required|string|max:30|unique:users,username',
+               'password' => 'required',
          ];
      }
  }
