@@ -24,11 +24,11 @@ class VisitorRequest extends FormRequest
     public function rules()
     {        
         $rules = [
-            'no_induk' => 'required|numeric',
-            'name' => 'required',
-            'keperluan' => 'required',
-            'jenis' => 'required',
-            'kelas' => 'nullable|required_unless:jenis,guru/staff|in:X,XI,XII'
+            'no_induk' => 'required|numeric|digits_between:1,20',
+            'name' => 'required|string|max:50',
+            'keperluan' => 'required|string|max:200',
+            'jenis' => 'required|string|max:15',
+            'kelas' => 'nullable|string|max:10|required_unless:jenis,guru/staff|in:X,XI,XII'
         ];
         
         return $rules;

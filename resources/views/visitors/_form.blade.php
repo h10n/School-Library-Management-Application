@@ -1,7 +1,7 @@
 <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
   {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-3">
-    {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '40', 'placeholder' =>
+    {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '20', 'placeholder' =>
     'No Induk']) !!}
     {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
