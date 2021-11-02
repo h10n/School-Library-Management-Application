@@ -30,9 +30,9 @@ class StoreMemberRequest extends FormRequest
                'kelas' => 'nullable|string|max:10|required_unless:jenis_anggota,guru/staff|in:10,11,12',
                'jurusan' => 'nullable|string|max:20|required_unless:jenis_anggota,guru/staff',
                'jenis_anggota' => 'required|string|max:15',
-               'address' => 'string|max:100',
+               'address' => 'nullable|string|max:100',
                'email' => 'required|string|max:60|email|unique:members,email',
-               'phone' => 'numeric|digits_between:1,20',
+               'phone' => 'nullable|numeric|digits_between:1,20',
                'photo' => 'image|max:5120',
 
                'username' => 'required|string|max:30|unique:users,username',
