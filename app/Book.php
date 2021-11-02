@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 class Book extends Model
 {
-    protected $appends = ['tgl_terdaftar'];
+    protected $appends = ['tgl_terdaftar', 'nama_kategori'];
     protected $fillable = ['title','author_id','published_location','publisher_id','published_year','book_year','category_id','classification_code','initial','source','no_induk','amount'];
 
     public function getTglTerdaftarAttribute()
     {
         return $this->created_at->format('d-m-Y');
+    }
+    public function getNamaKategoriAttribute()
+    {
+        return $this->category ? $this->category->name : '';
     }
     public function author()
     {

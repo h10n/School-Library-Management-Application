@@ -50,8 +50,8 @@
         <i class="fa fa-calendar"></i>
       </div>
       {!! Form::text('published_year',null,['class' => 'form-control pull-right','maxlength' => '4']) !!}
-      {!! $errors->first('published_year','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
+    {!! $errors->first('published_year','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 
@@ -63,8 +63,8 @@
         <i class="fa fa-calendar"></i>
       </div>
       {!! Form::text('book_year',null,['class' => 'form-control pull-right','maxlength' => '4']) !!}
-      {!! $errors->first('book_year','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
+    {!! $errors->first('book_year','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 

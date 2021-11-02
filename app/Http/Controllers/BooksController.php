@@ -82,16 +82,21 @@ class BooksController extends Controller
           'name' => 'publisher.name',
           'title' => 'Penerbit'          
         ])
+          ->addColumn([
+            'data' => 'nama_kategori',
+            'name' => 'nama_kategori',
+            'title' => 'Kategori'
+        ])
         ->addColumn([
           'data' => 'published_year',
           'name' => 'published_year',
           'title' => 'Tahun Terbit'
         ])
-        ->addColumn([
-          'data' => 'book_year',
-          'name' => 'book_year',
-          'title' => 'Tahun Buku'
-        ])
+        // ->addColumn([
+        //   'data' => 'book_year',
+        //   'name' => 'book_year',
+        //   'title' => 'Tahun Buku'
+        // ])
         ->addColumn([
           'data' => 'amount',
           'name' => 'amount',

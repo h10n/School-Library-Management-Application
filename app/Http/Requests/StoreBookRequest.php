@@ -26,17 +26,20 @@ class StoreBookRequest extends FormRequest
     {
         // dd(request()->all());
         return [
-              'title' => 'required|unique:books,title',
+              'title' => 'required|string|max:150|unique:books,title',
               'author_id' => 'required|exists:authors,id',
-              'published_location' => 'required|string',
               'publisher_id' => 'required|exists:publishers,id',
-              'published_year' => 'required|date_format:Y',
-              'book_year' => 'required|date_format:Y',
               'category_id' => 'required|exists:categories,id',
+              'published_location' => 'required|string|max:50',
+              'classification_code' => 'nullable|numeric|max:15',
+              'source' => 'max:10',
+              'no_induk' => 'required|string|max:20|unique:books,no_induk',
+              'amount' => 'required|numeric|digits_between:1,10',
+              'cover' => 'image|max:5120',
+              'published_year' => 'required|date_format:Y',
+              'book_year' => 'nullable|date_format:Y',
+              
             //   'initial' => 'required|string|min:1|max:1',
-              'no_induk' => 'required|unique:books,no_induk',
-              'amount' => 'required|numeric',
-              'cover' => 'image|max:2048'
         ];
     }
 }
