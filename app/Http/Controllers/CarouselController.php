@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use App\Carousel;
+use App\Http\Requests\CarouselRequest;
 use App\Traits\FlashNotificationTrait;
 use Illuminate\Support\Facades\Storage;
 
@@ -86,16 +87,12 @@ class CarouselController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $this->validate($request, array(
-            'title'=>'max:225',
-            'text'=>'max:225',
-            'img'=>'required|image',
-          ));
+    public function store(CarouselRequest $request)
+    {     
         $carousel = new Carousel;
         $carousel->title = $request->input('title');
         $carousel->text = $request->input('text');
+ 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
             $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
@@ -104,6 +101,7 @@ class CarouselController extends Controller
 
             $carousel->img = $filename;
         }
+
         $carousel->save();
 
         $this->sendFlashNotification('menambah', $carousel->title);
@@ -140,18 +138,10 @@ class CarouselController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CarouselRequest $request, $id)
     {
-        $carousel = Carousel::find($id);
-        $this->validate($request, array(
-       'title'=>'max:225',
-       'text' =>'max:329',
-      //  'img'=>'required|image'
-    ));
-
-        $carousel = Carousel::where('id', $id)->first();
-
-        $carousel->title = $request->input('title');
+        $carousel = Carousel::find($id);                
+        $carousel->update($request->except(['img']));
 
         if ($request->hasFile('img')) {
             $img = $request->file('img');
@@ -161,22 +151,16 @@ class CarouselController extends Controller
 
             $oldFilename = $carousel->img;
             $carousel->img= $filename;
+            $carousel->save();
+
             if (!empty($carousel->img)) {
                 Storage::delete($oldFilename);
             }
         }
 
-        $carousel->save();
-
         $this->sendFlashNotification('mengubah', $carousel->title);
     
-        return redirect()->route(
-            'carousels.index',
-            $carousel->id
-        )->with(
-            'success',
-            'carousel, '. $carousel->title.' updated'
-        );
+        return redirect()->route('carousels.index');
     }
 
     /**
@@ -191,6 +175,6 @@ class CarouselController extends Controller
         Storage::delete($item->img);
         if(!$item->delete()) return redirect()->back(); 
         $this->sendFlashNotification('menghapus', $item->title);
-        return redirect()->route('carousels.index')->with('success', 'Slide successfully deleted');
+        return redirect()->route('carousels.index');
     }
 }
