@@ -24,10 +24,12 @@ class TransactionsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
       if ($request->ajax()) {
-       $stats = BorrowLog::with(['book','user','member'])->get();
-       //jika ada ->get() maka filternya gk jalan, tapi jika dihapus maka id peminjamanya salah, dan ->latest('updated_at') gk fungsi
-       if ($request->get('status') == 'returned') $stats->returned();
-       if ($request->get('status') == 'not-returned') $stats->borrowed();
+       $stats = BorrowLog::with(['book','user','member'])->latest();
+       //->latest('updated_at') gk fungsi > fixed addIndexColumn
+       if ($request->get('status') == 'returned') $stats = $stats->returned();
+       if ($request->get('status') == 'not-returned') $stats = $stats->borrowed();
+       $stats = $stats->get();
+       //  dd($stats);
        return Datatables::of($stats)       
        ->addColumn('action',function($stat){
          return view('datatable._transaction-action',[
@@ -39,11 +41,25 @@ class TransactionsController extends Controller
            'title' => 'Transactions',
            'confirm_message' => 'Yakin ingin menghapus  ?'
          ]);
-       })->make(true);
+       })
+       ->addIndexColumn()
+       ->make(true);
      }
 
      $html = $htmlBuilder
      //ini kalo dihapus bakalan error V
+     ->addColumn([
+      'defaultContent' => '',
+      'data'           => 'DT_Row_Index',
+      'name'           => 'DT_Row_Index',
+      'title'          => '',
+      'render'         => null,
+      'orderable'      => false,
+      'searchable'     => false,
+      'exportable'     => false,
+      'printable'      => true,
+      'footer'         => '',
+    ])
     //  ->addColumn(['data' => 'transaction_code', 'no_induk' => 'transaction_code', 'title' => 'Kode ']) // <-- ini kalo dihapus bakalan error
      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'NIS/NIP'])
      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Peminjam'])

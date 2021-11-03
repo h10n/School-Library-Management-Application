@@ -33,10 +33,23 @@ class AnnouncementsController extends Controller
              'confirm_message' => 'Yakin ingin menghapus '.$announcement->title.' ?'
            ]);
          })
+         ->addIndexColumn()
          ->make(true);
         }
 
         $html = $htmlBuilder
+        ->addColumn([
+            'defaultContent' => '',
+            'data'           => 'DT_Row_Index',
+            'name'           => 'DT_Row_Index',
+            'title'          => '',
+            'render'         => null,
+            'orderable'      => false,
+            'searchable'     => false,
+            'exportable'     => false,
+            'printable'      => true,
+            'footer'         => '',
+          ])
        ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
        ->addColumn(['data' => 'action','name' => 'action','title' => '','orderable' => false,'searchable' => false]);
         return view('announcements.index')->with(compact('html'));
