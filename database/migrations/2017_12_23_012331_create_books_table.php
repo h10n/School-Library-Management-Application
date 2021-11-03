@@ -35,8 +35,8 @@ class CreateBooksTable extends Migration
 
 
         });
-          DB::statement("ALTER TABLE books ADD published_year YEAR NOT NULL");
-          DB::statement("ALTER TABLE books ADD book_year YEAR NOT NULL");
+          DB::statement("ALTER TABLE books ADD published_year YEAR NULL");
+          DB::statement("ALTER TABLE books ADD book_year YEAR NULL");
 
     }
 
