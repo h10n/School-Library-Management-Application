@@ -63,7 +63,6 @@ class TransactionsController extends Controller
 
     public function store(StoreTransactionsRequest $request)
     {
-
       try {
         $book = Book::FindOrFail($request->get('book_id'));
         $member = Member::find($request->get('member_id'));
@@ -92,21 +91,26 @@ class TransactionsController extends Controller
           "level" => "success",
           "message" => "berhasil meminjam buku $book->title"
         ]);
-      } catch (BookException $e) {
 
+      } catch (BookException $e) {
         Session::flash("flash_notification",[
           "level" => "danger",
           "message" => $e->getMessage()
         ]);
+        return $this->redirectCreatePage();
       } catch (ModelNotFoundException $e) {
-
         Session::flash("flash_notification",[
           "level" => "danger",
           "message" => "Buku tidak Ditemukan"
         ]);
+        return $this->redirectCreatePage();
       }
-      return redirect()->route('transactions.index');
 
+      return redirect()->route('transactions.index');
+    }
+
+    protected function redirectCreatePage(){
+        return redirect()->route('transactions.create');
     }
 
     public function show($id)
