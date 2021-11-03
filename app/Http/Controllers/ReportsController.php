@@ -140,6 +140,7 @@ class ReportsController extends Controller
     }
 
     public function cetakVisitors(Request $request){
+        dd($request->all());
         if ($request->jenis == "bulanan") {
             $visitor_bulanan = $this->visitorReportDataBulanan($request);        
             $data = ['visitor_bulanan' => $visitor_bulanan];  

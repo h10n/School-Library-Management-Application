@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\SettingRequest;
 use Illuminate\Http\Request;
 use App\User;
 use App\Setting;
@@ -123,22 +125,8 @@ if ($request->hasFile('photo')) {
       $setting = Setting::find('1');
       return view('settings.edit-general')->with(compact('setting'));
     }
-    public function updateGeneral(Request $request)
+    public function updateGeneral(SettingRequest $request)
     {
-      //baiki validasi nya
-      //masih kurang pengaturan slide, logo, tema
-      $this->validate($request,[
-        'name' => 'required',
-        'address' => 'required',
-        'website' => 'required',
-        'email' => 'required',
-        'pengelola' => 'required',
-        'about' => 'required',
-        'denda' => 'required',
-        'durasi' => 'required',
-        'max_peminjaman' => 'required'
-      ]);
-
       $setting = Setting::find('1');
       /*
       $setting->update($request->only('name','address','about','denda','durasi'));
