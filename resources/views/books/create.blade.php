@@ -19,8 +19,19 @@
         <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a> --}}
       </div>
     </div>
-    <!-- batas-->
-    <div class="panel-body">
+    <div class="box-body">
+      {!! Form::open([
+        'url' => route('books.store'),
+        'method' => 'POST',
+        'files' => 'true',
+        'class' => 'form-horizontal'
+        ])
+        !!}
+        @include('books._form')
+        {!! Form::close() !!}
+    </div>
+    <!-- panel -->
+    {{-- <div class="panel-body">
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
           <a href="#form" aria-controls="form" role="tab" data-toggle="tab">
@@ -57,7 +68,7 @@
           {!! Form::close() !!}
         </div>
       </div>
-    </div>  
+    </div>   --}}
   </div>
 </section>
 @endsection
