@@ -27,7 +27,7 @@ class VisitorRequest extends FormRequest
             'no_induk' => 'required|numeric|digits_between:1,20',
             'name' => 'required|string|max:50',
             'keperluan' => 'required|string|max:200',
-            'jenis' => 'required|string|max:15',
+            'jenis' => 'required|string|max:15|in:guru/staff,siswa/i',
             'kelas' => 'nullable|string|max:10|required_unless:jenis,guru/staff|in:X,XI,XII'
         ];
         
