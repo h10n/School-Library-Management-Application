@@ -77,7 +77,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-              <input class="form-control" name="report_year" type="text" id="report_year" placeholder="Pilih Tahun">
+              <input class="form-control" name="report_year" type="text" id="report_year" placeholder="Pilih Tahun" maxlength="4">
 
             </div>
           </div>
