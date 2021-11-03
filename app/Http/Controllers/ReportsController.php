@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Visitor;
 use App\Book;
 use App\BorrowLog;
+use App\Http\Requests\ExportRequest;
+use App\Http\Requests\ReportRequest;
 use App\Member;
 use App\Setting;
 //use Response;
@@ -27,9 +29,8 @@ class ReportsController extends Controller
     {
         return view('reports.visitor');
     }
-    public function printExport(Request $request)
+    public function printExport(ExportRequest $request)
     {
- 
         $data['data'] = [];
         
         switch ($request->jenis) {
@@ -139,13 +140,11 @@ class ReportsController extends Controller
         }
     }
 
-    public function cetakVisitors(Request $request){
-        dd($request->all());
+    public function cetakVisitors(ReportRequest $request){        
         if ($request->jenis == "bulanan") {
             $visitor_bulanan = $this->visitorReportDataBulanan($request);        
             $data = ['visitor_bulanan' => $visitor_bulanan];  
-        } elseif ($request->jenis == "tahunan") {
-            // dd($request->all());
+        } elseif ($request->jenis == "tahunan") {            
             $visitor_tahunan = $this->visitorReportDataTahunan($request);        
             $data = ['visitor_tahunan' => $visitor_tahunan,'tahun' => $request->what_year]; 
         }
@@ -154,7 +153,7 @@ class ReportsController extends Controller
         return $pdf->stream("laporan.pdf", array("Attachment" => false));
     } 
 
-    public function cetakTransactions(Request $request){            
+    public function cetakTransactions(ReportRequest $request){            
         if ($request->jenis == "bulanan") {
             $transaction_bulanan = $this->transactionReportDataBulanan($request);        
             $data = ['transaction_bulanan' => $transaction_bulanan];  
