@@ -10,10 +10,10 @@ class Member extends Model
 {
     protected $appends = ['tgl_terdaftar'];
     protected $fillable = ['no_induk','name','kelas','jurusan','jenis_anggota','address','email','phone','photo'];
-    public function books()
-    {
-        return $this->hasMany('App\Book');
-    }
+    // public function books()
+    // {
+    //     return $this->hasMany('App\Book');
+    // }
 
     public function getTitleAttribute($value)
     {
@@ -32,5 +32,20 @@ class Member extends Model
     public function user()
     {
         return $this->hasOne('App\User');
+    }
+
+    public static function boot()
+    {
+      parent::boot();
+      self::deleting(function ($member){
+        if ($member->borrowLogs()->count() > 0) {
+          Session::flash("flash_notification",[
+            "level" => "danger",
+            "message" => "$member->name tidak bisa dihapus karena masih memiliki data transaksi"
+          ]);
+          return false;
+        }
+      });
+
     }
 }
