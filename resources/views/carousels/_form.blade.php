@@ -15,14 +15,14 @@
   </div>
 </div>
 
-<div class="form-group{{$errors->has('img') ? ' has-error' : ''}}">
-  {!! Form::label('img','Foto',['class' => 'col-md-2 control-label']) !!}
+<div class="form-group{{$errors->has('img_file') ? ' has-error' : ''}}">
+  {!! Form::label('img_file','Foto',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::file('img') !!}
-    @if (isset($member) && $member->photo)
-    <p>{!! Html::image(asset('img/members_photo/'.$member->photo),null,['class' => 'img-rounded cover-buku']) !!}</p>
+    {!! Form::file('img_file') !!}
+    {!! $errors->first('img_file','<p class="help-block"><strong>:message</strong></p>') !!}
+    @if (isset($carousel) && $carousel->img)
+    <div style="margin-top: 10px">{!! Html::image(asset('storage/uploads/slider/'.$carousel->img),null,['class' => 'img-rounded cover-buku']) !!}</div>
     @endif
-    {!! $errors->first('img','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 

@@ -8,11 +8,12 @@ use Yajra\Datatables\Datatables;
 use App\Carousel;
 use App\Http\Requests\CarouselRequest;
 use App\Traits\FlashNotificationTrait;
+use App\Traits\UploadFileTrait;
 use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
 {
-    use FlashNotificationTrait;
+    use FlashNotificationTrait,UploadFileTrait;
     /**
      * Display a listing of the resource.
      *
@@ -89,25 +90,36 @@ class CarouselController extends Controller
      */
     public function store(CarouselRequest $request)
     {     
-        $carousel = new Carousel;
-        $carousel->title = $request->input('title');
-        $carousel->text = $request->input('text');
- 
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
-            $location = public_path('img/slider/');
-            $request->file('img')->move($location, $filename);
+        $carousel = Carousel::create($request->all());
+        $this->uploadFile($request, $carousel, 'img_file', 'img', 'slider');
+        // $carousel = new Carousel;
+        // $carousel->title = $request->input('title');
+        // $carousel->text = $request->input('text');
+        // if ($request->hasFile('img')) {
+        //     $img = $request->file('img');
+        //     $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
+        //     $location = public_path('img/slider/');
+        //     $request->file('img')->move($location, $filename);
 
-            $carousel->img = $filename;
-        }
+        //     $carousel->img = $filename;
+        // }
+        // $carousel->save();
 
-        $carousel->save();
 
         $this->sendFlashNotification('menambah', $carousel->title);
         return redirect()->route('carousels.index');
     }
-
+    
+    // protected function uploadPhoto($request, $model, $tmpFileField, $fileField, $dir){
+    //     if ($request->$tmpFileField) {
+    //       $oldfilename = $model->$fileField;
+    //       $fileName = $this->upload($dir, $request->$tmpFileField, $oldfilename);
+    //       if ($fileName) {
+    //           $model->$fileField = $fileName;
+    //           $model->save();
+    //       }            
+    //   }
+    //   }
     /**
      * Display the specified resource.
      *
@@ -140,26 +152,27 @@ class CarouselController extends Controller
      */
     public function update(CarouselRequest $request, $id)
     {
-        $carousel = Carousel::find($id);                
-        $carousel->update($request->except(['img']));
-
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
-            $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
-            $location = public_path('img/slider');
-            $request->file('img')->move($location, $filename);
-
-            $oldFilename = $carousel->img;
-            $carousel->img= $filename;
-            $carousel->save();
-
-            if (!empty($carousel->img)) {
-                Storage::delete($oldFilename);
-            }
+        $carousel = Carousel::find($id);                    
+        if ($carousel->update($request->all())) {            
+            $this->uploadFile($request, $carousel, 'img_file', 'img', 'slider');
+            $this->sendFlashNotification('mengubah', $carousel->title);
         }
 
-        $this->sendFlashNotification('mengubah', $carousel->title);
-    
+        // if ($request->hasFile('img')) {
+        //     $img = $request->file('img');
+        //     $filename = 'slide' . '-' . time() . '.' . $img->getClientOriginalExtension();
+        //     $location = public_path('img/slider');
+        //     $request->file('img')->move($location, $filename);
+
+        //     $oldFilename = $carousel->img;
+        //     $carousel->img= $filename;
+        //     $carousel->save();
+
+        //     if (!empty($carousel->img)) {
+        //         Storage::delete($oldFilename);
+        //     }
+        // }
+
         return redirect()->route('carousels.index');
     }
 
@@ -174,6 +187,7 @@ class CarouselController extends Controller
         $item = Carousel::findOrFail($id);
         Storage::delete($item->img);
         if(!$item->delete()) return redirect()->back(); 
+        $this->deleteFile('slider', $item->img);
         $this->sendFlashNotification('menghapus', $item->title);
         return redirect()->route('carousels.index');
     }

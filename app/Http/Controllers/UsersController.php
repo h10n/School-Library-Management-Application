@@ -102,7 +102,8 @@ class UsersController extends Controller
         $user = User::create($request->all());
 
         if ($user) {          
-          $this->uploadPhoto($request, $user);
+          // $this->uploadPhoto($request, $user);
+          $this->uploadFile($request, $user, 'photo_file', 'photo', 'user');
           $role = Role::where('name', '=', $request->role)->first();
           $user->attachRole($role);
           $this->sendFlashNotification('menambah', $user->username);
@@ -179,7 +180,8 @@ class UsersController extends Controller
               ]);
             }
 
-            $this->uploadPhoto($request, $user);
+            // $this->uploadPhoto($request, $user);
+            $this->uploadFile($request, $user, 'photo_file', 'photo', 'user');
             $role = Role::where('name', '=', $request->role)->first();
             $user->detachRoles($user->roles);
             $user->attachRole($role);
@@ -204,14 +206,14 @@ class UsersController extends Controller
       return redirect()->route('users.index');
     }
 
-    protected function uploadPhoto($request, $user){
-      if ($request->photo_file) {
-        $oldfilename = $user->photo;
-        $fileName = $this->upload('user', $request->photo_file, $oldfilename);
-        if ($fileName) {
-            $user->photo = $fileName;
-            $user->save();
-        }            
-    }
-    }
+    // protected function uploadPhoto($request, $user){
+    //   if ($request->photo_file) {
+    //     $oldfilename = $user->photo;
+    //     $fileName = $this->upload('user', $request->photo_file, $oldfilename);
+    //     if ($fileName) {
+    //         $user->photo = $fileName;
+    //         $user->save();
+    //     }            
+    // }
+    // }
 }

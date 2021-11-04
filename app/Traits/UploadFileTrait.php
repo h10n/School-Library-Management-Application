@@ -39,4 +39,15 @@ trait UploadFileTrait {
     {
         return Storage::delete('public/uploads/'. $directory . '/' . $fileName);
     }   
+
+    protected function uploadFile($request, $model, $tmpFileField, $fileField, $dir){
+        if ($request->$tmpFileField) {
+          $oldfilename = $model->$fileField;
+          $fileName = $this->upload($dir, $request->$tmpFileField, $oldfilename);
+          if ($fileName) {
+              $model->$fileField = $fileName;
+              $model->save();
+          }            
+      }
+      }
 }

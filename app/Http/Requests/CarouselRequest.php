@@ -29,9 +29,9 @@ class CarouselRequest extends FormRequest
         ];
 
         if ($this->isMethod('post')) {            
-            $rules['img'] = 'required|image|max:5120';
+            $rules['img_file'] = 'required|image|max:5120';
         }else{
-            $rules['img'] = 'image|max:5120';
+            $rules['img_file'] = 'image|max:5120';
         }
 
         return $rules;

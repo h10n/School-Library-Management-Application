@@ -23,6 +23,6 @@
                 </div>            
             </div>
         </div>
+        {!! $errors->first($name,'<p class="help-block"><strong>:message</strong></p>') !!}    
     </div>
-    {!! $errors->first($name,'<p class="help-block"><strong>:message</strong></p>') !!}    
 </div>

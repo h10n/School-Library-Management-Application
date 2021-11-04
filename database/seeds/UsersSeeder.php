@@ -36,18 +36,18 @@ class UsersSeeder extends Seeder
 
         //buat sample Admin
         $admin = new User();
-        $admin->name = "admin";
+        $admin->name = "Nur Hakim";
         $admin->username = "admin";
         // $admin->email = "admin@perpus.com";
         $admin->password = bcrypt('admin123');
         // $admin->telp = "08218831299";
         // $admin->alamat = "Jl Rapak Indah no 57";
-        $admin->photo = "";
+        $admin->photo = "admin.jpg";
         $admin->save();
         $admin->attachRole($adminRole);
         //buat sample Super Admin
         $staff = new User();
-        $staff->name = "Pegawai";
+        $staff->name = "M. Afif Masrur";
         $staff->username = "staff";
         // $staff->email = "staff@perpus.com";
         $staff->password = bcrypt('admin123');

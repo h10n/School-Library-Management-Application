@@ -13,7 +13,7 @@
         <div class="carousel-inner" role="listbox">
             @foreach($carousel as $carousel)
             <div class="item {{ $loop->first ? 'active' : '' }}">
-                <img src="img/slider/{{$carousel->img}}" alt="{{$carousel->title}}" class="img-carousel-rule">
+                <img src="storage/uploads/slider/{{$carousel->img}}" alt="{{$carousel->title}}" class="img-carousel-rule">
                 <div class="carousel-caption">
                     <h3>{{$carousel->title}}</h3>
                     <p>{{$carousel->text}}</p>

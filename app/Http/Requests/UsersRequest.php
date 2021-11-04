@@ -29,6 +29,7 @@ class UsersRequest extends FormRequest
             'username' => 'required|string|max:30|unique:users,username,'. ($this->route('user')->id ?? ''),
             'role' => 'required|exists:roles,name',
             // 'email' => 'required|unique:users,email',
+            'photo_file' => 'image|max:5120'
         ];
 
         if ($this->isMethod('post')) {            
