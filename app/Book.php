@@ -60,7 +60,7 @@ class Book extends Model
         if ($book->borrowLogs()->count() > 0) {
           Session::flash("flash_notification",[
             "level" => "danger",
-            "message" => "Buku $book->title sedang dipinjam"
+            "message" => "Buku $book->title tidak bisa dihapus karena masih memiliki data transaksi"
           ]);
           return false;
         }
