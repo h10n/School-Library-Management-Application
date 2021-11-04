@@ -77,17 +77,24 @@ class User extends Authenticatable
     {
       parent::boot();
       self::deleting(function ($user){
-        if ($user->borrowLogs()->borrowed()->count() > 0) {
-          $html = 'User tidak bisa dihapus karena masih meminjam buku : ';
-          $html .= '<ul>';
-          foreach ($user->borrowLogs()->borrowed()->get() as $log) {
-            $titles = $log->book->title;
-            $html .= "<li>$titles</li>";
-          }
-          $html .= "</ul>";
+        // if ($user->borrowLogs()->borrowed()->count() > 0) {
+        //   $html = 'User tidak bisa dihapus karena masih memiliki data transaksi : ';
+        //   $html .= '<ul>';
+        //   foreach ($user->borrowLogs()->borrowed()->get() as $log) {
+        //     $titles = $log->book->title;
+        //     $html .= "<li>$titles</li>";
+        //   }
+        //   $html .= "</ul>";
+        //   Session::flash("flash_notification",[
+        //     "level" => "danger",
+        //     "message" => $html
+        //   ]);
+        //   return false;
+        // }
+        if (!$user->borrowLogs->isEmpty() || !$user->borrowLogsReturned->isEmpty()) {
           Session::flash("flash_notification",[
             "level" => "danger",
-            "message" => $html
+            "message" => "$user->username tidak bisa dihapus karena masih memiliki data transaksi"
           ]);
           return false;
         }
