@@ -243,30 +243,31 @@ return redirect()->route('books.index');
     {
         //
         $book = Book::find($id);
-        $cover = $book->cover;
+        // $cover = $book->cover;
         if (!$book->delete()) return redirect()->back();
         //handle deleting books via ajax
-        if ($request->ajax()) return response()->json(['id' => $id]);
+        // if ($request->ajax()) return response()->json(['id' => $id]);
         //hapus cover jika ada
-        $this->deleteCover($cover);        
+        // $this->deleteCover($cover);        
+        $this->deleteFile('buku', $book->cover);
        
         $this->sendFlashNotification('menghapus', $book->title);
         return redirect()->route('books.index');
     }
 
-private function deleteCover($cover)
-{
-  if ($cover) {
-  $old_cover = $cover;
-  $filepath = public_path().DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$cover;
+// private function deleteCover($cover)
+// {
+//   if ($cover) {
+//   $old_cover = $cover;
+//   $filepath = public_path().DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$cover;
 
-  try {
-    File::delete($filepath);
-  } catch (FileNotFoundException $e) {
-    //file sudah dihapus/tidak ada
-  }
-}
-}
+//   try {
+//     File::delete($filepath);
+//   } catch (FileNotFoundException $e) {
+//     //file sudah dihapus/tidak ada
+//   }
+// }
+// }
 
     public function borrow($id)
     {
