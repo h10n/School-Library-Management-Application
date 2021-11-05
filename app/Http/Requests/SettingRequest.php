@@ -35,7 +35,7 @@ class SettingRequest extends FormRequest
             'denda' => 'required|numeric|digits_between:1,11',
             'durasi' => 'required|numeric|digits_between:1,11',
             'max_peminjaman' => 'required|numeric|digits_between:1,11',
-            'logo' => 'image|max:5120'
+            'logo_file' => 'image|max:5120'
         ];
     }
 }

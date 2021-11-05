@@ -103,7 +103,7 @@
 </head>
 <body>
 	@php
-		$logoImg = !empty($setting->logo) ? asset('img/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
+		$logoImg = !empty($setting->logo) ? asset('storage/uploads/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
 		$avatarImg = !empty($member->photo) ? asset('img/members_photo/'.$member->photo) : asset('img/icons8-no-camera.svg');
 	@endphp
 	<div class="card">

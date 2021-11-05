@@ -17,7 +17,7 @@
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url('/') }}">
-                {!! Html::image(asset('img/logo/'.$logo),null,['class' => 'logo']) !!}                
+                {!! Html::image(asset('storage/uploads/logo/'.$logo),null,['class' => 'logo']) !!}                
             </a>
         </div>
         <!-- /.login-logo -->

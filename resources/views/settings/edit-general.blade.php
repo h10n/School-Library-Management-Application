@@ -118,7 +118,7 @@
         {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}
       </div>
     </div> --}}
-    <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
+    {{-- <div class="form-group{{$errors->has('logo') ? ' has-error' : ''}}">
       {!! Form::label('logo','Logo',['class' => 'col-md-2 control-label']) !!}
       <div class="col-md-6">
         <div class="avatar-upload">
@@ -144,7 +144,8 @@
         </div>
         {!! $errors->first('logo','<p class="help-block"><strong>:message</strong></p>') !!}
       </div>
-    </div>
+    </div> --}}
+    @include('layouts._image-uploader', ['name' => 'logo_file', 'dir' => 'logo','label' => 'Logo', 'data' => $setting->logo ?? null])
     <div class="row">
       <div class="col-md-2">
         <span class="text-muted pull-right"><i class="ion-arrow-swap"></i> Peminjaman</span>
@@ -185,9 +186,5 @@
 @endsection
 
 @push('req-scripts')
-<script>
-  const imgUrl = "{{ isset($setting->logo) ? asset('img/logo/'.$setting->logo) : '' }}",
-    noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}";
-</script>
 <script src="{{ asset('js/avatar.js') }}"></script>
 @endpush

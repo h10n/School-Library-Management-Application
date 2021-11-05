@@ -1,5 +1,5 @@
 @php
-$logoImg = !empty($setting->logo) ? asset('img/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
+$logoImg = !empty($setting->logo) ? asset('storage/uploads/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
 @endphp
 <table class="kop" width="100%" border="0">
     <tr>

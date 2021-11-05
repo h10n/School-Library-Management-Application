@@ -66,8 +66,7 @@
                                 <td class="text-muted">Logo</td>
                                 <td>
                                     @if ($item->logo)
-                                    <p>{!! Html::image(asset('img/logo/'.$item->logo),null,['class' => 'img-rounded
-                                        cover-buku']) !!}
+                                    <p>{!! Html::image(asset('storage/uploads/logo/'.$item->logo),null,['class' => 'img-rounded cover-buku']) !!}
                                     </p>
                                     @endif
                                 </td>

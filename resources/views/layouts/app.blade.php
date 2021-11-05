@@ -72,7 +72,7 @@ desired effect
             <section class="sidebar">
                 <div class="profil thumbnail">
                     <a href="{{ url('/')}}">
-                        {!! Html::image(asset('img/logo/'.$logo),null,['class' => 'img-responsive']) !!}                        
+                        {!! Html::image(asset('storage/uploads/logo/'.$logo),null,['class' => 'img-responsive']) !!}                        
                     </a>
                 </div>            
                 <!-- Sidebar Menu -->

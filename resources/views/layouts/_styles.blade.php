@@ -1,4 +1,4 @@
-<link rel="icon" href="{{ asset('img/logo/'.$logo) }}">
+<link rel="icon" href="{{ asset('storage/uploads/logo/'.$logo) }}">
     <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css') }}">
