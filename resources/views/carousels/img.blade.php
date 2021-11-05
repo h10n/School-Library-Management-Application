@@ -1,1 +1,1 @@
-{!! Html::image(asset('img/slider/'.$imgcarousel),null,['class' => 'img-rounded cover-buku']) !!}
+{!! Html::image(asset('storage/uploads/slider/'.$imgcarousel),null,['class' => 'img-rounded cover-buku']) !!}

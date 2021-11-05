@@ -14,6 +14,8 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Exceptions\BookException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\BorrowLog;
+use App\Traits\FlashNotificationTrait;
+use App\Traits\UploadFileTrait;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BooksController extends Controller
 {
+    use FlashNotificationTrait,UploadFileTrait;
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +34,7 @@ class BooksController extends Controller
         //
 
         if ($request->ajax()) {
-          $books = Book::with(['author','publisher','category']);
+          $books = Book::with(['author','publisher','category'])->latest('updated_at')->get();
           return Datatables::of($books)
           ->addColumn('action',function($book){
             return view('datatable._book-action',[
@@ -42,10 +45,24 @@ class BooksController extends Controller
               'title' => 'Buku',
               'confirm_message' => 'Yakin ingin menghapus '.$book->title.' ?'
             ]);
-          })->make(true);
+          })
+          ->addIndexColumn()
+          ->make(true);
         }
 
         $html = $htmlBuilder
+        ->addColumn([
+          'defaultContent' => '',
+          'data'           => 'DT_Row_Index',
+          'name'           => 'DT_Row_Index',
+          'title'          => '',
+          'render'         => null,
+          'orderable'      => false,
+          'searchable'     => false,
+          'exportable'     => false,
+          'printable'      => true,
+          'footer'         => '',
+      ])
         ->addColumn([
           'data' => 'no_induk',
           'name' => 'no_induk',
@@ -59,27 +76,28 @@ class BooksController extends Controller
         ->addColumn([
           'data' => 'author.name',
           'name' => 'author.name',
-          'title' => 'Penulis'
+          'title' => 'Penulis'          
         ])
         ->addColumn([
           'data' => 'publisher.name',
           'name' => 'publisher.name',
-          'title' => 'Penerbit'
+          'title' => 'Penerbit'          
+        ])
+          ->addColumn([
+            'data' => 'nama_kategori',
+            'name' => 'nama_kategori',
+            'title' => 'Kategori'
         ])
         ->addColumn([
           'data' => 'published_year',
           'name' => 'published_year',
           'title' => 'Tahun Terbit'
-        ])
-        ->addColumn([
-          'data' => 'book_year',
-          'name' => 'book_year',
-          'title' => 'Tahun Buku'
-        ])
+        ])        
         ->addColumn([
           'data' => 'amount',
           'name' => 'amount',
-          'title' => 'Jumlah'
+          'title' => 'Jumlah',
+          'searchable' => false
         ])
         ->addColumn([
           'data' => 'action',
@@ -97,8 +115,7 @@ class BooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
         return view('books.create');
     }
 
@@ -110,25 +127,11 @@ class BooksController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $book = Book::create($request->except('cover'));
-        if ($request->hasFile('cover')) {
-          //ngambil filenya
-          $uploaded_cover = $request->file('cover');
-          //ngambil extensinya
-          $extension = $uploaded_cover->getClientOriginalExtension();
-          //buat nama random+extensi filenya
-          $filename = md5(time()).'.'.$extension;
-          //simpan ke public/image
-          $destinatonPath = public_path('img');
-
-          $uploaded_cover->move($destinatonPath, $filename);
-          //isi filed cover dengan filename yang baru dibuat
-          $book->cover = $filename;
-          $book->save();
-        }
+        $book = Book::create($request->except('cover'));     
+        $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
         Session::flash("flash_notification",[
           "level" => "success",
-          "message" => "Berhasil menyimpan $book->title"
+          "message" => "Berhasil menambah $book->title"
         ]);
         return redirect()->route('books.index');
     }
@@ -152,8 +155,7 @@ class BooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {        
         $book = Book::find($id);
         return view('books.edit')->with(compact('book'));
     }
@@ -167,42 +169,14 @@ class BooksController extends Controller
      */
     public function update(UpdateBookRequest $request, $id)
     {
-      /* validation has done in UpdateBookRequest, this is just another option
-      $this->validate($request,[
-        'title' => 'required|unique:books,title,'.$id,
-        'author_id' => 'required|exists:authors,id',
-        'amount' => 'required|numeric',
-        'cover' => 'image|max:2048'
-      ]);
-      */
-
       $book = Book::find($id);
       $cover = $book->cover;
-if(!$book->update($request->all())) return redirect()->back();
-
-if ($request->hasFile('cover')) {
-    $filename = null;
-    $uploaded_cover = $request->file('cover');
-    $extension = $uploaded_cover->getClientOriginalExtension();
-
-    // membuat nama file random dengan extension
-    $filename = md5(time()) . '.' . $extension;
-    $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
-
-    // memindahkan file ke folder public/img
-    $uploaded_cover->move($destinationPath, $filename);
-
-    // hapus cover lama, jika ada
-    $this->deleteCover($cover);
-
-    // ganti field cover dengan cover yang baru
-    $book->cover = $filename;
-    $book->save();
-}
-
+      if(!$book->update($request->all())) return redirect()->back();
+      
+      $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
 Session::flash("flash_notification", [
     "level"=>"success",
-    "message"=>"Berhasil menyimpan $book->title"
+    "message"=>"Berhasil mengubah $book->title"
 ]);
 
 return redirect()->route('books.index');
@@ -215,35 +189,14 @@ return redirect()->route('books.index');
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
-    {
-        //
-        $book = Book::find($id);
-        $cover = $book->cover;
-        if (!$book->delete()) return redirect()->back();
-        //handle deleting books via ajax
-        if ($request->ajax()) return response()->json(['id' => $id]);
-        //hapus cover jika ada
-        $this->deleteCover($cover);
-        Session::flash("flash_notification",[
-          "level" => "success",
-          "message" => "Buku berhasil dihapus"
-        ]);
+    {        
+        $book = Book::find($id);        
+        if (!$book->delete()) return redirect()->back();        
+        $this->deleteFile('buku', $book->cover);
+       
+        $this->sendFlashNotification('menghapus', $book->title);
         return redirect()->route('books.index');
     }
-
-private function deleteCover($cover)
-{
-  if ($cover) {
-  $old_cover = $cover;
-  $filepath = public_path().DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$cover;
-
-  try {
-    File::delete($filepath);
-  } catch (FileNotFoundException $e) {
-    //file sudah dihapus/tidak ada
-  }
-}
-}
 
     public function borrow($id)
     {

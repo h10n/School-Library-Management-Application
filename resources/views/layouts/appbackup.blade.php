@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        {!! Html::smartNav(url('/home'), 'Dashboard') !!}
+                        {!! Html::smartNav(route('dashboard.index'), 'Dashboard') !!}
                         @role('admin')
                         {!! Html::smartNav(url('/admin/authors'), 'Penulis') !!}
                         {!! Html::smartNav(url('/admin/members'), 'Member') !!}
@@ -68,7 +68,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/settings/password') }}"><i class="fa fa-btn fa-lock"></i> Ubah Password</a></li>
+                                    <li><a href="{{ url('/settings/password') }}"><i class="fa fa-btn fa-lock"></i> Edit Password</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

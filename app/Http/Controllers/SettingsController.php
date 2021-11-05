@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\SettingRequest;
 use Illuminate\Http\Request;
 use App\User;
 use App\Setting;
+use App\Traits\UploadFileTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -12,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 
 class SettingsController extends Controller
 {
+  use UploadFileTrait;
     public function __construct()
     {
       $this->middleware('auth');
@@ -114,7 +118,8 @@ if ($request->hasFile('photo')) {
     }
     public function general()
     {
-      return view('settings.general');
+      $item =  Setting::first();
+      return view('settings.general', ['item' => $item]);
     }
     public function editGeneral()
     {
@@ -122,66 +127,55 @@ if ($request->hasFile('photo')) {
       $setting = Setting::find('1');
       return view('settings.edit-general')->with(compact('setting'));
     }
-    public function updateGeneral(Request $request)
+    public function updateGeneral(SettingRequest $request)
     {
-      //baiki validasi nya
-      //masih kurang pengaturan slide, logo, tema
-      $this->validate($request,[
-        'name' => 'required',
-        'address' => 'required',
-        'about' => 'required',
-        'denda' => 'required',
-        'durasi' => 'required',
-        'max_peminjaman' => 'required'
-      ]);
-
       $setting = Setting::find('1');
       /*
       $setting->update($request->only('name','address','about','denda','durasi'));
 */
 
-$logo = $setting->logo;
+// $logo = $setting->logo;
 if(!$setting->update($request->all())) return redirect()->back();
+$this->uploadFile($request, $setting, 'logo_file', 'logo', 'logo');
+// if ($request->hasFile('logo')) {
+// $filename = null;
+// $uploaded_logo = $request->file('logo');
+// $extension = $uploaded_logo->getClientOriginalExtension();
 
-if ($request->hasFile('logo')) {
-$filename = null;
-$uploaded_logo = $request->file('logo');
-$extension = $uploaded_logo->getClientOriginalExtension();
+// // membuat nama file random dengan extension
+// $filename = md5(time()) . '.' . $extension;
+// $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img/logo/';
 
-// membuat nama file random dengan extension
-$filename = md5(time()) . '.' . $extension;
-$destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img/logo/';
+// // memindahkan file ke folder public/img
+// $uploaded_logo->move($destinationPath, $filename);
 
-// memindahkan file ke folder public/img
-$uploaded_logo->move($destinationPath, $filename);
+// // hapus cover lama, jika ada
+// $this->deleteLogo($logo);
 
-// hapus cover lama, jika ada
-$this->deleteLogo($logo);
-
-// ganti field cover dengan cover yang baru
-$setting->logo = $filename;
-$setting->save();
-}
+// // ganti field cover dengan cover yang baru
+// $setting->logo = $filename;
+// $setting->save();
+// }
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan Pengaturan"
+          "message" => "Berhasil mengubah Pengaturan"
         ]);
         return redirect('admin/settings/general');
     }
 
-    private function deleteLogo($logo)
-    {
-      if ($logo) {
-      $old_logo = $logo;
-      $filepath = public_path().DIRECTORY_SEPARATOR.'img/logo'.DIRECTORY_SEPARATOR.$logo;
+    // private function deleteLogo($logo)
+    // {
+    //   if ($logo) {
+    //   $old_logo = $logo;
+    //   $filepath = public_path().DIRECTORY_SEPARATOR.'img/logo'.DIRECTORY_SEPARATOR.$logo;
 
-      try {
-        File::delete($filepath);
-      } catch (FileNotFoundException $e) {
-        //file sudah dihapus/tidak ada
-      }
-    }
-    }
+    //   try {
+    //     File::delete($filepath);
+    //   } catch (FileNotFoundException $e) {
+    //     //file sudah dihapus/tidak ada
+    //   }
+    // }
+    // }
 
 }

@@ -3,7 +3,7 @@
 @section('content')
   <section class="content-header">
     <ol class="breadcrumb">
-      <li><a href="#"><i class="ion-ios-home"></i> Home</a></li>
+    <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
       <li class="active">Atlet</li>
     </ol>
   </section>
@@ -17,12 +17,12 @@
       <a class="btn bg-purple"><span class="ion-ios-paper"> Export</span></a>
       </div>
     </div>
-    <!-- /.box-header -->
+    
     <div class="box-body">
 
     </div>
-    <!-- /.box-body -->
+    
   </div>
-  <!-- /.box -->
+  
       </section>
 @endsection

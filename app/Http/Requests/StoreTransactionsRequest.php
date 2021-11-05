@@ -25,8 +25,8 @@ class StoreTransactionsRequest extends FormRequest
     public function rules()
     {
         return [
-          'member_id' => 'required',
-          'book_id' => 'required'
+          'member_id' => 'required|exists:members,id',
+          'book_id' => 'required|exists:books,id',
         ];
     }
 }

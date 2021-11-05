@@ -15,28 +15,28 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->integer('author_id')->unsigned();
+            $table->string('title', 150)->nullable();
+            $table->integer('author_id')->unsigned()->nullable();
             $table->foreign('author_id')->references('id')->on('authors')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('publisher_id')->unsigned();
+            $table->integer('publisher_id')->unsigned()->nullable();
             $table->foreign('publisher_id')->references('id')->on('publishers')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('published_location');
-            $table->string('classification_code');
-            $table->char('initial',1);
-            $table->char('source',1);
-            $table->string('no_induk',60)->unique();
-            $table->integer('amount')->unsigned();
-            $table->string('cover'); //i think tis must add ->nullable(); like on members
+            $table->string('published_location', 50)->nullable();
+            $table->string('classification_code', 15)->nullable();
+            $table->string('source', 10)->nullable();
+            $table->string('no_induk', 20)->unique()->nullable();
+            $table->integer('amount')->unsigned()->nullable();
+            $table->text('cover')->nullable();
+            $table->char('initial',1)->nullable();
             $table->timestamps();
 
 
 
 
         });
-          DB::statement("ALTER TABLE books ADD published_year YEAR NOT NULL");
-          DB::statement("ALTER TABLE books ADD book_year YEAR NOT NULL");
+          DB::statement("ALTER TABLE books ADD published_year YEAR NULL");
+          DB::statement("ALTER TABLE books ADD book_year YEAR NULL");
 
     }
 

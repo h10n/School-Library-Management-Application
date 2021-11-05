@@ -13,7 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     Welcome to LaraPus
                 </div>
             </div>

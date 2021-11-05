@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Entrust;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,20 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->hasRole(['admin', 'staff'])) {
+            return redirect()->route('dashboard.index');
+        } elseif ($user->hasRole('visitor')) {
+            return redirect()->route('visitors.guest-book');
+        } elseif ($user->hasRole('member')) {
+            return redirect()->route('members.status-history');
+        }
+    
+        return redirect('/');
+    }
+
 
     /**
      * Create a new controller instance.
@@ -39,7 +54,7 @@ class LoginController extends Controller
 
     //this function to login using username not email
     public function username()
-{
-    return 'username';
-}
+    {
+        return 'username';
+    }
 }

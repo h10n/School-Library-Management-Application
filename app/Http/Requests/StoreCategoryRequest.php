@@ -25,8 +25,8 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-          'classification_code' => 'required|unique:categories',
-          'name' => 'required|unique:categories'
+        //   'classification_code' => 'required|unique:categories',
+          'name' => 'required|string|max:80|unique:categories'
         ];
     }
 }

@@ -1,1 +1,1 @@
-{!! Html::image(asset('img/'.$coverbuku),null,['class' => 'img-rounded cover-buku']) !!}
+{!! Html::image(asset('storage/uploads/buku/'.$coverbuku),null,['class' => 'img-rounded cover-buku']) !!}

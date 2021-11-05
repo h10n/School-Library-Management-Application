@@ -25,8 +25,8 @@ class StoreAuthorRequest extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required|unique:authors',
-          'singkatan' => 'required|string|min:3|max:3|unique:authors'
+          'name' => 'required|string|max:100|unique:authors',
+          'singkatan' => 'max:10'
         ];
     }
 }

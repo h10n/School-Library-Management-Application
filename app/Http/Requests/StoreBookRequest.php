@@ -24,18 +24,22 @@ class StoreBookRequest extends FormRequest
      */
     public function rules()
     {
+        // dd(request()->all());
         return [
-              'title' => 'required|unique:books,title',
+              'title' => 'required|string|max:150|unique:books,title',
               'author_id' => 'required|exists:authors,id',
-              'published_location' => 'required|string',
               'publisher_id' => 'required|exists:publishers,id',
-              'published_year' => 'required|date|date_format:Y',
-              'book_year' => 'required|date|date_format:Y',
               'category_id' => 'required|exists:categories,id',
-              'initial' => 'required|string|min:1|max:1',
-              'no_induk' => 'required|unique:books,no_induk',
-              'amount' => 'required|numeric',
-              'cover' => 'image|max:2048'
+              'published_location' => 'required|string|max:50',
+              'classification_code' => 'nullable|max:15|regex:/^[0-9]+(\.\d+)*$/',
+              'source' => 'nullable|max:10|in:hadiah,pengadaan',
+              'no_induk' => 'required|string|max:20|unique:books,no_induk',
+              'amount' => 'required|numeric|digits_between:1,10',
+              'cover_file' => 'image|max:5120',
+              'published_year' => 'required|date_format:Y',
+              'book_year' => 'nullable|date_format:Y',
+              
+            //   'initial' => 'required|string|min:1|max:1',
         ];
     }
 }

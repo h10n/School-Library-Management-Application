@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12">
         <ul class="breadcrumb">
-          <li><a href="{{ url('/home') }}">Dashboard</a></li>
+          <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
           <li class="active">Member</li>
         </ul>
         <div class="panel panel-default">
@@ -14,7 +14,9 @@
           </div>
 
           <div class="panel-body">
-            {!! $html->table(['class' => 'table-striped']) !!}
+            <div class="table-responsive">
+              {!! $html->table(['class' => 'table-striped']) !!}
+            </div>
           </div>
         </div>
       </div>

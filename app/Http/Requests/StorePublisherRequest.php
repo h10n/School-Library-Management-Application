@@ -28,7 +28,7 @@ class StorePublisherRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:publishers'
+            'name' => 'required|string|max:100|unique:publishers'
         ];
     }
 

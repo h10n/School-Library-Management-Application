@@ -15,14 +15,15 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nis',60)->unique();
-            $table->string('name');
-            $table->string('kelas');
-            $table->string('jurusan');
-            $table->string('address');
-            $table->string('email',60)->unique();
-            $table->string('phone');
-            $table->string('photo')->nullable();
+            $table->string('no_induk', 20)->unique()->nullable();
+            $table->string('name', 50)->nullable();
+            $table->string('kelas', 10)->nullable();
+            $table->string('jurusan', 20)->nullable();
+            $table->string('jenis_anggota', 15)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->string('email', 60)->unique()->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }

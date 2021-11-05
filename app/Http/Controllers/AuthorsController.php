@@ -7,13 +7,14 @@ use App\Author;
 use Yajra\Datatables\Html\Builder;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
+use App\Publisher;
+use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Datatables;
 use Session;
 
-
-
 class AuthorsController extends Controller
 {
+    use FlashNotificationTrait;
     /**
      * Display a listing of the resource.
      *
@@ -23,19 +24,33 @@ class AuthorsController extends Controller
     {
         //
         if ($request->ajax()) {
-          $authors = Author::select(['id','name','singkatan']);
-          return Datatables::of($authors)
-          ->addColumn('action',function($author){
-            return view('datatable._action',[
+            $authors = Author::select(['id','name','singkatan'])->latest('updated_at')->get();
+            return Datatables::of($authors)
+          ->addColumn('action', function ($author) {
+              return view('datatable._action', [
               'model' => $author,
               'form_url' => route('authors.destroy', $author->id),
               'edit_url' => route('authors.edit', $author->id),
               'title' => 'Penulis',
               'confirm_message' => 'Yakin ingin menghapus '.$author->name.' ?'
             ]);
-          })->make(true);
+          })
+          ->addIndexColumn()
+          ->make(true);
         }
         $html = $htmlBuilder
+        ->addColumn([
+          'defaultContent' => '',
+          'data'           => 'DT_Row_Index',
+          'name'           => 'DT_Row_Index',
+          'title'          => '',
+          'render'         => null,
+          'orderable'      => false,
+          'searchable'     => false,
+          'exportable'     => false,
+          'printable'      => true,
+          'footer'         => '',
+      ])
         ->addColumn([
           'data' => 'name',
           'name' => 'name',
@@ -75,13 +90,12 @@ class AuthorsController extends Controller
      */
     public function store(StoreAuthorRequest $request)
     {
-        $author = Author::create($request->only('name','singkatan'));
+        $author = Author::create($request->only('name', 'singkatan'));
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $author->name"
+          "message" => "Berhasil menambah $author->name"
         ]);
         return redirect()->back();
-
     }
 
     /**
@@ -117,12 +131,12 @@ class AuthorsController extends Controller
      */
     public function update(UpdateAuthorRequest $request, $id)
     {
-      $author = Author::find($id);
-        $author->update($request->only('name','singkatan'));
+        $author = Author::find($id);
+        $author->update($request->only('name', 'singkatan'));
 
         Session::flash("flash_notification", [
           "level" => "success",
-          "message" => "Berhasil menyimpan $author->name"
+          "message" => "Berhasil mengubah $author->name"
         ]);
         return redirect()->route('authors.index');
     }
@@ -135,13 +149,11 @@ class AuthorsController extends Controller
      */
     public function destroy($id)
     {
-        //
-        if(!Author::destroy($id)) return redirect()->back();
-        Session::flash("flash_notification", [
-          "level" => "success",
-          "message" => "Penulis berhasi dihapus"
-        ]);
-          return redirect()->route('authors.index');
-
+        $item = Author::findOrFail($id);
+        if (!$item->delete()) {
+            return redirect()->back();
+        }
+        $this->sendFlashNotification('menghapus', $item->name);
+        return redirect()->route('authors.index');
     }
 }

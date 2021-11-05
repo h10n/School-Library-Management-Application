@@ -8,7 +8,7 @@ class UpdatePublisherRequest extends StorePublisherRequest
     public function rules()
     {
       $rules = parent::rules();
-      $rules['name'] = 'required|unique:publishers,name,'.$this->route('publisher');
+      $rules['name'] = 'required|string|max:100|unique:publishers,name,'.$this->route('publisher');
       return $rules;
     }
 

@@ -1,6 +1,6 @@
 
             {!! Form::model($category,[
-              'url' => route('categories.update', $category->classification_code),
+              'url' => route('categories.update', $category->id),
               'method' => 'PUT',
               'class' => 'form-horizontal'
               ])
