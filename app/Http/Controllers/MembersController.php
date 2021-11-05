@@ -12,6 +12,7 @@ use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Setting;
 use App\Traits\FlashNotificationTrait;
+use App\Traits\UploadFileTrait;
 use Yajra\Datatables\Html\Builder;
 use Barryvdh\DomPDF\Facade as PDF;
 use Yajra\Datatables\Facades\Datatables;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MembersController extends Controller
 {
-  use FlashNotificationTrait;
+  use FlashNotificationTrait, UploadFileTrait;
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
@@ -104,34 +105,35 @@ class MembersController extends Controller
         return view('members.create');
     }
     public function store(StoreMemberRequest $request)
-    {
-        // dd($request->all());
-        $member = Member::create($request->except('photo'));
-        if ($request->hasFile('photo')) {
-            //ngambil filenya
-            $uploaded_cover = $request->file('photo');
-            //ngambil extensinya
-            $extension = $uploaded_cover->getClientOriginalExtension();
-            //buat nama random+extensi filenya
-            $filename = md5(time()).'.'.$extension;
-            //simpan ke public/image
-            $destinatonPath = public_path('img/members_photo');
-            $uploaded_cover->move($destinatonPath, $filename);
-            //isi filed photo dengan filename yang baru dibuat
-            $member->photo = $filename;
-            $member->save();
+    {        
+        // if ($request->hasFile('photo')) {
+        //     //ngambil filenya
+        //     $uploaded_cover = $request->file('photo');
+        //     //ngambil extensinya
+        //     $extension = $uploaded_cover->getClientOriginalExtension();
+        //     //buat nama random+extensi filenya
+        //     $filename = md5(time()).'.'.$extension;
+        //     //simpan ke public/image
+        //     $destinatonPath = public_path('img/members_photo');
+        //     $uploaded_cover->move($destinatonPath, $filename);
+        //     //isi filed photo dengan filename yang baru dibuat
+        //     $member->photo = $filename;
+        //     $member->save();
+        // }
+        if ($member = Member::create($request->except('photo'))) {        
+          $this->uploadFile($request, $member, 'photo_file', 'photo', 'anggota');
+          $request['member_id'] = $member->id;
+          $request['password'] = bcrypt($request['password']);
+          $user = User::create($request->only(['name','username','password','member_id']));
+          $role = Role::where('name', '=', 'member')->first();
+          $user->attachRole($role);
+                  
+          Session::flash("flash_notification", [
+          "level" => "success",
+          "message" => "Berhasil menambah $member->name"
+        ]);
         }
-        $request['member_id'] = $member->id;
-        $request['password'] = bcrypt($request['password']);
-        $user = User::create($request->only(['name','username','password','member_id']));
-        $role = Role::where('name', '=', 'member')->first();
-        $user->attachRole($role);
-      
-        // dd($member->id);
-        Session::flash("flash_notification", [
-        "level" => "success",
-        "message" => "Berhasil menambah $member->name"
-      ]);
+
         return redirect()->route('members.index');
     }
 
@@ -157,34 +159,33 @@ class MembersController extends Controller
     {
         // code...
         $member = Member::find($id);
-        $photo = $member->photo;
+        // $photo = $member->photo;
 
         $request['kelas'] = $request['kelas'] ?? '';
         $request['jurusan'] = $request['jurusan'] ?? '';
 
-        if (!$member->update($request->all())) {
-            return redirect()->back();
-        }
+        if (!$member->update($request->all())) return redirect()->back();
+        $this->uploadFile($request, $member, 'photo_file', 'photo', 'anggota');
 
-        if ($request->hasFile('photo')) {
-            $filename = null;
-            $uploaded_cover = $request->file('photo');
-            $extension = $uploaded_cover->getClientOriginalExtension();
+        // if ($request->hasFile('photo')) {
+        //     $filename = null;
+        //     $uploaded_cover = $request->file('photo');
+        //     $extension = $uploaded_cover->getClientOriginalExtension();
 
-            // membuat nama file random dengan extension
-            $filename = md5(time()) . '.' . $extension;
-            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img/members_photo';
+        //     // membuat nama file random dengan extension
+        //     $filename = md5(time()) . '.' . $extension;
+        //     $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img/members_photo';
 
-            // memindahkan file ke folder public/img
-            $uploaded_cover->move($destinationPath, $filename);
+        //     // memindahkan file ke folder public/img
+        //     $uploaded_cover->move($destinationPath, $filename);
 
-            // hapus photo lama, jika ada
-            $this->deletePhoto($photo);
+        //     // hapus photo lama, jika ada
+        //     $this->deletePhoto($photo);
 
-            // ganti field photo dengan photo yang baru
-            $member->photo = $filename;
-            $member->save();
-        }
+        //     // ganti field photo dengan photo yang baru
+        //     $member->photo = $filename;
+        //     $member->save();
+        // }
         if ($user = $member->user) {
             $request['member_id'] = $id;
             if ($request->password) {
@@ -211,16 +212,17 @@ class MembersController extends Controller
     public function destroy(Request $request, $id)
     {
         $member = Member::find($id);        
-        $photo = $member->photo;
+        // $photo = $member->photo;
         if (!$member->delete()) {
             return redirect()->back();
         }
         //handle deleting books via ajax
-        if ($request->ajax()) {
-            return response()->json(['id' => $id]);
-        }
+        // if ($request->ajax()) {
+        //     return response()->json(['id' => $id]);
+        // }
+        $this->deleteFile('anggota', $member->photo);
         //hapus cover jika ada
-        $this->deletePhoto($photo);
+        // $this->deletePhoto($photo);
       //   Session::flash("flash_notification", [
       //   "level" => "success",
       //   "message" => "$member->name berhasil dihapus"
@@ -229,19 +231,19 @@ class MembersController extends Controller
         return redirect()->route('members.index');
     }
 
-    private function deletePhoto($photo)
-    {      
-        if ($photo) {
-            $old_photo = $photo;
-            $filepath = public_path().DIRECTORY_SEPARATOR.'img/members_photo'.DIRECTORY_SEPARATOR.$photo;
+    // private function deletePhoto($photo)
+    // {      
+    //     if ($photo) {
+    //         $old_photo = $photo;
+    //         $filepath = public_path().DIRECTORY_SEPARATOR.'img/members_photo'.DIRECTORY_SEPARATOR.$photo;
 
-            try {
-                File::delete($filepath);
-            } catch (FileNotFoundException $e) {
-                //file sudah dihapus/tidak ada
-            }
-        }
-    }
+    //         try {
+    //             File::delete($filepath);
+    //         } catch (FileNotFoundException $e) {
+    //             //file sudah dihapus/tidak ada
+    //         }
+    //     }
+    // }
 
     public function printCard($id)
     {

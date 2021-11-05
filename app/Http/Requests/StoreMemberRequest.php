@@ -33,7 +33,7 @@ class StoreMemberRequest extends FormRequest
                'address' => 'nullable|string|max:100',
                'email' => 'required|string|max:60|email|unique:members,email',
                'phone' => 'nullable|numeric|digits_between:1,20',
-               'photo' => 'image|max:5120',
+               'photo_file' => 'image|max:5120',
 
                'username' => 'required|string|max:30|unique:users,username',
                'password' => 'required',

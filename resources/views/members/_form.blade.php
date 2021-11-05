@@ -77,7 +77,7 @@
       {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-  <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">
+  {{-- <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">
     {!! Form::label('photo','Foto',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
        <div class="avatar-upload">
@@ -102,7 +102,8 @@
     {!! $errors->first('photo','<p class="help-block"><strong>:message</strong></p>') !!}    
     </div>
    
-  </div> 
+  </div>  --}}
+  @include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'anggota','label' => 'Foto', 'data' => $member->photo ?? null])
   <div class="form-group">
     <div class="col-md-6 col-md-offset-2">            
       {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
@@ -111,10 +112,10 @@
   </div>
 </div>
 @push('req-scripts')
-<script>
+{{-- <script>
   const imgUrl = "{{ isset($member->photo) ? asset('img/members_photo/'.$member->photo) : '' }}", 
         noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}"; 
-</script>
+</script> --}}
 <script src="{{ asset('js/avatar.js') }}"></script>
 @endpush
 

@@ -6,14 +6,14 @@
                 if ($user->hasRole('member')) {
                     $fullName = $user->member->name;
                     $photoData = $user->member->photo;
-                    $imgDir = 'img/members_photo/';
+                    $imgDir = 'anggota/';
                 }else{
                     $fullName = $user->name;
                     $photoData = $user->photo;
-                    $imgDir = 'storage/uploads/user/';
+                    $imgDir = 'user/';
                 }  
 
-                $imgUrl = $photoData ? asset($imgDir.$photoData) : asset('img/icons8-no-camera.svg');                
+                $imgUrl = $photoData ? asset('storage/uploads/'.$imgDir.$photoData) : asset('img/icons8-no-camera.svg');                
             @endphp
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">                    

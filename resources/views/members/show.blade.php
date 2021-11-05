@@ -22,7 +22,7 @@
     <div class="box-body">
       <div class="col-md-2">        
         @php
-            $avatarImg = !empty($member->photo) ? asset('img/members_photo/'.$member->photo) : asset('img/no-avatar-small.svg');
+            $avatarImg = !empty($member->photo) ? asset('storage/uploads/anggota/'.$member->photo) : asset('img/no-avatar-small.svg');
         @endphp
         <p>{!! Html::image($avatarImg,null,['class' => 'img-fluid member-photo']) !!}</p>        
       </div>

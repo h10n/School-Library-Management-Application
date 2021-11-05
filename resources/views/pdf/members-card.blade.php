@@ -104,7 +104,7 @@
 <body>
 	@php
 		$logoImg = !empty($setting->logo) ? asset('storage/uploads/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
-		$avatarImg = !empty($member->photo) ? asset('img/members_photo/'.$member->photo) : asset('img/icons8-no-camera.svg');
+		$avatarImg = !empty($member->photo) ? asset('storage/uploads/anggota/'.$member->photo) : asset('img/icons8-no-camera.svg');
 	@endphp
 	<div class="card">
 		<table id="kop" width="100%">

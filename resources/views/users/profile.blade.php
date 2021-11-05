@@ -22,13 +22,13 @@
         @php
         if ($item->hasRole('member')) {
           $photoData = $item->member->photo;
-          $imgDir = 'img/members_photo/';
+          $imgDir = 'anggota/';
         }else{
           $photoData = $item->photo;
-          $imgDir = 'storage/uploads/user/';
+          $imgDir = 'user/';
         }            
         
-        $imgUrl = $photoData ? asset($imgDir.$photoData) : asset('img/no-avatar-small.svg');                
+        $imgUrl = $photoData ? asset('storage/uploads/'.$imgDir.$photoData) : asset('img/no-avatar-small.svg');                
         @endphp
         <p>{!! Html::image($imgUrl,null,['class' => 'img-fluid member-photo']) !!}</p>
       </div>
