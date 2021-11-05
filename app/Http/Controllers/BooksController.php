@@ -15,6 +15,7 @@ use App\Exceptions\BookException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\BorrowLog;
 use App\Traits\FlashNotificationTrait;
+use App\Traits\UploadFileTrait;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BooksController extends Controller
 {
-  use FlashNotificationTrait;
+    use FlashNotificationTrait,UploadFileTrait;
     /**
      * Display a listing of the resource.
      *
@@ -133,21 +134,22 @@ class BooksController extends Controller
     public function store(StoreBookRequest $request)
     {
         $book = Book::create($request->except('cover'));
-        if ($request->hasFile('cover')) {
-          //ngambil filenya
-          $uploaded_cover = $request->file('cover');
-          //ngambil extensinya
-          $extension = $uploaded_cover->getClientOriginalExtension();
-          //buat nama random+extensi filenya
-          $filename = md5(time()).'.'.$extension;
-          //simpan ke public/image
-          $destinatonPath = public_path('img');
+        // if ($request->hasFile('cover')) {
+        //   //ngambil filenya
+        //   $uploaded_cover = $request->file('cover');
+        //   //ngambil extensinya
+        //   $extension = $uploaded_cover->getClientOriginalExtension();
+        //   //buat nama random+extensi filenya
+        //   $filename = md5(time()).'.'.$extension;
+        //   //simpan ke public/image
+        //   $destinatonPath = public_path('img');
 
-          $uploaded_cover->move($destinatonPath, $filename);
-          //isi filed cover dengan filename yang baru dibuat
-          $book->cover = $filename;
-          $book->save();
-        }
+        //   $uploaded_cover->move($destinatonPath, $filename);
+        //   //isi filed cover dengan filename yang baru dibuat
+        //   $book->cover = $filename;
+        //   $book->save();
+        // }
+        $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
         Session::flash("flash_notification",[
           "level" => "success",
           "message" => "Berhasil menambah $book->title"
@@ -200,27 +202,28 @@ class BooksController extends Controller
 
       $book = Book::find($id);
       $cover = $book->cover;
-if(!$book->update($request->all())) return redirect()->back();
+      if(!$book->update($request->all())) return redirect()->back();
+      
+      $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
+// if ($request->hasFile('cover')) {
+//     $filename = null;
+//     $uploaded_cover = $request->file('cover');
+//     $extension = $uploaded_cover->getClientOriginalExtension();
 
-if ($request->hasFile('cover')) {
-    $filename = null;
-    $uploaded_cover = $request->file('cover');
-    $extension = $uploaded_cover->getClientOriginalExtension();
+//     // membuat nama file random dengan extension
+//     $filename = md5(time()) . '.' . $extension;
+//     $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
 
-    // membuat nama file random dengan extension
-    $filename = md5(time()) . '.' . $extension;
-    $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
+//     // memindahkan file ke folder public/img
+//     $uploaded_cover->move($destinationPath, $filename);
 
-    // memindahkan file ke folder public/img
-    $uploaded_cover->move($destinationPath, $filename);
+//     // hapus cover lama, jika ada
+//     $this->deleteCover($cover);
 
-    // hapus cover lama, jika ada
-    $this->deleteCover($cover);
-
-    // ganti field cover dengan cover yang baru
-    $book->cover = $filename;
-    $book->save();
-}
+//     // ganti field cover dengan cover yang baru
+//     $book->cover = $filename;
+//     $book->save();
+// }
 
 Session::flash("flash_notification", [
     "level"=>"success",

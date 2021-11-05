@@ -41,7 +41,7 @@ trait UploadFileTrait {
     }   
 
     protected function uploadFile($request, $model, $tmpFileField, $fileField, $dir){
-        if ($request->$tmpFileField) {
+        if ($request->hasFile($tmpFileField)) {
           $oldfilename = $model->$fileField;
           $fileName = $this->upload($dir, $request->$tmpFileField, $oldfilename);
           if ($fileName) {

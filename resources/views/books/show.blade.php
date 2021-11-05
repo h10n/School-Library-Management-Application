@@ -134,7 +134,7 @@
           </div>
           <div class="col-md-8">
             @if (isset($book) && $book->cover)
-            <p>{!! Html::image(asset('img/'.$book->cover),null,['class' => 'img-rounded cover-buku']) !!}</p>
+            <p>{!! Html::image(asset('storage/uploads/buku/'.$book->cover),null,['class' => 'img-rounded cover-buku']) !!}</p>
             @endif
           </div>
         </div>

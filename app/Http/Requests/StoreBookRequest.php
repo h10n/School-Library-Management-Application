@@ -31,11 +31,11 @@ class StoreBookRequest extends FormRequest
               'publisher_id' => 'required|exists:publishers,id',
               'category_id' => 'required|exists:categories,id',
               'published_location' => 'required|string|max:50',
-              'classification_code' => 'nullable|max:15|regex:/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/',
+              'classification_code' => 'nullable|max:15|regex:/^[0-9]+(\.\d+)*$/',
               'source' => 'nullable|max:10|in:hadiah,pengadaan',
               'no_induk' => 'required|string|max:20|unique:books,no_induk',
               'amount' => 'required|numeric|digits_between:1,10',
-              'cover' => 'image|max:5120',
+              'cover_file' => 'image|max:5120',
               'published_year' => 'required|date_format:Y',
               'book_year' => 'nullable|date_format:Y',
               

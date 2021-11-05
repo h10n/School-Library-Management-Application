@@ -126,14 +126,16 @@
   </div>
 </div>
 
-<div class="form-group{{$errors->has('cover') ? ' has-error' : ''}}">
-  {!! Form::label('cover','Cover',['class' => 'col-md-2 control-label']) !!}
+<div class="form-group{{$errors->has('cover_file') ? ' has-error' : ''}}">
+  {!! Form::label('cover_file','Cover',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
-    {!! Form::file('cover') !!}
+    {!! Form::file('cover_file') !!}
+    {!! $errors->first('cover_file','<p class="help-block"><strong>:message</strong></p>') !!}
     @if (isset($book) && $book->cover)
-    <p>{!! Html::image(asset('img/'.$book->cover),null,['class' => 'img-rounded cover-buku']) !!}</p>
+    <div style="margin-top: 10px">
+      {!! Html::image(asset('storage/uploads/buku/'.$book->cover),null,['class' => 'img-rounded cover-buku']) !!}
+    </div>
     @endif
-    {!! $errors->first('cover','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 
