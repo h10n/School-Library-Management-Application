@@ -4,6 +4,7 @@
 /public/img/admins_photo
 /public/img/logo
 /public/img/slider
+/public/storage
 /storage/*.key
 /vendor
 /.idea
