@@ -1,8 +1,7 @@
 <?php
 Route::group(['middleware' => 'web'], function ()
 {
-    Route::get('/', 'GuestController@index');
-    Route::get('/tes', 'AuthorsController@tes');
+    Route::get('/', 'GuestController@index');    
     Route::get('books/{book}/borrow', ['middleware' => ['auth', 'role:member'], 'as' => 'books.borrow', 'uses' => 'BooksController@borrow']);
     Route::put('books/{book}/return', ['middleware' => ['auth', 'role:member'], 'as' => 'books.return', 'uses' => 'BooksController@returnBack']);
 

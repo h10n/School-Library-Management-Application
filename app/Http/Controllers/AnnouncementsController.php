@@ -137,7 +137,9 @@ class AnnouncementsController extends Controller
     public function destroy($id)
     {
         $item = Announcement::findOrFail($id);
-        if(!$item->delete()) return redirect()->back();        
+        if (!$item->delete()) {
+            return redirect()->back();
+        }
         $this->sendFlashNotification('menghapus', $item->text);
         return redirect()->route('announcements.index');
     }
