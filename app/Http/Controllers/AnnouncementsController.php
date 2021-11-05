@@ -8,8 +8,6 @@ use Yajra\Datatables\Datatables;
 use App\Announcement;
 use App\Http\Requests\AnnouncementRequest;
 use App\Traits\FlashNotificationTrait;
-use Illuminate\Support\Facades\Storage;
-use Session;
 
 class AnnouncementsController extends Controller
 {
@@ -22,7 +20,7 @@ class AnnouncementsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $announcements = Announcement::select(['id','text']);
+            $announcements = Announcement::select(['id','text'])->latest('updated_at')->get();
             return Datatables::of($announcements)
          ->addColumn('action', function ($announcement) {
              return view('datatable._action', [
@@ -72,10 +70,7 @@ class AnnouncementsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AnnouncementRequest $request)
-    {
-        $this->validate($request, array(
-          'text'=>'max:225',
-        ));
+    {        
         $announcement = new Announcement;
         $announcement->text = $request->input('text');
         $announcement->save();
@@ -104,6 +99,7 @@ class AnnouncementsController extends Controller
     public function edit($id)
     {
         $announcement = Announcement::findOrFail($id);
+
         return view('announcements.edit', compact('announcement'));
     }
 
@@ -117,14 +113,9 @@ class AnnouncementsController extends Controller
     public function update(AnnouncementRequest $request, $id)
     {
         $announcement = Announcement::find($id);
-        $this->validate($request, array(
-        'text' =>'max:255'
-     ));
-
         $announcement->update($request->only('text'));
 
         $this->sendFlashNotification('mengubah', $announcement->text);
-
         return redirect()->route('announcements.index');
     }
 
@@ -140,6 +131,7 @@ class AnnouncementsController extends Controller
         if (!$item->delete()) {
             return redirect()->back();
         }
+
         $this->sendFlashNotification('menghapus', $item->text);
         return redirect()->route('announcements.index');
     }
