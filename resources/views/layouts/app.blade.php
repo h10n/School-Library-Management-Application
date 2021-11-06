@@ -90,7 +90,7 @@ desired effect
             </div>
             @endif
             @include('layouts._flash')
-            @include('errors.customerror')
+            @include('errors.custom-error')
             @yield('content')
         </div>
         <!-- /.content-wrapper -->
