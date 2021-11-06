@@ -12,10 +12,7 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Tambah Anggota</h3>
-      <div class="table-button-custom">
-        {{-- <a class="btn bg-orange" href="{{ route('members.create') }}"><span class="ion-edit"> Tambah Data</span></a> --}}
-        <!-- a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>
-      <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a -->
+      <div class="table-button-custom">      
       </div>
     </div>
     <div class="box-body">

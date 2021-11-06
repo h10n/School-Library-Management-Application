@@ -33,7 +33,7 @@ class MembersController extends Controller
             'edit_url' => route('members.edit', $member->id),
             'detail_url' => route('members.show', $member->id),
             'title' => 'Member',
-            'confirm_message' => 'Yakin ingin menghapus ' . $member->title . ' ?'
+            'confirm_message' => 'Yakin ingin menghapus ' . $member->name . ' ?'
           ]);
         })
         ->addIndexColumn()
