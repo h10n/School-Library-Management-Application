@@ -30,20 +30,12 @@ Route::group(['middleware' => 'web'], function ()
         Route::post('reports/transaction/lihat/tahun', ['as' => 'admin.reports.transaction.lihat.tahun', 'uses' => 'ReportsController@lihatTahunTransactionReport']);
         Route::post('reports/transactions/lihat/tahun', ['as' => 'admin.reports.transactions.lihat.tahun', 'uses' => 'ReportsController@lihatTahunTransactionReport']);
         Route::post('reports/visitors/cetak', ['as' => 'admin.reports.visitors.cetak', 'uses' => 'ReportsController@cetakVisitors']);
-        Route::post('reports/transactions/cetak', ['as' => 'admin.reports.transactions.cetak', 'uses' => 'ReportsController@cetakTransactions']);
-        Route::get('export/books', ['as' => 'admin.export.books', 'uses' => 'ReportsController@bookReport']);
-        Route::post('reports/books/lihat', ['as' => 'admin.reports.books.lihat', 'uses' => 'ReportsController@lihatBookReport']);
-        Route::post('reports/books/lihat/tahun', ['as' => 'admin.reports.books.lihat.tahun', 'uses' => 'ReportsController@lihatTahunBookReport']);
-        Route::get('/settings/profile', 'SettingsController@profile');
-        Route::get('/settings/general', 'SettingsController@general');
-        Route::get('/settings/general/edit', 'SettingsController@editGeneral');
-        Route::put('/settings/general', 'SettingsController@updateGeneral');
-        Route::get('/settings/profile/edit', 'SettingsController@editProfile');
-        Route::post('/settings/profile', 'SettingsController@updateProfile');
-        Route::get('/settings/password', 'SettingsController@editPassword');
-        Route::post('/settings/password', 'SettingsController@updatePassword');
+        Route::post('reports/transactions/cetak', ['as' => 'admin.reports.transactions.cetak', 'uses' => 'ReportsController@cetakTransactions']);                
         Route::get('export', 'ReportsController@export')->name('admin.export');
         Route::post('export/cetak', 'ReportsController@printExport')->name('admin.export-cetak');
+        Route::get('/settings/general', 'SettingsController@general');
+        Route::get('/settings/general/edit', 'SettingsController@editGeneral');
+        Route::put('/settings/general', 'SettingsController@updateGeneral');                               
     });
 
     Route::group(['prefix' => 'visitor', 'middleware' => ['auth', 'role:visitor']], function ()
