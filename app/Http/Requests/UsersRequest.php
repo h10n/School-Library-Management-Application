@@ -22,13 +22,11 @@ class UsersRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {                  
-        // dd($this->route('user')->id ?? '');      
+    {                           
         $rules = [
             'name' => 'required|string|max:50',
             'username' => 'required|string|max:30|unique:users,username,'. ($this->route('user')->id ?? ''),
-            'role' => 'required|exists:roles,name',
-            // 'email' => 'required|unique:users,email',
+            'role' => 'required|exists:roles,name',            
             'photo_file' => 'image|max:5120'
         ];
 

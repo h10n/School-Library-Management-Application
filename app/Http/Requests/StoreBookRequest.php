@@ -23,8 +23,7 @@ class StoreBookRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        // dd(request()->all());
+    {        
         return [
               'title' => 'required|string|max:150|unique:books,title',
               'author_id' => 'required|exists:authors,id',
@@ -37,9 +36,7 @@ class StoreBookRequest extends FormRequest
               'amount' => 'required|numeric|digits_between:1,10',
               'cover_file' => 'image|max:5120',
               'published_year' => 'required|date_format:Y',
-              'book_year' => 'nullable|date_format:Y',
-              
-            //   'initial' => 'required|string|min:1|max:1',
+              'book_year' => 'nullable|date_format:Y',                        
         ];
     }
 }

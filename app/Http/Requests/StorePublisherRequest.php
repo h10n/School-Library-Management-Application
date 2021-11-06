@@ -31,14 +31,4 @@ class StorePublisherRequest extends FormRequest
             'name' => 'required|string|max:100|unique:publishers'
         ];
     }
-
-  /*  protected function failedValidation(Validator $validator)
-    {
-      Session::flash("flash_notification",[
-        "level" => "danger",
-        "message" => "Penerbit sudah ada!"
-      ]);
-      return parent::failedValidation($validator);
-    } */
-
 }
