@@ -18,7 +18,7 @@
         {{ Form::hidden('to_date') }}
         {{ Form::hidden('what_year') }}
         {{ Form::hidden('jenis', 'bulanan') }}
-        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-ios-paper"> Cetak</span></button>
+        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-printer"> Cetak</span></button>
         {{ Form::close() }}
       </div>
     </div>
