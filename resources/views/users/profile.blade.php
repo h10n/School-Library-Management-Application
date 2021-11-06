@@ -43,10 +43,6 @@
             {{ $item->hasRole('member') ? $item->member->name : $item->name }}
           </div>
         </div>
-        @endrole
-        @role('member')
-        @include('members._detail-show', ['member' => $item->member])
-        @endrole
         <div class="row">
           <div class="col-md-4">
             Username
@@ -55,6 +51,10 @@
             {{ $item->username }}
           </div>
         </div>
+        @endrole
+        @role('member')
+        @include('members._detail-show', ['member' => $item->member])
+        @endrole
         <div class="row">
           <div class="col-md-4">
             Login Terakhir
