@@ -2,16 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Entrust;
-use App\Author;
-use App\Book;
-use App\User;
-use App\Publisher;
-use App\Category;
-use App\BorrowLog;
-use Illuminate\Support\Facades\Auth;
-
 class HomeController extends Controller
 {
     /**
@@ -40,7 +30,7 @@ class HomeController extends Controller
     }
 
     public function index()
-    {        
+    {
         return view('home');
     }
 }
