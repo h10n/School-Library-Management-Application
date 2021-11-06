@@ -20,17 +20,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                             {!! Form::label('email','Alamat Email',['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                              <!--
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-
-                              -->
+                            <div class="col-md-6">                              
                               {!! Form::text('email',null,['class' => 'form-control']) !!}
                               {!! $errors->first('email','<span class="help-block"><strong>:message</strong></span>') !!}
                             </div>

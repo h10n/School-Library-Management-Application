@@ -76,46 +76,15 @@
       {!! Form::password('password',['class' => 'form-control']) !!}
       {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
-  </div>
-  {{-- <div class="form-group{{$errors->has('photo') ? ' has-error' : ''}}">
-    {!! Form::label('photo','Foto',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4">
-       <div class="avatar-upload">
-        <div class="avatar-edit">        
-            {!! Form::file('photo',['id' => 'photo', 'onchange' => 'changeAvatar(event, this)']) !!}
-            <label for="photo"></label>
-        </div>
-    
-        <div class="avatar-delete">                    
-            <a href="javascript:void(0)" class="imageDelete"></a>            
-        </div>
-        <div class="avatar-preview">            
-            @if(isset($member->photo))
-                <div class="imagePreview" style="background-image: url({!! asset('img/members_photo/'.$member->photo) !!});">
-                </div>
-            @else
-                <div class="imagePreview" style="background-image: url('{!! asset('img/icons8-no-camera.svg') !!}'); background-size: initial;">
-                </div>
-            @endif                
-        </div>
-    </div>
-    {!! $errors->first('photo','<p class="help-block"><strong>:message</strong></p>') !!}    
-    </div>
-   
-  </div>  --}}
+  </div>  
   @include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'anggota','label' => 'Foto', 'data' => $member->photo ?? null])
   <div class="form-group">
     <div class="col-md-6 col-md-offset-2">            
       {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
-
     </div>
   </div>
 </div>
 @push('req-scripts')
-{{-- <script>
-  const imgUrl = "{{ isset($member->photo) ? asset('img/members_photo/'.$member->photo) : '' }}", 
-        noImgUrl = "{{ asset('img/icons8-no-camera.svg') }}"; 
-</script> --}}
 <script src="{{ asset('js/avatar.js') }}"></script>
 @endpush
 

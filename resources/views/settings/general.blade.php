@@ -10,10 +10,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Pengaturan</h3>
-            <div class="table-button-custom">
-                {{-- <a class="btn bg-orange" href="#"><span class="ion-edit"> Tambah Data</span></a>
-                <a class="btn bg-olive"><span class="ion-refresh"> Refresh</span></a>
-                <a class="btn bg-purple" href="#"><span class="ion-ios-paper"> Export</span></a> --}}
+            <div class="table-button-custom">                
             </div>
         </div>
         <div class="box-body">
@@ -54,14 +51,6 @@
                                 <td class="text-muted">NIP Kepala Perpustakaan</td>
                                 <td>{{ $item->nip_kepala_perpustakaan }}</td>
                             </tr>
-                            {{-- <tr>
-                                <td class="text-muted">Pustakawan</td>
-                                <td>{{ $item->pustakawan }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-muted">NIP Pustakawan</td>
-                                <td>{{ $item->nip_pustakawan }}</td>
-                            </tr> --}}
                             <tr>
                                 <td class="text-muted">Logo</td>
                                 <td>

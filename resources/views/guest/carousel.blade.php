@@ -1,4 +1,3 @@
-{{-- <section class="slider-container"> --}}
 <section class="slider-container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->

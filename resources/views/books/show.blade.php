@@ -14,12 +14,7 @@
       <h3 class="box-title">Detail Buku</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('books.index') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>
-        {{-- <a class="btn bg-orange" href="{{ route('books.create') }}"><span class="ion-android-add"> Tambah
-          Data</span></a>
-        <a class="btn bg-olive" href="{{ route('books.edit',$book->id) }}"><span class="ion-edit"> Edit Data</span></a>
-        <a class="btn bg-purple" href="{{ route('admin.export.books') }}"><span class="ion-ios-paper"> Export</span></a>
-        --}}
+            Kembali</span></a>        
       </div>
     </div>
 
@@ -98,15 +93,7 @@
           <div class="col-md-8">
             {{ $book->category->name }}
           </div>
-        </div>
-        {{-- <div class="row">
-          <div class="col-md-4">
-            Inisial Buku
-          </div>
-          <div class="col-md-8">
-            {{ $book->initial }}
-          </div>
-        </div> --}}
+        </div>      
         <div class="row">
           <div class="col-md-4">
             Sumber

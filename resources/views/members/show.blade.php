@@ -14,9 +14,7 @@
       <h3 class="box-title">Detail Anggota</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>
-        {{-- <a class="btn bg-orange" href="{{ route('members.create') }}"><span class="ion-android-add"> Tambah
-          Data</span></a> --}}
+            Kembali</span></a>        
       </div>
     </div>
     <div class="box-body">

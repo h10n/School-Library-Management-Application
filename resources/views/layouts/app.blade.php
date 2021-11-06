@@ -46,22 +46,7 @@ desired effect
         <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
-      </a>
-
-                {{-- <div class="col-md-9">
-                    <div class="container-marquee">
-                        <div class="marquee-sibling">
-                            <i class="ion-speakerphone"></i> Pengumuman</div>
-                        <div class="marquee">
-                            <ul class="marquee-content-items">
-                                @foreach($announcements as $announcement)
-                                <li><a href="#">{{$announcement->text}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div> --}}
-                
+      </a>                
                 @include('layouts._nav-profile')
                 @include('layouts._logout-form')                
             </nav>

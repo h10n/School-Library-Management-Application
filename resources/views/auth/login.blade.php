@@ -28,9 +28,7 @@
         @endif
 
         <div class="login-box-body">
-            <p class="login-box-msg">Silahkan Gunakan Username dan Password Anda Untuk Masuk ke Aplikasi!</p>
-
-            {{-- <form action="../../index2.html" method="post"> --}}
+            <p class="login-box-msg">Silahkan Gunakan Username dan Password Anda Untuk Masuk ke Aplikasi!</p>            
                 {!! Form::open(['route' => 'login']) !!}                
                 <div class="form-group has-feedback">                    
                     {!! Form::text('username',null,['class' => 'form-control', 'placeholder' => 'Username']) !!}
@@ -45,19 +43,11 @@
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
                     </div>
                     <!-- /.col -->
-                </div>
-            {{-- </form> --}}
+                </div>            
             {!! Form::close() !!}
         </div>
         <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box -->
-    <script>  
-        // (function() {
-        //     setTimeout(function () {
-        //         document.querySelector(".pesan-error").remove();
-        //     }, 5000); 
-        // })();
-    </script>
+    <!-- /.login-box -->    
 </body>
 </html>

@@ -14,10 +14,7 @@
         
             <div class="avatar-delete">                                    
                 <a href="javascript:void(0)" class="imageDelete"></a>  
-            </div>
-            {{-- <div class="avatar-capture">                                    
-                <a href="javascript:void(0)" class="image-capture" data-toggle="modal" data-target="#modalWebcam"></a>  
-            </div> --}}
+            </div>            
             <div class="avatar-preview">            
                 <div class="imagePreview" style="background-image: url({{ $imgUrl }});" data-default="{{ $imgUrl }}">
                 </div>            

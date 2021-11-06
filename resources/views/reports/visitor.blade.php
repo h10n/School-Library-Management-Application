@@ -131,12 +131,10 @@
                           },
                           cache: false,
 
-                          beforeSend: function () {
-                            // console.log('krece');
+                          beforeSend: function () {                            
                           },
 
-                          success: function (data) {
-                            // console.log(data);
+                          success: function (data) {                            
                             var output = '';
                             var total = '';                            
                             var total_jumlah = 0;                            
@@ -198,8 +196,7 @@
             }
         );
 
-        function ajaxLaporanBulan(from_date, to_date) {
-            // console.log("aman")
+        function ajaxLaporanBulan(from_date, to_date) {            
             $.ajaxSetup({
                 headers: {
                     'X-XSRF-Token': $('meta[name="_token"]').attr('content')
@@ -217,12 +214,10 @@
                 },
                 cache: false,
 
-                beforeSend: function () {
-                    // console.log('krece');
+                beforeSend: function () {                    
                 },
 
-                success: function (data) {
-                  // console.log(data);
+                success: function (data) {                  
                   var output = '';
                   var total = '';
                   var total_kelas_x = 0;

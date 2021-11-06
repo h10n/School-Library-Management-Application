@@ -7,8 +7,7 @@
 </div>
 
 <div class="form-group">
-  <div class="col-md-4 col-md-offset-2">
-    {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button> --}}    
+  <div class="col-md-4 col-md-offset-2">    
     {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
   </div>
 </div>

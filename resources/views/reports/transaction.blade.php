@@ -102,40 +102,7 @@
             </table>
             {{ csrf_field() }}
           </div>
-        </div>
-
-        {{-- <div role="tabpanel" class="tab-pane add-little-padding-panel" id="report-per-class">
-          <div class="col-md-2">
-            <div class="input-group date">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-              </div>
-              <input class="form-control" name="report_year" type="text" id="report_year" placeholder="Pilih Tahun">
-
-            </div>
-          </div>
-          <input type="button" name="filter" id="filter" value="Filter" class="btn btn-info" />
-          <div class="box-body">
-            <table class="table table-striped table-hover" id="">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Kelas </th>
-                  <th>Pinjam</th>
-                  <th>Tidak Pinjam </th>
-                  <th>Keterangan</th>
-                </tr>
-              </thead>
-              <tbody>
-
-              </tbody>
-              <tfoot>
-
-              </tfoot>
-            </table>
-            {{ csrf_field() }}
-          </div>
-        </div> --}}
+        </div>        
       </div>
     </div>
     <!-- batas -->
@@ -146,8 +113,7 @@
 @push('req-scripts')
 <script>
  $('#filter-transaksi-tahun').click(function () {
-                var what_year = $('#report_year').val();
-                  //  console.log(what_year);
+                var what_year = $('#report_year').val();                  
                 if (what_year != '') {
                     $.ajaxSetup({
                         headers: {
@@ -237,8 +203,7 @@
             }
         );
 
-        function ajaxLaporanBulan(from_date, to_date) {
-            // console.log("aman")
+        function ajaxLaporanBulan(from_date, to_date) {            
             $.ajaxSetup({
                 headers: {
                     'X-XSRF-Token': $('meta[name="_token"]').attr('content')
@@ -256,8 +221,7 @@
                 },
                 cache: false,
 
-                beforeSend: function () {
-                    // console.log('krece');
+                beforeSend: function () {                    
                 },
 
                 success: function (data) {
@@ -277,8 +241,7 @@
                       output += '<td>' + '' + '</td></tr>';
 
                       total_peminjaman += val.peminjaman;
-                      total_pengembalian += val.pengembalian;
-                      // console.log(total_peminjaman);
+                      total_pengembalian += val.pengembalian;                      
                     });
                     //baris total
                     total += '<tr>';
@@ -290,11 +253,8 @@
                     total += '</tr>';
                     $('#laporanBulanan tbody').html(output);
                     $('#laporanBulanan tfoot').html(total);
-
                     },
-
                 error: function () {
-
                 }
             });
 

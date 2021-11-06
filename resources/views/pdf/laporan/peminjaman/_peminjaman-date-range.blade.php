@@ -13,8 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    @php
-    // $total = '';
+    @php    
     $total_peminjaman = 0;
     $total_pengembalian = 0;
     $no = 0;

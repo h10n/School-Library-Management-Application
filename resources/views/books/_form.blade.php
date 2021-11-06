@@ -12,12 +12,7 @@
     {!! Form::select('author_id',['' => '']+App\Author::get()->pluck('title','id')->all(),null,['class' =>
     'js-selectize','placeholder' => 'Pilih Penulis']) !!}
     {!! $errors->first('author_id','<p class="help-block"><strong>:message</strong></p>') !!}
-
-  </div>
-  {{-- <div class="col-md-2">
-    <a onclick="add('{{ route('authors.create')}}','Penulis')" class="btn bg-blue"><span class="ion-plus"> Tambah
-        Penulis</span></a>
-  </div> --}}
+  </div>  
 </div>
 
 <div class="form-group{{$errors->has('published_location') ? ' has-error' : ''}}">
@@ -35,11 +30,7 @@
     {!! Form::select('publisher_id',['' => '']+App\Publisher::pluck('name','id')->all(),null,['class' =>
     'js-selectize','placeholder' => 'Pilih Penerbit']) !!}
     {!! $errors->first('publisher_id','<p class="help-block"><strong>:message</strong></p>') !!}
-  </div>
-  {{-- <div class="col-md-2">
-    <a onclick="add('{{ route('publishers.create')}}','Penerbit')" class="btn bg-blue"><span class="ion-plus"> Tambah
-        Penerbit</span></a>
-  </div> --}}
+  </div>  
 </div>
 
 <div class="form-group{{$errors->has('published_year') ? ' has-error' : ''}}">
@@ -83,20 +74,8 @@
     {!! Form::select('category_id',['' => '']+App\Category::get()->pluck('title','id')->all(),null,['class' =>
     'js-selectize','placeholder' => 'Pilih Kategori']) !!}
     {!! $errors->first('category_id','<p class="help-block"><strong>:message</strong></p>') !!}
-  </div>
-  {{-- <div class="col-md-2">
-    <a onclick="add('{{ route('categories.create')}}','Kategori')" class="btn bg-blue"><span class="ion-plus"> Tambah
-        Kategori</span></a>
-  </div> --}}
+  </div>  
 </div>
-
-{{-- <div class="form-group{{$errors->has('initial') ? ' has-error' : ''}}">
-  {!! Form::label('initial','Inisial Buku',['class' => 'col-md-2 control-label']) !!}
-  <div class="col-md-1">
-    {!! Form::text('initial',null,['class' => 'form-control','maxlength' => '1']) !!}
-    {!! $errors->first('initial','<p class="help-block"><strong>:message</strong></p>') !!}
-  </div>
-</div> --}}
 
 <div class="form-group{{$errors->has('source') ? ' has-error' : ''}}">
   {!! Form::label('source','Sumber',['class' => 'col-md-2 control-label']) !!}
