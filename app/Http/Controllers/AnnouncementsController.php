@@ -20,36 +20,36 @@ class AnnouncementsController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $announcements = Announcement::select(['id','text'])->latest('updated_at')->get();
+            $announcements = Announcement::select(['id', 'text'])->latest('updated_at')->get();
             return Datatables::of($announcements)
-         ->addColumn('action', function ($announcement) {
-             return view('datatable._action', [
-             'model' => $announcement,
-             'form_url' => route('announcements.destroy', $announcement->id),
-             'edit_url' => route('announcements.edit', $announcement->id),
-             'title' => 'Pengumuman',
-             'confirm_message' => 'Yakin ingin menghapus '.$announcement->title.' ?'
-           ]);
-         })
-         ->addIndexColumn()
-         ->make(true);
+                ->addColumn('action', function ($announcement) {
+                    return view('datatable._action', [
+                        'model' => $announcement,
+                        'form_url' => route('announcements.destroy', $announcement->id),
+                        'edit_url' => route('announcements.edit', $announcement->id),
+                        'title' => 'Pengumuman',
+                        'confirm_message' => 'Yakin ingin menghapus ' . $announcement->title . ' ?'
+                    ]);
+                })
+                ->addIndexColumn()
+                ->make(true);
         }
 
         $html = $htmlBuilder
-        ->addColumn([
-            'defaultContent' => '',
-            'data'           => 'DT_Row_Index',
-            'name'           => 'DT_Row_Index',
-            'title'          => '',
-            'render'         => null,
-            'orderable'      => false,
-            'searchable'     => false,
-            'exportable'     => false,
-            'printable'      => true,
-            'footer'         => '',
-          ])
-       ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
-       ->addColumn(['data' => 'action','name' => 'action','title' => '','orderable' => false,'searchable' => false]);
+            ->addColumn([
+                'defaultContent' => '',
+                'data'           => 'DT_Row_Index',
+                'name'           => 'DT_Row_Index',
+                'title'          => '',
+                'render'         => null,
+                'orderable'      => false,
+                'searchable'     => false,
+                'exportable'     => false,
+                'printable'      => true,
+                'footer'         => '',
+            ])
+            ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
+            ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false]);
         return view('announcements.index')->with(compact('html'));
     }
 
@@ -70,7 +70,7 @@ class AnnouncementsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AnnouncementRequest $request)
-    {        
+    {
         $announcement = new Announcement;
         $announcement->text = $request->input('text');
         $announcement->save();
