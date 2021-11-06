@@ -2,8 +2,7 @@
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'GuestController@index');
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|staff']], function () {
-        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
-        Route::get('export/members/card/{card}', ['as' => 'admin.export.members.card', 'uses' => 'MembersController@exportCard']);
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');        
         Route::resource('authors', 'AuthorsController');
         Route::resource('publishers', 'PublishersController');
         Route::resource('categories', 'CategoriesController');
@@ -18,17 +17,19 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
         Route::resource('users', 'UsersController');
-        Route::get('export/visitors', ['as' => 'admin.export.visitors', 'uses' => 'ReportsController@visitorReport']);
         Route::get('export/transactions', ['as' => 'admin.export.transactions', 'uses' => 'ReportsController@transactionReport']);
-        Route::post('reports/visitors/lihat', ['as' => 'admin.reports.visitors.lihat', 'uses' => 'ReportsController@lihatVisitorReport']);
-        Route::post('reports/transaction/lihat', ['as' => 'admin.reports.transaction.lihat', 'uses' => 'ReportsController@lihatTransactionReport']);
-        Route::post('reports/visitors/lihat/tahun', ['as' => 'admin.reports.visitors.lihat.tahun', 'uses' => 'ReportsController@lihatTahunVisitorReport']);
-        Route::post('reports/transaction/lihat/tahun', ['as' => 'admin.reports.transaction.lihat.tahun', 'uses' => 'ReportsController@lihatTahunTransactionReport']);
+        Route::post('reports/transactions/lihat', ['as' => 'admin.reports.transactions.lihat', 'uses' => 'ReportsController@lihatTransactionReport']);        
         Route::post('reports/transactions/lihat/tahun', ['as' => 'admin.reports.transactions.lihat.tahun', 'uses' => 'ReportsController@lihatTahunTransactionReport']);
-        Route::post('reports/visitors/cetak', ['as' => 'admin.reports.visitors.cetak', 'uses' => 'ReportsController@cetakVisitors']);
         Route::post('reports/transactions/cetak', ['as' => 'admin.reports.transactions.cetak', 'uses' => 'ReportsController@cetakTransactions']);
+
+        Route::get('export/visitors', ['as' => 'admin.export.visitors', 'uses' => 'ReportsController@visitorReport']);
+        Route::post('reports/visitors/lihat', ['as' => 'admin.reports.visitors.lihat', 'uses' => 'ReportsController@lihatVisitorReport']);
+        Route::post('reports/visitors/lihat/tahun', ['as' => 'admin.reports.visitors.lihat.tahun', 'uses' => 'ReportsController@lihatTahunVisitorReport']);
+        Route::post('reports/visitors/cetak', ['as' => 'admin.reports.visitors.cetak', 'uses' => 'ReportsController@cetakVisitors']);
+        
         Route::get('export', 'ReportsController@export')->name('admin.export');
         Route::post('export/cetak', 'ReportsController@printExport')->name('admin.export-cetak');
+        
         Route::get('/settings/general', 'SettingsController@general');
         Route::get('/settings/general/edit', 'SettingsController@editGeneral');
         Route::put('/settings/general', 'SettingsController@updateGeneral');

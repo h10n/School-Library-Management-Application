@@ -212,7 +212,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '{{ route('admin.reports.transaction.lihat') }}',
+                url: '{{ route('admin.reports.transactions.lihat') }}',
                 method: "POST",
                 dataType: "json",
                 data: {
