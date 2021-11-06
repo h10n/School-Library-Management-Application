@@ -1,18 +1,10 @@
 <?php
 Route::group(['middleware' => 'web'], function ()
 {
-    Route::get('/', 'GuestController@index');    
-    Route::get('books/{book}/borrow', ['middleware' => ['auth', 'role:member'], 'as' => 'books.borrow', 'uses' => 'BooksController@borrow']);
-    Route::put('books/{book}/return', ['middleware' => ['auth', 'role:member'], 'as' => 'books.return', 'uses' => 'BooksController@returnBack']);
-
+    Route::get('/', 'GuestController@index');        
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|staff']], function ()
     {
-        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
-        Route::get('template/books', ['as' => 'admin.template.books', 'uses' => 'BooksController@generateExcelTemplate']);
-        Route::post('import/books', ['as' => 'admin.import.books', 'uses' => 'BooksController@importExcel']);
-        Route::get('export/books', ['as' => 'admin.export.books', 'uses' => 'BooksController@export']);
-        Route::post('export/books', ['as' => 'admin.export.books.post', 'uses' => 'BooksController@exportPost']);
-        //useless
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');                    
         Route::get('export/members/card/{card}', ['as' => 'admin.export.members.card', 'uses' => 'MembersController@exportCard']);
         Route::resource('authors', 'AuthorsController');
         Route::resource('publishers', 'PublishersController');
