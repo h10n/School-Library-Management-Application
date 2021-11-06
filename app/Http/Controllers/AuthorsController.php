@@ -7,7 +7,6 @@ use App\Author;
 use Yajra\Datatables\Html\Builder;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
-use App\Publisher;
 use App\Traits\FlashNotificationTrait;
 use Yajra\Datatables\Datatables;
 use Session;
@@ -22,7 +21,6 @@ class AuthorsController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
-        //
         if ($request->ajax()) {
             $authors = Author::select(['id','name','singkatan'])->latest('updated_at')->get();
             return Datatables::of($authors)
@@ -78,7 +76,6 @@ class AuthorsController extends Controller
      */
     public function create()
     {
-        //
         return view('authors.create');
     }
 
@@ -117,7 +114,6 @@ class AuthorsController extends Controller
      */
     public function edit($id)
     {
-        //
         $author = Author::find($id);
         return view('authors.edit')->with(compact('author'));
     }

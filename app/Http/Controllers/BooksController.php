@@ -8,7 +8,6 @@ use App\Author;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
-use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Exceptions\BookException;
@@ -31,8 +30,6 @@ class BooksController extends Controller
      */
     public function index(Request $request, Builder $htmlBuilder)
     {
-        //
-
         if ($request->ajax()) {
           $books = Book::with(['author','publisher','category'])->latest('updated_at')->get();
           return Datatables::of($books)
@@ -169,17 +166,16 @@ class BooksController extends Controller
      */
     public function update(UpdateBookRequest $request, $id)
     {
-      $book = Book::find($id);
-      $cover = $book->cover;
+      $book = Book::find($id);      
       if(!$book->update($request->all())) return redirect()->back();
       
       $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
-Session::flash("flash_notification", [
-    "level"=>"success",
-    "message"=>"Berhasil mengubah $book->title"
-]);
+      Session::flash("flash_notification", [
+          "level"=>"success",
+          "message"=>"Berhasil mengubah $book->title"
+      ]);
 
-return redirect()->route('books.index');
+      return redirect()->route('books.index');
     }
 
     /**
