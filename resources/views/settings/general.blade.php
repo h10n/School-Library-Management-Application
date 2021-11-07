@@ -10,7 +10,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Pengaturan</h3>
-            <div class="table-button-custom">                
+            <div class="table-button-custom">
             </div>
         </div>
         <div class="box-body">
@@ -55,7 +55,8 @@
                                 <td class="text-muted">Logo</td>
                                 <td>
                                     @if ($item->logo)
-                                    <p>{!! Html::image(asset('storage/uploads/logo/'.$item->logo),null,['class' => 'img-rounded cover-buku']) !!}
+                                    <p>{!! Html::image(asset('storage/uploads/logo/'.$item->logo),null,['class' =>
+                                        'img-rounded cover-buku']) !!}
                                     </p>
                                     @endif
                                 </td>
@@ -83,7 +84,8 @@
                     </table>
                 </div>
                 <div class="col-md-12">
-                    <a class="btn btn-primary" href="{{ url('admin/settings/general/edit') }}"><span class="ion-edit"> Edit</span></a>
+                    <a class="btn btn-primary" href="{{ url('admin/settings/general/edit') }}"><span class="ion-edit">
+                            Edit</span></a>
                 </div>
             </div>
         </div>

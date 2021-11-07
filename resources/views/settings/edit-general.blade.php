@@ -17,7 +17,7 @@
       <h3 class="box-title">Edit Pengaturan</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ url('admin/settings/general') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>        
+            Kembali</span></a>
       </div>
     </div>
 
@@ -72,7 +72,7 @@
       </div>
       <div class="form-group{{ $errors->has('about') ? ' has-error' : '' }}">
         {!! Form::label('about', 'Deskripsi', ['class' => 'col-md-2 control-label']) !!}
-        <div class="col-md-6">          
+        <div class="col-md-6">
           {!! Form::textarea('about',null,['class' => 'form-control','maxlength' => '100', 'rows' => '4']) !!}
           {!! $errors->first('about','<p class="help-block">:message</p>') !!}
         </div>
@@ -90,43 +90,45 @@
           {!! Form::text('nip_kepala_perpustakaan',null,['class' => 'form-control','maxlength' => '20']) !!}
           {!! $errors->first('nip_kepala_perpustakaan','<p class="help-block">:message</p>') !!}
         </div>
-      </div>      
-    @include('layouts._image-uploader', ['name' => 'logo_file', 'dir' => 'logo','label' => 'Logo', 'data' => $setting->logo ?? null])
-    <div class="row">
-      <div class="col-md-2">
-        <span class="text-muted pull-right"><i class="ion-arrow-swap"></i> Peminjaman</span>
       </div>
-    </div>
+      @include('layouts._image-uploader', ['name' => 'logo_file', 'dir' => 'logo','label' => 'Logo', 'data' =>
+      $setting->logo ?? null])
+      <div class="row">
+        <div class="col-md-2">
+          <span class="text-muted pull-right"><i class="ion-arrow-swap"></i> Peminjaman</span>
+        </div>
+      </div>
 
-    <div class="form-group{{ $errors->has('denda') ? ' has-error' : '' }}">
-      {!! Form::label('denda', 'Denda (Rp/Hari)', ['class' => 'col-md-2 control-label']) !!}
-      <div class="col-md-2">
-        {!! Form::number('denda',null,['class' => 'form-control', 'min' =>'1','max' => '1000000']) !!}
-        {!! $errors->first('denda','<p class="help-block">:message</p>') !!}
+      <div class="form-group{{ $errors->has('denda') ? ' has-error' : '' }}">
+        {!! Form::label('denda', 'Denda (Rp/Hari)', ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-2">
+          {!! Form::number('denda',null,['class' => 'form-control', 'min' =>'1','max' => '1000000']) !!}
+          {!! $errors->first('denda','<p class="help-block">:message</p>') !!}
+        </div>
       </div>
-    </div>
-    <div class="form-group{{ $errors->has('durasi') ? ' has-error' : '' }}">
-      {!! Form::label('durasi', 'Durasi (Hari)', ['class' => 'col-md-2 control-label']) !!}
-      <div class="col-md-1">
-        {!! Form::number('durasi',null,['class' => 'form-control', 'min' =>'1','max' => '365']) !!}
-        {!! $errors->first('durasi','<p class="help-block">:message</p>') !!}
+      <div class="form-group{{ $errors->has('durasi') ? ' has-error' : '' }}">
+        {!! Form::label('durasi', 'Durasi (Hari)', ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-1">
+          {!! Form::number('durasi',null,['class' => 'form-control', 'min' =>'1','max' => '365']) !!}
+          {!! $errors->first('durasi','<p class="help-block">:message</p>') !!}
+        </div>
       </div>
-    </div>
-    <div class="form-group{{ $errors->has('max_peminjaman') ? ' has-error' : '' }}">
-      {!! Form::label('max_peminjaman', 'Jumlah', ['class' => 'col-md-2 control-label']) !!}
-      <div class="col-md-1">
-        {!! Form::number('max_peminjaman',null,['class' => 'form-control', 'min' =>'1','max' => '100']) !!}
-        {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
+      <div class="form-group{{ $errors->has('max_peminjaman') ? ' has-error' : '' }}">
+        {!! Form::label('max_peminjaman', 'Jumlah', ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-1">
+          {!! Form::number('max_peminjaman',null,['class' => 'form-control', 'min' =>'1','max' => '100']) !!}
+          {!! $errors->first('max_peminjaman','<p class="help-block">:message</p>') !!}
+        </div>
       </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="col-md-4 col-md-offset-2">        
-        {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
+
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2">
+          {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn
+          btn-primary'] ) !!}
+        </div>
       </div>
+      {!! Form::close() !!}
     </div>
-    {!! Form::close() !!}
-  </div>
   </div>
 </section>
 @endsection

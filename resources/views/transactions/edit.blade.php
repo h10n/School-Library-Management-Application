@@ -4,6 +4,5 @@
 'class' => 'form-horizontal'
 ])
 !!}
-yakin nih ?? <--pesan sementara 
 {!! Form::submit('Proses',['class'=> 'btn btn-primary']) !!}
-  {!! Form::close() !!}
+{!! Form::close() !!}

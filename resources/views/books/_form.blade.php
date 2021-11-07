@@ -1,6 +1,6 @@
 <div class="form-group{{$errors->has('title') ? ' has-error' : ''}}">
   {!! Form::label('title','Judul',['class' => 'col-md-2 control-label']) !!}
-  <div class="col-md-4">    
+  <div class="col-md-4">
     {!! Form::textarea('title',null,['class' => 'form-control','maxlength' => '150', 'rows' => '4']) !!}
     {!! $errors->first('title','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
@@ -12,7 +12,7 @@
     {!! Form::select('author_id',['' => '']+App\Author::get()->pluck('title','id')->all(),null,['class' =>
     'js-selectize','placeholder' => 'Pilih Penulis']) !!}
     {!! $errors->first('author_id','<p class="help-block"><strong>:message</strong></p>') !!}
-  </div>  
+  </div>
 </div>
 
 <div class="form-group{{$errors->has('published_location') ? ' has-error' : ''}}">
@@ -30,7 +30,7 @@
     {!! Form::select('publisher_id',['' => '']+App\Publisher::pluck('name','id')->all(),null,['class' =>
     'js-selectize','placeholder' => 'Pilih Penerbit']) !!}
     {!! $errors->first('publisher_id','<p class="help-block"><strong>:message</strong></p>') !!}
-  </div>  
+  </div>
 </div>
 
 <div class="form-group{{$errors->has('published_year') ? ' has-error' : ''}}">
@@ -71,10 +71,10 @@
   {!! Form::label('category_id','Kategori',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
 
-    {!! Form::select('category_id',['' => '']+App\Category::get()->pluck('title','id')->all(),null,['class' =>
+    {!! Form::select('category_id',['' => '']+App\Category::get()->pluck('name','id')->all(),null,['class' =>
     'js-selectize','placeholder' => 'Pilih Kategori']) !!}
     {!! $errors->first('category_id','<p class="help-block"><strong>:message</strong></p>') !!}
-  </div>  
+  </div>
 </div>
 
 <div class="form-group{{$errors->has('source') ? ' has-error' : ''}}">
@@ -119,7 +119,8 @@
 </div>
 
 <div class="form-group">
-  <div class="col-md-4 col-md-offset-2">        
-    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
+  <div class="col-md-4 col-md-offset-2">
+    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn
+    btn-primary'] ) !!}
   </div>
 </div>

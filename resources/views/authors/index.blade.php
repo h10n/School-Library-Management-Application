@@ -13,14 +13,14 @@
       <h3 class="box-title">Daftar Penulis</h3>
       <div class="table-button-custom">
         <a onclick="add('{{ route('authors.create')}}','Penulis')" class="btn bg-orange"><span class="ion-android-add">
-            Tambah Data</span></a>        
+            Tambah Data</span></a>
       </div>
     </div>
     <div class="box-body">
       <div class="table-responsive">
         {!! $html->table(['class' => 'table table-striped table-hover']) !!}
-      </div>  
-    </div>  
+      </div>
+    </div>
   </div>
 </section>
 @endsection

@@ -1,4 +1,3 @@
-
 @push('req-css')
 <link href="{{ asset('css/avatar.css') }}" rel="stylesheet" media="screen">
 @endpush
@@ -40,7 +39,7 @@
       {!! $errors->first('jurusan','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-  
+
   <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
     {!! Form::label('email','E-mail',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
@@ -48,7 +47,7 @@
       {!! $errors->first('email','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-  
+
   <div class="form-group{{$errors->has('phone') ? ' has-error' : ''}}">
     {!! Form::label('phone','No Telepon',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
@@ -58,15 +57,16 @@
   </div>
   <div class="form-group{{$errors->has('address') ? ' has-error' : ''}}">
     {!! Form::label('address','Alamat',['class' => 'col-md-2 control-label']) !!}
-    <div class="col-md-4">    
+    <div class="col-md-4">
       {!! Form::textarea('address',null,['class' => 'form-control','maxlength' => '100', 'rows' => '4']) !!}
       {!! $errors->first('address','<p class="help-block"><strong>:message</strong></p>') !!}
-    </div>  
+    </div>
   </div>
   <div class="form-group{{$errors->has('username') ? ' has-error' : ''}}">
     {!! Form::label('username','Username',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
-      {!! Form::text('username',old('username', $member->user->username ?? ''),['class' => 'form-control','maxlength' => '30']) !!}
+      {!! Form::text('username',old('username', $member->user->username ?? ''),['class' => 'form-control','maxlength' =>
+      '30']) !!}
       {!! $errors->first('username','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
@@ -76,10 +76,11 @@
       {!! Form::password('password',['class' => 'form-control']) !!}
       {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
-  </div>  
-  @include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'anggota','label' => 'Foto', 'data' => $member->photo ?? null])
+  </div>
+  @include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'anggota','label' => 'Foto', 'data' =>
+  $member->photo ?? null])
   <div class="form-group">
-    <div class="col-md-6 col-md-offset-2">            
+    <div class="col-md-6 col-md-offset-2">
       {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
     </div>
   </div>
@@ -91,7 +92,7 @@
 @push('custom-scripts')
 <script>
   $(document).ready(function () {
-    $('#jenis_anggota').change();    
+    $('#jenis_anggota').change();
   });
 
   $('#jenis_anggota').change(function () {
@@ -103,17 +104,17 @@
     }
   });
 
-  function disableKelas(arg = true){
-    if(arg){
-    $('.kelas-el').hide();
-    $('#kelas').prop('disabled', true);
-    $('.jurusan-el').hide();
-    $('#jurusan').prop('disabled', true);
-    }else{
-    $('.kelas-el').show();
-    $('#kelas').prop('disabled', false);
-    $('.jurusan-el').show();
-    $('#jurusan').prop('disabled', false);
+  function disableKelas(arg = true) {
+    if (arg) {
+      $('.kelas-el').hide();
+      $('#kelas').prop('disabled', true);
+      $('.jurusan-el').hide();
+      $('#jurusan').prop('disabled', true);
+    } else {
+      $('.kelas-el').show();
+      $('#kelas').prop('disabled', false);
+      $('.jurusan-el').show();
+      $('#jurusan').prop('disabled', false);
     }
   }
 </script>

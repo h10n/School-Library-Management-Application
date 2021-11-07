@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-          $perpus = Setting::all();
-          foreach ($perpus as $perpustakan) {
+          $perpustakan = Setting::first();
+                            
           $nama_perpus = $perpustakan->name;
           $alamat_perpus = $perpustakan->address;
           $tentang = $perpustakan->about;
@@ -36,10 +36,8 @@ class AppServiceProvider extends ServiceProvider
           $jumlah = $perpustakan->max_peminjaman;
           $logo = $perpustakan->logo;
           $kepala_perpustakaan = $perpustakan->kepala_perpustakaan;
-          $nip_kepala_perpustakaan = $perpustakan->nip_kepala_perpustakaan;
-          // $pustakawan = $perpustakan->pustakawan;
-          // $nip_pustakawan = $perpustakan->nip_pustakawan;
-          }
+          $nip_kepala_perpustakaan = $perpustakan->nip_kepala_perpustakaan;          
+
           $mytime = Carbon::now();
           $waktu = $mytime->formatLocalized('%A, %d %b %Y');
           $announcements = Announcement::all();

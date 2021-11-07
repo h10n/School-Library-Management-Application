@@ -14,7 +14,7 @@
       <h3 class="box-title">Tambah Peminjaman</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('transactions.index') }}"><span class="ion-android-arrow-back">
-          Kembali</span></a>        
+            Kembali</span></a>
       </div>
     </div>
 
@@ -34,15 +34,15 @@
 
 @push('req-scripts')
 <script>
-        function resetTransaksi() {
-            //very awful code, fix it in future
-            var $select = $('#member_id');
-            var control = $select[0].selectize;
-            control.clear();
+  function resetTransaksi() {
+    //very awful code, fix it in future
+    var $select = $('#member_id');
+    var control = $select[0].selectize;
+    control.clear();
 
-            var $select = $('#book_id');
-            var control = $select[0].selectize;
-            control.clear();
-        }        
+    var $select = $('#book_id');
+    var control = $select[0].selectize;
+    control.clear();
+  }
 </script>
 @endpush

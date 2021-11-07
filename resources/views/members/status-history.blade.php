@@ -14,8 +14,8 @@
     <div class="box-body">
       <div class="callout callout-info">
         Selamat Datang di {{ $tentang }}
-      </div>      
-      @include('members._status-history-table')     
+      </div>
+      @include('members._status-history-table')
     </div>
   </div>
 </section>

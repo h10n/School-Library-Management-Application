@@ -13,7 +13,7 @@
       <h3 class="box-title">Daftar Anggota</h3>
       <div class="table-button-custom">
         <a class="btn bg-orange" href="{{ route('members.create') }}"><span class="ion-android-add"> Tambah
-            Data</span></a>      
+            Data</span></a>
       </div>
     </div>
     <div class="box-body">

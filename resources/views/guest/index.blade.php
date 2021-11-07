@@ -41,7 +41,7 @@
                   @role('visitor')
                   <li><a href="{{ route('visitors.guest-book') }}">Buku Tamu</a></li>
                   @endrole
-                  @if (!auth()->check())                  
+                  @if (!auth()->check())
                   <li><a href="{{ route('login') }}">Login</a></li>
                   @endif
                 </ul>

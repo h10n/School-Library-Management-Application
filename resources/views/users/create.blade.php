@@ -12,15 +12,15 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Tambah Pengguna</h3>
-      <div class="table-button-custom">        
+      <div class="table-button-custom">
       </div>
     </div>
-    
+
     <div class="box-body">
-      {{ Form::open(array('route' => 'users.store', 'files' => true, 'class' => 'form-horizontal')) }}      
-      @include('users._form')  
+      {{ Form::open(array('route' => 'users.store', 'files' => true, 'class' => 'form-horizontal')) }}
+      @include('users._form')
       {{ Form::close() }}
-    </div>  
+    </div>
   </div>
 </section>
 @endsection

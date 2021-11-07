@@ -12,20 +12,20 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Tambah Buku</h3>
-      <div class="table-button-custom">        
+      <div class="table-button-custom">
       </div>
     </div>
     <div class="box-body">
       {!! Form::open([
-        'url' => route('books.store'),
-        'method' => 'POST',
-        'files' => 'true',
-        'class' => 'form-horizontal'
-        ])
-        !!}
-        @include('books._form')
-        {!! Form::close() !!}
-    </div>    
+      'url' => route('books.store'),
+      'method' => 'POST',
+      'files' => 'true',
+      'class' => 'form-horizontal'
+      ])
+      !!}
+      @include('books._form')
+      {!! Form::close() !!}
+    </div>
   </div>
 </section>
 @endsection
@@ -38,10 +38,11 @@
               autoclose: true
             });
             $('#book-year').datepicker({
-                minViewMode: 2,
-                format: 'yyyy',
-                autoclose: true
+              minViewMode: 2,
+              format: 'yyyy',
+              autoclose: true
             });
+
             function resetBuku() {
               //very awful code, fix it in future
               var $select = $('#author_id');

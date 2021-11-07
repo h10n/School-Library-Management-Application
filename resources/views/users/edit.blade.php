@@ -13,13 +13,13 @@
     <div class="box-header">
       <h3 class="box-title">Edit Pengguna</h3>
       <div class="table-button-custom">
-        <a class="btn bg-red" href="{{ route('users.index') }}"><span class="ion-android-arrow-back"> Kembali</span></a>        
+        <a class="btn bg-red" href="{{ route('users.index') }}"><span class="ion-android-arrow-back"> Kembali</span></a>
       </div>
     </div>
-    
+
     <div class="box-body">
       {{ Form::model($item, array('route' => array('users.update', $item->id), 'method' => 'PUT', 'files' => true, 'class' => 'form-horizontal')) }}
-      @include('users._form')    
+      @include('users._form')
       {{Form::close()}}
     </div>
   </div>

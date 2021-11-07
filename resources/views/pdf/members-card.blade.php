@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,10 +102,13 @@
 		}
 	</style>
 </head>
+
 <body>
 	@php
-		$logoImg = !empty($setting->logo) ? asset('storage/uploads/logo/'.$setting->logo) : asset('img/icons8-no-camera.svg');
-		$avatarImg = !empty($member->photo) ? asset('storage/uploads/anggota/'.$member->photo) : asset('img/icons8-no-camera.svg');
+	$logoImg = !empty($setting->logo) ? asset('storage/uploads/logo/'.$setting->logo) :
+	asset('img/icons8-no-camera.svg');
+	$avatarImg = !empty($member->photo) ? asset('storage/uploads/anggota/'.$member->photo) :
+	asset('img/icons8-no-camera.svg');
 	@endphp
 	<div class="card">
 		<table id="kop" width="100%">
@@ -120,12 +124,12 @@
 				</td>
 			</tr>
 		</table>
-		<br>	
+		<br>
 		<div class="avatar">
-			<img src="{{ $avatarImg }}" width="46px">			
+			<img src="{{ $avatarImg }}" width="46px">
 		</div>
 		<table id="identitas" border="0">
-			<tr>				
+			<tr>
 				<td>Nomor</td>
 				<td>:</td>
 				<td>{{ $member->no_induk }}</td>
@@ -136,17 +140,17 @@
 				<td>{{ $member->name }}</td>
 			</tr>
 			@if ($member->jenis_anggota === 'siswa/i')
-				<tr>
-					<td>Kelas</td>
-					<td>:</td>
-					<td>{{ $member->kelas }}</td>
-				</tr>
-				<tr>
-					<td>Jurusan</td>
-					<td>:</td>
-					<td>{{ $member->jurusan }}</td>
-				</tr>				
-			@endif			
+			<tr>
+				<td>Kelas</td>
+				<td>:</td>
+				<td>{{ $member->kelas }}</td>
+			</tr>
+			<tr>
+				<td>Jurusan</td>
+				<td>:</td>
+				<td>{{ $member->jurusan }}</td>
+			</tr>
+			@endif
 		</table>
 		<table id="ttdTable">
 			<tr>
@@ -172,4 +176,5 @@
 		</ol>
 	</div>
 </body>
+
 </html>

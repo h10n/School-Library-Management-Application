@@ -11,7 +11,6 @@
   <div class="col-md-4">
     {!! Form::textarea('text',null,['class' => 'form-control','maxlength' => '330']) !!}
     {!! $errors->first('text','<p class="help-block"><strong>:message</strong></p>') !!}
-
   </div>
 </div>
 
@@ -21,13 +20,15 @@
     {!! Form::file('img_file') !!}
     {!! $errors->first('img_file','<p class="help-block"><strong>:message</strong></p>') !!}
     @if (isset($carousel) && $carousel->img)
-    <div style="margin-top: 10px">{!! Html::image(asset('storage/uploads/slider/'.$carousel->img),null,['class' => 'img-rounded cover-buku']) !!}</div>
+    <div style="margin-top: 10px">{!! Html::image(asset('storage/uploads/slider/'.$carousel->img),null,['class' =>
+      'img-rounded cover-buku']) !!}</div>
     @endif
   </div>
 </div>
 
 <div class="form-group">
   <div class="col-md-6 col-md-offset-2">
-    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn btn-primary'] )  !!}
+    {!! Form::button('<i class="fa fa-save"></i> Simpan', ['type' => 'submit', 'name' => 'simpan', 'class' => 'btn
+    btn-primary'] ) !!}
   </div>
 </div>

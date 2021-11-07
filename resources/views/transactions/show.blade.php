@@ -13,7 +13,8 @@
     <div class="box-header">
       <h3 class="box-title">Detail Peminjaman</h3>
       <div class="table-button-custom">
-        <a class="btn bg-red" href="{{ route('transactions.index') }}"><span class="ion-android-arrow-back"> Kembali</span></a>                
+        <a class="btn bg-red" href="{{ route('transactions.index') }}"><span class="ion-android-arrow-back">
+            Kembali</span></a>
       </div>
     </div>
 
@@ -80,7 +81,7 @@
           <div class="col-md-4">
             Max Tanggal Pengembalian
           </div>
-          <div class="col-md-8">            
+          <div class="col-md-8">
             {{ $transaction->tgl_max }}
           </div>
         </div>
@@ -89,7 +90,7 @@
             Status
           </div>
           <div class="col-md-8">
-            {{ $transaction->status }}            
+            {{ $transaction->status }}
           </div>
         </div>
         <div class="row">
@@ -97,7 +98,7 @@
             Denda
           </div>
           <div class="col-md-8">
-            {{ $transaction->total_denda }}       
+            {{ $transaction->total_denda }}
           </div>
         </div>
       </div>

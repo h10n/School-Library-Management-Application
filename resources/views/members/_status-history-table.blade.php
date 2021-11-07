@@ -13,9 +13,9 @@
             @forelse ($member->borrowLogs()->borrowed()->get() as $log)
             <tr>
                 <td>{{ $log->book->title }}</td>
-                <td>{{ $log->tgl_peminjaman }}</td>                
-                <td>{{ $log->tgl_max }}</td>                
-                <td>{{ $log->total_denda }}</td>                
+                <td>{{ $log->tgl_peminjaman }}</td>
+                <td>{{ $log->tgl_max }}</td>
+                <td>{{ $log->total_denda }}</td>
             </tr>
             @empty
             <tr>

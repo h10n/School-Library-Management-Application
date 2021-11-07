@@ -14,10 +14,10 @@
       <h3 class="box-title">Edit Buku</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('books.index') }}"><span class="ion-android-arrow-back">
-          Kembali</span></a>        
+            Kembali</span></a>
       </div>
     </div>
-    
+
     <div class="box-body">
 
       {!! Form::model($book,[
@@ -31,7 +31,7 @@
       {!! Form::close() !!}
 
 
-    </div>    
+    </div>
   </div>
 </section>
 @endsection

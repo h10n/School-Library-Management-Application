@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <title>{{ $nama_perpus }}</title>
-    @include('layouts._styles')    
+    @include('layouts._styles')
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -35,31 +35,31 @@ desired effect
 <body class="hold-transition skin-red-light sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-               <!-- Logo -->
-    <a href="{{ url('/')}}" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>P</span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>App</b>Perpustakaan</span>
-      </a>
+            <!-- Logo -->
+            <a href="{{ url('/')}}" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>P</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>App</b>Perpustakaan</span>
+            </a>
             <nav class="navbar" role="navigation">
-        <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>                
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
                 @include('layouts._nav-profile')
-                @include('layouts._logout-form')                
+                @include('layouts._logout-form')
             </nav>
 
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">        
+        <aside class="main-sidebar">
             <section class="sidebar">
                 <div class="profil thumbnail">
                     <a href="{{ url('/')}}">
-                        {!! Html::image(asset('storage/uploads/logo/'.$logo),null,['class' => 'img-responsive']) !!}                        
+                        {!! Html::image(asset('storage/uploads/logo/'.$logo),null,['class' => 'img-responsive']) !!}
                     </a>
-                </div>            
+                </div>
                 <!-- Sidebar Menu -->
                 @include('layouts.menu')
                 <!-- /.sidebar-menu -->
@@ -69,8 +69,8 @@ desired effect
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('visitor/guest-book') || request()->is('member/status-history'))                        
-            <div class="content-header">                
+            @if (request()->is('visitor/guest-book') || request()->is('member/status-history'))
+            <div class="content-header">
                 @include('layouts._announcement')
             </div>
             @endif
@@ -101,4 +101,5 @@ desired effect
     </div>
     @include('layouts._scripts')
 </body>
+
 </html>

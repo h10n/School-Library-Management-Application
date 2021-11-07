@@ -13,7 +13,7 @@
       <h3 class="box-title">Daftar Penerbit</h3>
       <div class="table-button-custom">
         <a onclick="add('{{ route('publishers.create')}}','Penerbit')" class="btn bg-orange"><span
-            class="ion-android-add"> Tambah Data</span></a>      
+            class="ion-android-add"> Tambah Data</span></a>
       </div>
     </div>
     <div class="box-body">

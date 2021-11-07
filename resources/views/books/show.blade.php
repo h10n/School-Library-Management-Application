@@ -14,7 +14,7 @@
       <h3 class="box-title">Detail Buku</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('books.index') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>        
+            Kembali</span></a>
       </div>
     </div>
 
@@ -93,13 +93,12 @@
           <div class="col-md-8">
             {{ $book->category->name }}
           </div>
-        </div>      
+        </div>
         <div class="row">
           <div class="col-md-4">
             Sumber
           </div>
           <div class="col-md-8">
-
             @if ($book->source=='hadiah')
             <p>Hadiah</p>
             @elseif ($book->source=='pengadaan')
@@ -121,14 +120,15 @@
           </div>
           <div class="col-md-8">
             @if (isset($book) && $book->cover)
-            <p>{!! Html::image(asset('storage/uploads/buku/'.$book->cover),null,['class' => 'img-rounded cover-buku']) !!}</p>
+            <p>{!! Html::image(asset('storage/uploads/buku/'.$book->cover),null,['class' => 'img-rounded cover-buku'])
+              !!}</p>
             @endif
           </div>
         </div>
       </div>
-      <div class="col-md-12">        
+      <div class="col-md-12">
         <a class="btn bg-olive" href="{{ route('books.edit',$book->id) }}"><span class="ion-edit"> Edit
-            Data</span></a>        
+            Data</span></a>
       </div>
     </div>
   </div>

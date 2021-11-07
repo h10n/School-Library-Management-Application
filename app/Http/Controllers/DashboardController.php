@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $kategori = Category::get();
         $transaksi = BorrowLog::get();
         $pinjam = BorrowLog::where('is_returned', '0')->get();                
-        $todaysvisit = Visitor::whereDay('created_at', '=', Carbon::now()->format('d'))->count();
+        $todaysvisit = Visitor::whereDate('created_at', '=', Carbon::now()->toDateString())->count();
         
         return view('dashboard.index')->with(compact('todaysvisit', 'buku', 'penulis', 'anggota', 'penerbit', 'kategori', 'transaksi', 'pinjam'));
     }

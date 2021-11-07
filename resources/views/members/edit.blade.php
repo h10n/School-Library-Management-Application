@@ -12,7 +12,8 @@
     <div class="box-header">
       <h3 class="box-title">Edit Anggota</h3>
       <div class="table-button-custom">
-        <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back"> Kembali</span></a>              
+        <a class="btn bg-red" href="{{ route('members.index') }}"><span class="ion-android-arrow-back">
+            Kembali</span></a>
       </div>
     </div>
     <div class="box-body">

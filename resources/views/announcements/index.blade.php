@@ -12,15 +12,16 @@
     <div class="box-header">
       <h3 class="box-title">Daftar Pengumuman</h3>
       <div class="table-button-custom">
-        <a class="btn bg-orange" onclick="add('{{ route('announcements.create')}}','Pengumuman')"><span class="ion-android-add"> Tambah
-            Data</span></a>      
+        <a class="btn bg-orange" onclick="add('{{ route('announcements.create')}}','Pengumuman')"><span
+            class="ion-android-add"> Tambah
+            Data</span></a>
       </div>
-    </div>    
+    </div>
     <div class="box-body">
       <div class="table-responsive">
         {!! $html->table(['class' => 'table table-striped table-hover']) !!}
-      </div>    
-    </div>    
+      </div>
+    </div>
   </div>
 </section>
 @endsection

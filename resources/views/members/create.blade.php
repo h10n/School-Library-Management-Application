@@ -12,7 +12,7 @@
   <div class="box">
     <div class="box-header">
       <h3 class="box-title">Tambah Anggota</h3>
-      <div class="table-button-custom">      
+      <div class="table-button-custom">
       </div>
     </div>
     <div class="box-body">
