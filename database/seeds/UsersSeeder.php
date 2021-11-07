@@ -78,8 +78,8 @@ class UsersSeeder extends Seeder
         $visitor->password = bcrypt('admin123');
         // $visitor->telp = "08218832100";
         // $visitor->alamat = "Jl Rapak Tak Indah no 17";
-        $visitor->photo = "";    
+        $visitor->photo = "";
         $visitor->save();
-        $visitor->attachRole($visitorRole);        
+        $visitor->attachRole($visitorRole);
     }
 }
