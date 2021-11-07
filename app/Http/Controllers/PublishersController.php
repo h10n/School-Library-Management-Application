@@ -29,8 +29,7 @@ class PublishersController extends Controller
             'model' => $publisher,
             'form_url' => route('publishers.destroy', $publisher->id),
             'edit_url' => route('publishers.edit', $publisher->id),
-            'title' => 'Penerbit',
-            'confirm_message' => 'Yakin ingin menghapus ' . $publisher->name . ' ?'
+            'title' => 'Penerbit'            
           ]);
         })
         ->addIndexColumn()

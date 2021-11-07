@@ -35,8 +35,7 @@ class CarouselController extends Controller
                         'model' => $carousel,
                         'form_url' => route('carousels.destroy', $carousel->id),
                         'edit_url' => route('carousels.edit', $carousel->id),
-                        'title' => 'Slider',
-                        'confirm_message' => 'Yakin ingin menghapus ' . $carousel->title . ' ?'
+                        'title' => 'Slider'                        
                     ]);
                 })
                 ->rawColumns(['image', 'action'])

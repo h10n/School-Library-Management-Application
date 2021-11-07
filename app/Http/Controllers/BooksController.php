@@ -31,8 +31,7 @@ class BooksController extends Controller
             'form_url' => route('books.destroy', $book->id),
             'edit_url' => route('books.edit', $book->id),
             'detail_url' => route('books.show', $book->id),
-            'title' => 'Buku',
-            'confirm_message' => 'Yakin ingin menghapus ' . $book->title . ' ?'
+            'title' => 'Buku'            
           ]);
         })
         ->addIndexColumn()

@@ -32,8 +32,7 @@ class MembersController extends Controller
             'form_url' => route('members.destroy', $member->id),
             'edit_url' => route('members.edit', $member->id),
             'detail_url' => route('members.show', $member->id),
-            'title' => 'Member',
-            'confirm_message' => 'Yakin ingin menghapus ' . $member->name . ' ?'
+            'title' => 'Member'            
           ]);
         })
         ->addIndexColumn()

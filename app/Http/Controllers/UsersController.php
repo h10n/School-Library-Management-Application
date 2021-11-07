@@ -32,8 +32,7 @@ class UsersController extends Controller
             'model' => $item,
             'form_url' => route('users.destroy', $item->id),
             'edit_url' => route('users.edit', $item->id),
-            'title' => 'Pengguna',
-            'confirm_message' => 'Yakin ingin menghapus ?'
+            'title' => 'Pengguna'            
           ]);
         })
         ->addIndexColumn()

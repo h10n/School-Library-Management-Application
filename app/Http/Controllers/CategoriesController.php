@@ -29,8 +29,7 @@ class CategoriesController extends Controller
             'model' => $category,
             'form_url' => route('categories.destroy', $category->id),
             'edit_url' => route('categories.edit', $category->id),
-            'title' => 'Kategori',
-            'confirm_message' => 'Yakin ingin menghapus ' . $category->name . ' ?'
+            'title' => 'Kategori'            
           ]);
         })
         ->addIndexColumn()

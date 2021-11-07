@@ -35,8 +35,7 @@ class TransactionsController extends Controller
             'edit_url' => route('transactions.edit', $stat->id),
             'detail_url' => route('transactions.show', $stat->id),
             'update_url' => route('transactions.update', $stat->id),
-            'title' => 'Transactions',
-            'confirm_message' => 'Yakin ingin menghapus  ?'
+            'title' => 'Transactions'            
           ]);
         })
         ->addIndexColumn()

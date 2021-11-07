@@ -27,8 +27,7 @@ class AnnouncementsController extends Controller
                         'model' => $announcement,
                         'form_url' => route('announcements.destroy', $announcement->id),
                         'edit_url' => route('announcements.edit', $announcement->id),
-                        'title' => 'Pengumuman',
-                        'confirm_message' => 'Yakin ingin menghapus ' . $announcement->title . ' ?'
+                        'title' => 'Pengumuman'                        
                     ]);
                 })
                 ->addIndexColumn()

@@ -29,8 +29,7 @@ class AuthorsController extends Controller
             'model' => $author,
             'form_url' => route('authors.destroy', $author->id),
             'edit_url' => route('authors.edit', $author->id),
-            'title' => 'Penulis',
-            'confirm_message' => 'Yakin ingin menghapus ' . $author->name . ' ?'
+            'title' => 'Penulis'            
           ]);
         })
         ->addIndexColumn()

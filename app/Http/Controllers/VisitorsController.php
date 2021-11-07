@@ -28,8 +28,7 @@ class VisitorsController extends Controller
             'model' => $item,
             'form_url' => route('visitors.destroy', $item->id),
             'edit_url' => route('visitors.edit', $item->id),
-            'title' => 'Pengunjung',
-            'confirm_message' => 'Yakin ingin menghapus ' . $item->name . ' ?'
+            'title' => 'Pengunjung'            
           ]);
         })
         ->addIndexColumn()
