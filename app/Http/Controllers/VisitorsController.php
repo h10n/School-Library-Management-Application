@@ -73,6 +73,11 @@ class VisitorsController extends Controller
         'title' => 'Keperluan'
       ])
       ->addColumn([
+        'data' => 'tgl_terdaftar',
+        'name' => 'tgl_terdaftar',
+        'title' => 'Tanggal'
+      ])
+      ->addColumn([
         'data' => 'action',
         'name' => 'action',
         'title' => '',
