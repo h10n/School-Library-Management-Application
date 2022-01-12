@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VisitorMemberRequest;
 use App\Http\Requests\VisitorRequest;
+use App\Member;
 use App\Traits\FlashNotificationTrait;
 use App\Visitor;
 use Illuminate\Http\Request;
@@ -60,7 +62,7 @@ class VisitorsController extends Controller
       ->addColumn([
         'data' => 'jenis',
         'name' => 'jenis',
-        'title' => 'Jenis Anggota'
+        'title' => 'Jenis Pengunjung'
       ])
       ->addColumn([
         'data' => 'kelas',
@@ -109,6 +111,25 @@ class VisitorsController extends Controller
   public function storeGuestBook(VisitorRequest $request)
   {
     $item = Visitor::create($request->all());
+    Session::flash("flash_notification", [
+      "level" => "success",
+      "message" => "Terimakasih $item->name, Selamat $item->keperluan !"
+    ]);
+    return redirect()->route('visitors.guest-book');
+  }
+
+  public function storeGuestBookMember(VisitorMemberRequest $request)
+  {
+    $member = Member::where('no_induk', $request->no_anggota)->firstOrFail();
+    $data = [
+      'no_induk' => $member->no_induk,
+      'name' => $member->name,
+      'jenis' => $member->jenis_anggota,
+      'kelas' => $member->kelas,
+      'keperluan' => $request->keperluan,
+    ];
+
+    $item = Visitor::create($data);
     Session::flash("flash_notification", [
       "level" => "success",
       "message" => "Terimakasih $item->name, Selamat $item->keperluan !"

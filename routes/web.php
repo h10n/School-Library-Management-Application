@@ -37,6 +37,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['prefix' => 'visitor', 'middleware' => ['auth', 'role:visitor']], function () {
         Route::post('guest-book', 'VisitorsController@storeGuestBook')->name('visitors.guest-book.store');
+        Route::post('guest-book/member', 'VisitorsController@storeGuestBookMember')->name('visitors.guest-book-member.store');
         Route::get('guest-book', 'VisitorsController@guestBook')->name('visitors.guest-book');
     });
 

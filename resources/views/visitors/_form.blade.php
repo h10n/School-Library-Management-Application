@@ -17,10 +17,10 @@
 </div>
 
 <div class="form-group{{$errors->has('jenis') ? ' has-error' : ''}}">
-  {!! Form::label('jenis','Jenis Anggota',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('jenis','Jenis Pengunjung',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-2">
-    {!! Form::select('jenis',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i'],null,['class' =>
-    'js-selectize','placeholder' => 'Jenis Anggota']) !!}
+    {!! Form::select('jenis',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i', 'umum' => 'Umum'],null,['class' =>
+    'js-selectize','placeholder' => 'Jenis Pengunjung']) !!}
     {!! $errors->first('jenis','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>

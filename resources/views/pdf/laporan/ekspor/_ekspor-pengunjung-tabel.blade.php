@@ -5,7 +5,7 @@
             <th>Tanggal</th>
             <th>NIS/NIP</th>
             <th>Nama</th>
-            <th>Jenis Anggota</th>
+            <th>Jenis Pengunjung</th>
             <th>Kelas</th>
             <th>Keperluan</th>        
         </tr>  
