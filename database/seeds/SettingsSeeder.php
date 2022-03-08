@@ -21,7 +21,7 @@ class SettingsSeeder extends Seeder
             'website' => 'www.yourschoolwebsite.sch.id',
             'email' => 'yourschoolemail@yourschoolwebsite.com',
             'pengelola' => 'Samarinda City Primary and Secondary Education Council',
-            'kepala_perpustakaan' => 'Eka Arif Hakim, S.E',
+            'kepala_perpustakaan' => 'Hakim Nur, S.E',
             'nip_kepala_perpustakaan' => '',
             'about' => 'School Library Management Application',
             'logo' => 'Your_School_logos_black_8ddc73252c67e62307b5fba8ed6ef027_715.png',
