@@ -24,12 +24,12 @@
         <!-- /.login-logo -->
         @if ($errors->any())
         <div class="alert alert-danger pesan-error">
-            Gagal! Username Atau Password Salah!
+            Fail! Wrong Username Or Password!
         </div>
         @endif
 
         <div class="login-box-body">
-            <p class="login-box-msg">Silahkan Gunakan Username dan Password Anda Untuk Masuk ke Aplikasi!</p>
+            <p class="login-box-msg">Please Use Your Username and Password To Enter The Application!!</p>
             {!! Form::open(['route' => 'login']) !!}
             <div class="form-group has-feedback">
                 {!! Form::text('username',null,['class' => 'form-control', 'placeholder' => 'Username']) !!}

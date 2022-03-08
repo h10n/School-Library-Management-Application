@@ -16,50 +16,48 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         $setting = Setting::create([
-            'name' => 'SMK Muhammadiyah 1 Samarinda',
-            'address' => 'Jalan KH. Abdul Muthalib No. 08 Rt. 10 No.Hp. 082256269542 Samarinda Kode Pos. 75117',
-            'website' => 'www.smkm1smd.sch.id',
-            'email' => 'smk.muhammadiyah1.smd@gmail.com',
-            'pengelola' => 'Majelis Pendidikan Dasar dan Menengah Muhammadiyah Kota Samarinda',
-            'kepala_perpustakaan' => 'Musa Isa A, S.E',
+            'name' => 'Your School',
+            'address' => 'Your School Address No 01 Phone 08000000022 Samarinda Postal Code. 75011',
+            'website' => 'www.yourschoolwebsite.sch.id',
+            'email' => 'yourschoolemail@yourschoolwebsite.com',
+            'pengelola' => 'Samarinda City Primary and Secondary Education Council',
+            'kepala_perpustakaan' => 'Eka Arif Hakim, S.E',
             'nip_kepala_perpustakaan' => '',
-            // 'pustakawan' => 'M. Afif Masrur',
-            // 'nip_pustakawan' => '',
-            'about' => 'Aplikasi Perpustakaan SMK Muhammadiyah 1 Samarinda',
-            'logo' => '759c6ea44d6a4da8efc92f9d3f30f436.png',
+            'about' => 'School Library Management Application',
+            'logo' => 'Your_School_logos_black_8ddc73252c67e62307b5fba8ed6ef027_715.png',
             'denda' => '2000',
             'durasi' => '7',
             'max_peminjaman' => '1'
         ]);
         $carousel = Carousel::create([
             'title' => 'Buya Hamka',
-            'text' => '"Jangan takut jatuh, karena yang tidak pernah memanjatlah yang tidak pernah jatuh. Jangan takut gagal, karena yang tidak pernah gagal hanyalah orang-orang yang tidak pernah melangkah. Jangan takut salah, karena dengan kesalahan yang pertama kita dapat menambah pengetahuan untuk mencari jalan yang benar pada langkah yang kedua."',
+            'text' => '"Do not be afraid to fall, because it is those who never climb who never fall. Do not be afraid to fail, because the only people who never fail are those who never step up. Do not be afraid to be wrong, because with the first mistake we can add knowledge to find the right path in the second step."',
             'img' => '1.jpg'
         ]);
         $carousel1 = Carousel::create([
             'title' => 'Abdullah bin Mubarak',
-            'text' => '"Aku belajar adab (budi pekerti) selama tiga puluh tahun dan aku mempelajari ilmu selama dua puluh tahun. Orang-orang saleh terdahulu akan belajar adab terlebih dahulu, baru kemudian mencari ilmu."',
+            'text' => '"I spent thirty years learning manners, and I spent twenty years learning knowledge."',
             'img' => '2.jpg'
         ]);
         $carousel2 = Carousel::create([
             'title' => 'Albert Einstein',
-            'text' => '"Semua orang itu jenius. Tetapi jika Anda menilai ikan dengan kemampuannya untuk memanjat pohon, percayalah itu adalah bodoh."',
+            'text' => '"Everybody is a genius. But if you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid."',
             'img' => '3.jpg'
         ]);
         $announcement = Announcement::create([
-            'text' => 'Kartu Anggota harus dibawa setiap kunjungan, pinjaman, pengembalian keperpustakaan.'
+            'text' => 'Membership card must be brought when visiting, borrowing, returning to the library.'
         ]);
         $announcement1 = Announcement::create([
-            'text' => 'Tanpa kartu Aggota, kunjungan, pinjaman, pengembalian tidak dilayani.'
+            'text' => 'Without a Member card, visits, loans, returns are not served.'
         ]);
         $announcement2 = Announcement::create([
-            'text' => 'Pengembalian lewat dari Batas waktunya akan dikenakan denda.'
+            'text' => 'Returns after the deadline will be subject to a fine.'
         ]);
         $announcement3 = Announcement::create([
-            'text' => 'Kartu Anggota tidak dapat dipergunakan oleh orang lain.'
+            'text' => 'Membership Card cannot be used by other people.'
         ]);
         $announcement4 = Announcement::create([
-            'text' => 'Kartu Anggota Berlaku hingga waktu yang ditentukan.'
+            'text' => 'Member Card Valid until the specified time.'
         ]);
     }
 }

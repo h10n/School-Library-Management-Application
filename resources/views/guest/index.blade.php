@@ -20,7 +20,7 @@
       <nav class="navbar navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <a href="{{ url('/')}}" class="navbar-brand"><b>App</b>Perpustakaan</a>
+            <a href="{{ url('/')}}" class="navbar-brand"><b>Library</b>Apps</a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
               <i class="fa fa-bars"></i>
             </button>
@@ -71,7 +71,7 @@
 
           <div class="box box-default">
             <div class="box-header with-border">
-              <h3 class="box-title">Daftar Buku</h3>
+              <h3 class="box-title">Book List</h3>
               <div class="table-button-custom">
                 <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh">
                     Refresh</span></a>

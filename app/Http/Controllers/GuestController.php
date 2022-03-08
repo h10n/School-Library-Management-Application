@@ -39,11 +39,11 @@ class GuestController extends Controller
         'printable'      => true,
         'footer'         => '',
       ])
-      ->addColumn(['data' => 'title', 'name' => 'title', 'title' => 'Judul'])
-      ->addColumn(['data' => 'stock', 'name' => 'stock', 'title' => 'Stok', 'searchable' => false])
-      ->addColumn(['data' => 'author.name', 'name' => 'author.name', 'title' => 'Penulis'])
-      ->addColumn(['data' => 'publisher.name', 'name' => 'publisher.name', 'title' => 'Penerbit'])
-      ->addColumn(['data' => 'category.name', 'name' => 'category.name', 'title' => 'Kategori'])
+      ->addColumn(['data' => 'title', 'name' => 'title', 'title' => 'Title'])
+      ->addColumn(['data' => 'stock', 'name' => 'stock', 'title' => 'Stock', 'searchable' => false])
+      ->addColumn(['data' => 'author.name', 'name' => 'author.name', 'title' => 'Author'])
+      ->addColumn(['data' => 'publisher.name', 'name' => 'publisher.name', 'title' => 'Publisher'])
+      ->addColumn(['data' => 'category.name', 'name' => 'category.name', 'title' => 'Category'])
       ->addColumn(['data' => 'cover-buku', 'name' => 'cover-buku', 'title' => 'Cover', 'orderable' => false, 'searchable' => false]);
 
     $carousel = Carousel::all();
