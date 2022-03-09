@@ -29,7 +29,7 @@ class PublishersController extends Controller
             'model' => $publisher,
             'form_url' => route('publishers.destroy', $publisher->id),
             'edit_url' => route('publishers.edit', $publisher->id),
-            'title' => 'Penerbit'            
+            'title' => 'Publisher'            
           ]);
         })
         ->addIndexColumn()
@@ -51,7 +51,7 @@ class PublishersController extends Controller
       ->addColumn([
         'data' => 'name',
         'name' => 'name',
-        'title' => 'Nama'
+        'title' => 'Name'
       ])
       ->addColumn([
         'data' => 'action',
@@ -84,7 +84,7 @@ class PublishersController extends Controller
     $publisher = Publisher::create($request->only('name'));
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil menambah $publisher->name"
+      "message" => "Successfully added $publisher->name"
     ]);
     return redirect()->route('publishers.index');
   }
@@ -126,7 +126,7 @@ class PublishersController extends Controller
 
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah $publisher->name"
+      "message" => "Successfully updated $publisher->name"
     ]);
     return redirect()->route('publishers.index');
   }

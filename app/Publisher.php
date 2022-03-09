@@ -20,7 +20,7 @@ class Publisher extends Model
       //cek apakah penulis masih punya buku
       if ($publisher->books->count() > 0) {
         //siapkan pesan error
-        $html = 'Penerbit tidak bisa dihapus karena masih memiliki buku : ';
+        $html = 'Publisher cannot be deleted because it is still have the book: ';
         $html .= '<ul>';
         foreach ($publisher->books as $book) {
           $html .= "<li>$book->title</li>";

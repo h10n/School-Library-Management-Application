@@ -20,7 +20,7 @@ class Author extends Model
       //cek apakah penulis masih punya buku
       if ($author->books->count() > 0) {
         //siapkan pesan error
-        $html = 'Penulis tidak bisa dihapus karena masih memiliki buku : ';
+        $html = 'Author cannot be deleted because it is still have the book: ';
         $html .= '<ul>';
         foreach ($author->books as $book) {
           $html .= "<li>$book->title</li>";
