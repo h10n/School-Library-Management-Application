@@ -12,8 +12,7 @@
     <div class="box-header">
       <h3 class="box-title">Daftar Peminjaman</h3>
       <div class="table-button-custom">
-        <a class="btn bg-orange" href="{{ route('transactions.create') }}"><span class="ion-android-add"> Tambah
-            Data</span></a>
+        <a class="btn bg-orange" href="{{ route('transactions.create') }}"><span class="ion-android-add"> Add Data</span></a>
       </div>
     </div>
 

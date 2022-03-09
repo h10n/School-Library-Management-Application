@@ -12,8 +12,7 @@
     <div class="box-header">
       <h3 class="box-title">Daftar Pengunjung</h3>
       <div class="table-button-custom">
-        <a class="btn bg-orange" href="{{ route('visitors.create') }}"><span class="ion-android-add"> Tambah
-            Data</span></a>
+        <a class="btn bg-orange" href="{{ route('visitors.create') }}"><span class="ion-android-add"> Add Data</span></a>
       </div>
     </div>
     <div class="box-body">
