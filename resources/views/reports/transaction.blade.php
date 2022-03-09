@@ -135,8 +135,7 @@ $('#filter-transaksi-tahun').click(function () {
        },
        cache: false,
 
-       beforeSend: function () {
-         // console.log('krece');
+       beforeSend: function () {         
        },
 
        success: function (data) {
@@ -145,8 +144,7 @@ $('#filter-transaksi-tahun').click(function () {
          var total_peminjaman = 0;
          var total_pengembalian = 0;
          var no = 0;
-         $.each(data, function (key, val) {
-           // console.log(key);
+         $.each(data, function (key, val) {           
            no++;
            output += '<tr>';
            output += '<td>' + no + '</td>';

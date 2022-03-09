@@ -20,7 +20,7 @@
     </thead>
     <tbody>
     @php
-    // $total = '';
+    
     $total_kelas_x = 0;
     $total_kelas_xi = 0;
     $total_kelas_xii = 0;
