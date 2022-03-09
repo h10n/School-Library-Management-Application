@@ -55,13 +55,13 @@ class TransactionsController extends Controller
         'printable'      => true,
         'footer'         => '',
       ])
-      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'NIS/NIP'])
-      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Peminjam'])
-      ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Judul'])
-      ->addColumn(['data' => 'tgl_peminjaman', 'name' => 'tgl_peminjaman', 'title' => 'Tanggal Peminjaman'])
-      ->addColumn(['data' => 'tgl_max', 'name' => 'tgl_max', 'title' => 'Max Tanggal Pengembalian'])
+      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'Registration Number'])
+      ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Borrower'])
+      ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Title'])
+      ->addColumn(['data' => 'tgl_peminjaman', 'name' => 'tgl_peminjaman', 'title' => 'Borrowing Date'])
+      ->addColumn(['data' => 'tgl_max', 'name' => 'tgl_max', 'title' => 'Max Borrowing Date'])
       ->addColumn(['data' => 'status', 'name' => 'status', 'title' => 'Status'])
-      ->addColumn(['data' => 'total_denda', 'name' => 'total_denda', 'title' => 'Denda', 'searchable' => false, 'orderable' => true])
+      ->addColumn(['data' => 'total_denda', 'name' => 'total_denda', 'title' => 'Fine', 'searchable' => false, 'orderable' => true])
       ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false]);
     return view('transactions.index')->with(compact('html'));
   }
