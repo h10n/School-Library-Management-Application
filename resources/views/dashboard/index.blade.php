@@ -13,14 +13,14 @@
         </div>
         <div class="box-body">
             <div class="callout callout-info">
-                Selamat Datang di {{ $tentang }}
+                Welcome to {{ $tentang }}
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="dashboard-div-wrapper bg-olive">
                     <div class="divider">
                         <i class="fa fa-exchange dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$transaksi->count()}} Transaksi</h4>
+                    <h4>{{$transaksi->count()}} Transactions</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
@@ -28,7 +28,7 @@
                     <div class="divider">
                         <i class="fa fa-book dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$buku->count()}} Buku</h4>
+                    <h4>{{$buku->count()}} Books</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
@@ -36,7 +36,7 @@
                     <div class="divider">
                         <i class="fa fa-pencil dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$penulis->count()}} Penulis</h4>
+                    <h4>{{$penulis->count()}} Authors</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
@@ -44,7 +44,7 @@
                     <div class="divider">
                         <i class="fa fa-male dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$anggota->count()}} Anggota</h4>
+                    <h4>{{$anggota->count()}} Members</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
@@ -52,7 +52,7 @@
                     <div class="divider">
                         <i class="fa fa-clock-o dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$pinjam->count()}} Buku Dipinjam</h4>
+                    <h4>{{$pinjam->count()}} Borrowed Books</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
@@ -60,7 +60,7 @@
                     <div class="divider">
                         <i class="fa fa-home dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$penerbit->count()}} Penerbit</h4>
+                    <h4>{{$penerbit->count()}} Publishers</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6">
@@ -68,7 +68,7 @@
                     <div class="divider">
                         <i class="fa fa-flag-checkered dashboard-div-icon"></i>
                     </div>
-                    <h4>{{$penerbit->count()}} Kategori</h4>
+                    <h4>{{$penerbit->count()}} Categories</h4>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
                     <div class="divider">
                         <i class="fa fa-user-plus dashboard-div-icon"></i>
                     </div>
-                    <h4>{{ $todaysvisit }} Pengunjung Hari ini</h4>
+                    <h4>{{ $todaysvisit }} Today's Visitors</h4>
                 </div>
             </div>
         </div>

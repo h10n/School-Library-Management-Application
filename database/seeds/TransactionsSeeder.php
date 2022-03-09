@@ -12,7 +12,7 @@ class TransactionsSeeder extends Seeder
      */
     public function run()
     {
-        $count = 20;
+        $count = 5;
         factory(BorrowLog::class, $count)->create();       
     }
 }

@@ -24,7 +24,7 @@
         <!-- /.login-logo -->
         @if ($errors->any())
         <div class="alert alert-danger pesan-error">
-            Fail! Wrong Username Or Password!
+            Incorrect Username Or Password!
         </div>
         @endif
 

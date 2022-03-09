@@ -42,7 +42,7 @@ class UsersSeeder extends Seeder
         $admin->password = bcrypt('admin123');
         // $admin->telp = "08218831299";
         // $admin->alamat = "Jl Rapak Indah no 57";
-        $admin->photo = "admin.jpg";
+        $admin->photo = "JPG_1570025308579_2_6b4f03596ca77295b27b916715fbd3ef_578.jpg";
         $admin->save();
         $admin->attachRole($adminRole);
         //buat sample Super Admin

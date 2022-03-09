@@ -14,7 +14,7 @@ $factory->define(App\Visitor::class, function (Faker $faker) {
         'name' => $faker->firstName . " " . $faker->lastName,
         'jenis' => $jenis_anggota,
         'kelas' => $kelas,
-        'keperluan' => "Membaca Buku",
+        'keperluan' => "Read a book",
         'created_at' => $faker->dateTimeBetween($startDate = '-60 days', $endDate = 'now', $timezone = 'Asia/Makassar'),
         'updated_at' => $faker->dateTimeBetween($startDate = '-60 days', $endDate = 'now', $timezone = 'Asia/Makassar'),
     ];
