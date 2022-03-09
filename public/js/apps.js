@@ -40,14 +40,14 @@ $(document).on("click", ".btn-confirm", function () {
     var form = $(this).closest("form");
 
     Swal.fire({
-        title: 'Apakah anda yakin?',
-        text: "Anda tidak akan dapat mengembalikan ini!",
+        title: 'Are you sure?',
+        text: "You will not be able to undo this!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya!',
-        cancelButtonText: 'Batal'
+        confirmButtonText: 'Yes!',
+        cancelButtonText: 'Cancel'
     }).then((result) => {
         if (result.value) {
             form.submit();

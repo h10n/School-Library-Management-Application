@@ -37,9 +37,9 @@
       <label>Status \
       <select size="1" name="filter_status" aria-controls="filter_status" \
           class="form-control input-sm" style="width: 140px;">\
-              <option value="all" selected="selected">Semua</option>\
-              <option value="returned">Sudah Dikembalikan</option>\
-              <option value="not-returned">Belum Dikembalikan</option>\
+              <option value="all" selected="selected">All</option>\
+              <option value="returned">Returned</option>\
+              <option value="not-returned">Not Yet Returned</option>\
           </select>\
       </label>\
     </div>\

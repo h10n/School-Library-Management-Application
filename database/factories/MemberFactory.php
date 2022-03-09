@@ -20,7 +20,7 @@ $factory->define(App\Member::class, function (Faker $faker) {
         'kelas' => $kelas,
         'jurusan' => $jurusan,
         'address' => $faker->address,
-        'email' => $nama_depan . "_" . $nama_belakang . "@gmail.com",
+        'email' => $nama_depan . "_" . $nama_belakang . "@example.com",
         'phone' => '08' . strval($faker->randomNumber(9))
     ];
 });

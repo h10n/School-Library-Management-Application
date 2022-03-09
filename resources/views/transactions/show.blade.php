@@ -4,14 +4,14 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li><a href="{{ url('/admin/transactions') }}"> Peminjaman</a></li>
-    <li class="active">Detail Peminjaman</li>
+    <li><a href="{{ url('/admin/transactions') }}"> Transaction</a></li>
+    <li class="active">Borrowing Details</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Detail Peminjaman</h3>
+      <h3 class="box-title">Borrowing Details</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('transactions.index') }}"><span class="ion-android-arrow-back">
             Back</span></a>
@@ -22,7 +22,7 @@
       <div class="detail-buku">
         <div class="row">
           <div class="col-md-4">
-            NIS/NIP
+            Member Id
           </div>
 
           <div class="col-md-8">
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Nama
+            Name
           </div>
           <div class="col-md-8">
             {{ $transaction->member->name }}
@@ -39,7 +39,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            No. Induk
+            Book Id
           </div>
           <div class="col-md-8">
             <a href="{{ route('books.show',$transaction->book_id) }}">{{ $transaction->book->no_induk }}</a>
@@ -47,7 +47,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Judul
+            Title
           </div>
           <div class="col-md-8">
             {{ $transaction->book->title }}
@@ -55,7 +55,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Petugas Peminjaman
+            Borrow Staff
           </div>
           <div class="col-md-8">
             {{ $transaction->user->name }}
@@ -63,7 +63,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Petugas Pengembalian
+            Return Staff
           </div>
           <div class="col-md-8">
             {{ $transaction->userReturned->name ?? '-' }}
@@ -71,7 +71,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Tanggal Peminjaman
+            Borrowing Date
           </div>
           <div class="col-md-8">
             {{ $transaction->tgl_peminjaman }}
@@ -79,7 +79,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Max Tanggal Pengembalian
+            Max Borrowing Date
           </div>
           <div class="col-md-8">
             {{ $transaction->tgl_max }}
@@ -95,7 +95,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Denda
+            Fine
           </div>
           <div class="col-md-8">
             {{ $transaction->total_denda }}

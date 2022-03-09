@@ -55,7 +55,7 @@ class TransactionsController extends Controller
         'printable'      => true,
         'footer'         => '',
       ])
-      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'Registration Number'])
+      ->addColumn(['data' => 'member.no_induk', 'name' => 'member.no_induk', 'title' => 'Member Id'])
       ->addColumn(['data' => 'member.name', 'name' => 'member.name', 'title' => 'Borrower'])
       ->addColumn(['data' => 'book.title', 'name' => 'book.title', 'title' => 'Title'])
       ->addColumn(['data' => 'tgl_peminjaman', 'name' => 'tgl_peminjaman', 'title' => 'Borrowing Date'])
@@ -80,15 +80,15 @@ class TransactionsController extends Controller
 
       //buku sedang di pinjam
       if (BorrowLog::where('book_id', $book->id)->where('member_id', $request->get('member_id'))->where('is_returned', 0)->count() > 0) {
-        throw new BookException("Buku $book->title masih dipinjam oleh $member->name");
+        throw new BookException("$book->title is still borrowed by $member->name");
       }
       //stok buku ada
       if ($book->stock < 1) {
-        throw new BookException("Buku $book->title sedang tidak tersedia");
+        throw new BookException("$book->title are currently unavailable");
       }
       //sesuai pengaturan max peminjaman
       if (BorrowLog::where('member_id', $request->get('member_id'))->where('is_returned', 0)->count() >= $setting->max_peminjaman) {
-        throw new BookException("Hanya Boleh meminjam $setting->max_peminjaman Buku, Silahkan Kembalikan Buku yang Lama Terlebih dahulu");
+        throw new BookException("Can only borrow $setting->max_peminjaman Book, Please return the borrowed book first");
       }
 
       BorrowLog::create([
@@ -99,7 +99,7 @@ class TransactionsController extends Controller
 
       Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "berhasil meminjam buku $book->title"
+        "message" => "Successfully borrowing $book->title"
       ]);
     } catch (BookException $e) {
       Session::flash("flash_notification", [
@@ -110,7 +110,7 @@ class TransactionsController extends Controller
     } catch (ModelNotFoundException $e) {
       Session::flash("flash_notification", [
         "level" => "danger",
-        "message" => "Buku tidak Ditemukan"
+        "message" => "Book not found"
       ]);
       return $this->redirectCreatePage();
     }
@@ -145,7 +145,7 @@ class TransactionsController extends Controller
 
       Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Berhasil Mengembalikan " . $transaction->book->title
+        "message" => "Successfully Returned " . $transaction->book->title
       ]);
     }
     return redirect()->route('transactions.index');
@@ -154,7 +154,7 @@ class TransactionsController extends Controller
   {
     $item = BorrowLog::findOrFail($id);
     if (!$item->delete()) return redirect()->back();
-    $this->sendFlashNotification('menghapus', 'peminjaman ' . $item->book->title . ' atas nama ' . $item->member->name . ' (' . $item->member->no_induk . ')');
+    $this->sendFlashNotification('menghapus', 'the ' . $item->book->title . ' transaction on behalf of ' . $item->member->name . ' (' . $item->member->no_induk . ')');
     return redirect()->route('transactions.index');
   }
 }

@@ -39,9 +39,9 @@ class BorrowLog extends Model
   public function getStatusAttribute()
   {
     if ($this->is_returned) {
-      $status = 'Telah Dikembalikan Pada ' . $this->updated_at->format('d-m-Y');
+      $status = 'Has Been Returned On ' . $this->updated_at->format('d-m-Y');
     } else {
-      $status = 'Sedang Dipinjam';
+      $status = 'Borrowed';
     }
 
     return $status;
