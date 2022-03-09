@@ -10,7 +10,7 @@ $.ajaxSetup({
 });
 
 function add(link, title) {
-    $(".modal-title").html('<span class="glyphicon glyphicon-plus"></span> Tambah ' + title);
+    $(".modal-title").html('<span class="glyphicon glyphicon-plus"></span> Add ' + title);
     save_method = 'add';
     $('#modal_form').modal('show');
     $.get(link,

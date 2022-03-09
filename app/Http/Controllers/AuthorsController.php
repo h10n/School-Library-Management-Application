@@ -29,7 +29,7 @@ class AuthorsController extends Controller
             'model' => $author,
             'form_url' => route('authors.destroy', $author->id),
             'edit_url' => route('authors.edit', $author->id),
-            'title' => 'Penulis'            
+            'title' => 'Author'            
           ]);
         })
         ->addIndexColumn()
@@ -51,12 +51,12 @@ class AuthorsController extends Controller
       ->addColumn([
         'data' => 'name',
         'name' => 'name',
-        'title' => 'Nama'
+        'title' => 'Name'
       ])
       ->addColumn([
         'data' => 'singkatan',
         'name' => 'singkatan',
-        'title' => 'Singkatan'
+        'title' => 'Abbreviation'
       ])
       ->addColumn([
         'data' => 'action',
@@ -89,7 +89,7 @@ class AuthorsController extends Controller
     $author = Author::create($request->only('name', 'singkatan'));
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil menambah $author->name"
+      "message" => "Successfully added $author->name"
     ]);
     return redirect()->back();
   }
@@ -131,7 +131,7 @@ class AuthorsController extends Controller
 
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah $author->name"
+      "message" => "Successfully updated $author->name"
     ]);
     return redirect()->route('authors.index');
   }

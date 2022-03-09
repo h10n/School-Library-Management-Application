@@ -16,7 +16,7 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         $setting = Setting::create([
-            'name' => 'Your School',
+            'name' => 'Your School Name',
             'address' => 'Your School Address No 01 Phone 08000000022 Samarinda Postal Code. 75011',
             'website' => 'www.yourschoolwebsite.sch.id',
             'email' => 'yourschoolemail@yourschoolwebsite.com',
