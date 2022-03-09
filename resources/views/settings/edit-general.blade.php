@@ -17,7 +17,7 @@
       <h3 class="box-title">Edit Pengaturan</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ url('admin/settings/general') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>
+            Back</span></a>
       </div>
     </div>
 

@@ -14,7 +14,7 @@
       <h3 class="box-title">Detail Peminjaman</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('transactions.index') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>
+            Back</span></a>
       </div>
     </div>
 

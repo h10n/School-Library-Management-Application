@@ -14,7 +14,7 @@
       <h3 class="box-title">Detail Buku</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('books.index') }}"><span class="ion-android-arrow-back">
-            Kembali</span></a>
+            Back</span></a>
       </div>
     </div>
 

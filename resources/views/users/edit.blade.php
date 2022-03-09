@@ -13,7 +13,7 @@
     <div class="box-header">
       <h3 class="box-title">Edit Pengguna</h3>
       <div class="table-button-custom">
-        <a class="btn bg-red" href="{{ route('users.index') }}"><span class="ion-android-arrow-back"> Kembali</span></a>
+        <a class="btn bg-red" href="{{ route('users.index') }}"><span class="ion-android-arrow-back"> Back</span></a>
       </div>
     </div>
 
