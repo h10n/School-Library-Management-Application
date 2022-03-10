@@ -27,7 +27,7 @@ class AnnouncementsController extends Controller
                         'model' => $announcement,
                         'form_url' => route('announcements.destroy', $announcement->id),
                         'edit_url' => route('announcements.edit', $announcement->id),
-                        'title' => 'Pengumuman'                        
+                        'title' => 'Announcement'                        
                     ]);
                 })
                 ->addIndexColumn()
@@ -47,7 +47,7 @@ class AnnouncementsController extends Controller
                 'printable'      => true,
                 'footer'         => '',
             ])
-            ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
+            ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Text'])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false]);
         return view('announcements.index')->with(compact('html'));
     }

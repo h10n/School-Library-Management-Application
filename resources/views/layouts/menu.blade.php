@@ -18,16 +18,12 @@
       </span>
     </a>
     <ul class="treeview-menu">
+      <li class="{{ (request()->is('admin/announcements/*')) || (request()->is('admin/announcements')) ? 'active' : '' }}">
+        <a href="{{url('/admin/announcements')}}"><i class="fa {{ (request()->is('admin/announcements/*')) || (request()->is('admin/announcements')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Announcements</span>
+        </a>
+      </li>
       <li class="{{ (request()->is('admin/authors/*')) || (request()->is('admin/authors')) ? 'active' : '' }}">
         <a href="{{ url('/admin/authors') }}"><i class="fa {{ (request()->is('admin/authors/*')) || (request()->is('admin/authors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Authors</span>
-        </a>
-      </li>
-      <li class="{{ (request()->is('admin/publishers/*')) || (request()->is('admin/publishers')) ? 'active' : '' }}">
-        <a href="{{ url('/admin/publishers') }}"><i class="fa {{ (request()->is('admin/publishers/*')) || (request()->is('admin/publishers')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Publishers</span>          
-        </a>
-      </li>
-      <li class="{{ (request()->is('admin/members/*')) || (request()->is('admin/members')) ? 'active' : '' }}">
-        <a href="{{url('/admin/members')}}"><i class="fa {{ (request()->is('admin/members/*')) || (request()->is('admin/members')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Members</span>          
         </a>
       </li>
       <li class="{{ (request()->is('admin/books/*')) || (request()->is('admin/books')) ? 'active' : '' }}">
@@ -38,16 +34,16 @@
         <a href="{{url('/admin/categories')}}"><i class="fa {{ (request()->is('admin/categories/*')) || (request()->is('admin/categories')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Categories</span>
         </a>
       </li>
+      <li class="{{ (request()->is('admin/members/*')) || (request()->is('admin/members')) ? 'active' : '' }}">
+        <a href="{{url('/admin/members')}}"><i class="fa {{ (request()->is('admin/members/*')) || (request()->is('admin/members')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Members</span>          
+        </a>
+      </li>
+      <li class="{{ (request()->is('admin/publishers/*')) || (request()->is('admin/publishers')) ? 'active' : '' }}">
+        <a href="{{ url('/admin/publishers') }}"><i class="fa {{ (request()->is('admin/publishers/*')) || (request()->is('admin/publishers')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Publishers</span>          
+        </a>
+      </li>
       <li class="{{ (request()->is('admin/carousels/*')) || (request()->is('admin/carousels')) ? 'active' : '' }}">
         <a href="{{url('/admin/carousels')}}"><i class="fa {{ (request()->is('admin/carousels/*')) || (request()->is('admin/carousels')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Sliders</span>
-        </a>
-      </li>
-      <li class="{{ (request()->is('admin/announcements/*')) || (request()->is('admin/announcements')) ? 'active' : '' }}">
-        <a href="{{url('/admin/announcements')}}"><i class="fa {{ (request()->is('admin/announcements/*')) || (request()->is('admin/announcements')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Announcements</span>
-        </a>
-      </li>
-      <li class="{{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'active' : '' }}">
-        <a href="{{url('/admin/visitors')}}"><i class="fa {{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Visitors</span>
         </a>
       </li>
       @role('admin')
@@ -56,6 +52,10 @@
         </a>
       </li>
       @endrole
+      <li class="{{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'active' : '' }}">
+        <a href="{{url('/admin/visitors')}}"><i class="fa {{ (request()->is('admin/visitors/*')) || (request()->is('admin/visitors')) ? 'fa-circle' : 'fa-circle-o' }}"></i> <span>Visitors</span>
+        </a>
+      </li>      
     </ul>
   </li>
   @role('admin')

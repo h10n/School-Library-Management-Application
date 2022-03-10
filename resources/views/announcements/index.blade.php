@@ -4,15 +4,15 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Pengumuman</li>
+    <li class="active">Announcement</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Daftar Pengumuman</h3>
+      <h3 class="box-title">Announcement List</h3>
       <div class="table-button-custom">
-        <a class="btn bg-orange" onclick="add('{{ route('announcements.create')}}','Pengumuman')"><span
+        <a class="btn bg-orange" onclick="add('{{ route('announcements.create')}}','Announcement')"><span
             class="ion-android-add"> Add Data</span></a>
       </div>
     </div>
