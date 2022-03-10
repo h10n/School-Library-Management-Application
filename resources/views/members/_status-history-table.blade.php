@@ -1,12 +1,12 @@
 <div class="col-md-12">
-    <h5>Buku yang Sedang Dipinjam</h5>
+    <h5>Books on Borrow</h5>
     <table class="table table-condensed table-striped">
         <thead>
             <tr>
-                <th>Judul</th>
-                <th>Tanggal Peminjaman</th>
-                <th>Max Tanggal Pengembalian</th>
-                <th>Denda</th>
+                <th>Title</th>
+                <th>Borrowing Date</th>
+                <th>Max Returning Date</th>
+                <th>Fine</th>
             </tr>
         </thead>
         <tbody>
@@ -19,18 +19,18 @@
             </tr>
             @empty
             <tr>
-                <td colspan="2">Tidak Ada Data</td>
+                <td colspan="2">No Data</td>
             </tr>
             @endforelse
         </tbody>
     </table>
-    <h5>Buku yang Telah Dikembalikan</h5>
+    <h5>Returned Books</h5>
     <table class="table table-condensed table-striped">
         <thead>
             <tr>
-                <th>Judul</th>
-                <th>Tanggal Peminjaman</th>
-                <th>Tanggal Kembali</th>
+                <th>Title</th>
+                <th>Borrowing Date</th>
+                <th>Returning Date</th>
             </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="2">Tidak Ada Data</td>
+                <td colspan="2">No data</td>
             </tr>
             @endforelse
         </tbody>

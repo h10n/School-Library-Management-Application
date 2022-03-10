@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 
 class Member extends Model
 {
-  protected $appends = ['tgl_terdaftar'];
+  protected $appends = ['tgl_terdaftar', 'member_type'];
   protected $fillable = ['no_induk', 'name', 'kelas', 'jurusan', 'jenis_anggota', 'address', 'email', 'phone', 'photo'];
 
   public function borrowLogs()
@@ -38,7 +38,7 @@ class Member extends Model
       if ($member->borrowLogs()->count() > 0) {
         Session::flash("flash_notification", [
           "level" => "danger",
-          "message" => "$member->name tidak bisa dihapus karena masih memiliki data transaksi"
+          "message" => "$member->name can't be deleted because it still has transaction data"
         ]);
         return false;
       }

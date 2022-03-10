@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>KARTU ANGGOTA PERPUSTAKAAN</title>
+	<title>LIBRARY MEMBERSHIP CARD</title>
 	<style media="screen">
 		.card {
 			float: left;
@@ -130,23 +130,23 @@
 		</div>
 		<table id="identitas" border="0">
 			<tr>
-				<td>Nomor</td>
+				<td>Member Id</td>
 				<td>:</td>
 				<td>{{ $member->no_induk }}</td>
 			</tr>
 			<tr>
-				<td>Nama</td>
+				<td>Name</td>
 				<td>:</td>
 				<td>{{ $member->name }}</td>
 			</tr>
 			@if ($member->jenis_anggota === 'siswa/i')
 			<tr>
-				<td>Kelas</td>
+				<td>Grade</td>
 				<td>:</td>
 				<td>{{ $member->kelas }}</td>
 			</tr>
 			<tr>
-				<td>Jurusan</td>
+				<td>Major</td>
 				<td>:</td>
 				<td>{{ $member->jurusan }}</td>
 			</tr>
@@ -157,7 +157,7 @@
 				<td>Samarinda, {{ Carbon\Carbon::now()->formatLocalized('%d %B %Y') }}</td>
 			</tr>
 			<tr>
-				<td>Pustakawan</td>
+				<td>Librarian</td>
 			</tr>
 			<tr>
 				<td class="tengah ttd">

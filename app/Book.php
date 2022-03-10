@@ -47,7 +47,7 @@ class Book extends Model
       if ($book->borrowLogs()->count() > 0) {
         Session::flash("flash_notification", [
           "level" => "danger",
-          "message" => "$book->title cannot be deleted because it is still have transaction data"
+          "message" => "$book->title cannot be deleted because it still have transaction data"
         ]);
         return false;
       }

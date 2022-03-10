@@ -55,27 +55,27 @@ class MembersController extends Controller
       ->addColumn([
         'data' => 'no_induk',
         'name' => 'no_induk',
-        'title' => 'NIS/NIP'
+        'title' => 'Member Id'
       ])
       ->addColumn([
         'data' => 'name',
         'name' => 'name',
-        'title' => 'Nama'
+        'title' => 'Name'
       ])
       ->addColumn([
-        'data' => 'jenis_anggota',
-        'name' => 'jenis_anggota',
-        'title' => 'Jenis Anggota'
+        'data' => 'member_type',
+        'name' => 'member_type',
+        'title' => 'Member Type'
       ])
       ->addColumn([
         'data' => 'kelas',
         'name' => 'kelas',
-        'title' => 'Kelas'
+        'title' => 'Grade'
       ])
       ->addColumn([
         'data' => 'jurusan',
         'name' => 'jurusan',
-        'title' => 'Jurusan'
+        'title' => 'Major'
       ])
       ->addColumn([
         'data' => 'user.username',
@@ -85,7 +85,7 @@ class MembersController extends Controller
       ->addColumn([
         'data' => 'tgl_terdaftar',
         'name' => 'tgl_terdaftar',
-        'title' => 'Terdaftar'
+        'title' => 'Registered'
       ])
       ->addColumn([
         'data' => 'action',
@@ -113,7 +113,7 @@ class MembersController extends Controller
 
       Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Berhasil menambah $member->name"
+        "message" => "Successfully added $member->name"
       ]);
     }
 
@@ -163,7 +163,7 @@ class MembersController extends Controller
 
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah $member->name"
+      "message" => "Successfully updated $member->name"
     ]);
 
     return redirect()->route('members.index');
@@ -192,7 +192,7 @@ class MembersController extends Controller
     if (!$member) {
       Session::flash("flash_notification", [
         "level" => "danger",
-        "message" => "Gagal mencetak kartu!"
+        "message" => "Failed to print card!"
       ]);
       return redirect()->back();
     } else {

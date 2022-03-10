@@ -3,17 +3,17 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Status & Riwayat</li>
+    <li class="active">Status & History</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header-dashboard">
-      <h3 class="box-title">Status & Riwayat</h3>
+      <h3 class="box-title">Status & History</h3>
     </div>
     <div class="box-body">
       <div class="callout callout-info">
-        Selamat Datang di {{ $tentang }}
+        Welcome to {{ $tentang }}
       </div>
       @include('members._status-history-table')
     </div>

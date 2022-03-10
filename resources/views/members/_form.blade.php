@@ -3,37 +3,37 @@
 @endpush
 <div class="col-md-12">
   <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
-    {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('no_induk','Member Id',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-3">
       {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '20']) !!}
       {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="form-group{{$errors->has('name') ? ' has-error' : ''}}">
-    {!! Form::label('name','Nama',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('name','Name',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
       {!! Form::text('name',null,['class' => 'form-control','maxlength' => '50']) !!}
       {!! $errors->first('name','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="form-group{{$errors->has('jenis_anggota') ? ' has-error' : ''}}">
-    {!! Form::label('jenis_anggota','Jenis Anggota',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('jenis_anggota','Member Type',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-2">
       {!! Form::select('jenis_anggota',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i'],null,['class' =>
-      'js-selectize','placeholder' => 'Jenis Anggota']) !!}
+      'js-selectize','placeholder' => 'Member Type']) !!}
       {!! $errors->first('jenis_anggota','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="kelas-el form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
-    {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('kelas','Grade',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-2">
-      {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Kelas','class' =>
+      {!! Form::select('kelas',['10' => '10','11' => '11', '12' => '12'],null,['placeholder' => 'Grade','class' =>
       'form-control']) !!}
       {!! $errors->first('kelas','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="jurusan-el form-group{{$errors->has('jurusan') ? ' has-error' : ''}}">
-    {!! Form::label('jurusan','Jurusan',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('jurusan','Major',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-2">
       {!! Form::text('jurusan',null,['class' => 'form-control','maxlength' => '10']) !!}
       {!! $errors->first('jurusan','<p class="help-block"><strong>:message</strong></p>') !!}
@@ -49,14 +49,14 @@
   </div>
 
   <div class="form-group{{$errors->has('phone') ? ' has-error' : ''}}">
-    {!! Form::label('phone','No Telepon',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('phone','Phone number',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
       {!! Form::text('phone',null,['class' => 'form-control','maxlength' => '20']) !!}
       {!! $errors->first('phone','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
   <div class="form-group{{$errors->has('address') ? ' has-error' : ''}}">
-    {!! Form::label('address','Alamat',['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('address','Address',['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">
       {!! Form::textarea('address',null,['class' => 'form-control','maxlength' => '100', 'rows' => '4']) !!}
       {!! $errors->first('address','<p class="help-block"><strong>:message</strong></p>') !!}
@@ -77,11 +77,11 @@
       {!! $errors->first('password','<p class="help-block"><strong>:message</strong></p>') !!}
     </div>
   </div>
-  @include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'anggota','label' => 'Foto', 'data' =>
+  @include('layouts._image-uploader', ['name' => 'photo_file', 'dir' => 'anggota','label' => 'Photo', 'data' =>
   $member->photo ?? null])
   <div class="form-group">
     <div class="col-md-6 col-md-offset-2">
-      {!! Form::submit('Simpan',['class' => 'btn btn-primary']) !!}
+      {!! Form::submit('Save',['class' => 'btn btn-primary']) !!}
     </div>
   </div>
 </div>
