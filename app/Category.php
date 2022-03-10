@@ -21,7 +21,7 @@ class Category extends Model
       //cek apakah penulis masih punya buku
       if ($category->books->count() > 0) {
         //siapkan pesan error
-        $html = 'Kategori tidak bisa dihapus karena masih memiliki buku : ';
+        $html = 'Categories cannot be deleted because it is still have the book:';
         $html .= '<ul>';
         foreach ($category->books as $book) {
           $html .= "<li>$book->title</li>";

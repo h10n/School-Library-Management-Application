@@ -29,7 +29,7 @@ class CategoriesController extends Controller
             'model' => $category,
             'form_url' => route('categories.destroy', $category->id),
             'edit_url' => route('categories.edit', $category->id),
-            'title' => 'Kategori'            
+            'title' => 'Category'            
           ]);
         })
         ->addIndexColumn()
@@ -51,7 +51,7 @@ class CategoriesController extends Controller
       ->addColumn([
         'data' => 'name',
         'name' => 'name',
-        'title' => 'Nama'
+        'title' => 'Name'
       ])
       ->addColumn([
         'data' => 'action',
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
     $category = Category::create($request->only('name'));
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil menambah $category->name"
+      "message" => "Successfully added $category->name"
     ]);
     return redirect()->route('categories.index');
   }
@@ -126,7 +126,7 @@ class CategoriesController extends Controller
 
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah $category->name"
+      "message" => "Successfully updated $category->name"
     ]);
     return redirect()->route('categories.index');
   }
