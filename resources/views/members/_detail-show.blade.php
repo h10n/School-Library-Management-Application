@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4">
-    NIS/NIP
+    Member Id
   </div>
   <div class="col-md-8">
     {{ $member->no_induk }}
@@ -8,7 +8,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    Nama
+    Name
   </div>
   <div class="col-md-8">
     {{ $member->name }}
@@ -16,15 +16,15 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    Jenis Anggota
+    Member Type
   </div>
   <div class="col-md-8">
-    {{ $member->jenis_anggota }}
+    {{ $member->member_type }}
   </div>
 </div>
 <div class="row">
   <div class="col-md-4">
-    Kelas
+    Grade
   </div>
   <div class="col-md-8">
     {{ $member->kelas }}
@@ -32,7 +32,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    Jurusan
+    Major
   </div>
   <div class="col-md-8">
     {{ $member->jurusan }}
@@ -48,7 +48,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    No Telepon
+    Phone number
   </div>
   <div class="col-md-8">
     {{ $member->phone }}
@@ -56,7 +56,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    Alamat
+    Address
   </div>
   <div class="col-md-8">
     {{ $member->address }}

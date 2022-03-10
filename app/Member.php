@@ -26,6 +26,11 @@ class Member extends Model
   {
     return $this->created_at->format('d-m-Y');
   }
+  public function getMemberTypeAttribute()
+  {
+    return $this->jenis_anggota === 'guru/staff' ? 'teacher/staff' : 'student';
+  }
+
   public static function boot()
   {
     parent::boot();
