@@ -4,14 +4,14 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li><a href="{{ url('/admin/books') }}"> Buku</a></li>
-    <li class="active">Tambah Buku</li>
+    <li><a href="{{ url('/admin/books') }}"> Book</a></li>
+    <li class="active">Add Book</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Tambah Buku</h3>
+      <h3 class="box-title">Add Book</h3>
       <div class="table-button-custom">
       </div>
     </div>

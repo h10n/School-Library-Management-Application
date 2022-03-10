@@ -54,37 +54,37 @@ class BooksController extends Controller
       ->addColumn([
         'data' => 'no_induk',
         'name' => 'no_induk',
-        'title' => 'No Induk'
+        'title' => 'Book Id'
       ])
       ->addColumn([
         'data' => 'title',
         'name' => 'title',
-        'title' => 'Judul'
+        'title' => 'Title'
       ])
       ->addColumn([
         'data' => 'author.name',
         'name' => 'author.name',
-        'title' => 'Penulis'
+        'title' => 'Author'
       ])
       ->addColumn([
         'data' => 'publisher.name',
         'name' => 'publisher.name',
-        'title' => 'Penerbit'
+        'title' => 'Publisher'
       ])
       ->addColumn([
         'data' => 'nama_kategori',
         'name' => 'nama_kategori',
-        'title' => 'Kategori'
+        'title' => 'Category'
       ])
       ->addColumn([
         'data' => 'published_year',
         'name' => 'published_year',
-        'title' => 'Tahun Terbit'
+        'title' => 'Published Year'
       ])
       ->addColumn([
         'data' => 'amount',
         'name' => 'amount',
-        'title' => 'Jumlah',
+        'title' => 'Amount',
         'searchable' => false
       ])
       ->addColumn([
@@ -119,7 +119,7 @@ class BooksController extends Controller
     $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil menambah $book->title"
+      "message" => "Successfully added $book->title"
     ]);
     return redirect()->route('books.index');
   }
@@ -165,7 +165,7 @@ class BooksController extends Controller
     $this->uploadFile($request, $book, 'cover_file', 'cover', 'buku');
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah $book->title"
+      "message" => "Successfully updated $book->title"
     ]);
 
     return redirect()->route('books.index');

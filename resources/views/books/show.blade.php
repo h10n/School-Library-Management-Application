@@ -4,14 +4,14 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li><a href="{{ url('/admin/books') }}"> Buku</a></li>
-    <li class="active">Detail Buku</li>
+    <li><a href="{{ url('/admin/books') }}"> Book</a></li>
+    <li class="active">Book Details</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Detail Buku</h3>
+      <h3 class="box-title">Book Details</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('books.index') }}"><span class="ion-android-arrow-back">
             Back</span></a>
@@ -22,7 +22,7 @@
       <div class="detail-buku">
         <div class="row">
           <div class="col-md-4">
-            No Induk
+            Book Id
           </div>
           <div class="col-md-8">
             {{ $book->no_induk }}
@@ -30,16 +30,15 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Judul
+            Title
           </div>
-
           <div class="col-md-8">
             {{ $book->title }}
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            Penulis
+            Author
           </div>
           <div class="col-md-8">
             {{ $book->author->name }}
@@ -47,7 +46,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Tempat Terbit
+            Published Location
           </div>
           <div class="col-md-8">
             {{ $book->published_location }}
@@ -55,7 +54,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Penerbit
+            Publisher
           </div>
           <div class="col-md-8">
             {{ $book->publisher->name }}
@@ -63,16 +62,15 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Tahun Terbit
+            Published Year
           </div>
           <div class="col-md-8">
             {{ $book->published_year }}
-
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            Tahun Buku
+            Book Year
           </div>
           <div class="col-md-8">
             {{ $book->book_year }}
@@ -80,7 +78,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            No Klasifikasi
+            Classification Code
           </div>
           <div class="col-md-8">
             {{ $book->classification_code }}
@@ -88,7 +86,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Kategori
+            Category
           </div>
           <div class="col-md-8">
             {{ $book->category->name }}
@@ -96,19 +94,19 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            Sumber
+            Source
           </div>
           <div class="col-md-8">
             @if ($book->source=='hadiah')
-            <p>Hadiah</p>
+            <p>Grant</p>
             @elseif ($book->source=='pengadaan')
-            <p>Pengadaan</p>
+            <p>Procurement</p>
             @endif
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
-            Jumlah
+            Amount
           </div>
           <div class="col-md-8">
             {{ $book->amount }}
@@ -116,7 +114,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            cover
+            Cover
           </div>
           <div class="col-md-8">
             @if (isset($book) && $book->cover)
