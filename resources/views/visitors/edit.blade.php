@@ -4,14 +4,14 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li><a href="{{ url('/admin/visitors') }}"> Pengunjung</a></li>
-    <li class="active">Edit Pengunjung</li>
+    <li><a href="{{ url('/admin/visitors') }}"> Visitor</a></li>
+    <li class="active">Edit Visitor</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Edit Pengunjung</h3>
+      <h3 class="box-title">Edit Visitor</h3>
       <div class="table-button-custom">
         <a class="btn bg-red" href="{{ route('visitors.index') }}"><span class="ion-android-arrow-back"> Back</span></a>        
       </div>

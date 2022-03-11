@@ -54,7 +54,7 @@ class UsersController extends Controller
       ->addColumn([
         'data' => 'name',
         'name' => 'name',
-        'title' => 'Nama'
+        'title' => 'Name'
       ])
       ->addColumn([
         'data' => 'username',

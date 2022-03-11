@@ -61,7 +61,7 @@ class User extends Authenticatable
       if (!$user->borrowLogs->isEmpty() || !$user->borrowLogsReturned->isEmpty()) {
         Session::flash("flash_notification", [
           "level" => "danger",
-          "message" => "$user->username tidak bisa dihapus karena masih memiliki data transaksi"
+          "message" => "$user->username cannot be deleted because still have transaction data"
         ]);
         return false;
       }

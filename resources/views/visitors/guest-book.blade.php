@@ -3,23 +3,23 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Buku Tamu</li>
+    <li class="active">Guest Book</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header-dashboard">
-      <h3 class="box-title">Buku Tamu</h3>
+      <h3 class="box-title">Guest Book</h3>
     </div>
     <div class="box-body">
       <div class="callout callout-info">
-        Selamat Datang di {{ $tentang }}, Silahkan Isi Form Kunjungan Terlebih Dahulu!
+        Welcome to {{ $tentang }}, Please Fill the Visitor Form First!
       </div>
       <!-- Custom Tabs -->
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab_1" data-toggle="tab">Anggota</a></li>
-          <li><a href="#tab_2" data-toggle="tab">Non Anggota</a></li>
+          <li class="active"><a href="#tab_1" data-toggle="tab">Member</a></li>
+          <li><a href="#tab_2" data-toggle="tab">Non Member</a></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab_1">
@@ -29,10 +29,10 @@
               ])
               !!}
                 <div class="form-group{{$errors->has('no_anggota') ? ' has-error' : ''}}">
-                  {!! Form::label('no_anggota','No Anggota',['class' => 'col-md-2 control-label']) !!}
+                  {!! Form::label('no_anggota','Member Id',['class' => 'col-md-2 control-label']) !!}
                   <div class="col-md-3">
                     {!! Form::text('no_anggota',null,['class' => 'form-control','maxlength' => '20', 'placeholder' =>
-                    'No Anggota']) !!}
+                    'Member Id']) !!}
                     {!! $errors->first('no_anggota','<p class="help-block"><strong>:message</strong></p>') !!}
                   </div>
                 </div>                
@@ -41,7 +41,7 @@
                   {!! Form::label('keperluan','Keperluan',['class' => 'col-md-2 control-label']) !!}
                   <div class="col-md-4">
                     {!! Form::textarea('keperluan',null,['class' => 'form-control', 'rows' => '4','maxlength' => '200', 'placeholder' =>
-                    'Tulis Keperluan']) !!}
+                    'Write Your Purpose']) !!}
                     {!! $errors->first('keperluan','<p class="help-block"><strong>:message</strong></p>') !!}
                   </div>
                 </div>

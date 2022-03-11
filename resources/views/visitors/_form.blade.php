@@ -1,44 +1,44 @@
 <div class="form-group{{$errors->has('no_induk') ? ' has-error' : ''}}">
-  {!! Form::label('no_induk','NIS/NIP',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('no_induk','Identity Number',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-3">
     {!! Form::text('no_induk',null,['class' => 'form-control','maxlength' => '20', 'placeholder' =>
-    'No Induk']) !!}
+    'Employee/Student/National Id']) !!}
     {!! $errors->first('no_induk','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 
 <div class="form-group{{$errors->has('name') ? ' has-error' : ''}}">
-  {!! Form::label('name','Nama',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('name','Name',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::text('name',null,['class' => 'form-control','maxlength' => '50','placeholder' =>
-    'Nama Lengkap']) !!}
+    'Full name']) !!}
     {!! $errors->first('name','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 
 <div class="form-group{{$errors->has('jenis') ? ' has-error' : ''}}">
-  {!! Form::label('jenis','Jenis Pengunjung',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('jenis','Visitor Type',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-2">
-    {!! Form::select('jenis',['guru/staff' => 'Guru/Staff', 'siswa/i' => 'Siswa/i', 'umum' => 'Umum'],null,['class' =>
-    'js-selectize','placeholder' => 'Jenis Pengunjung']) !!}
+    {!! Form::select('jenis',['guru/staff' => 'Teacher/Staff', 'siswa/i' => 'Student', 'umum' => 'General Public'],null,['class' =>
+    'js-selectize','placeholder' => 'Visitor Type']) !!}
     {!! $errors->first('jenis','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 
 <div class="kelas-el form-group{{$errors->has('kelas') ? ' has-error' : ''}}">
-  {!! Form::label('kelas','Kelas',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('kelas','Grade',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-2">
     {!! Form::select('kelas',['X' => 'X','XI' => 'XI','XII' => 'XII'],null,['class' => 'js-selectize','placeholder' =>
-    'Kelas']) !!}
+    'Grade']) !!}
     {!! $errors->first('kelas','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>
 
 <div class="form-group{{$errors->has('keperluan') ? ' has-error' : ''}}">
-  {!! Form::label('keperluan','Keperluan',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('keperluan','Purpose',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::textarea('keperluan',null,['class' => 'form-control', 'rows' => '4','maxlength' => '200', 'placeholder' =>
-    'Tulis Keperluan']) !!}
+    'Write Your Purpose']) !!}
     {!! $errors->first('keperluan','<p class="help-block"><strong>:message</strong></p>') !!}
   </div>
 </div>

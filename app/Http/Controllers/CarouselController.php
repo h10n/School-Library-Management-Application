@@ -56,9 +56,9 @@ class CarouselController extends Controller
                 'printable'      => true,
                 'footer'         => '',
             ])
-            ->addColumn(['data' => 'title', 'name' => 'title', 'title' => 'Judul'])
-            ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Isi'])
-            ->addColumn(['data' => 'image', 'name' => 'image', 'title' => 'Gambar', 'orderable' => false, 'searchable' => false])
+            ->addColumn(['data' => 'title', 'name' => 'title', 'title' => 'Title'])
+            ->addColumn(['data' => 'text', 'name' => 'text', 'title' => 'Text'])
+            ->addColumn(['data' => 'image', 'name' => 'image', 'title' => 'Image', 'orderable' => false, 'searchable' => false])
             ->addColumn(['data' => 'action', 'name' => 'action', 'title' => '', 'orderable' => false, 'searchable' => false]);
         return view('carousels.index')->with(compact('html'));
     }

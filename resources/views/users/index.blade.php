@@ -4,13 +4,13 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Pengguna</li>
+    <li class="active">User</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Daftar Pengguna</h3>
+      <h3 class="box-title">User List</h3>
       <div class="table-button-custom">
         <a class="btn bg-orange" href="{{ route('users.create') }}"><span class="ion-android-add"> Add Data</span></a>
       </div>

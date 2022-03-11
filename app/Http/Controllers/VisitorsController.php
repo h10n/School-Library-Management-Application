@@ -52,32 +52,32 @@ class VisitorsController extends Controller
       ->addColumn([
         'data' => 'no_induk',
         'name' => 'no_induk',
-        'title' => 'NIS/NIP'
+        'title' => 'Member Id'
       ])
       ->addColumn([
         'data' => 'name',
         'name' => 'name',
-        'title' => 'Nama'
+        'title' => 'Name'
       ])
       ->addColumn([
         'data' => 'jenis',
         'name' => 'jenis',
-        'title' => 'Jenis Pengunjung'
+        'title' => 'Visitor Type'
       ])
       ->addColumn([
         'data' => 'kelas',
         'name' => 'kelas',
-        'title' => 'Kelas'
+        'title' => 'Grade'
       ])
       ->addColumn([
         'data' => 'keperluan',
         'name' => 'keperluan',
-        'title' => 'Keperluan'
+        'title' => 'Purpose'
       ])
       ->addColumn([
         'data' => 'tgl_terdaftar',
         'name' => 'tgl_terdaftar',
-        'title' => 'Tanggal'
+        'title' => 'Date'
       ])
       ->addColumn([
         'data' => 'action',
@@ -103,7 +103,7 @@ class VisitorsController extends Controller
     $item = Visitor::create($request->all());
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil menambah $item->name"
+      "message" => "Successfully added $item->name"
     ]);
     return redirect()->route('visitors.index');
   }
@@ -113,7 +113,7 @@ class VisitorsController extends Controller
     $item = Visitor::create($request->all());
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Terimakasih $item->name, Selamat $item->keperluan !"
+      "message" => "Thank you $item->name, Happy $item->keperluan !"
     ]);
     return redirect()->route('visitors.guest-book');
   }
@@ -132,7 +132,7 @@ class VisitorsController extends Controller
     $item = Visitor::create($data);
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Terimakasih $item->name, Selamat $item->keperluan !"
+      "message" => "Thank you $item->name, Happy $item->keperluan !"
     ]);
     return redirect()->route('visitors.guest-book');
   }
@@ -176,7 +176,7 @@ class VisitorsController extends Controller
 
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah $item->name"
+      "message" => "Successfully updated $item->name"
     ]);
     return redirect()->route('visitors.index');
   }

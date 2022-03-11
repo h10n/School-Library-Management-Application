@@ -7,7 +7,7 @@
 </div>
 
 <div class="form-group{{$errors->has('text') ? ' has-error' : ''}}">
-  {!! Form::label('text','Isi',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('text','Text',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::textarea('text',null,['class' => 'form-control','maxlength' => '330']) !!}
     {!! $errors->first('text','<p class="help-block"><strong>:message</strong></p>') !!}
@@ -15,7 +15,7 @@
 </div>
 
 <div class="form-group{{$errors->has('img_file') ? ' has-error' : ''}}">
-  {!! Form::label('img_file','Foto',['class' => 'col-md-2 control-label']) !!}
+  {!! Form::label('img_file','Image',['class' => 'col-md-2 control-label']) !!}
   <div class="col-md-4">
     {!! Form::file('img_file') !!}
     {!! $errors->first('img_file','<p class="help-block"><strong>:message</strong></p>') !!}
