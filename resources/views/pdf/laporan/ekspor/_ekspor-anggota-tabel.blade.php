@@ -1,16 +1,16 @@
 <table class="laporanTable" style="font-size: 8pt;">
     <thead>
         <tr>
-            <th>No</th>
-            <th>Tanggal Terdaftar</th>
-            <th>NIS/NIP</th>
-            <th>Nama</th>
-            <th>Jenis Anggota</th>
-            <th>Kelas</th>
-            <th>Jurusan</th>
+            <th>#</th>
+            <th>Registered Date</th>
+            <th>Member Id</th>
+            <th>Name</th>
+            <th>Member Type</th>
+            <th>Grade</th>
+            <th>Major</th>
             <th>E-mail</th>
-            <th>No Telepon</th>
-            <th>Alamat</th>
+            <th>Phone number</th>
+            <th>Address</th>
             <th>Username</th>            
         </tr>  
     </thead>
@@ -21,7 +21,7 @@
             <td>{{ $item->tgl_terdaftar }}</td>
             <td>{{ $item->no_induk }}</td>
             <td>{{ $item->name }}</td>
-            <td>{{ $item->jenis_anggota }}</td>
+            <td>{{ $item->member_type }}</td>
             <td>{{ $item->kelas }}</td>
             <td>{{ $item->jurusan }}</td>
             <td>{{ $item->email }}</td>

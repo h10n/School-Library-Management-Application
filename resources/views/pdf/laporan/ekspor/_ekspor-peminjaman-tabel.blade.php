@@ -1,17 +1,17 @@
 <table class="laporanTable" style="font-size: 8pt;">
     <thead>
         <tr>
-            <th>No</th>
-            <th>Tgl Peminjaman</th>
-            <th>NIS/NIP Peminjam</th>
-            <th>Nama Peminjam</th>
-            <th>No. Induk Buku</th>
-            <th>Judul Buku</th>
-            <th>Petugas Peminjaman</th>
-            <th>Petugas Pengembalian</th>
-            <th>Max Tanggal Pengembalian</th>
+            <th>#</th>
+            <th>Borrowing Date</th>
+            <th>Member Id</th>
+            <th>Name</th>
+            <th>Book Id</th>
+            <th>Title</th>
+            <th>Borrow Staff</th>
+            <th>Return Staff</th>
+            <th>Max Borrowing Date</th>
             <th>Status</th>
-            <th>Denda</th>                  
+            <th>Fine</th>                  
         </tr>  
     </thead>
     <tbody>

@@ -1,20 +1,20 @@
 <table class="laporanTable" style="font-size: 8pt;">
     <thead>
         <tr>
-            <th>No</th>
-            <th>Tgl Input</th>
-            <th>No Induk</th>
-            <th>Judul</th>
-            <th>Penulis</th>
-            <th>Tempat Terbit</th>
-            <th>Penerbit</th>
-            <th>Tahun Terbit</th>
-            <th>Tahun Buku</th>
-            <th>No Klasifikasi</th>
-            <th>Kategori</th>
-            <th>Sumber</th>
-            <th>Jumlah</th>                    
-            <th>Stok</th>                    
+            <th>#</th>
+            <th>Input Date</th>
+            <th>Book Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Published Location</th>
+            <th>Publisher</th>
+            <th>Published Year</th>
+            <th>Book Year</th>
+            <th>Classification Code</th>
+            <th>Category</th>
+            <th>Source</th>
+            <th>Amount</th>                    
+            <th>Stock</th>                    
         </tr>  
     </thead>
     <tbody>

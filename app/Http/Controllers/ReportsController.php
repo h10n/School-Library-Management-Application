@@ -30,21 +30,25 @@ class ReportsController extends Controller
             case 'buku':
                 $model = new Book();
                 $bladeTable = '_ekspor-buku-tabel';
+                $enTitle = 'Book';
                 break;
 
             case 'anggota':
                 $model = new Member();
                 $bladeTable = '_ekspor-anggota-tabel';
+                $enTitle = 'Member';
                 break;
 
             case 'peminjaman':
                 $model = new BorrowLog();
                 $bladeTable = '_ekspor-peminjaman-tabel';
+                $enTitle = 'Transaction';
                 break;
 
             default:
                 $model = new Visitor();
                 $bladeTable = '_ekspor-pengunjung-tabel';
+                $enTitle = 'Visitor';
                 break;
         }
 
@@ -60,6 +64,7 @@ class ReportsController extends Controller
         $data['setting'] =  Setting::first();
         $data['table'] =  $bladeTable;
         $data['request']['jenis'] = $request->jenis;
+        $data['enTitle'] = $enTitle;
 
         $pdf = PDF::loadView('pdf.laporan.ekspor', $data)->setPaper('a4', 'potrait');
         return $pdf->stream("laporan-$request->jenis.pdf", array("Attachment" => false));
