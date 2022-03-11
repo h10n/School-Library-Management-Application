@@ -1,15 +1,15 @@
-<h3>Rekapitulasi Peminjaman Buku </h3>
-<h5>Periode : {{ $firstKey = array_keys($transaction_bulanan)[0] }} s.d {{ $firstKey = key(array_slice($transaction_bulanan, -1, 1, true)) }}</h5>
+<h3>Transaction Recapitulation </h3>
+<h5>Period : {{ $firstKey = array_keys($transaction_bulanan)[0] }} s.d {{ $firstKey = key(array_slice($transaction_bulanan, -1, 1, true)) }}</h5>
 {{-- deprecated, min php 7.3--}}
 {{-- <h5>Periode : {{ $firstKey = array_key_first($transaction_bulanan) }} s.d {{ $firstKey = array_key_last($transaction_bulanan) }}</h5> --}}
 <table class="laporanTable">
     <thead>
     <tr>
-        <th>No</th>
-        <th>Hari / Tanggal</th>
-        <th>Jumlah Buku Dipinjam</th>
-        <th>Jumlah Buku Kembali</th>
-        <th>Keterangan</th>
+        <th>#</th>
+        <th>Day/Date</th>
+        <th>Borrowed Book</th>
+        <th>Returned Book</th>
+        <th>Note</th>
     </tr>
     </thead>
     <tbody>

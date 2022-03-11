@@ -1,13 +1,13 @@
-<h3>Rekapitulasi Peminjaman Buku </h3>
-<h5>Tahun : {{ $tahun }}</h5>
+<h3>Transaction Recapitulation </h3>
+<h5>Year : {{ $tahun }}</h5>
 <table class="laporanTable">
     <thead>
     <tr>
-        <th>No</th>
-        <th>Bulan</th>
-        <th>Jumlah Buku Di Pinjam</th>
-        <th>Jumlah Buku Kembali</th>
-        <th>Ket</th>
+        <th>#</th>
+        <th>Month</th>
+        <th>Borrowed Book</th>
+        <th>Returned Book</th>
+        <th>Note</th>
     </tr>
     </thead>
     <tbody>
@@ -16,8 +16,7 @@
     $total_pengembalian = 0;
     $no = 0;
     @endphp
-    @foreach ($transaction_tahunan as $key => $transaction)
-    {{-- @if ($transaction['jumlah'] != 0) --}}
+    @foreach ($transaction_tahunan as $key => $transaction)    
     <tr>
         <td>{{ ++$no }}</td>
         <td>{{ $key }}</td>
@@ -28,8 +27,7 @@
     @php
     $total_peminjaman += $transaction['peminjaman'];
     $total_pengembalian += $transaction['pengembalian'];
-    @endphp
-    {{-- @endif         --}}
+    @endphp    
     @endforeach
 
     <tr>
