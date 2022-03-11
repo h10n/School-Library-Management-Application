@@ -52,7 +52,7 @@ class VisitorsController extends Controller
       ->addColumn([
         'data' => 'no_induk',
         'name' => 'no_induk',
-        'title' => 'Member Id'
+        'title' => 'Identity Number'
       ])
       ->addColumn([
         'data' => 'name',
@@ -60,8 +60,8 @@ class VisitorsController extends Controller
         'title' => 'Name'
       ])
       ->addColumn([
-        'data' => 'jenis',
-        'name' => 'jenis',
+        'data' => 'visitor_type',
+        'name' => 'visitor_type',
         'title' => 'Visitor Type'
       ])
       ->addColumn([
