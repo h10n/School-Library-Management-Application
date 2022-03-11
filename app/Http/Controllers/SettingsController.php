@@ -34,7 +34,7 @@ class SettingsController extends Controller
 
     Session::flash("flash_notification", [
       "level" => "success",
-      "message" => "Berhasil mengubah Pengaturan"
+      "message" => "Successfully Updated Settings"
     ]);
     return redirect('admin/settings/general');
   }

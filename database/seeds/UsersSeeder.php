@@ -54,7 +54,7 @@ class UsersSeeder extends Seeder
 
         //buat sample member
         $member = new User();
-        $member->name = "Anggota";
+        $member->name = "Member Sample";
         $member->username = "member";        
         $member->password = bcrypt('admin123');
         $member->photo = "";
@@ -64,7 +64,7 @@ class UsersSeeder extends Seeder
 
         //buat sample pengunjung
         $visitor = new User();
-        $visitor->name = "Pengunjung";
+        $visitor->name = "Visitor";
         $visitor->username = "visitor";        
         $visitor->password = bcrypt('admin123');
         $visitor->photo = "";

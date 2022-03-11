@@ -3,13 +3,13 @@
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-        <li class="active">Pengaturan</li>
+        <li class="active">Settings</li>
     </ol>
 </section>
 <section class="content container-fluid">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Pengaturan</h3>
+            <h3 class="box-title">Settings</h3>
             <div class="table-button-custom">
             </div>
         </div>
@@ -17,14 +17,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <table class="table">
-                        <caption><span class="ion-ios-gear"> Umum</caption>
+                        <caption><span class="ion-ios-gear"> General</caption>
                         <tbody>
                             <tr>
-                                <td class="text-muted">Nama</td>
+                                <td class="text-muted">Name</td>
                                 <td>{{ $item->name }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Alamat</td>
+                                <td class="text-muted">Address</td>
                                 <td>{{ $item->address }}</td>
                             </tr>
                             <tr>
@@ -36,11 +36,11 @@
                                 <td>{{ $item->email }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Pengelola</td>
+                                <td class="text-muted">Management Institution</td>
                                 <td>{{ $item->pengelola }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Tentang</td>
+                                <td class="text-muted">About</td>
                                 <td>{{ $item->about }}</td>
                             </tr>
                             <tr>
@@ -48,7 +48,7 @@
                                 <td>{{ $item->kepala_perpustakaan }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">NIP Kepala Perpustakaan</td>
+                                <td class="text-muted">Head Librarian Id</td>
                                 <td>{{ $item->nip_kepala_perpustakaan }}</td>
                             </tr>
                             <tr>
@@ -66,19 +66,19 @@
                 </div>
                 <div class="col-md-12">
                     <table class="table">
-                        <caption><span class="ion-arrow-swap"> Peminjaman</caption>
+                        <caption><span class="ion-arrow-swap"> Transaction</caption>
                         <tbody>
                             <tr>
-                                <td class="text-muted">Nominal Denda</td>
-                                <td>Rp.{{ $item->denda }}/Hari</td>
+                                <td class="text-muted">Fine Amount</td>
+                                <td>Rp.{{ $item->denda }}/Day</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Max Durasi Peminjaman</td>
-                                <td>{{ $item->durasi }} Hari</td>
+                                <td class="text-muted">Max Borrowing Duration</td>
+                                <td>{{ $item->durasi }} Days</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Max Jumlah Peminjaman</td>
-                                <td>{{ $item->max_peminjaman }} Buku</td>
+                                <td class="text-muted">Max Borrowing Amount</td>
+                                <td>{{ $item->max_peminjaman }} Books</td>
                             </tr>
                         </tbody>
                     </table>

@@ -81,13 +81,13 @@
   @endrole
   @role('visitor')
   <li class="{{ (request()->is('visitor/guest-book')) ? 'active' : '' }}">
-    <a href="{{ route('visitors.guest-book') }}"><i class="ion-person-add"></i> <span>Buku Tamu</span>
+    <a href="{{ route('visitors.guest-book') }}"><i class="ion-person-add"></i> <span>Guest Book</span>
     </a>
   </li>
   @endrole
   @role('member')
   <li class="{{ (request()->is('member/status-history')) ? 'active' : '' }}">
-    <a href="{{  route('members.status-history') }}"><i class="ion-document-text"></i> <span>Status & Riwayat</span>
+    <a href="{{  route('members.status-history') }}"><i class="ion-document-text"></i> <span>Status & History</span>
     </a>
   </li>
   @endrole
