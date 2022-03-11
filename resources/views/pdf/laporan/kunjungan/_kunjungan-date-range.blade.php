@@ -1,16 +1,16 @@
-<h3>Rekapitulasi Jumlah Pengunjung </h3>
-<h5>Periode : {{ $firstKey = array_keys($visitor_bulanan)[0] }} s.d {{ $firstKey = key(array_slice($visitor_bulanan, -1, 1, true)) }}
+<h3>Recapitulation of Visitors </h3>
+<h5>Period : {{ $firstKey = array_keys($visitor_bulanan)[0] }} s.d {{ $firstKey = key(array_slice($visitor_bulanan, -1, 1, true)) }}
 {{-- deprecated, min php 7.3--}}
 {{-- <h5>Periode : {{ $firstKey = array_key_first($visitor_bulanan) }} s.d {{ $firstKey = array_key_last($visitor_bulanan) }} --}}
 </h5>
 <table class="laporanTable">
     <thead>
     <tr>
-        <th rowspan="2">No</th>
-        <th rowspan="2">Hari/Tanggal</th>
-        <th colspan="3">Kelas</th>
-        <th rowspan="2">Guru/Karyawan Sekolah</th>
-        <th rowspan="2">Jumlah</th>
+        <th rowspan="2">#</th>
+        <th rowspan="2">Day/Date</th>
+        <th colspan="3">Grade</th>
+        <th rowspan="2">Teacher/Staff</th>
+        <th rowspan="2">Sum</th>
     </tr>
     <tr>
         <th>X</th>

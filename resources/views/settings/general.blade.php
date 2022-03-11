@@ -44,7 +44,7 @@
                                 <td>{{ $item->about }}</td>
                             </tr>
                             <tr>
-                                <td class="text-muted">Kepala Perpustakaan</td>
+                                <td class="text-muted">Head Librarian</td>
                                 <td>{{ $item->kepala_perpustakaan }}</td>
                             </tr>
                             <tr>

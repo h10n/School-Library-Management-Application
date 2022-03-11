@@ -78,7 +78,7 @@
         </div>
       </div>
       <div class="form-group{{ $errors->has('kepala_perpustakaan') ? ' has-error' : '' }}">
-        {!! Form::label('kepala_perpustakaan', 'Kepala Perpustakaan', ['class' => 'col-md-2 control-label']) !!}
+        {!! Form::label('kepala_perpustakaan', 'Head Librarian', ['class' => 'col-md-2 control-label']) !!}
         <div class="col-md-4">
           {!! Form::text('kepala_perpustakaan',null,['class' => 'form-control','maxlength' => '50']) !!}
           {!! $errors->first('kepala_perpustakaan','<p class="help-block">:message</p>') !!}

@@ -4,13 +4,13 @@
 <section class="content-header">
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="ion-ios-home"></i> Home</a></li>
-    <li class="active">Laporan Pengunjung</li>
+    <li class="active">Visitor Report</li>
   </ol>
 </section>
 <section class="content container-fluid">
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">Laporan Pengunjung</h3>
+      <h3 class="box-title">Visitor Report</h3>
       <div class="table-button-custom">
         {{ Form::open(['route' => 'admin.reports.visitors.cetak', 'method' => 'POST', 'target' => '_blank']) }}
         <a class="btn bg-olive" onClick="window.location.reload();"><span class="ion-refresh"> Reset</span></a>
@@ -18,7 +18,7 @@
         {{ Form::hidden('to_date') }}
         {{ Form::hidden('what_year') }}
         {{ Form::hidden('jenis', 'bulanan') }}
-        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-printer"> Cetak</span></button>
+        <button type="submit" class="btn bg-purple btn-cetak"><span class="ion-printer"> Print</span></button>
         {{ Form::close() }}
       </div>
     </div>
@@ -28,20 +28,20 @@
         <li role="presentation" class="active">
           <a href="#report-month-panel" aria-controls="form" role="tab" data-toggle="tab"
             onClick="jenisLaporan('bulanan');">
-            <i class="ion-android-calendar"></i> Bulanan
+            <i class="ion-android-calendar"></i> Monthly
           </a>
         </li>
         <li role="presentation">
           <a href="#report-year-panel" aria-controls="upload" role="tab" data-toggle="tab"
             onClick="jenisLaporan('tahunan');">
-            <i class="ion-calendar"></i> Tahunan
+            <i class="ion-calendar"></i> Yearly
           </a>
         </li>
       </ul>
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active add-little-padding-panel" id="report-month-panel">
           <a class="btn bg-blue" id="daterange-btn" style="margin-left:15px;">
-            <span><i class="fa fa-calendar"></i> Pilih Periode</span>
+            <span><i class="fa fa-calendar"></i> Select Period</span>
             <i class="fa fa-caret-down"></i>
           </a>
           <div class="box-body">
@@ -49,11 +49,11 @@
               <table class="table table-striped table-hover" id="laporanBulanan">
                 <thead>
                   <tr>
-                    <th rowspan="2">No</th>
-                    <th rowspan="2">Hari/Tanggal</th>
-                    <th colspan="3">Kelas</th>
-                    <th rowspan="2">Guru/Karyawan Sekolah</th>
-                    <th rowspan="2">Jumlah</th>
+                    <th rowspan="2">#</th>
+                    <th rowspan="2">Day/Date</th>
+                    <th colspan="3">Grade</th>
+                    <th rowspan="2">Teacher/Staff</th>
+                    <th rowspan="2">Sum</th>
                   </tr>
                   <tr>
                     <th>X</th>
@@ -89,10 +89,10 @@
             <table class="table table-striped table-hover" id="laporanTahunan">
               <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Bulan</th>
-                  <th>Jumlah Pengunjung</th>
-                  <th>Ket</th>
+                  <th>#</th>
+                  <th>Month</th>
+                  <th>Visitors</th>
+                  <th>Note</th>
                 </tr>
               </thead>
               <tbody>
@@ -174,12 +174,12 @@
 
         $('#daterange-btn').daterangepicker({
             ranges: {
-              'Hari Ini': [moment(), moment()],
-              'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-              '7 Hari Terakhir': [moment().subtract(6, 'days'), moment()],
-              '30 Hari Terakhir': [moment().subtract(29, 'days'), moment()],
-              'Bulan Ini': [moment().startOf('month'), moment().endOf('month')],
-              'Bulan Kemarin': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+              'Today': [moment(), moment()],
+              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+              'This month': [moment().startOf('month'), moment().endOf('month')],
+              'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             },
             startDate: moment().subtract(29, 'days'),
             endDate: moment(),

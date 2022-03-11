@@ -1,12 +1,12 @@
-<h3>Rekapitulasi Jumlah Pengunjung </h3>
-<h5>Tahun : {{ $tahun }}</h5>
+<h3>Recapitulation of Visitors </h3>
+<h5>Year : {{ $tahun }}</h5>
 <table class="laporanTable">
     <thead>
     <tr>
-        <th>No</th>
-        <th>Bulan</th>
-        <th>Jumlah Pengunjung</th>
-        <th>Ket</th>
+        <th>#</th>
+        <th>Month</th>
+        <th>Visitors</th>
+        <th>Note</th>
     </tr>
     </thead>
     <tbody>
