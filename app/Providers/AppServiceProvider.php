@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
           $view->with(compact('nama_perpus','alamat_perpus','tentang','denda','durasi','logo','waktu','jumlah', 'announcements', 'kepala_perpustakaan', 'nip_kepala_perpustakaan'));
       });
       
-      setlocale(LC_ALL,'id_ID', 'id', 'ID');  
+      // setlocale(LC_ALL,'id_ID', 'id', 'ID');  
     }
 
     /**
