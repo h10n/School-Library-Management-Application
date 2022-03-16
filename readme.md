@@ -97,3 +97,5 @@ Please ⭐️ this repository if this project helped you!
 [![ko-fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/h10n_/)
 
 [![buy-me-a-coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/h10n/)
+
+[![trakteer](https://cdn.trakteer.id/images/embed/trbtn-red-1.png)](https://trakteer.id/h10n/tip/)
