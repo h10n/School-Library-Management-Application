@@ -42,8 +42,6 @@ Environment Configuration
 
 To run this project, you will need to change the following environment variables in your .env file
 
-`DB_PORT`
-
 `DB_DATABASE`
 
 `DB_USERNAME`
