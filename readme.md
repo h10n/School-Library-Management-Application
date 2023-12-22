@@ -67,9 +67,9 @@ Create the symbolic link
 php artisan storage:link
 ```
     
-## Running Tests
+## Running Dev
 
-To run tests, run the following command
+For development, run the following command
 
 ```bash
   php artisan serve
